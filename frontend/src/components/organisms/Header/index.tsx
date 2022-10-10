@@ -1,8 +1,6 @@
 import Link from "next/link";
 import React from "react";
 
-import styles from "./styles";
-
 const Header: React.FC = () => {
   return (
     <header className="header">
