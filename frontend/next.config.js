@@ -1,7 +1,15 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
+const { resolve } = require('path');
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+module.exports = {
+  reactStrictMode: true,
+  // ES Moduleの読み込みを許可する
+  experimental: {
+    esmExternals: true,
+  },
+  webpack: (config) => {
+    config.resolve.alias['@'] = resolve(__dirname, 'src');
+
+    return config;
+  },
+};

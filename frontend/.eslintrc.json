@@ -1,3 +1,81 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": ["@typescript-eslint", "jest", "import"],
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module",
+    "project": "./frontend/tsconfig.json",
+    "createDefaultProgram": true
+  },
+  "rules": {
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function" }
+    ],
+    // prop-typesの省略を禁止 (TS利用の為off)
+    "react/prop-types": "off",
+    // 単体のexportを禁止 (名前付きexportでDXを優先した為off)
+    "import/prefer-default-export": "off",
+    // Redux Toolkitで値の更新を許可するため、propsをfalseにする
+    "no-param-reassign": ["error", { "props": false }],
+    // devDependenciesのimportを禁止 (Storybookのみoff)
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["storybook/**", "**/*.stories.tsx"]
+      }
+    ],
+    // 返り値の型は型推論も許容したい為OFF
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    // 空関数の記述禁止
+    "no-empty-function": "error",
+    // importのorderを強制
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "sibling",
+          "parent",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": { "order": "asc" },
+        "newlines-between": "always"
+      }
+    ],
+    "import/extensions": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "import/no-relative-parent-imports": "error",
+    // FIXME: ここから暫定
+    "default-case": "off",
+    "consistent-return": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/button-has-type": "off",
+    // FIXME: 型情報をimportすると常にno-unused-varsになる為off
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn"]
+  }
 }
