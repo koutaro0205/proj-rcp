@@ -11,7 +11,7 @@ const styles = {
   }),
   inner: css({
     paddingTop: space.small,
-    paddingBottom: space.zero,
+    paddingBottom: space.small,
   }),
   list: css({
     display: "flex",

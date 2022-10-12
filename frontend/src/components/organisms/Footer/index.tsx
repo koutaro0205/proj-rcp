@@ -1,26 +1,32 @@
 import Link from "next/link";
 import React from "react";
 
-import Context from "@/components/layouts/Content";
+import ContextWidth from "@/components/layouts/ContentWidth";
 
 import styles from "./styles";
 
 const Footer: React.FC = () => {
   return (
     <footer className={styles.container}>
-      <Context>
-        <ul className={styles.list}>
-          <li className={styles.item}>
-            <Link href="/">ホームへ戻る</Link>
-          </li>
-          <li className={styles.item}>
-            <Link href="/categories">カテゴリ追加</Link>
-          </li>
-        </ul>
-        <p className={styles.copyright}>
-          Copyright © 2022 Koutaro Inoue All Rights Reserved.
-        </p>
-      </Context>
+      <ContextWidth>
+        <div className={styles.inner}>
+          <ul className={styles.list}>
+            <li className={styles.item}>
+              <Link href="/">
+                <span>ホームへ戻る</span>
+              </Link>
+            </li>
+            <li className={styles.item}>
+              <Link href="/categories">
+                <span>カテゴリ一覧</span>
+              </Link>
+            </li>
+          </ul>
+          <p className={styles.copyright}>
+            Copyright © 2022 Koutaro Inoue All Rights Reserved.
+          </p>
+        </div>
+      </ContextWidth>
     </footer>
   );
 };
