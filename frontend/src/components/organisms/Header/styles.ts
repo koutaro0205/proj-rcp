@@ -4,7 +4,6 @@ import borderRadius from "@/theme/borderRadius";
 import colors from "@/theme/colors";
 import fontFamily from "@/theme/fontFamily";
 import fontSizes from "@/theme/fontSize";
-import lineHeight from "@/theme/lineHeight";
 import space from "@/theme/space";
 
 const styles = {
