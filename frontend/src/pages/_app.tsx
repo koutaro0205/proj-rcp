@@ -6,8 +6,9 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
 
+export const SITE_TITLE = "ZuboRecipes";
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const SITE_TITLE = "zuborecipes";
   return (
     <>
       <Head>

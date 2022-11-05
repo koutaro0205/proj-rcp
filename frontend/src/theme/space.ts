@@ -1,12 +1,13 @@
-// const spaceArray = ["0px", "8px", "16px", "32px", "64px", "128px"];
-
 const space = {
   zero: "0px",
+  extraExtraSmall: "4px",
   extraSmall: "8px",
-  small: "16px",
-  medium: "32px",
-  mediumLarge: "64px",
-  large: "128px",
+  small: "12px",
+  medium: "16px",
+  mediumLarge: "20px",
+  large: "32px",
+  extraLarge: "48px",
+  extraExtraLarge: "64px",
 };
 
 export default space;

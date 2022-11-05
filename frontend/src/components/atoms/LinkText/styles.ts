@@ -4,7 +4,6 @@ const styles = {
   link: css({
     cursor: "pointer",
     display: "block",
-    // verticalAlign: "bottom",
   }),
 };
 
