@@ -15,7 +15,7 @@
       "jsx": true
     },
     "sourceType": "module",
-    "project": "./frontend/tsconfig.json",
+    "project": "./tsconfig.json",
     "createDefaultProgram": true
   },
   "rules": {
@@ -77,5 +77,6 @@
     // FIXME: 型情報をimportすると常にno-unused-varsになる為off
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["warn"]
+    // "react/no-unknown-property": ["error", { "ignore": ["css"] }]
   }
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
+import LinkText from "@/components/atoms/LinkText";
 import ContextWidth from "@/components/layouts/ContentWidth";
 import { SearchForm } from "@/components/molecules/SearchForm";
 
@@ -13,7 +14,7 @@ const Header: React.FC = () => {
         <div className={styles.inner}>
           <h1 className={styles.logo}>
             <Link href="/">
-              <span className={styles.logoLink}>ZuboRecipes</span>
+              <LinkText _styles={styles.logoLink}>ZuboRecipes</LinkText>
             </Link>
           </h1>
           <div className={styles.searchContainer}>
@@ -23,12 +24,12 @@ const Header: React.FC = () => {
             <ul className={styles.menuList}>
               <li className={styles.menuItem}>
                 <Link href="/recipes/new">
-                  <span>レシピを投稿</span>
+                  <LinkText>レシピを投稿</LinkText>
                 </Link>
               </li>
               <li className={styles.menuItem}>
                 <Link href="/">
-                  <span>お気に入り</span>
+                  <LinkText>お気に入り</LinkText>
                 </Link>
               </li>
             </ul>
@@ -40,22 +41,22 @@ const Header: React.FC = () => {
           <ul className={styles.navList}>
             <li className={styles.navItem}>
               <Link href="/">
-                <span className={styles.navLink}>ホーム</span>
+                <LinkText _styles={styles.navLink}>ホーム</LinkText>
               </Link>
             </li>
             <li className={styles.navItem}>
               <Link href="/questions">
-                <span className={styles.navLink}>質問一覧</span>
+                <LinkText _styles={styles.navLink}>質問一覧</LinkText>
               </Link>
             </li>
             <li className={styles.navItem}>
               <Link href="/login" className={styles.navLink}>
-                <span className={styles.navLink}>ログイン</span>
+                <LinkText _styles={styles.navLink}>ログイン</LinkText>
               </Link>
             </li>
             <li className={styles.navItem}>
               <Link href="/users/new/" className={styles.navLink}>
-                <span className={styles.navLink}>新規登録</span>
+                <LinkText _styles={styles.navLink}>新規登録</LinkText>
               </Link>
             </li>
           </ul>
