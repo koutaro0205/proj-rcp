@@ -1,7 +1,7 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
-import fontSizes from "@/theme/fontSize";
-import space from "@/theme/space";
+import fontSizes from '@/theme/fontSize';
+import space from '@/theme/space';
 
 const styles = {
   message: css({

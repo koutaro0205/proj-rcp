@@ -1,18 +1,24 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import React from "react";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
 
-import NavItem from "@/components/atoms/NavItem";
-import styles from "@/components/organisms/Header/styles";
+import NavItem from '@/components/atoms/NavItem';
+import styles from '@/components/organisms/Header/styles';
 
 export default {
-  title: "components/atoms/NavItem",
+  title: 'components/atoms/NavItem',
   component: NavItem,
   argTypes: {
     label: {
       control: {
-        type: "text",
+        type: 'text',
       },
-      defaultValue: "item",
+      defaultValue: 'item',
+    },
+    size: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'm',
     },
   },
 } as ComponentMeta<typeof NavItem>;
@@ -26,4 +32,4 @@ const Template: ComponentStory<typeof NavItem> = (args) => (
 );
 
 export const Nomal = Template.bind({});
-Nomal.args = { label: "item", path: "/" };
+Nomal.args = { label: 'item', path: '/', size: 'm' };

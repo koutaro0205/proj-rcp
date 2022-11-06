@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const ALL_USERS_URL = "http://localhost:3000/api/v1/users";
+const ALL_USERS_URL = 'http://localhost:3000/api/v1/users';
 
 const getAllUsers = async () => {
   const response = await axios.get(ALL_USERS_URL);

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { User } from "@/@types/data";
-import getAllUsers from "@/services/users/getAllUsers";
+import { User } from '@/@types/data';
+import getAllUsers from '@/services/users/getAllUsers';
 
 const useGetAllUsers = () => {
   const [users, setUsers] = useState<User[]>([]);

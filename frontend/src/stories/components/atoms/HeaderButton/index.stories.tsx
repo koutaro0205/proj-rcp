@@ -1,18 +1,18 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import React from "react";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
 
-import HeaderButton from "@/components/atoms/HeaderButton";
-import styles from "@/components/organisms/Header/styles";
+import HeaderButton from '@/components/atoms/HeaderButton';
+import styles from '@/components/organisms/Header/styles';
 
 export default {
-  title: "components/atoms/HeaderButton",
+  title: 'components/atoms/HeaderButton',
   component: HeaderButton,
   argTypes: {
     label: {
       control: {
-        type: "text",
+        type: 'text',
       },
-      defaultValue: "ボタン",
+      defaultValue: 'ボタン',
     },
   },
 } as ComponentMeta<typeof HeaderButton>;
@@ -24,4 +24,4 @@ const Template: ComponentStory<typeof HeaderButton> = (args) => (
 );
 
 export const Nomal = Template.bind({});
-Nomal.args = { label: "ボタン", path: "/" };
+Nomal.args = { label: 'ボタン', path: '/' };

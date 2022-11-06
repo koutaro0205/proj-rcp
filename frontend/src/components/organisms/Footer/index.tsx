@@ -1,9 +1,10 @@
-import Link from "next/link";
-import React from "react";
+import React from 'react';
 
-import ContextWidth from "@/components/layouts/ContentWidth";
+import Copyright from '@/components/atoms/Copyright';
+import NavItem from '@/components/atoms/NavItem';
+import ContextWidth from '@/components/layouts/ContentWidth';
 
-import styles from "./styles";
+import styles from './styles';
 
 const Footer: React.FC = () => {
   return (
@@ -11,20 +12,10 @@ const Footer: React.FC = () => {
       <ContextWidth>
         <div className={styles.inner}>
           <ul className={styles.list}>
-            <li className={styles.item}>
-              <Link href="/">
-                <span>ホームへ戻る</span>
-              </Link>
-            </li>
-            <li className={styles.item}>
-              <Link href="/categories">
-                <span>カテゴリ一覧</span>
-              </Link>
-            </li>
+            <NavItem path="/" label="ホームへ戻る" size="s" />
+            <NavItem path="/categories" label="カテゴリ一覧" size="s" />
           </ul>
-          <p className={styles.copyright}>
-            Copyright © 2022 Koutaro Inoue All Rights Reserved.
-          </p>
+          <Copyright />
         </div>
       </ContextWidth>
     </footer>
