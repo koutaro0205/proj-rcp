@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import Explanation from "@/components/atoms/Explanation";
-import Input from "@/components/atoms/Input";
-import InputField from "@/components/atoms/InputField";
+import Explanation from '@/components/atoms/Explanation';
+import Input from '@/components/atoms/Input';
+import InputField from '@/components/atoms/InputField';
 
-import styles from "./styles";
+import styles from './styles';
 
 export const SearchForm: React.FC = () => {
   return (

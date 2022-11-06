@@ -1,8 +1,8 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
-import colors from "@/theme/colors";
-import fontSizes from "@/theme/fontSize";
-import space from "@/theme/space";
+import colors from '@/theme/colors';
+import fontSizes from '@/theme/fontSize';
+import space from '@/theme/space';
 
 const styles = {
   container: css({
@@ -14,18 +14,8 @@ const styles = {
     paddingBottom: space.small,
   }),
   list: css({
-    display: "flex",
-    justifyContent: "center",
-  }),
-  item: css({
-    marginRight: space.small,
-  }),
-  link: css({
-    color: colors.white,
-  }),
-  copyright: css({
-    textAlign: "center",
-    marginTop: space.medium,
+    display: 'flex',
+    justifyContent: 'center',
   }),
 };
 

@@ -1,8 +1,8 @@
-import { cx } from "@emotion/css";
-import Link from "next/link";
-import React from "react";
+import { cx } from '@emotion/css';
+import Link from 'next/link';
+import React from 'react';
 
-import styles from "./styles";
+import styles from './styles';
 
 type Props = {
   children: React.ReactNode;

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import LinkText from "@/components/atoms/LinkText";
+import LinkText from '@/components/atoms/LinkText';
 
-import styles from "./styles";
+import styles from './styles';
 
 type Props = {
   logoText: string;

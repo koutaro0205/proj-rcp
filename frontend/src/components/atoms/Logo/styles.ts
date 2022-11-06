@@ -1,8 +1,8 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
-import colors from "@/theme/colors";
-import fontFamily from "@/theme/fontFamily";
-import fontSizes from "@/theme/fontSize";
+import colors from '@/theme/colors';
+import fontFamily from '@/theme/fontFamily';
+import fontSizes from '@/theme/fontSize';
 
 const styles = {
   container: css({
@@ -11,7 +11,7 @@ const styles = {
   }),
   linkText: css({
     color: colors.baseColor,
-    textDecoration: "none",
+    textDecoration: 'none',
   }),
 };
 

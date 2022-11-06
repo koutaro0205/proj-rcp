@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import HeaderButton from "@/components/atoms/HeaderButton";
-import Logo from "@/components/atoms/Logo";
-import NavItem from "@/components/atoms/NavItem";
-import ContextWidth from "@/components/layouts/ContentWidth";
-import { SearchForm } from "@/components/molecules/SearchForm";
-import { SITE_TITLE } from "@/pages/_app";
+import HeaderButton from '@/components/atoms/HeaderButton';
+import Logo from '@/components/atoms/Logo';
+import NavItem from '@/components/atoms/NavItem';
+import ContextWidth from '@/components/layouts/ContentWidth';
+import { SearchForm } from '@/components/molecules/SearchForm';
+import { SITE_TITLE } from '@/pages/_app';
 
-import styles from "./styles";
+import styles from './styles';
 
 const Header: React.FC = () => {
   return (

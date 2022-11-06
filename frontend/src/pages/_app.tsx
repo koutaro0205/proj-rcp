@@ -1,12 +1,12 @@
-import { Global, css } from "@emotion/react";
+import { Global, css } from '@emotion/react';
 // eslint-disable-next-line import/no-relative-parent-imports
-import "../style/global.css";
-import emotionReset from "emotion-reset";
-import type { AppProps } from "next/app";
-import Head from "next/head";
-import React from "react";
+import '../style/global.css';
+import emotionReset from 'emotion-reset';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import React from 'react';
 
-export const SITE_TITLE = "ZuboRecipes";
+export const SITE_TITLE = 'ZuboRecipes';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (

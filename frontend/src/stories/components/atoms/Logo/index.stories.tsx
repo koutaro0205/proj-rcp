@@ -1,17 +1,17 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import React from "react";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
 
-import Logo from "@/components/atoms/Logo";
+import Logo from '@/components/atoms/Logo';
 
 export default {
-  title: "components/atoms/Logo",
+  title: 'components/atoms/Logo',
   component: Logo,
   argTypes: {
     logoText: {
       control: {
-        type: "text",
+        type: 'text',
       },
-      defaultValue: "ロゴ",
+      defaultValue: 'ロゴ',
     },
   },
 } as ComponentMeta<typeof Logo>;
@@ -19,4 +19,4 @@ export default {
 const Template: ComponentStory<typeof Logo> = (args) => <Logo {...args} />;
 
 export const Nomal = Template.bind({});
-Nomal.args = { logoText: "ZuboRecipes", path: "/" };
+Nomal.args = { logoText: 'ZuboRecipes', path: '/' };

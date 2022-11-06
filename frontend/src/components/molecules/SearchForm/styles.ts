@@ -1,22 +1,22 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
-import colors from "@/theme/colors";
-import space from "@/theme/space";
+import colors from '@/theme/colors';
+import space from '@/theme/space';
 
 const styles = {
   container: css({
-    width: "450px",
+    width: '450px',
     marginTop: space.extraSmall,
     marginButtom: space.extraSmall,
   }),
   content: css({
-    height: "34px",
+    height: '34px',
   }),
   searchForm: css({
-    width: "100%",
+    width: '100%',
   }),
   searchSubmit: css({
-    width: "30%",
+    width: '30%',
     paddingTop: space.extraSmall,
     paddingButtom: space.extraSmall,
     color: colors.black,

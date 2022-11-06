@@ -1,9 +1,11 @@
 import { css } from '@emotion/css';
 
+import space from '@/theme/space';
+
 const styles = {
   container: css({
-    maxWidth: '1100px',
-    margin: '0 auto',
+    textAlign: 'center',
+    marginTop: space.medium,
   }),
 };
 

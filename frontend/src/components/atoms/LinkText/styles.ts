@@ -1,9 +1,9 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
 const styles = {
   link: css({
-    cursor: "pointer",
-    display: "block",
+    cursor: 'pointer',
+    display: 'block',
   }),
 };
 
