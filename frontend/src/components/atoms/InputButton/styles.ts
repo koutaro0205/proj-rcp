@@ -12,7 +12,6 @@ const styles = {
     fontWeight: 'nomal',
     textAlign: 'center',
     whiteSpace: 'nowrap',
-    verticalAlign: 'middle',
     backgroundImage: 'none',
     borderColor: 'transparent',
     borderWidth: '3px',

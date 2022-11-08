@@ -3,18 +3,18 @@ import React from 'react';
 
 import SectionTitle from '@/components/atoms/SectionTitle';
 import ContextWidth from '@/components/layouts/ContentWidth';
-import LoginForm from '@/components/organisms/LoginForm';
+import SignupForm from '@/components/organisms/SignupForm';
 import Layout from '@/components/templates/Layout';
 
-const LoginPage: NextPage = () => {
+const SignupPage: NextPage = () => {
   return (
     <Layout>
       <ContextWidth>
-        <SectionTitle sectionTitle="ログイン" />
-        <LoginForm />
+        <SectionTitle sectionTitle="ユーザー登録" />
+        <SignupForm />
       </ContextWidth>
     </Layout>
   );
 };
 
-export default LoginPage;
+export default SignupPage;

@@ -1,11 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import Input from '@/components/atoms/Input';
+import InputButton from '@/components/atoms/InputButton';
 
 export default {
-  title: 'components/atoms/Input',
-  component: Input,
+  title: 'components/atoms/InputButton',
+  component: InputButton,
   argTypes: {
     text: {
       control: {
@@ -14,9 +14,11 @@ export default {
       defaultValue: 'ストーリー',
     },
   },
-} as ComponentMeta<typeof Input>;
+} as ComponentMeta<typeof InputButton>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof InputButton> = (args) => (
+  <InputButton {...args} />
+);
 
 export const Nomal = Template.bind({});
 Nomal.args = {

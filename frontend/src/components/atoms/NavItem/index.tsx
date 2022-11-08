@@ -10,7 +10,7 @@ type Props = {
   size?: ItemSize;
 };
 
-const NavItem = ({ label, path, size = 'm' }: Props) => {
+const NavItem: React.FC<Props> = ({ label, path, size = 'm' }) => {
   return (
     <li className={getSpacingSize(size)}>
       <LinkText path={path} _styles={getFontSize(size)}>

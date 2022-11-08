@@ -28,7 +28,7 @@ const Header: React.FC = () => {
             <NavItem label="ホーム" path="/" />
             <NavItem label="質問一覧" path="/questions" />
             <NavItem label="ログイン" path="/login" />
-            <NavItem label="新規登録" path="/users/new" />
+            <NavItem label="新規登録" path="/signup" />
           </ul>
         </div>
       </nav>

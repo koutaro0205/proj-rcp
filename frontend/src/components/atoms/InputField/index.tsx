@@ -4,17 +4,21 @@ import styles from './styles';
 
 type Props = {
   name: string;
-  placeholder: string;
+  type: string;
+  id: string;
+  accept?: string;
 };
 
-const InputField = ({ name, placeholder }: Props) => {
+const InputField: React.FC<Props> = ({ name, type, id, accept }) => {
   return (
     <input
-      type="text"
+      className={styles.input}
+      type={type}
+      id={id}
       name={name}
-      className={styles.inputField}
-      placeholder={placeholder}
-      // onChange={handleChange}
+      accept={accept}
+      // onChange={handleInputChange}
+      // value={user.name}
     />
   );
 };
