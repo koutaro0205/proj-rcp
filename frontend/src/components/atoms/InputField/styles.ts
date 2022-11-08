@@ -1,5 +1,6 @@
 import { css } from '@emotion/css';
 
+import { FORM_HEIGHT } from '@/common/constants/flatDimention';
 import borderRadius from '@/theme/borderRadius';
 import colors from '@/theme/colors';
 import fontSizes from '@/theme/fontSize';
@@ -7,19 +8,21 @@ import lineHeight from '@/theme/lineHeight';
 import space from '@/theme/space';
 
 const styles = {
-  inputField: css({
-    width: '60%',
-    paddingRight: space.small,
-    paddingLeft: space.small,
-    height: '100%',
-    marginRight: space.extraSmall,
+  input: css({
+    display: 'block',
+    transition: 'border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s',
+    width: '100%',
+    // height: FORM_HEIGHT,
+    padding: `${space.extraSmall} ${space.small}`,
     fontSize: fontSizes.small,
     lineHeight: lineHeight.medium,
     color: colors.grey,
     backgroundColor: colors.white,
     backgroundImage: 'none',
-    border: '1px solid #ccc',
+    border: `1px solid #ccc`,
     borderRadius: borderRadius.small,
+    marginBottom: space.mediumLarge,
+    marginTop: space.extraExtraSmall,
   }),
 };
 

@@ -6,7 +6,7 @@ type Props = {
   message: string;
 };
 
-const Explanation = ({ message }: Props) => {
+const Explanation: React.FC<Props> = ({ message }) => {
   return <p className={styles.message}>{message}</p>;
 };
 

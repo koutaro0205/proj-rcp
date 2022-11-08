@@ -1,11 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import InputField from '@/components/atoms/InputField';
+import SearchField from '@/components/atoms/SearchField';
 
 export default {
-  title: 'components/atoms/InputField',
-  component: InputField,
+  title: 'components/atoms/SearchField',
+  component: SearchField,
   argTypes: {
     name: {
       control: {
@@ -20,11 +20,11 @@ export default {
       defaultValue: 'キーワードを入力',
     },
   },
-} as ComponentMeta<typeof InputField>;
+} as ComponentMeta<typeof SearchField>;
 
-const Template: ComponentStory<typeof InputField> = (args) => (
+const Template: ComponentStory<typeof SearchField> = (args) => (
   <div style={{ height: '34px' }}>
-    <InputField {...args} />
+    <SearchField {...args} />
   </div>
 );
 

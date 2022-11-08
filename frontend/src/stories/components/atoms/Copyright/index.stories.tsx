@@ -4,7 +4,7 @@ import React from 'react';
 import Copyright from '@/components/atoms/Copyright';
 
 export default {
-  title: 'components/atoms/Explanation',
+  title: 'components/atoms/Copyright',
   component: Copyright,
 } as ComponentMeta<typeof Copyright>;
 

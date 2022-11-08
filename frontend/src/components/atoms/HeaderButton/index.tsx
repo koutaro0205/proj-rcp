@@ -9,7 +9,7 @@ type Props = {
   path: string;
 };
 
-const HeaderButton = ({ label, path }: Props) => {
+const HeaderButton: React.FC<Props> = ({ label, path }) => {
   return (
     <li className={styles.container}>
       <LinkText path={path}>{label}</LinkText>

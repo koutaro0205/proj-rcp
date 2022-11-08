@@ -1,13 +1,9 @@
 import { NextPage } from 'next';
 import React from 'react';
 
-import { User } from '@/@types/data';
 import Layout from '@/components/templates/Layout';
-import useGetAllUsers from '@/hooks/users/useGetAllUsers';
 
-const Home: NextPage = () => {
-  // const { users } = useGetAllUsers();
-
+const HomePage: NextPage = () => {
   return (
     <Layout>
       <div>Hello</div>
@@ -15,4 +11,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default HomePage;
