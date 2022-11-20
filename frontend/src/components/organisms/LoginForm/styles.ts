@@ -22,6 +22,13 @@ const styles = {
     backgroundColor: colors.PrimaryColor,
     borderColor: colors.PrimaryColor,
   }),
+  inlineText: css({
+    display: 'inline',
+  }),
+  checkItemText: css({
+    display: 'inline',
+    marginTop: 0,
+  }),
 };
 
 export default styles;

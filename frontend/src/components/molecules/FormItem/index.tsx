@@ -10,13 +10,30 @@ export type Props = {
   type: string;
   name: string;
   accept?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 };
 
-const FormItem: React.FC<Props> = ({ label, id, type, name, accept }) => {
+const FormItem: React.FC<Props> = ({
+  label,
+  id,
+  type,
+  name,
+  accept,
+  onChange,
+  value = undefined,
+}) => {
   return (
     <label className={styles.label} htmlFor={id}>
       {label}
-      <InputField type={type} id={id} name={name} accept={accept} />
+      <InputField
+        type={type}
+        id={id}
+        name={name}
+        accept={accept}
+        onChange={onChange}
+        value={value}
+      />
     </label>
   );
 };

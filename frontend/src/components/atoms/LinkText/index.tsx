@@ -5,7 +5,7 @@ import React from 'react';
 import styles from './styles';
 
 type Props = {
-  children: React.ReactNode;
+  children: React.ReactNode | string;
   _styles?: any;
   path: string;
 };
@@ -13,7 +13,7 @@ type Props = {
 const LinkText: React.FC<Props> = ({ children, _styles, path }) => {
   return (
     <Link href={path}>
-      <div className={cx(styles.link, _styles)}>{children}</div>
+      <span className={cx(styles.link, _styles)}>{children}</span>
     </Link>
   );
 };

@@ -22,10 +22,13 @@ const styles = {
   }),
   navInner: css({
     position: 'relative',
+    height: '50px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   }),
   navList: css({
     display: 'flex',
-    justifyContent: 'center',
     listStyleType: 'none',
   }),
 };
