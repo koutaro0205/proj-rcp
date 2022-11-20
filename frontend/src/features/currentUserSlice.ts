@@ -1,6 +1,5 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { User } from '@/@types/data';
 import { LOGIN_USER_PATH } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import { RootState } from '@/common/store';
@@ -52,8 +51,10 @@ export const currentUserSlice = createSlice({
       }
     });
     builder.addCase(updateCurrentUser, (state, { payload }) => {
-      state.currentUser = payload.user;
-      state.loggedIn = payload.logged_in;
+      if (payload.logged_in) {
+        state.currentUser = payload.user;
+        state.loggedIn = payload.logged_in;
+      }
     });
     builder.addCase(deleteCurrentUser, (state) => {
       state.currentUser = {};

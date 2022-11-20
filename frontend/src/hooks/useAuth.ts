@@ -6,7 +6,7 @@ import { HOME } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import login, { LoginParams } from '@/services/auth/login';
 import logout from '@/services/auth/logout';
-import { success } from '@/utils/notifications';
+import { error, success } from '@/utils/notifications';
 
 const context: ApiContext = {
   apiRootUrl: ROOT_URL,
@@ -26,6 +26,18 @@ const useAuth = (params?: Params) => {
     await logout(context);
   };
 
+  const handleLogin = useCallback(async () => {
+    if (params) {
+      const response = await loginInternal(params);
+      if (response.data.logged_in) {
+        router.push(HOME);
+        success('ログインしました!');
+        return response.data;
+      }
+      error('ユーザー認証に失敗しました。再入力してください。');
+    }
+  }, [params, router]);
+
   const handleLogout = useCallback(() => {
     // eslint-disable-next-line no-alert
     const sure = window.confirm('ログアウトしますか?');
@@ -35,14 +47,6 @@ const useAuth = (params?: Params) => {
       success('ログアウトしました');
     }
   }, [router]);
-
-  const handleLogin = useCallback(() => {
-    if (params) {
-      router.push(HOME);
-      success('ログインしました!');
-      return loginInternal(params);
-    }
-  }, [params, router]);
 
   return {
     handleLogin,
