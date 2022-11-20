@@ -1,12 +1,12 @@
+import { User } from '@/@types/data';
+import { PASSWORD_MIN_LENGHT } from '@/common/constants/characters';
+import { REGEX } from '@/common/constants/regex';
 import { UserParams } from '@/services/users/addUser';
 
-const MIN_LENGTH = 6;
-
-export const validateUser = (user: UserParams) => {
+export const validateUser = (user: UserParams, users: User[]) => {
   const errors = [];
-  // eslint-disable-next-line prefer-regex-literals
-  const regex = new RegExp(/A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+z/i);
-  // const existedUser = users.find((e) => e.email === user.email);
+
+  const existedUser = users.find((e) => e.email === user.email);
 
   if (user.name === '') {
     errors.push('名前を入力してください');
@@ -16,7 +16,13 @@ export const validateUser = (user: UserParams) => {
     errors.push('メールアドレスを入力してください');
   }
 
-  if (regex.test(user.email)) {
+  if (existedUser !== undefined) {
+    if (user.email === existedUser.email) {
+      errors.push('入力されたメールアドレスは既に使われています');
+    }
+  }
+
+  if (REGEX.test(user.email)) {
     errors.push('メールアドレスに不正な値が含まれています');
   }
 
@@ -25,8 +31,8 @@ export const validateUser = (user: UserParams) => {
   }
 
   if (
-    user.password.length < MIN_LENGTH ||
-    user.password_confirmation.length < MIN_LENGTH
+    user.password.length < PASSWORD_MIN_LENGHT ||
+    user.password_confirmation.length < PASSWORD_MIN_LENGHT
   ) {
     errors.push('パスワードを6文字以上で入力してください');
   }

@@ -1,16 +1,9 @@
+import { PASSWORD_MIN_LENGHT } from '@/common/constants/characters';
+import { REGEX } from '@/common/constants/regex';
 import { LoginParams } from '@/services/auth/login';
 
 export const validateLoginInfo = (user: LoginParams) => {
   const errors = [];
-
-  // 「有効なメールアドレスを登録してください」用
-  // eslint-disable-next-line prefer-regex-literals
-  const regex = new RegExp(/A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+z/i);
-
-  // 登録済みのuser一覧を取得してreduxで保持
-  // 一致するユーザー情報が存在するかを判定
-  // （なければ、バリデーションエラー）
-  // const existedUser = users.find((e) => e.email === user.email);
 
   // passwordのバリデーションは、リクエストを送る必要がある。
 
@@ -18,8 +11,16 @@ export const validateLoginInfo = (user: LoginParams) => {
     errors.push('メールアドレスを入力してください');
   }
 
+  if (REGEX.test(user.email)) {
+    errors.push('メールアドレスに不正な値が含まれています');
+  }
+
   if (user.password === '') {
     errors.push('パスワードを入力してください');
+  }
+
+  if (user.password.length < PASSWORD_MIN_LENGHT) {
+    errors.push('パスワードを6文字以上で入力してください');
   }
 
   return errors;

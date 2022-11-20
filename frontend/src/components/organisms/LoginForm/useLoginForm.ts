@@ -37,8 +37,10 @@ const useLoginForm = () => {
     if (!isEmptyArray(errors)) {
       setFormErrors(errors);
     } else {
-      const response = await handleLogin();
-      dispatch(updateCurrentUser(response.data));
+      const data = await handleLogin();
+      if (data) {
+        dispatch(updateCurrentUser(data));
+      }
     }
   };
 
