@@ -7,9 +7,18 @@ type Props = {
   type: string;
   id: string;
   accept?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 };
 
-const InputField: React.FC<Props> = ({ name, type, id, accept }) => {
+const InputField: React.FC<Props> = ({
+  name,
+  type,
+  id,
+  accept,
+  onChange,
+  value,
+}) => {
   return (
     <input
       className={styles.input}
@@ -17,8 +26,8 @@ const InputField: React.FC<Props> = ({ name, type, id, accept }) => {
       id={id}
       name={name}
       accept={accept}
-      // onChange={handleInputChange}
-      // value={user.name}
+      onChange={onChange}
+      value={value}
     />
   );
 };

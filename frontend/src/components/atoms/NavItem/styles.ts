@@ -9,16 +9,16 @@ export type ItemSize = 's' | 'm';
 export const getSpacingSize = (size: ItemSize) => {
   if (size === 'm') {
     return css({
-      marginTop: space.medium,
-      marginBottom: space.medium,
+      display: 'flex',
+      alignItems: 'center',
       '&:nth-child(n+2)': {
         marginLeft: space.large,
       },
     });
   }
   return css({
-    marginTop: space.extraSmall,
-    marginBottom: space.extraSmall,
+    display: 'flex',
+    alignItems: 'center',
     '&:nth-child(n+2)': {
       marginLeft: space.medium,
     },

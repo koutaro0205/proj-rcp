@@ -5,6 +5,10 @@ import emotionReset from 'emotion-reset';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+
+import store from '@/common/store';
 
 export const SITE_TITLE = 'ZuboRecipes';
 
@@ -32,12 +36,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@truck2hand" /> */}
       </Head>
-      <Global
-        styles={css`
-          ${emotionReset}
-        `}
-      />
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Global
+          styles={css`
+            ${emotionReset}
+          `}
+        />
+        <Component {...pageProps} />
+      </Provider>
+      <ToastContainer />
     </>
   );
 };

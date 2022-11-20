@@ -19,20 +19,3 @@ const getAllUsers = async (context: ApiContext): Promise<User[]> => {
 };
 
 export default getAllUsers;
-
-// こんな感じで使う
-// const context: ApiContext = {
-//   apiRootUrl: process.env.API_BASE_URL || 'http://localhost:5000',
-// }
-// const users = await getAllUsers(context)
-
-// import axios from 'axios';
-
-// const ALL_USERS_URL = 'http://localhost:3000/api/v1/users';
-
-// const getAllUsers = async () => {
-//   const response = await axios.get(ALL_USERS_URL);
-//   return response.data;
-// };
-
-// export default getAllUsers;

@@ -8,6 +8,7 @@ const colors = {
   white: '#FFFFFF',
   grey: '#555555',
   favorite: 'gold',
+  error: 'red',
 };
 
 export default colors;
