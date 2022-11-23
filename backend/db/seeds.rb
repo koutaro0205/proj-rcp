@@ -8,4 +8,7 @@
 User.create!(
   email: 'test@test.com',
   name: 'testuser',
+  password: 'password',
+  password_confirmation: 'password',
+  activated: true,
 )

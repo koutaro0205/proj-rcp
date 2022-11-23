@@ -6,14 +6,13 @@ class Api::V1::SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      puts('認証されました')
-      # if user.activated?
+      if user.activated?
         log_in user
         params[:session][:remember_me] ? remember(user) : forget(user)
         render json: { logged_in: true, user: current_user }
-      # else
-        # render json: { logged_in: false, status: :unprocessable_entity, activated: false, message: "アカウントが有効化されていません。メールに記載されている有効化リンクを確認して下さい。" }
-      # end
+      else
+        render json: { logged_in: false, status: :unprocessable_entity, activated: false }
+      end
     else
       render json: { logged_in: false, status: :unauthorized }
     end

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from '@/common/store';
+import useAccountActivations from '@/components/organisms/AccountActivations/useAccountActivations';
 import Layout from '@/components/templates/Layout';
 import {
   fetchCurrentUser,
@@ -13,6 +14,11 @@ import {
 // type HomePageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const HomePage: NextPage = () => {
+  const { handleActivate } = useAccountActivations();
+  useEffect(() => {
+    handleActivate();
+  }, [handleActivate]);
+
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCurrentUser());
