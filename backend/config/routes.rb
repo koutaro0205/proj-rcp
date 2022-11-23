@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users
+      resources :account_activations, only: [:edit]
 
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'

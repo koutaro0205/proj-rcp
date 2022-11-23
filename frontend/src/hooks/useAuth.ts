@@ -6,7 +6,7 @@ import { HOME } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import login, { LoginParams } from '@/services/auth/login';
 import logout from '@/services/auth/logout';
-import { error, success } from '@/utils/notifications';
+import { error, success, warn } from '@/utils/notifications';
 
 const context: ApiContext = {
   apiRootUrl: ROOT_URL,
@@ -34,7 +34,15 @@ const useAuth = (params?: Params) => {
         success('ログインしました!');
         return response.data;
       }
-      error('ユーザー認証に失敗しました。再入力してください。');
+      if (!response.data.logged_in && !response.data.activated) {
+        router.push(HOME);
+        warn(
+          'アカウントが有効化されていません。メールに記載されている有効化リンクを確認して下さい。'
+        );
+      }
+      error(
+        '認証に失敗しました。正しいメールアドレス・パスワードを入力し直すか、新規登録を行ってください。'
+      );
     }
   }, [params, router]);
 
