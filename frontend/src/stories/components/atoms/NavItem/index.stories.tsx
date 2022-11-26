@@ -8,7 +8,7 @@ export default {
   title: 'components/atoms/NavItem',
   component: NavItem,
   argTypes: {
-    label: {
+    children: {
       control: {
         type: 'text',
       },
@@ -32,4 +32,4 @@ const Template: ComponentStory<typeof NavItem> = (args) => (
 );
 
 export const Nomal = Template.bind({});
-Nomal.args = { label: 'item', path: '/', size: 'm' };
+Nomal.args = { children: 'item', path: '/', size: 'm' };

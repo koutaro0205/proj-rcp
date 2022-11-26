@@ -1,14 +1,12 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import useSWR from 'swr';
 
 import { ApiContext } from '@/@types/data';
-import { USERS_PATH } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import { validateUser } from '@/common/validations/signup';
+import useGetAllUsers from '@/hooks/useGetAllUsers';
 import signup, { UserParams } from '@/services/users/addUser';
 import { isEmptyArray } from '@/utils/array';
-import { fetchData } from '@/utils/fetchData';
 import { info } from '@/utils/notifications';
 import { handleResponseError } from '@/utils/requestError';
 
@@ -68,13 +66,14 @@ const useSignupForm = () => {
   };
 
   const router = useRouter();
-  const { data, error } = useSWR(`${ROOT_URL}/${USERS_PATH}`, fetchData);
-
-  if (error) return handleResponseError('エラー');
+  const { data, error } = useGetAllUsers();
+  if (error) {
+    handleResponseError('ユーザー一覧の取得に失敗しました。');
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors = validateUser(newUserInfo, data);
+    const errors = validateUser(newUserInfo, data.users);
 
     if (!isEmptyArray(errors)) {
       setFormErrors(errors);
