@@ -1,12 +1,16 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { User } from '@/@types/data';
 import { LOGIN_USER_PATH } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import { RootState } from '@/common/store';
+import { EmptyObject } from '@/common/types';
 import axios from '@/utils/axios';
 
+export type CurrentUser = User | EmptyObject;
+
 type InitialState = {
-  currentUser: { [key: string]: any };
+  currentUser: CurrentUser;
   loggedIn: boolean;
 };
 
@@ -32,8 +36,13 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-// NOTE: 値が不明なためany型で対応
-export const updateCurrentUser = createAction<any>(
+// NOTE: sessions#logged_in_user(controller)
+type UpdateCurrentUser = {
+  logged_in: boolean;
+  user: User;
+};
+
+export const updateCurrentUser = createAction<UpdateCurrentUser>(
   ACTION_TYPE.UPDATE_CURRENT_USER
 );
 

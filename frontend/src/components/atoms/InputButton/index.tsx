@@ -5,7 +5,7 @@ import styles from './styles';
 
 type Props = {
   text: string;
-  _styles?: any;
+  _styles?: string;
 };
 
 const InputButton: React.FC<Props> = ({ text, _styles }) => {

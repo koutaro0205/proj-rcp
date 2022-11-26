@@ -5,7 +5,7 @@ import styles from './styles';
 
 type Props = {
   children: React.ReactNode;
-  _styles?: any;
+  _styles?: string;
 };
 
 const Text: React.FC<Props> = ({ children, _styles }) => {

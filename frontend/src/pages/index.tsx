@@ -1,12 +1,10 @@
 import { NextPage } from 'next';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { AppDispatch } from '@/common/store';
 import useAccountActivations from '@/components/organisms/AccountActivations/useAccountActivations';
 import Layout from '@/components/templates/Layout';
 import {
-  fetchCurrentUser,
   selectCurrentUser,
   selectLoggedInStatus,
 } from '@/features/currentUserSlice';
@@ -18,11 +16,6 @@ const HomePage: NextPage = () => {
   useEffect(() => {
     handleActivate();
   }, [handleActivate]);
-
-  const dispatch: AppDispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
 
   const currentUser = useSelector(selectCurrentUser);
   const loggedInStatus = useSelector(selectLoggedInStatus);

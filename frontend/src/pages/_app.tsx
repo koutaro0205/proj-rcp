@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
 import store from '@/common/store';
+import CurrentUserProvider from '@/components/templates/CurrentUserProvider';
 
 export const SITE_TITLE = 'ZuboRecipes';
 
@@ -37,12 +38,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta name="twitter:site" content="@truck2hand" /> */}
       </Head>
       <Provider store={store}>
-        <Global
-          styles={css`
-            ${emotionReset}
-          `}
-        />
-        <Component {...pageProps} />
+        <CurrentUserProvider>
+          <Global
+            styles={css`
+              ${emotionReset}
+            `}
+          />
+          <Component {...pageProps} />
+        </CurrentUserProvider>
       </Provider>
       <ToastContainer />
     </>

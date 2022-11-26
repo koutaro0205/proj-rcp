@@ -6,7 +6,7 @@ import styles from './styles';
 
 type Props = {
   children: React.ReactNode | string;
-  _styles?: any;
+  _styles?: string;
   path: string;
 };
 
