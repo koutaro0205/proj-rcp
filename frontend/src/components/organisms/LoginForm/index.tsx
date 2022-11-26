@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SIGNUP_PATH } from '@/common/constants/path';
+import { SIGNUP_PATH, PASSWORD_RESET_PATH } from '@/common/constants/path';
 import InputButton from '@/components/atoms/InputButton';
 import LinkText from '@/components/atoms/LinkText';
 import Text from '@/components/atoms/Text';
@@ -53,9 +53,7 @@ const LoginForm: React.FC = () => {
           </Text>
         </CheckItem>
 
-        <div className={styles.submitButtonContainer}>
-          <InputButton text="ログイン" _styles={styles.submitButton} />
-        </div>
+        <InputButton text="ログイン" isCenter _styles={styles.submitButton} />
 
         <Text>
           ユーザー登録されていない方は
@@ -66,7 +64,7 @@ const LoginForm: React.FC = () => {
 
         <Text>
           パスワードをお忘れの方は
-          <LinkText path={SIGNUP_PATH} _styles={styles.inlineText}>
+          <LinkText path={PASSWORD_RESET_PATH} _styles={styles.inlineText}>
             こちら
           </LinkText>
         </Text>
