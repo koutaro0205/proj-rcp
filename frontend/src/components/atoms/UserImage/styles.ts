@@ -3,7 +3,7 @@ import { css } from '@emotion/css';
 import borderRadius from '@/theme/borderRadius';
 import space from '@/theme/space';
 
-export const USER_IMAGE_SIZE = '100px';
+export const USER_IMAGE_SIZE = '80px';
 
 const styles = {
   imageWrapper: css({
