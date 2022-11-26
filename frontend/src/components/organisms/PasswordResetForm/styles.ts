@@ -2,6 +2,7 @@ import { css } from '@emotion/css';
 
 import { SIGNUP_FORM_WIDTH } from '@/common/constants/flatDimention';
 import colors from '@/theme/colors';
+import lineHeight from '@/theme/lineHeight';
 import space from '@/theme/space';
 
 const styles = {
@@ -19,16 +20,10 @@ const styles = {
     backgroundColor: colors.PrimaryColor,
     borderColor: colors.PrimaryColor,
   }),
-  inlineText: css({
-    display: 'inline',
-    textDecoration: 'underline',
-    '&:hover': {
-      opacity: 0.5,
-    },
-  }),
-  checkItemText: css({
-    display: 'inline',
-    marginTop: 0,
+  text: css({
+    textAlign: 'center',
+    lineHeight: lineHeight.extraLarge,
+    marginBottom: space.large,
   }),
 };
 

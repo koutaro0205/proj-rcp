@@ -6,6 +6,9 @@ import lineHeight from '@/theme/lineHeight';
 import space from '@/theme/space';
 
 const styles = {
+  container: css({
+    textAlign: 'center',
+  }),
   input: css({
     display: 'inline-block',
     marginBottom: space.zero,

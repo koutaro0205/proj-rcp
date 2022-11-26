@@ -26,8 +26,7 @@ export type LoginParams = {
 const login = async (
   context: ApiContext,
   params: LoginParams
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Promise<any> => {
+): Promise<unknown> => {
   return axios({
     method: 'post',
     url: `${context.apiRootUrl.replace(/\/$/g, '')}/${LOGIN_PATH}`,
