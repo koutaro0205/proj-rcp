@@ -5,8 +5,6 @@ import { LoginParams } from '@/services/auth/login';
 export const validateLoginInfo = (user: LoginParams) => {
   const errors = [];
 
-  // passwordのバリデーションは、リクエストを送る必要がある。
-
   if (user.email === '') {
     errors.push('メールアドレスを入力してください');
   }
