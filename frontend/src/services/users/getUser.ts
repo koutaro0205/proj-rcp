@@ -12,19 +12,15 @@ import { handleResponseError } from '@/utils/requestError';
  * @returns ユーザー一覧
  */
 
-const getAllUsers = async (url: string): Promise<User[] | void> => {
-  // return fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/${USERS_PATH}`, {
-  //   headers: {
-  //     Origin: '*',
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json',
-  //   },
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data, error } = useSWR(`${ROOT_URL}/${USERS_API}`, fetcher);
-  if (error) return handleResponseError('エラー');
-  return data;
-
-  // });
+type ResponseData = {
+  user: User;
 };
 
-export default getAllUsers;
+const getUser = async (userId: number): Promise<any> => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { data, error } = useSWR(`${ROOT_URL}/${USERS_API}/${userId}`, fetcher);
+  if (error) return handleResponseError('エラー');
+  return data;
+};
+
+export default getUser;

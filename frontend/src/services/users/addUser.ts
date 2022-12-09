@@ -1,5 +1,5 @@
 import { ApiContext, User } from '@/@types/data';
-import { USERS_PATH } from '@/common/constants/path';
+import { USERS_API } from '@/common/constants/path';
 import { fetcher } from '@/utils/fetchData';
 
 export type UserParams = {
@@ -38,7 +38,7 @@ const signup = async (
   context: ApiContext,
   params: UserParams
 ): Promise<User | unknown[]> => {
-  return fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/${USERS_PATH}`, {
+  return fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/${USERS_API}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
