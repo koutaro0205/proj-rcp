@@ -1,5 +1,5 @@
 import { ApiContext } from '@/@types/data';
-import { LOGIN_PATH } from '@/common/constants/path';
+import { LOGIN_API } from '@/common/constants/path';
 import axios from '@/utils/axios';
 
 export type LoginParams = {
@@ -29,7 +29,7 @@ const login = async (
 ): Promise<unknown> => {
   return axios({
     method: 'post',
-    url: `${context.apiRootUrl.replace(/\/$/g, '')}/${LOGIN_PATH}`,
+    url: `${context.apiRootUrl.replace(/\/$/g, '')}/${LOGIN_API}`,
     data: params,
     withCredentials: true,
   });

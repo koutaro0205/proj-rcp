@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { User } from '@/@types/data';
-import { LOGIN_USER_PATH } from '@/common/constants/path';
+import { LOGGEDIN_USER_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import { RootState } from '@/common/store';
 import { EmptyObject } from '@/common/types';
@@ -28,7 +28,7 @@ const ACTION_TYPE = {
 export const fetchCurrentUser = createAsyncThunk(
   ACTION_TYPE.CURRENT_USER,
   async () => {
-    const response = await axios.get(`${ROOT_URL}/${LOGIN_USER_PATH}`, {
+    const response = await axios.get(`${ROOT_URL}/${LOGGEDIN_USER_API}`, {
       withCredentials: true,
     });
 
