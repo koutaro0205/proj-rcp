@@ -1,8 +1,8 @@
 import React from 'react';
 
+import InputButton from '@/components/atoms/Button/InputButton';
 import Explanation from '@/components/atoms/Explanation';
-import InputButton from '@/components/atoms/InputButton';
-import SearchField from '@/components/atoms/SearchField';
+import SearchField from '@/components/atoms/TextField/SearchField';
 
 import styles from './styles';
 

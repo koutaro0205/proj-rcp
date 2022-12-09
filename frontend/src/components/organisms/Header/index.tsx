@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import HeaderButton from '@/components/atoms/HeaderButton';
+import HeaderButton from '@/components/atoms/Button/HeaderButton';
 import Logo from '@/components/atoms/Logo';
 import NavItem from '@/components/atoms/NavItem';
-import ContextWidth from '@/components/layouts/ContentWidth';
+import ContentWidth from '@/components/layouts/ContentWidth';
 import Dropdown from '@/components/molecules/Dropdown';
 import { SearchForm } from '@/components/molecules/SearchForm';
 import { selectLoggedInStatus } from '@/features/currentUserSlice';
@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   const isLoggedIn = useSelector(selectLoggedInStatus);
   return (
     <header className={styles.container}>
-      <ContextWidth>
+      <ContentWidth>
         <div className={styles.inner}>
           <Logo logoText={SITE_TITLE} path="/" />
           <SearchForm />
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
             )}
           </ul>
         </div>
-      </ContextWidth>
+      </ContentWidth>
       <nav className={styles.nav}>
         <div className={styles.navInner}>
           <ul className={styles.navList}>

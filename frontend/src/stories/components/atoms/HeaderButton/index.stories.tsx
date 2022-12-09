@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import HeaderButton from '@/components/atoms/HeaderButton';
+import HeaderButton from '@/components/atoms/Button/HeaderButton';
 import styles from '@/components/organisms/Header/styles';
 
 export default {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import InputField from '@/components/atoms/InputField';
+import InputField from '@/components/atoms/TextField/InputField';
 
 import styles from './styles';
 

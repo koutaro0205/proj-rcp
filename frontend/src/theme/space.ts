@@ -1,3 +1,5 @@
+export type Space = keyof typeof space;
+
 const space = {
   zero: '0px',
   extraExtraSmall: '4px',

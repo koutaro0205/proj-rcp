@@ -2,8 +2,8 @@ import { NextPage } from 'next';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import SectionTitle from '@/components/atoms/SectionTitle';
-import ContextWidth from '@/components/layouts/ContentWidth';
+import SectionTitle from '@/components/atoms/Title/SectionTitle';
+import ContentWidth from '@/components/layouts/ContentWidth';
 import FlexContainer from '@/components/layouts/FlexContainer';
 import CurrentUserProfileCard from '@/components/organisms/ProfileCard/CurrentUserProfileCard';
 import UsersList from '@/components/organisms/UsersList';
@@ -21,13 +21,13 @@ const UsersPage: NextPage = () => {
   const currentUser = useSelector(selectCurrentUser);
   return (
     <Layout>
-      <ContextWidth>
+      <ContentWidth>
         <SectionTitle sectionTitle="ユーザー一覧" />
         <FlexContainer>
           <CurrentUserProfileCard />
           <UsersList users={data} currentUser={currentUser} />
         </FlexContainer>
-      </ContextWidth>
+      </ContentWidth>
     </Layout>
   );
 };

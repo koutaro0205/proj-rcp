@@ -6,6 +6,7 @@ import LinkText from '@/components/atoms/LinkText';
 import styles from './styles';
 import useDropdown from './useDropdown';
 
+// FIXME: Dropdownコンポーネントを適切な粒度に分割する
 const Dropdown: React.FC = () => {
   const { isOpen, dropdownRef, currentUser, handleClick, handleLogoutClick } =
     useDropdown();

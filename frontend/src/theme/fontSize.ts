@@ -1,3 +1,5 @@
+export type FontSizes = keyof typeof fontSizes;
+
 const fontSizes = {
   extraSmall: '12px',
   small: '14px',

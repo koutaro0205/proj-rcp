@@ -2,14 +2,14 @@ import React from 'react';
 
 import Copyright from '@/components/atoms/Copyright';
 import NavItem from '@/components/atoms/NavItem';
-import ContextWidth from '@/components/layouts/ContentWidth';
+import ContentWidth from '@/components/layouts/ContentWidth';
 
 import styles from './styles';
 
 const Footer: React.FC = () => {
   return (
     <footer className={styles.container}>
-      <ContextWidth>
+      <ContentWidth>
         <div className={styles.inner}>
           <ul className={styles.list}>
             <NavItem path="/" size="s">
@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
           </ul>
           <Copyright />
         </div>
-      </ContextWidth>
+      </ContentWidth>
     </footer>
   );
 };

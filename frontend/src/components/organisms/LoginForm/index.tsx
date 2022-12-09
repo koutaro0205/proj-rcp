@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { SIGNUP_PATH, PASSWORD_RESET_PATH } from '@/common/constants/path';
-import InputButton from '@/components/atoms/InputButton';
+import InputButton from '@/components/atoms/Button/InputButton';
 import LinkText from '@/components/atoms/LinkText';
 import Text from '@/components/atoms/Text';
 import CheckItem from '@/components/molecules/CheckItem';
 import FormItem from '@/components/molecules/FormItem';
 import ValidationErrors from '@/components/molecules/ValidationErrors';
-import { isEmptyArray } from '@/utils/array';
+import { isEmptyArray } from '@/utils/match';
 
 import styles from './styles';
 import useLoginForm from './useLoginForm';

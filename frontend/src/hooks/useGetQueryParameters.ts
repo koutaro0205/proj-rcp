@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
-import { isEmptyObject } from '@/utils/object';
+import { isEmptyObject } from '@/utils/match';
 
 /**
  * URLのクエリパラメータを取得

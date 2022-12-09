@@ -22,17 +22,14 @@ const UserItem: React.FC<Props> = ({ user, currentUser }) => {
         {user.name}
       </LinkText>
       {!isCurrentUser(user, currentUser) && (
-        <DeleteLink
-          onClick={() => console.log('削除！！')}
-          _styles={styles.deleteLink}
-        >
+        <DeleteLink onClick={() => {}} _styles={styles.deleteLink}>
           削除
         </DeleteLink>
       )}
       {!isCurrentUser(user, currentUser) && (
-        // FIXME: moleculesでコンポーネント作成
         <div className="user__follow">
           フォロー
+          {/* FIXME: moleculesでコンポーネント作成（FollowForm） */}
           {/* <FollowForm user={user} userId={user.id} /> */}
         </div>
       )}

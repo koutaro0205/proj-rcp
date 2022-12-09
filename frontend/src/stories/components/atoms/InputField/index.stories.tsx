@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import SearchField from '@/components/atoms/SearchField';
+import SearchField from '@/components/atoms/TextField/SearchField';
 
 export default {
   title: 'components/atoms/SearchField',

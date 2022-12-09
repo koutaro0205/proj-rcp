@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { User } from '@/@types/data';
-import SubTitle from '@/components/atoms/SubTitile';
+import SubTitle from '@/components/atoms/Title/SubTitile';
 import UserItem from '@/components/molecules/UserItem';
 import { CurrentUser } from '@/features/currentUserSlice';
 
@@ -24,7 +24,7 @@ const UsersList: React.FC<Props> = ({ users, currentUser }) => {
       <SubTitle>登録ユーザー一覧</SubTitle>
       <ul>{users && renderUsers(users)}</ul>
 
-      {/* ページネーションコンポーネントができるまで保留 */}
+      {/* FIXME: Pagenationコンポーネントができるまで保留 */}
       {/* <Pagination
         postsPerPage={usersPerPage}
         totalPosts={users.length}

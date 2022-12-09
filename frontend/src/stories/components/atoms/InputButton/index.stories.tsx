@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import InputButton from '@/components/atoms/InputButton';
+import InputButton from '@/components/atoms/Button/InputButton';
 
 export default {
   title: 'components/atoms/InputButton',

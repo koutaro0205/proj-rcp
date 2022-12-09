@@ -6,7 +6,7 @@ import { ROOT_URL } from '@/common/constants/url';
 import { validateUser } from '@/common/validations/signup';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
 import signup, { UserParams } from '@/services/users/addUser';
-import { isEmptyArray } from '@/utils/array';
+import { isEmptyArray } from '@/utils/match';
 import { info } from '@/utils/notifications';
 import { handleResponseError } from '@/utils/requestError';
 

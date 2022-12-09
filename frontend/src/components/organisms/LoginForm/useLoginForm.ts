@@ -6,7 +6,7 @@ import { validateLoginInfo } from '@/common/validations/auth/login';
 import { updateCurrentUser } from '@/features/currentUserSlice';
 import useAuth from '@/hooks/useAuth';
 import { LoginParams } from '@/services/auth/login';
-import { isEmptyArray } from '@/utils/array';
+import { isEmptyArray } from '@/utils/match';
 
 const useLoginForm = () => {
   const dispatch: AppDispatch = useDispatch();

@@ -1,3 +1,4 @@
+// NOTE: ディレクトリ構成検討中
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { User } from '@/@types/data';

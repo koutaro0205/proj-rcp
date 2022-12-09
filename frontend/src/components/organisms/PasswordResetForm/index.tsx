@@ -1,11 +1,11 @@
 import React from 'react';
 
-import InputButton from '@/components/atoms/InputButton';
-import SubTitle from '@/components/atoms/SubTitile';
+import InputButton from '@/components/atoms/Button/InputButton';
 import Text from '@/components/atoms/Text';
+import SubTitle from '@/components/atoms/Title/SubTitile';
 import FormItem from '@/components/molecules/FormItem';
 import ValidationErrors from '@/components/molecules/ValidationErrors';
-import { isEmptyArray } from '@/utils/array';
+import { isEmptyArray } from '@/utils/match';
 
 import styles from './styles';
 import usePasswordResetForm from './usePasswordResetFrom';
