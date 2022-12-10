@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '@/common/store';
-import { fetchCurrentUser } from '@/features/currentUserSlice';
+import { fetchCurrentUser } from '@/features/currentUser/slice';
 
 type Props = {
   children: React.ReactNode;

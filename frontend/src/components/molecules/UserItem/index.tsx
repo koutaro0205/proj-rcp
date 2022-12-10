@@ -4,7 +4,7 @@ import { User } from '@/@types/data';
 import DeleteLink from '@/components/atoms/DeleteLink';
 import LinkText from '@/components/atoms/LinkText';
 import UserImage from '@/components/atoms/UserImage';
-import { CurrentUser } from '@/features/currentUserSlice';
+import { CurrentUser } from '@/features/currentUser/type';
 import { isCurrentUser } from '@/utils/match';
 
 import styles from './styles';

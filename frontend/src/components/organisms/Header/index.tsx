@@ -7,13 +7,13 @@ import NavItem from '@/components/atoms/NavItem';
 import ContentWidth from '@/components/layouts/ContentWidth';
 import Dropdown from '@/components/molecules/Dropdown';
 import { SearchForm } from '@/components/molecules/SearchForm';
-import { selectLoggedInStatus } from '@/features/currentUserSlice';
+import { selectIsLoggedIn } from '@/features/currentUser/selecters';
 import { SITE_TITLE } from '@/pages/_app';
 
 import styles from './styles';
 
 const Header: React.FC = () => {
-  const isLoggedIn = useSelector(selectLoggedInStatus);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <header className={styles.container}>
       <ContentWidth>

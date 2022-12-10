@@ -3,7 +3,7 @@ import React from 'react';
 import { User } from '@/@types/data';
 import SubTitle from '@/components/atoms/Title/SubTitile';
 import UserItem from '@/components/molecules/UserItem';
-import { CurrentUser } from '@/features/currentUserSlice';
+import { CurrentUser } from '@/features/currentUser/type';
 
 import styles from './styles';
 

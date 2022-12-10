@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '@/common/store';
 import { validateLoginInfo } from '@/common/validations/auth/login';
-import { updateCurrentUser } from '@/features/currentUserSlice';
+import { updateCurrentUser } from '@/features/currentUser/slice';
 import useAuth from '@/hooks/useAuth';
 import { LoginParams } from '@/services/auth/login';
 import { isEmptyArray } from '@/utils/match';

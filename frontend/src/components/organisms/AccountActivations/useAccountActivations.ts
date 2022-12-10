@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { HOME } from '@/common/constants/path';
 import { AppDispatch } from '@/common/store';
-import { updateCurrentUser } from '@/features/currentUserSlice';
+import { updateCurrentUser } from '@/features/currentUser/slice';
 import useGetQueryParameters from '@/hooks/useGetQueryParameters';
 import activate from '@/services/users/accountActivations/activateUser';
 import { success, warn } from '@/utils/notifications';

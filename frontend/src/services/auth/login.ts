@@ -1,4 +1,4 @@
-import { ApiContext } from '@/@types/data';
+import { ApiContext, User } from '@/@types/data';
 import { LOGIN_API } from '@/common/constants/path';
 import axios from '@/utils/axios';
 
@@ -17,6 +17,27 @@ export type LoginParams = {
   remember_me: boolean;
 };
 
+// レスポンス
+type NomalResponse = {
+  logged_in: boolean;
+  user: User;
+};
+
+type AbnormalResponse = {
+  logged_in: boolean;
+  status: string;
+};
+
+type InvalidResponse = {
+  logged_in: boolean;
+  status: string;
+  activated: boolean;
+};
+
+export type ResponseData = {
+  data: NomalResponse & AbnormalResponse & InvalidResponse;
+};
+
 /**
  * 認証API（サインイン）
  * @param context APIコンテキスト
@@ -26,7 +47,7 @@ export type LoginParams = {
 const login = async (
   context: ApiContext,
   params: LoginParams
-): Promise<unknown> => {
+): Promise<ResponseData> => {
   return axios({
     method: 'post',
     url: `${context.apiRootUrl.replace(/\/$/g, '')}/${LOGIN_API}`,

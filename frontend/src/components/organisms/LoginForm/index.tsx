@@ -6,8 +6,7 @@ import LinkText from '@/components/atoms/LinkText';
 import Text from '@/components/atoms/Text';
 import CheckItem from '@/components/molecules/CheckItem';
 import FormItem from '@/components/molecules/FormItem';
-import ValidationErrors from '@/components/molecules/ValidationErrors';
-import { isEmptyArray } from '@/utils/match';
+import RenderErrors from '@/components/molecules/RenderErrors';
 
 import styles from './styles';
 import useLoginForm from './useLoginForm';
@@ -15,17 +14,10 @@ import useLoginForm from './useLoginForm';
 const LoginForm: React.FC = () => {
   const { formErrors, handleChange, handleSubmit } = useLoginForm();
 
-  const renderErrors = () => {
-    if (isEmptyArray(formErrors)) {
-      return null;
-    }
-
-    return <ValidationErrors errors={formErrors} petterns="danger" />;
-  };
   return (
     <div className={styles.container}>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
-        {renderErrors()}
+        <RenderErrors formErrors={formErrors} />
 
         <FormItem
           label="メールアドレス"

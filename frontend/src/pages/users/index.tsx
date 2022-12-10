@@ -8,7 +8,7 @@ import FlexContainer from '@/components/layouts/FlexContainer';
 import CurrentUserProfileCard from '@/components/organisms/ProfileCard/CurrentUserProfileCard';
 import UsersList from '@/components/organisms/UsersList';
 import Layout from '@/components/templates/Layout';
-import { selectCurrentUser } from '@/features/currentUserSlice';
+import { selectCurrentUser } from '@/features/currentUser/selecters';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
 import { handleResponseError } from '@/utils/requestError';
 

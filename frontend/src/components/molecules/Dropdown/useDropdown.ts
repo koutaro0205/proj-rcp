@@ -2,10 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from '@/common/store';
-import {
-  deleteCurrentUser,
-  selectCurrentUser,
-} from '@/features/currentUserSlice';
+import { selectCurrentUser } from '@/features/currentUser/selecters';
+import { deleteCurrentUser } from '@/features/currentUser/slice';
 import useAuth from '@/hooks/useAuth';
 
 const useDropdown = () => {

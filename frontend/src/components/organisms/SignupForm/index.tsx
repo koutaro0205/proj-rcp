@@ -2,8 +2,7 @@ import React from 'react';
 
 import InputButton from '@/components/atoms/Button/InputButton';
 import FormItem from '@/components/molecules/FormItem';
-import ValidationErrors from '@/components/molecules/ValidationErrors';
-import { isEmptyArray } from '@/utils/match';
+import RenderErrors from '@/components/molecules/RenderErrors';
 
 import styles from './styles';
 import useSignupForm from './useSignupForm';
@@ -17,17 +16,10 @@ const SignupForm: React.FC = () => {
     handleSubmit,
   } = useSignupForm();
 
-  const renderErrors = () => {
-    if (isEmptyArray(formErrors)) {
-      return null;
-    }
-
-    return <ValidationErrors errors={formErrors} petterns="danger" />;
-  };
   return (
     <div className={styles.container}>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
-        {renderErrors()}
+        <RenderErrors formErrors={formErrors} />
 
         <FormItem
           label="名前"

@@ -1,19 +1,11 @@
 // NOTE: ディレクトリ構成検討中
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { User } from '@/@types/data';
 import { LOGGEDIN_USER_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
-import { RootState } from '@/common/store';
-import { EmptyObject } from '@/common/types';
 import axios from '@/utils/axios';
 
-export type CurrentUser = User | EmptyObject;
-
-type InitialState = {
-  currentUser: CurrentUser;
-  loggedIn: boolean;
-};
+import { InitialState, UpdateCurrentUser } from './type';
 
 const initialState: InitialState = {
   currentUser: {},
@@ -36,12 +28,6 @@ export const fetchCurrentUser = createAsyncThunk(
     return { data: response.data };
   }
 );
-
-// NOTE: sessions#logged_in_user(controller)
-type UpdateCurrentUser = {
-  logged_in: boolean;
-  user: User;
-};
 
 export const updateCurrentUser = createAction<UpdateCurrentUser>(
   ACTION_TYPE.UPDATE_CURRENT_USER
@@ -72,10 +58,5 @@ export const currentUserSlice = createSlice({
     });
   },
 });
-
-export const selectCurrentUser = (state: RootState) =>
-  state.currentUser.currentUser;
-export const selectLoggedInStatus = (state: RootState) =>
-  state.currentUser.loggedIn;
 
 export default currentUserSlice.reducer;

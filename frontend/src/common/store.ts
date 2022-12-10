@@ -4,7 +4,7 @@ import {
   TypedUseSelectorHook,
 } from 'react-redux';
 
-import currentUserSlice from '@/features/currentUserSlice';
+import currentUserSlice from '@/features/currentUser/slice';
 
 const store = configureStore({
   reducer: {

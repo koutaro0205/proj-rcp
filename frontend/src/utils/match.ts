@@ -1,5 +1,5 @@
 import { User } from '@/@types/data';
-import { CurrentUser } from '@/features/currentUserSlice';
+import { CurrentUser } from '@/features/currentUser/type';
 
 export const isCurrentUser = (user: User, currentUser: CurrentUser) =>
   user.id === currentUser.id;

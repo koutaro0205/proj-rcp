@@ -6,8 +6,8 @@ import useAccountActivations from '@/components/organisms/AccountActivations/use
 import Layout from '@/components/templates/Layout';
 import {
   selectCurrentUser,
-  selectLoggedInStatus,
-} from '@/features/currentUserSlice';
+  selectIsLoggedIn,
+} from '@/features/currentUser/selecters';
 
 // type HomePageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -18,7 +18,7 @@ const HomePage: NextPage = () => {
   }, [handleActivate]);
 
   const currentUser = useSelector(selectCurrentUser);
-  const loggedInStatus = useSelector(selectLoggedInStatus);
+  const loggedInStatus = useSelector(selectIsLoggedIn);
   // 表示テストも兼ねて、暫定実装（スタイルはあてていない）
   return (
     <Layout>

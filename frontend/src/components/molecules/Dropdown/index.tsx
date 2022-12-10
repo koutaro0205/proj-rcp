@@ -7,6 +7,7 @@ import styles from './styles';
 import useDropdown from './useDropdown';
 
 // FIXME: Dropdownコンポーネントを適切な粒度に分割する
+// FIXME: Organismsで実装する（ロジックを含むため）
 const Dropdown: React.FC = () => {
   const { isOpen, dropdownRef, currentUser, handleClick, handleLogoutClick } =
     useDropdown();
