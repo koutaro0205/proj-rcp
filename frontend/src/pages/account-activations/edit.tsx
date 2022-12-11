@@ -1,11 +1,15 @@
 import { NextPage } from 'next';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import ContentWidth from '@/components/layouts/ContentWidth';
 import Layout from '@/components/templates/Layout';
 import useAccountActivations from '@/hooks/useAccountActivations';
 
-const LoginPage: NextPage = () => {
+const AccountActivationsPage: NextPage = () => {
+  const { handleActivate } = useAccountActivations();
+  useEffect(() => {
+    handleActivate();
+  }, [handleActivate]);
   return (
     <Layout>
       <ContentWidth>Loading...</ContentWidth>
@@ -13,4 +17,4 @@ const LoginPage: NextPage = () => {
   );
 };
 
-export default LoginPage;
+export default AccountActivationsPage;
