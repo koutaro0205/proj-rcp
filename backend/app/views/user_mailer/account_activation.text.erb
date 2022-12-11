@@ -3,4 +3,4 @@
 本サービスをご利用頂き誠にありがとうございます。
 以下のリンクより、アカウントの有効化をお願い致します。
 
-<%= "http://localhost:8080?token=#{@user.activation_token}&email=#{@user.email}" %>
+<%= "http://localhost:8080/account-activations/edit?token=#{@user.activation_token}&email=#{@user.email}" %>

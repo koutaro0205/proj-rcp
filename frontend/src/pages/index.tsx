@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Layout from '@/components/templates/Layout';
@@ -7,16 +7,10 @@ import {
   selectCurrentUser,
   selectIsLoggedIn,
 } from '@/features/currentUser/selecters';
-import useAccountActivations from '@/hooks/useAccountActivations';
 
 // type HomePageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const HomePage: NextPage = () => {
-  const { handleActivate } = useAccountActivations();
-  useEffect(() => {
-    handleActivate();
-  }, [handleActivate]);
-
   const currentUser = useSelector(selectCurrentUser);
   const loggedInStatus = useSelector(selectIsLoggedIn);
   // 表示テストも兼ねて、暫定実装（スタイルはあてていない）

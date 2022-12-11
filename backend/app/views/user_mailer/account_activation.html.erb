@@ -5,4 +5,4 @@
 以下のリンクより、アカウントの有効化をお願い致します。
 </p>
 
-<%= link_to "アカウント有効化", "http://localhost:8080?token=#{@user.activation_token}&email=#{@user.email}" %>
+<%= link_to "アカウント有効化", "http://localhost:8080/account-activations/edit?token=#{@user.activation_token}&email=#{@user.email}" %>

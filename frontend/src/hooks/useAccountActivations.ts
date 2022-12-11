@@ -24,12 +24,12 @@ const useAccountActivations = () => {
       if (data.status === 'ok') {
         dispatch(updateCurrentUser(data));
         success(ACCOUNT_ACTIVATIONS.SUCCESS);
-        router.push(HOME);
       }
       if (data.status === 'unprocessable_entity') {
         warn(ACCOUNT_ACTIVATIONS.WARN);
       }
     }
+    router.push(HOME);
   }, [dispatch, params, router]);
 
   return {
