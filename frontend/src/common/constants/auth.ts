@@ -1,3 +1,8 @@
+export const SIGNUP = {
+  SUCCESS:
+    'ユーザー登録しました。ご登録のメールアドレスを確認し、アカウントの有効化を完了させてください。',
+};
+
 export const LOGIN = {
   SUCCESS: 'ログインしました!',
   ERROR:

@@ -3,10 +3,10 @@ import { PASSWORD_MIN_LENGHT } from '@/common/constants/characters';
 import { REGEX } from '@/common/constants/regex';
 import { UserParams } from '@/services/users/addUser';
 
-export const validateUser = (user: UserParams, users: User[]) => {
+export const validateUser = (user: UserParams, users?: User[]) => {
   const errors = [];
 
-  const existedUser = users.find((e) => e.email === user.email);
+  const existedUser = users?.find((e) => e.email === user.email);
 
   if (user.name === '') {
     errors.push('名前を入力してください');
@@ -16,7 +16,7 @@ export const validateUser = (user: UserParams, users: User[]) => {
     errors.push('メールアドレスを入力してください');
   }
 
-  if (existedUser !== undefined) {
+  if (existedUser) {
     if (user.email === existedUser.email) {
       errors.push('入力されたメールアドレスは既に使われています');
     }

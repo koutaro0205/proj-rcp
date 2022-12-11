@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { ApiContext } from '@/@types/data';
-import { ROOT_URL } from '@/common/constants/url';
+import { SIGNUP } from '@/common/constants/auth';
 import { validateUser } from '@/common/validations/signup';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
 import signup, { UserParams } from '@/services/users/addUser';
@@ -19,10 +18,6 @@ type DefaultValue = {
     data: string | ArrayBuffer | null;
     filename: string;
   };
-};
-
-const context: ApiContext = {
-  apiRootUrl: ROOT_URL,
 };
 
 const useSignupForm = () => {
@@ -78,11 +73,9 @@ const useSignupForm = () => {
     if (!isEmptyArray(errors)) {
       setFormErrors(errors);
     } else {
-      await signup(context, newUserInfo);
+      await signup(newUserInfo);
       router.push('/');
-      info(
-        'ユーザー登録しました。ご登録のメールアドレスを確認し、アカウントの有効化を完了させてください。'
-      );
+      info(SIGNUP.SUCCESS);
     }
   };
 
