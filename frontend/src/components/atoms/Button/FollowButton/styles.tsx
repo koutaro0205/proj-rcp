@@ -12,6 +12,7 @@ const defaultStyle = {
   borderRadius: borderRadius.small,
   paddingTop: space.extraExtraSmall,
   paddingBottom: space.extraExtraSmall,
+  cursor: 'pointer',
 };
 
 const styles = {
