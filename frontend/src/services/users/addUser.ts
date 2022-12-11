@@ -1,6 +1,8 @@
-import { ApiContext, User } from '@/@types/data';
+import axios from 'axios';
+
+import { User } from '@/@types/data';
 import { USERS_API } from '@/common/constants/path';
-import { fetcher } from '@/utils/fetchData';
+import { ROOT_URL } from '@/common/constants/url';
 
 export type UserParams = {
   /**
@@ -28,23 +30,30 @@ export type UserParams = {
   };
 };
 
+type NormalResponse = {
+  status: string;
+  user: User;
+};
+
+type ErrorResponse = {
+  errors: string[];
+  status: string;
+};
+
+type ResponseData = NormalResponse & ErrorResponse;
+
 /**
  * 認証API（サインイン）
  * @param context APIコンテキスト
  * @param params パラメータ
  * @returns ログインユーザー
  */
-const signup = async (
-  context: ApiContext,
-  params: UserParams
-): Promise<User | unknown[]> => {
-  return fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/${USERS_API}`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(params),
+const signup = async (params: UserParams): Promise<ResponseData> => {
+  return axios({
+    method: 'post',
+    url: `${ROOT_URL}/${USERS_API}`,
+    data: params,
+    withCredentials: true,
   });
 };
 
