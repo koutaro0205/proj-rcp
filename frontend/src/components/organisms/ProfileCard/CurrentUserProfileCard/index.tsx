@@ -12,7 +12,7 @@ const CurrentUserProfileCard: React.FC = () => {
     <div className={styles.container}>
       <SubTitle>現在のユーザー</SubTitle>
       <FlexContainer>
-        <UserImage />
+        <UserImage size="large" />
         {/* FIXME: Rails APIが用意できたらデータを入れる（postCount） */}
         <CurrentUserInfo userName="カレントユーザー" postCount={0} />
       </FlexContainer>

@@ -17,7 +17,7 @@ type Props = {
 const UserItem: React.FC<Props> = ({ user, currentUser }) => {
   return (
     <li key={user.id} className={styles.container}>
-      <UserImage />
+      <UserImage size="large" />
       <LinkText path={`/users/${user.id}`} _styles={styles.userName}>
         {user.name}
       </LinkText>

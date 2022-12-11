@@ -13,6 +13,7 @@ import { SITE_TITLE } from '@/pages/_app';
 import styles from './styles';
 
 const Header: React.FC = () => {
+  // FIXME: currentUserの情報をここから取得してDropdownに流す
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <header className={styles.container}>
