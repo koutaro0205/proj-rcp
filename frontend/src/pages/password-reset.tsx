@@ -6,7 +6,7 @@ import ContentWidth from '@/components/layouts/ContentWidth';
 import PasswordResetForm from '@/components/organisms/PasswordResetForm';
 import Layout from '@/components/templates/Layout';
 
-const LoginPage: NextPage = () => {
+const PasswordResetPage: NextPage = () => {
   return (
     <Layout>
       <ContentWidth>
@@ -17,4 +17,4 @@ const LoginPage: NextPage = () => {
   );
 };
 
-export default LoginPage;
+export default PasswordResetPage;

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { SIGNUP } from '@/common/constants/auth';
+import { SIGNUP } from '@/common/constants/toast';
 import { validateUser } from '@/common/validations/signup';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
 import signup, { UserParams } from '@/services/users/addUser';

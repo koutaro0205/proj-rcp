@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { HOME } from '@/common/constants/path';
+import { ACCOUNT_ACTIVATIONS } from '@/common/constants/toast';
 import { AppDispatch } from '@/common/store';
 import { updateCurrentUser } from '@/features/currentUser/slice';
 import useGetQueryParameters from '@/hooks/useGetQueryParameters';
@@ -22,11 +23,11 @@ const useAccountActivations = () => {
 
       if (data.status === 'ok') {
         dispatch(updateCurrentUser(data));
-        success('アカウントの有効化が完了しました');
+        success(ACCOUNT_ACTIVATIONS.SUCCESS);
         router.push(HOME);
       }
       if (data.status === 'unprocessable_entity') {
-        warn('無効な有効化リンクです');
+        warn(ACCOUNT_ACTIVATIONS.WARN);
       }
     }
   }, [dispatch, params, router]);

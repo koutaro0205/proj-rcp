@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
 import { ApiContext } from '@/@types/data';
-import { LOGIN, LOGOUT } from '@/common/constants/auth';
+import { LOGIN, LOGOUT } from '@/common/constants/toast';
 import { HOME } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import login, { LoginParams } from '@/services/auth/login';

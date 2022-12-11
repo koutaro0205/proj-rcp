@@ -8,12 +8,20 @@ type Params = {
   email: string | string[] | undefined;
 };
 
-export type ResponseData = {
+type NormalResponse = {
   status: string;
   logged_in: boolean;
   activated: boolean | null;
-  user?: User;
+  user: User;
 };
+
+type InvalidResponse = {
+  status: string;
+  logged_in: boolean;
+  activated: boolean | null;
+};
+
+export type ResponseData = NormalResponse & InvalidResponse;
 
 const activate = async ({ token, email }: Params): Promise<ResponseData> => {
   const response = await axios.get(

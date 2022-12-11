@@ -2,12 +2,12 @@ import { NextPage } from 'next';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import useAccountActivations from '@/components/organisms/AccountActivations/useAccountActivations';
 import Layout from '@/components/templates/Layout';
 import {
   selectCurrentUser,
   selectIsLoggedIn,
 } from '@/features/currentUser/selecters';
+import useAccountActivations from '@/hooks/useAccountActivations';
 
 // type HomePageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
