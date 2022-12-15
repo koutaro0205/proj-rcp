@@ -42,14 +42,6 @@ const styles = {
     border: `${colors.grey} solid 1px`,
     zIndex: 10,
   }),
-  dropdownItem: css({
-    padding: space.medium,
-    widows: '100%',
-    '&: hover': {
-      transition: '0.3s',
-      opacity: 0.5,
-    },
-  }),
   logout: css({
     cursor: 'pointer',
   }),

@@ -5,8 +5,8 @@ import HeaderButton from '@/components/atoms/Button/HeaderButton';
 import Logo from '@/components/atoms/Logo';
 import NavItem from '@/components/atoms/NavItem';
 import ContentWidth from '@/components/layouts/ContentWidth';
-import Dropdown from '@/components/molecules/Dropdown';
 import { SearchForm } from '@/components/molecules/SearchForm';
+import Dropdown from '@/components/organisms/Dropdown';
 import { selectIsLoggedIn } from '@/features/currentUser/selecters';
 import { SITE_TITLE } from '@/pages/_app';
 

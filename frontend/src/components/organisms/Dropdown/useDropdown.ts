@@ -17,8 +17,9 @@ const useDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  // FIXME: 型が不明なため、anyで暫定対応
-  const handleOutsideClick = (e: any) => {
+  // NOTE: 型が不明なため、anyで暫定対応
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleOutsideClick = (e: { target: any }) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
       setIsOpen(false);
     }

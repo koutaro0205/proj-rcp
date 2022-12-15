@@ -15,6 +15,12 @@ export const PASSWORD_RESET_PATH = '/password-reset';
 export const QUESTIONS_PATH = '/questions';
 export const POST_RECIPE_PATH = '/recipes/new';
 export const USERS_PATH = '/users';
+export const USER_DETAIL_PATH = (id: number) => {
+  return `${USERS_PATH}/${id}`;
+};
+export const USER_EDIT_PATH = (id: number) => {
+  return `${USERS_PATH}/${id}/edit`;
+};
 
 // Image
 export const DEFAULT_IMAGE_PATH = '/images/default.jpg';
