@@ -1,10 +1,13 @@
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { ApiContext } from '@/@types/data';
-import { LOGIN, LOGOUT } from '@/common/constants/toast';
 import { HOME } from '@/common/constants/path';
+import { LOGIN, LOGOUT } from '@/common/constants/toast';
 import { ROOT_URL } from '@/common/constants/url';
+import { AppDispatch } from '@/common/store';
+import { deleteCurrentUser } from '@/features/currentUser/slice';
 import login, { LoginParams } from '@/services/auth/login';
 import logout from '@/services/auth/logout';
 import { error, success, warn } from '@/utils/notifications';
@@ -17,6 +20,7 @@ type Params = LoginParams;
 
 const useAuth = (params?: Params) => {
   const router = useRouter();
+  const dispatch: AppDispatch = useDispatch();
 
   const loginInternal = async (loginParams: LoginParams) => {
     const response = await login(context, loginParams);
@@ -51,10 +55,11 @@ const useAuth = (params?: Params) => {
     const sure = window.confirm(LOGOUT.CONFIRM);
     if (sure) {
       logoutInternal();
+      dispatch(deleteCurrentUser());
       router.push(HOME);
       success(LOGOUT.SUCCESS);
     }
-  }, [router]);
+  }, [dispatch, router]);
 
   return {
     handleLogin,

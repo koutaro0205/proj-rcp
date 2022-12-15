@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { AppDispatch } from '@/common/store';
 import { selectCurrentUser } from '@/features/currentUser/selecters';
-import { deleteCurrentUser } from '@/features/currentUser/slice';
 import useAuth from '@/hooks/useAuth';
 
 const useDropdown = () => {
@@ -11,7 +9,6 @@ const useDropdown = () => {
   const dropdownRef = useRef<HTMLLIElement>(null);
   const currentUser = useSelector(selectCurrentUser);
   const { handleLogout } = useAuth();
-  const dispatch: AppDispatch = useDispatch();
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -27,7 +24,6 @@ const useDropdown = () => {
 
   const handleLogoutClick = () => {
     handleLogout();
-    dispatch(deleteCurrentUser());
   };
 
   useEffect(() => {
