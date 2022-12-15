@@ -17,7 +17,7 @@ const FollowButton: React.FC<Props> = ({ isFollowing, onClick }) => {
   }
   return (
     <button className={styles.followButton} onClick={onClick}>
-      フォロー中
+      フォロー
     </button>
   );
 };
