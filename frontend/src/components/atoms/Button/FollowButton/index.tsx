@@ -4,20 +4,20 @@ import styles from './styles';
 
 type Props = {
   onClick: () => void;
-  followStatus: boolean;
+  isFollowing: boolean;
 };
 
-const FollowButton: React.FC<Props> = ({ followStatus, onClick }) => {
-  if (followStatus) {
+const FollowButton: React.FC<Props> = ({ isFollowing, onClick }) => {
+  if (isFollowing) {
     return (
-      <button className={styles.followButton} onClick={onClick}>
+      <button className={styles.unfollowButton} onClick={onClick}>
         フォロー中
       </button>
     );
   }
   return (
-    <button className={styles.unfollowButton} onClick={onClick}>
-      フォロー中
+    <button className={styles.followButton} onClick={onClick}>
+      フォロー
     </button>
   );
 };
