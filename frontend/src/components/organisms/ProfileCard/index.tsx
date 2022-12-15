@@ -10,6 +10,7 @@ import { CurrentUser } from '@/features/currentUser/type';
 import { isCurrentUser } from '@/utils/match';
 
 import styles from './styles';
+import useProfileCard from './useProfileCard';
 
 type Props = {
   user: User;
@@ -17,6 +18,7 @@ type Props = {
 };
 
 const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
+  const { isFollowing, handleClick } = useProfileCard();
   return (
     <div className={styles.container}>
       <FlexContainer>
@@ -26,7 +28,7 @@ const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
       </FlexContainer>
       <FollowStatus userId={user.id} />
       {!isCurrentUser(user, currentUser) && (
-        <FollowButton followStatus onClick={() => {}} />
+        <FollowButton isFollowing={isFollowing} onClick={handleClick} />
       )}
     </div>
   );
