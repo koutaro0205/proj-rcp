@@ -1,11 +1,11 @@
-import { ApiContext } from '@/@types/data';
 import { LOGOUT_API } from '@/common/constants/path';
+import { ROOT_URL } from '@/common/constants/url';
 import axios from '@/utils/axios';
 
-const logout = async (context: ApiContext) => {
+const logout = async () => {
   return axios({
     method: 'delete',
-    url: `${context.apiRootUrl.replace(/\/$/g, '')}/${LOGOUT_API}`,
+    url: `${ROOT_URL}/${LOGOUT_API}`,
     withCredentials: true,
   });
 };
