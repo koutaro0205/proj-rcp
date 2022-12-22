@@ -14,8 +14,3 @@ export type User = {
   activated_at: string | null;
   admin: boolean;
 };
-
-// APIコンテキスト
-export type ApiContext = {
-  apiRootUrl: string;
-};

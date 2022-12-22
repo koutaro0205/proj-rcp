@@ -1,5 +1,6 @@
-import { ApiContext, User } from '@/@types/data';
+import { User } from '@/@types/data';
 import { LOGIN_API } from '@/common/constants/path';
+import { ROOT_URL } from '@/common/constants/url';
 import axios from '@/utils/axios';
 
 export type LoginParams = {
@@ -44,13 +45,10 @@ export type ResponseData = {
  * @param params パラメータ
  * @returns ログインユーザー
  */
-const login = async (
-  context: ApiContext,
-  params: LoginParams
-): Promise<ResponseData> => {
+const login = async (params: LoginParams): Promise<ResponseData> => {
   return axios({
     method: 'post',
-    url: `${context.apiRootUrl.replace(/\/$/g, '')}/${LOGIN_API}`,
+    url: `${ROOT_URL}/${LOGIN_API}`,
     data: params,
     withCredentials: true,
   });

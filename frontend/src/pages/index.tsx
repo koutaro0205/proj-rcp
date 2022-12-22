@@ -22,17 +22,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const context: ApiContext = {
-//     apiRootUrl: ROOT_URL,
-//   };
-//   const users = await getAllUsers(context);
-
-//   return {
-//     props: {
-//       users,
-//     },
-//   };
-// };
-
 export default HomePage;
