@@ -24,4 +24,4 @@ export const USER_EDIT_PATH = (id: number) => {
 };
 
 // Image
-export const DEFAULT_IMAGE_PATH = '/images/default.jpg';
+export const DEFAULT_USER_IMAGE_PATH = '/images/default.jpg';
