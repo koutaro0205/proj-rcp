@@ -4,6 +4,7 @@ import React from 'react';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ContentWidth from '@/components/layouts/ContentWidth';
 import LoginForm from '@/components/organisms/LoginForm';
+import InnerWrapper from '@/components/templates/InnerWrapper';
 import Layout from '@/components/templates/Layout';
 
 const LoginPage: NextPage = () => {
@@ -11,7 +12,9 @@ const LoginPage: NextPage = () => {
     <Layout>
       <ContentWidth>
         <SectionTitle sectionTitle="ログイン" />
-        <LoginForm />
+        <InnerWrapper>
+          <LoginForm />
+        </InnerWrapper>
       </ContentWidth>
     </Layout>
   );

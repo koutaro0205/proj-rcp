@@ -1,14 +1,9 @@
 import { css } from '@emotion/css';
 
-import { SIGNUP_FORM_WIDTH } from '@/common/constants/flatDimention';
 import colors from '@/theme/colors';
 import space from '@/theme/space';
 
 const styles = {
-  container: css({
-    width: SIGNUP_FORM_WIDTH,
-    margin: '0 auto',
-  }),
   formContainer: css({
     display: 'block',
     width: '100%',

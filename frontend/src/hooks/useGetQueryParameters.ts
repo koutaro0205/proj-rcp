@@ -9,7 +9,7 @@ import { isEmptyObject } from '@/utils/match';
  * @param setParams クエリパラメータの状態を更新
  * @returns params クエリパラメータの値(オブジェクト)
  */
-type Params = {
+export type Params = {
   [key: string]: string | string[] | undefined;
 };
 

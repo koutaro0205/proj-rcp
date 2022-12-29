@@ -1,6 +1,7 @@
 import { User } from '@/@types/data';
 import { ACCOUNT_ACTIVATIONS_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
+import { StatusCode } from '@/common/types';
 import axios from '@/utils/axios';
 
 type Params = {
@@ -9,14 +10,14 @@ type Params = {
 };
 
 type NormalResponse = {
-  status: string;
+  status: StatusCode;
   logged_in: boolean;
   activated: boolean | null;
   user: User;
 };
 
 type InvalidResponse = {
-  status: string;
+  status: StatusCode;
   logged_in: boolean;
   activated: boolean | null;
 };

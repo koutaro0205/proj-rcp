@@ -1,6 +1,7 @@
 import { User } from '@/@types/data';
 import { LOGIN_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
+import { StatusCode } from '@/common/types';
 import axios from '@/utils/axios';
 
 export type LoginParams = {
@@ -26,12 +27,12 @@ type NomalResponse = {
 
 type AbnormalResponse = {
   logged_in: boolean;
-  status: string;
+  status: StatusCode;
 };
 
 type InvalidResponse = {
   logged_in: boolean;
-  status: string;
+  status: StatusCode;
   activated: boolean;
 };
 
