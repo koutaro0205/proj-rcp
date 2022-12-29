@@ -4,8 +4,12 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
+    paths:
+      - "frontend/**"
   pull_request:
     branches: [ main ]
+    paths:
+      - "frontend/**"
 
   workflow_dispatch:
 
@@ -40,10 +44,10 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install
+        run: yarn --cwd frontend/ install
 
       - name: Lint Check
-        run: yarn run lint
+        run: yarn --cwd frontend/ run lint
 
       - name: Type Check
-        run: yarn run tsc
+        run: yarn --cwd frontend/ run tsc
