@@ -3,7 +3,7 @@ import { css } from '@emotion/css';
 import borderRadius from '@/theme/borderRadius';
 import colors from '@/theme/colors';
 import fontSizes from '@/theme/fontSize';
-import lineHeight from '@/theme/lineHeight';
+import lineHeights from '@/theme/lineHeights';
 import space from '@/theme/space';
 
 const styles = {
@@ -13,7 +13,7 @@ const styles = {
     width: '100%',
     padding: `${space.extraSmall} ${space.small}`,
     fontSize: fontSizes.small,
-    lineHeight: lineHeight.medium,
+    lineHeight: lineHeights.medium,
     color: colors.grey,
     backgroundColor: colors.white,
     backgroundImage: 'none',

@@ -102,3 +102,12 @@ export type CSSPropertyAlignSelf =
   | 'stretch'
   // eslint-disable-next-line @typescript-eslint/ban-types
   | (string & {});
+
+// Othders
+export type CSSPropertyTextAlign =
+  | 'start'
+  | 'end'
+  | 'left'
+  | 'right'
+  | 'center'
+  | 'justify';

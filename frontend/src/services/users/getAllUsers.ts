@@ -17,8 +17,6 @@ const getAllUsers = async (): Promise<User[] | void> => {
   const { data, error } = useSWR(`${ROOT_URL}/${USERS_API}`, fetcher);
   if (error) return handleResponseError('エラー');
   return data;
-
-  // });
 };
 
 export default getAllUsers;

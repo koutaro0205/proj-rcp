@@ -3,6 +3,7 @@ import axios from 'axios';
 import { User } from '@/@types/data';
 import { USERS_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
+import { StatusCode } from '@/common/types';
 
 export type UserParams = {
   /**
@@ -31,13 +32,13 @@ export type UserParams = {
 };
 
 type NormalResponse = {
-  status: string;
+  status: StatusCode;
   user: User;
 };
 
 type ErrorResponse = {
   errors: string[];
-  status: string;
+  status: StatusCode;
 };
 
 type ResponseData = NormalResponse & ErrorResponse;

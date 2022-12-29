@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { SIGNUP } from '@/common/constants/toast';
+import { SIGNUP, USERS } from '@/common/constants/toast';
 import { validateUser } from '@/common/validations/signup';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
 import signup, { UserParams } from '@/services/users/addUser';
@@ -62,21 +62,19 @@ const useSignupForm = () => {
 
   const router = useRouter();
   const { data, error } = useGetAllUsers();
-  if (error) {
-    handleResponseError('ユーザー一覧の取得に失敗しました。');
-  }
+  if (error) handleResponseError(USERS.ERROR);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors = validateUser(newUserInfo, data.users);
+    const errors = validateUser({ user: newUserInfo, users: data.users });
 
-    if (!isEmptyArray(errors)) {
-      setFormErrors(errors);
-    } else {
+    if (isEmptyArray(errors)) {
       await signup(newUserInfo);
       router.push('/');
       info(SIGNUP.SUCCESS);
+      return;
     }
+    setFormErrors(errors);
   };
 
   return {
