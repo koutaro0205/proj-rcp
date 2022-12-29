@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Explanation from '@/components/atoms/Explanation';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
