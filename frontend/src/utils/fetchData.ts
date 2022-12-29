@@ -4,6 +4,7 @@ import { handleResponseError } from './requestError';
 
 export const fetcher = async (
   resource: RequestInfo,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   init?: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {

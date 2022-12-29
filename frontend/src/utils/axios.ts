@@ -12,6 +12,7 @@ axios.defaults.withCredentials = true;
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
+    // eslint-disable-next-line no-console
     console.log(error.response?.status);
     handleResponseError(API_REQUEST_ERROR);
   }
