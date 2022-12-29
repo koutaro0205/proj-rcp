@@ -1,24 +1,21 @@
-# README
+# Get Started
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup development environments
+1. Clone the repository
+`$ git clone https://github.com/koutaro0205/proj-rcp.git`
 
-Things you may want to cover:
+2. Install backend library
+`$ cd backend`
+`backend/ $ bundle install`
 
-* Ruby version
+3. Install frontend library
+`$ cd frontend`
+`frontend/ $ yarn`
 
-* System dependencies
+4. Start the backend server
+`$ cd backend`
+`backend/ $ rails s`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+5. Start the frontend server
+`$ cd frontend`
+`frontend/ $ yarn run dev`
