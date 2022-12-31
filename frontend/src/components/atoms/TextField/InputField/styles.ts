@@ -21,6 +21,7 @@ const styles = {
     borderRadius: borderRadius.small,
     marginBottom: space.mediumLarge,
     marginTop: space.extraExtraSmall,
+    boxSizing: 'border-box',
   }),
 };
 

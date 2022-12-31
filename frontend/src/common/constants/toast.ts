@@ -40,3 +40,7 @@ export const LOGOUT = {
   SUCCESS: 'ログアウトしました',
   CONFIRM: 'ログアウトしますか？',
 };
+
+export const CORRECT_USER = {
+  WARN: '権限がありません。',
+};

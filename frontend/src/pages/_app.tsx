@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
 import store from '@/common/store';
+import BackgroundProvider from '@/components/templates/BackgroundWrapper';
 import CurrentUserProvider from '@/components/templates/CurrentUserProvider';
 
 export const SITE_TITLE = 'ZuboRecipes';
@@ -39,12 +40,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <Provider store={store}>
         <CurrentUserProvider>
-          <Global
-            styles={css`
-              ${emotionReset}
-            `}
-          />
-          <Component {...pageProps} />
+          <BackgroundProvider>
+            <Global
+              styles={css`
+                ${emotionReset}
+              `}
+            />
+            <Component {...pageProps} />
+          </BackgroundProvider>
         </CurrentUserProvider>
       </Provider>
       <ToastContainer />

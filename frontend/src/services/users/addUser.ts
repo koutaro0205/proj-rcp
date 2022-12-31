@@ -37,7 +37,6 @@ type NormalResponse = {
 };
 
 type ErrorResponse = {
-  errors: string[];
   status: StatusCode;
 };
 

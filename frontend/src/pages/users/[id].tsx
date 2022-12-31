@@ -9,15 +9,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { User } from '@/@types/data';
-import { USERS_API, USERS_PATH } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
+import { USER_DETAIL_PATH } from '@/common/constants/path';
+import Loading from '@/components/atoms/Loading';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ContextWidth from '@/components/layouts/ContentWidth';
 import ProfileCard from '@/components/organisms/ProfileCard';
 import Layout from '@/components/templates/Layout';
 import { selectCurrentUser } from '@/features/currentUser/selecters';
+import getAllUsers from '@/services/users/getAllUsers';
 import getUser from '@/services/users/getUser';
-import axios from '@/utils/axios';
 
 type UserDetailPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -27,7 +27,7 @@ const UserDetailPage: NextPage<UserDetailPageProps> = ({ user }) => {
 
   // FIXME: 暫定
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <Layout>
@@ -40,9 +40,8 @@ const UserDetailPage: NextPage<UserDetailPageProps> = ({ user }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await axios.get(`${ROOT_URL}/${USERS_API}`);
-  const users: User[] = response.data;
-  const paths = users.map((user: User) => `${USERS_PATH}/${user.id}`);
+  const users: User[] = await getAllUsers();
+  const paths = users.map((user: User) => USER_DETAIL_PATH(user.id));
 
   return { paths, fallback: false };
 };

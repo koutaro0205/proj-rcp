@@ -1,10 +1,17 @@
 import { css } from '@emotion/css';
 
-export const getStyles = (formWidth: string) => {
+import colors from '@/theme/colors';
+import space from '@/theme/space';
+
+export const getStyles = (innerWidth: string) => {
   return {
     container: css({
-      width: formWidth,
+      width: innerWidth,
       margin: '0 auto',
+      backgroundColor: colors.white,
+      padding: space.mediumLarge,
+      marginTop: space.mediumLarge,
+      marginBottom: space.mediumLarge,
     }),
   };
 };

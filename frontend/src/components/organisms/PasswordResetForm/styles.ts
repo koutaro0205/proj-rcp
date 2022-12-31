@@ -1,12 +1,12 @@
 import { css } from '@emotion/css';
 
-import { FORM_WIDTH } from '@/common/constants/flatDimention';
+import { INNER_WIDTH } from '@/common/constants/flatDimention';
 import colors from '@/theme/colors';
 import space from '@/theme/space';
 
 const styles = {
   container: css({
-    width: FORM_WIDTH.m,
+    width: INNER_WIDTH.m,
     margin: '0 auto',
   }),
   formContainer: css({

@@ -24,7 +24,7 @@ const UsersPage: NextPage = () => {
       <ContentWidth>
         <SectionTitle sectionTitle="ユーザー一覧" />
         <FlexContainer>
-          <CurrentUserProfileCard />
+          <CurrentUserProfileCard currentUser={currentUser} />
           <UsersList users={data} currentUser={currentUser} />
         </FlexContainer>
       </ContentWidth>
