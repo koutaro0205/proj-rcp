@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { FormSize, FORM_WIDTH } from '@/common/constants/flatDimention';
+import { InnerSize, INNER_WIDTH } from '@/common/constants/flatDimention';
 
 import { getStyles } from './styles';
 
 type Props = {
   children: React.ReactNode;
-  formSize?: FormSize;
+  size?: InnerSize;
 };
 
-const InnerWrapper: React.FC<Props> = ({ children, formSize = 'm' }) => {
-  const style = getStyles(FORM_WIDTH[formSize]);
+const InnerWrapper: React.FC<Props> = ({ children, size = 'm' }) => {
+  const style = getStyles(INNER_WIDTH[size]);
   return <div className={style.container}>{children}</div>;
 };
 

@@ -1,22 +1,20 @@
-import useSWR from 'swr';
-
 import { User } from '@/@types/data';
 import { USERS_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
-import { fetcher } from '@/utils/fetchData';
-import { handleResponseError } from '@/utils/requestError';
+import axios from '@/utils/axios';
 
 /**
  * ユーザーAPI（一覧取得）
+ * NOTE: 頻繁にリフェッチされない場合に用いる
  * @param context APIコンテキスト
  * @returns ユーザー一覧
  */
 
-const getAllUsers = async (): Promise<User[] | void> => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data, error } = useSWR(`${ROOT_URL}/${USERS_API}`, fetcher);
-  if (error) return handleResponseError('エラー');
-  return data;
+const getAllUsers = async (): Promise<User[]> => {
+  const response = await axios.get(`${ROOT_URL}/${USERS_API}`, {
+    withCredentials: true,
+  });
+  return response.data;
 };
 
 export default getAllUsers;

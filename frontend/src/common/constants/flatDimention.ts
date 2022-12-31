@@ -1,8 +1,8 @@
-export const FORM_WIDTH = {
+export const INNER_WIDTH = {
   m: '600px',
   l: '900px',
 };
-export type FormSize = keyof typeof FORM_WIDTH;
+export type InnerSize = keyof typeof INNER_WIDTH;
 
 export const FORM_HEIGHT = '34px';
 export const SIDE_COLUMNS_USERS_WIDTH = '65%';

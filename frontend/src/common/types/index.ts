@@ -4,4 +4,5 @@ export type StatusCode =
   | 'ok'
   | 'unprocessable_entity'
   | 'created'
-  | 'unauthorized';
+  | 'unauthorized'
+  | 'forbidden';

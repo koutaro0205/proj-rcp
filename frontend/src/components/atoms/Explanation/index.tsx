@@ -1,13 +1,17 @@
 import React from 'react';
 
-import styles from './styles';
+import { LineHeights } from '@/theme/lineHeights';
+
+import { getStyles } from './styles';
 
 type Props = {
   message: string;
+  lineHeight?: LineHeights;
 };
 
-const Explanation: React.FC<Props> = ({ message }) => {
-  return <p className={styles.message}>{message}</p>;
+const Explanation: React.FC<Props> = ({ message, lineHeight = 'medium' }) => {
+  const style = getStyles({ lineHeight });
+  return <p className={style.message}>{message}</p>;
 };
 
 export default Explanation;

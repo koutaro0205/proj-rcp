@@ -19,6 +19,8 @@ export default {
 const Template: ComponentStory<typeof FormItem> = (args: Props) => (
   <div style={{ width: '50%' }}>
     <FormItem {...args} />
+    <FormItem {...args} />
+    <FormItem {...args} />
   </div>
 );
 
