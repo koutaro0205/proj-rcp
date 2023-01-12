@@ -24,6 +24,8 @@ export const fetchCurrentUser = createAsyncThunk(
     const response = await axios.get(`${ROOT_URL}/${LOGGEDIN_USER_API}`, {
       withCredentials: true,
     });
+    axios.defaults.headers.common['X-CSRF-Token'] =
+      response.headers['x-csrf-token'];
 
     return { data: response.data };
   }

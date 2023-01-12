@@ -1,5 +1,4 @@
 class Api::V1::SessionsController < ApplicationController
-  after_action :set_csrf_token_header
   def new
   end
 
@@ -24,6 +23,7 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def logged_in_user
+    debug_session
     if current_user
       render json: { logged_in: true, user: current_user }
     else
