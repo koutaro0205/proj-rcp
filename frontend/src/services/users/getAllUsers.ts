@@ -13,7 +13,13 @@ import axios from '@/utils/axios';
 const getAllUsers = async (): Promise<User[]> => {
   const response = await axios.get(`${ROOT_URL}/${USERS_API}`, {
     withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
   });
+  axios.defaults.headers.common['X-CSRF-Token'] =
+    response.headers['X-CSRF-Token'];
   return response.data;
 };
 

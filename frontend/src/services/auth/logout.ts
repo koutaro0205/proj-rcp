@@ -6,6 +6,10 @@ const logout = async () => {
   return axios({
     method: 'delete',
     url: `${ROOT_URL}/${LOGOUT_API}`,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
     withCredentials: true,
   });
 };

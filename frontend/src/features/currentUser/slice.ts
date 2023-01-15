@@ -21,9 +21,16 @@ const ACTION_TYPE = {
 export const fetchCurrentUser = createAsyncThunk(
   ACTION_TYPE.CURRENT_USER,
   async () => {
+    // FIXME: servises/に切り出す
     const response = await axios.get(`${ROOT_URL}/${LOGGEDIN_USER_API}`, {
       withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+      },
     });
+    axios.defaults.headers.common['X-CSRF-Token'] =
+      response.headers['X-CSRF-Token'];
 
     return { data: response.data };
   }

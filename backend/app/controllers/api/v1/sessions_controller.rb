@@ -1,5 +1,4 @@
 class Api::V1::SessionsController < ApplicationController
-  after_action :set_csrf_token_header
   def new
   end
 
@@ -25,9 +24,9 @@ class Api::V1::SessionsController < ApplicationController
 
   def logged_in_user
     if current_user
-      render json: { logged_in: true, user: current_user }
+      render json: { logged_in: logged_in?, user: current_user }
     else
-      render json: { logged_in: false, message: 'ユーザーが存在しません' }
+      render json: { logged_in: logged_in?, message: 'ユーザーが存在しません' }
     end
   end
 

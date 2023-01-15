@@ -49,6 +49,10 @@ export type ResponseData = {
 const login = async (params: LoginParams): Promise<ResponseData> => {
   return axios({
     method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
     url: `${ROOT_URL}/${LOGIN_API}`,
     data: params,
     withCredentials: true,

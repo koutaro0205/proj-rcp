@@ -1,6 +1,5 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
-  after_action :set_csrf_token_header
   before_action :correct_user, only: %i[edit update]
   def index
     @users = User.where(activated: true)
@@ -41,12 +40,10 @@ class Api::V1::UsersController < ApplicationController
   private
     def set_user
       @user = User.find(params[:id])
-      log_in @user if current_user.nil?
     end
 
     def correct_user
       @checked_user = User.find_by(id: params[:id])
-      puts(current_user ? 'います！！' : 'いません')
       unless current_user?(@checked_user)
         render json: { status: :forbidden }
       end
