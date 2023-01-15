@@ -8,14 +8,6 @@ axios.defaults.xsrfCookieName = 'CSRF-TOKEN';
 axios.defaults.xsrfHeaderName = 'X-CSRF-Token';
 axios.defaults.withCredentials = true;
 
-export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/api/v1',
-  headers: {
-    'Content-type': 'application/json',
-  },
-  withCredentials: true,
-});
-
 /* Axios の Response 時の Interceptor */
 axios.interceptors.response.use(
   (response) => response,
@@ -25,5 +17,15 @@ axios.interceptors.response.use(
     handleResponseError(API_REQUEST_ERROR);
   }
 );
+
+// HACK: axiosをaxiosInstanceに変更する。
+export const axiosInstance: AxiosInstance = axios.create({
+  baseURL: 'http://localhost:3000/api/v1',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+  },
+  withCredentials: true,
+});
 
 export default axios;

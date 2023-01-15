@@ -51,6 +51,7 @@ const login = async (params: LoginParams): Promise<ResponseData> => {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
     },
     url: `${ROOT_URL}/${LOGIN_API}`,
     data: params,

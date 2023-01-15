@@ -2,13 +2,11 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit update]
   def index
-    debug_session
     @users = User.where(activated: true)
     render json: @users
   end
 
   def show
-    debug_session
     render json: @user
   end
 

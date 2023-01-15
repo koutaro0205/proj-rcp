@@ -23,11 +23,10 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def logged_in_user
-    debug_session
     if current_user
-      render json: { logged_in: true, user: current_user }
+      render json: { logged_in: logged_in?, user: current_user }
     else
-      render json: { logged_in: false, message: 'ユーザーが存在しません' }
+      render json: { logged_in: logged_in?, message: 'ユーザーが存在しません' }
     end
   end
 

@@ -48,3 +48,4 @@ end
 
 # Addition
 gem 'rack-cors'
+gem 'pry-rails'

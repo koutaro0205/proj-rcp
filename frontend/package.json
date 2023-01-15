@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000/api/v1",
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",

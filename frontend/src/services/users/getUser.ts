@@ -14,9 +14,11 @@ const getUser = async (userId: number): Promise<User> => {
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
-      // 'X-CSRF-Token': 'hogehoge',
+      'X-Requested-With': 'XMLHttpRequest',
     },
   });
+  axios.defaults.headers.common['X-CSRF-Token'] =
+    response.headers['X-CSRF-Token'];
   return response.data;
 };
 
