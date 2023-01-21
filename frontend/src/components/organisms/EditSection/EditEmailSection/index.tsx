@@ -14,6 +14,7 @@ type Props = {
   currentUser: CurrentUser;
 };
 
+// FIXME: KOU-87 ユーザー編集機能を実装する
 const EditEmailSection: React.FC<Props> = ({ currentUser }) => {
   return (
     <div>

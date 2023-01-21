@@ -6,6 +6,7 @@ import SubTitle from '@/components/atoms/Title/SubTitile';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
 
+// FIXME: KOU-87 ユーザー編集機能を実装する
 const EditPasswordSection: React.FC = () => {
   return (
     <div>

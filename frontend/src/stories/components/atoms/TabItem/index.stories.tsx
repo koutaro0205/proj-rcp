@@ -13,11 +13,8 @@ export default {
       },
       defaultValue: 'label',
     },
-    path: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: '/',
+    onClick: {
+      action: 'clicked',
     },
   },
 } as ComponentMeta<typeof TabItem>;
@@ -32,4 +29,4 @@ const Template: ComponentStory<typeof TabItem> = (args) => (
 );
 
 export const Nomal = Template.bind({});
-Nomal.args = { label: 'ラベル', path: '/' };
+Nomal.args = { label: 'ラベル' };

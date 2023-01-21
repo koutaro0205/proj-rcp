@@ -9,11 +9,11 @@ type Args = {
 };
 
 export const getStyles = ({ lineHeight }: Args) => {
-  const textSpaceSize = space.extraSmall;
+  const horizontalSpace = space.extraSmall;
   return {
     message: css({
-      marginTop: textSpaceSize,
-      marginBottom: textSpaceSize,
+      marginTop: horizontalSpace,
+      marginBottom: horizontalSpace,
       fontSize: fontSizes.small,
       lineHeight: lineHeights[lineHeight],
     }),
