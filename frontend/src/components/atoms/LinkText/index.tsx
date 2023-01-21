@@ -10,10 +10,12 @@ type Props = {
   path: string;
 };
 
+// FIXME: Nextのアップデートを行なって<Link>コンポーネントを改善する。
 const LinkText: React.FC<Props> = ({ children, _styles, path }) => {
   return (
-    <Link href={path}>
-      <span className={cx(styles.link, _styles)}>{children}</span>
+    <Link href={path} legacyBehavior>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <a className={cx(styles.link, _styles)}>{children}</a>
     </Link>
   );
 };
