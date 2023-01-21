@@ -10,23 +10,21 @@ import React from 'react';
 import { User } from '@/@types/data';
 import { USER_EDIT_PATH } from '@/common/constants/path';
 import Loading from '@/components/atoms/Loading';
-import useCorrectUser from '@/hooks/useCorrectUser';
+import EditSection from '@/components/organisms/EditSection';
+import useEditableUser from '@/hooks/useEditableUser';
 import getAllUsers from '@/services/users/getAllUsers';
-import getEditedUser from '@/services/users/getEditedUser';
-
-import EditUserPasswordPage from './password';
+import getUser from '@/services/users/getUser';
 
 type UserEditPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const UserEditPage: NextPage<UserEditPageProps> = ({ user }) => {
+  useEditableUser({ user });
   const router = useRouter();
-  useCorrectUser({ user, router });
 
   if (router.isFallback) {
     return <Loading />;
   }
-  // NOTE: デフォルトでパスワード編集タブを開く
-  return <EditUserPasswordPage />;
+  return <EditSection />;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -41,8 +39,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
     throw new Error('params is undefined');
   }
   const userId = Number(params.id);
-  const data = await getEditedUser(userId);
-  const user = data.status === 'ok' ? data.user : {};
+  const user = await getUser(userId);
 
   return {
     props: {

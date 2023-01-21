@@ -16,6 +16,7 @@ type Props = {
 };
 
 // HACK: バックエンド側でユーザー画像を設定する実装が完了し次第設定する
+// FIXME: KOU-87 ユーザー編集機能を実装する
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const EditUserImageSection: React.FC<Props> = ({ currentUser }) => {
   return (

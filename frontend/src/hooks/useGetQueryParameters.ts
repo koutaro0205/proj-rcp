@@ -4,10 +4,8 @@ import { useState, useEffect } from 'react';
 import { isEmptyObject } from '@/utils/match';
 
 /**
- * URLのクエリパラメータを取得
+ * URLのクエリパラメータを返す
  * @param params クエリパラメータ
- * @param setParams クエリパラメータの状態を更新
- * @returns params クエリパラメータの値(オブジェクト)
  */
 export type Params = {
   [key: string]: string | string[] | undefined;

@@ -10,20 +10,26 @@ import login, { LoginParams } from '@/services/auth/login';
 import logout from '@/services/auth/logout';
 import { error, success, warn } from '@/utils/notifications';
 
+/**
+ * 認証に関わる処理を定義
+ * @handleLogin ログイン処理
+ * @handleLogout ログアウト処理
+ */
+
 type Params = LoginParams;
 
 const useAuth = (params?: Params) => {
   const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
 
-  const loginInternal = async (loginParams: LoginParams) => {
+  const loginInternal = useCallback(async (loginParams: LoginParams) => {
     const response = await login(loginParams);
     return response;
-  };
+  }, []);
 
-  const logoutInternal = async () => {
+  const logoutInternal = useCallback(async () => {
     await logout();
-  };
+  }, []);
 
   const handleLogin = useCallback(async () => {
     if (params) {
@@ -42,7 +48,7 @@ const useAuth = (params?: Params) => {
         warn(LOGIN.WARN);
       }
     }
-  }, [params, router]);
+  }, [loginInternal, params, router]);
 
   const handleLogout = useCallback(() => {
     // eslint-disable-next-line no-alert
@@ -53,7 +59,7 @@ const useAuth = (params?: Params) => {
       router.push(HOME);
       success(LOGOUT.SUCCESS);
     }
-  }, [dispatch, router]);
+  }, [dispatch, logoutInternal, router]);
 
   return {
     handleLogin,

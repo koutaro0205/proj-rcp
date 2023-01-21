@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
-  before_action :correct_user, only: %i[edit update]
+  before_action :set_user, only: %i[show update destroy]
+  before_action :correct_user, only: %i[update]
   def index
     @users = User.where(activated: true)
     render json: @users
@@ -19,10 +19,6 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: { status: :unprocessable_entity }
     end
-  end
-
-  def edit
-    render json: { status: :ok, user: @user }
   end
 
   def update

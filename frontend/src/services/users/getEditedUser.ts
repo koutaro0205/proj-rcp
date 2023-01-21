@@ -11,13 +11,13 @@ import axios from '@/utils/axios';
  */
 
 type NormalResponse = {
-  status: StatusCode;
+  status: Extract<StatusCode, 'ok'>;
   user: User;
 };
 
 // NOTE: カレントユーザー以外のアクセスに対するレスポンス
 type InvalidResponse = {
-  status: 'forbidden'; //
+  status: Extract<StatusCode, 'forbidden'>; //
 };
 
 type ResponseData = NormalResponse | InvalidResponse;
@@ -25,7 +25,13 @@ type ResponseData = NormalResponse | InvalidResponse;
 const getEditedUser = async (userId: number): Promise<ResponseData> => {
   const response = await axios.get(`${ROOT_URL}/${USER_EDIT_API(userId)}`, {
     withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
   });
+  // axios.defaults.headers.common['X-CSRF-Token'] =
+  //   response.headers['X-CSRF-Token'];
   return response.data;
 };
 

@@ -5,7 +5,7 @@ import { ROOT_URL } from '@/common/constants/url';
 import { fetcher } from '@/utils/fetchData';
 
 /**
- * ユーザーAPI（一覧取得）
+ * ユーザー一覧を取得（SWRでフェッチ）
  * @returns ユーザー一覧
  */
 const useGetAllUsers = () => {
