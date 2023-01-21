@@ -4,6 +4,8 @@ const styles = {
   link: css({
     cursor: 'pointer',
     display: 'block',
+    textDecoration: 'none',
+    color: 'black',
   }),
 };
 
