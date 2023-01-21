@@ -2,18 +2,19 @@ import React from 'react';
 
 import LinkText from '@/components/atoms/LinkText';
 
-import { getSpacingSize, getFontSize, ItemSize } from './styles';
+import { getStyles, SpacingSize } from './styles';
 
 type Props = {
   children: string | React.ReactNode;
   path: string;
-  size?: ItemSize;
+  spacingSize?: SpacingSize;
 };
 
-const NavItem: React.FC<Props> = ({ children, path, size = 'm' }) => {
+const NavItem: React.FC<Props> = ({ children, path, spacingSize = 'm' }) => {
+  const styles = getStyles(spacingSize);
   return (
-    <li className={getSpacingSize(size)}>
-      <LinkText path={path} _styles={getFontSize(size)}>
+    <li className={styles.container}>
+      <LinkText path={path} color="black" size="small">
         {children}
       </LinkText>
     </li>

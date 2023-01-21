@@ -1,21 +1,36 @@
-import { cx } from '@emotion/css';
 import Link from 'next/link';
 import React from 'react';
 
-import styles from './styles';
+import { GetStyleInput, getStyles } from './styles';
 
 type Props = {
   children: React.ReactNode | string;
-  _styles?: string;
   path: string;
-};
+} & Partial<GetStyleInput>;
 
 // FIXME: Nextのアップデートを行なって<Link>コンポーネントを改善する。
-const LinkText: React.FC<Props> = ({ children, _styles, path }) => {
+const LinkText: React.FC<Props> = ({
+  children,
+  path,
+  isUnderLine,
+  size,
+  weight,
+  lineHeight,
+  color,
+  hasHoverAction,
+}) => {
+  const styles = getStyles({
+    isUnderLine,
+    size,
+    weight,
+    lineHeight,
+    color,
+    hasHoverAction,
+  });
   return (
-    <Link href={path} legacyBehavior>
+    <Link href={path}>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a className={cx(styles.link, _styles)}>{children}</a>
+      <a className={styles.linkText}>{children}</a>
     </Link>
   );
 };

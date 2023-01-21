@@ -1,12 +1,40 @@
 import { css } from '@emotion/css';
 
-const styles = {
-  link: css({
-    cursor: 'pointer',
-    display: 'block',
-    textDecoration: 'none',
-    color: 'black',
-  }),
+import colors, { Color } from '@/theme/colors';
+import fontSizes, { FontSizes } from '@/theme/fontSize';
+import fontWeight, { FontWeight } from '@/theme/fontWeight';
+import { LineHeights } from '@/theme/lineHeights';
+
+export type GetStyleInput = {
+  isUnderLine: boolean;
+  hasHoverAction: boolean;
+  size: FontSizes;
+  weight: FontWeight;
+  lineHeight: LineHeights;
+  color: Color;
 };
 
-export default styles;
+export const getStyles = ({
+  isUnderLine = false,
+  hasHoverAction = false,
+  size = 'medium',
+  weight = 'normal',
+  lineHeight,
+  color = 'black',
+}: Partial<GetStyleInput>) => {
+  return {
+    linkText: css({
+      display: 'inline-block',
+      textDecoration: isUnderLine ? 'underline' : 'none',
+      fontSize: fontSizes[size],
+      fontWeight: fontWeight[weight],
+      lineHeight,
+      color: colors[color],
+      ...(hasHoverAction && {
+        '&:hover': {
+          textDecoration: 'underline',
+        },
+      }),
+    }),
+  };
+};

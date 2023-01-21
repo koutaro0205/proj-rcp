@@ -14,7 +14,7 @@ export default {
       },
       defaultValue: 'item',
     },
-    size: {
+    spacingSize: {
       control: {
         type: 'text',
       },
@@ -32,4 +32,4 @@ const Template: ComponentStory<typeof NavItem> = (args) => (
 );
 
 export const Nomal = Template.bind({});
-Nomal.args = { children: 'item', path: '/', size: 'm' };
+Nomal.args = { children: 'item', path: '/', spacingSize: 'm' };

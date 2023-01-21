@@ -9,6 +9,7 @@ type Props = {
   _styles?: string;
 };
 
+// FIXME: DeleteButtonに命名を修正して、buttonタグを使用するよう修正する。
 const DeleteLink: React.FC<Props> = ({ children, onClick, _styles }) => {
   return (
     <div

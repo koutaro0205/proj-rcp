@@ -18,20 +18,20 @@ const UserItem: React.FC<Props> = ({ user, currentUser }) => {
   return (
     <li key={user.id} className={styles.container}>
       <UserImage size="large" />
-      <LinkText path={`/users/${user.id}`} _styles={styles.userName}>
+      <LinkText path={`/users/${user.id}`} color="black" size="medium">
         {user.name}
       </LinkText>
       {!isCurrentUser(user, currentUser) && (
-        <DeleteLink onClick={() => {}} _styles={styles.deleteLink}>
-          削除
-        </DeleteLink>
-      )}
-      {!isCurrentUser(user, currentUser) && (
-        <div className="user__follow">
-          フォロー
-          {/* FIXME: moleculesでコンポーネント作成（FollowForm） */}
-          {/* <FollowForm user={user} userId={user.id} /> */}
-        </div>
+        <>
+          <DeleteLink onClick={() => {}} _styles={styles.deleteLink}>
+            削除
+          </DeleteLink>
+          <div className="user__follow">
+            フォロー
+            {/* FIXME: moleculesでコンポーネント作成（FollowForm） */}
+            {/* <FollowForm user={user} userId={user.id} /> */}
+          </div>
+        </>
       )}
     </li>
   );

@@ -46,14 +46,14 @@ const LoginForm: React.FC = () => {
 
       <Text textAlign="center">
         ユーザー登録されていない方は
-        <LinkText path={SIGNUP_PATH} _styles={styles.inlineText}>
+        <LinkText path={SIGNUP_PATH} isUnderLine>
           こちら
         </LinkText>
       </Text>
 
       <Text textAlign="center">
         パスワードをお忘れの方は
-        <LinkText path={PASSWORD_RESETS_PATH} _styles={styles.inlineText}>
+        <LinkText path={PASSWORD_RESETS_PATH} isUnderLine>
           こちら
         </LinkText>
       </Text>

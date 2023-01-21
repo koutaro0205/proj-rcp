@@ -12,10 +12,10 @@ const Footer: React.FC = () => {
       <ContentWidth>
         <div className={styles.inner}>
           <ul className={styles.list}>
-            <NavItem path="/" size="s">
+            <NavItem path="/" spacingSize="s">
               ホームへ戻る
             </NavItem>
-            <NavItem path="/categories" size="s">
+            <NavItem path="/categories" spacingSize="s">
               カテゴリ一覧
             </NavItem>
           </ul>
