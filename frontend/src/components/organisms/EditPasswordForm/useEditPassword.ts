@@ -6,7 +6,7 @@ import { PASSWORD_RESETS } from '@/common/constants/toast';
 import { AppDispatch } from '@/common/store';
 import { validatePassword } from '@/common/validations/password';
 import { updateCurrentUser } from '@/features/currentUser/slice';
-import useGetQueryParameters from '@/hooks/useGetQueryParameters';
+import useQueryParameters from '@/hooks/useQueryParameters';
 import checkValidity, {
   ResponseData,
 } from '@/services/passwordResets/checkValidity';
@@ -24,7 +24,7 @@ type DefaultValue = {
 const useEditPassword = () => {
   const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
-  const { params } = useGetQueryParameters();
+  const { params } = useQueryParameters();
 
   const isValid = useCallback(
     (data: ResponseData | _ResponseData) => {

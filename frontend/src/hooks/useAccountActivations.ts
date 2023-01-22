@@ -6,12 +6,12 @@ import { HOME } from '@/common/constants/path';
 import { ACCOUNT_ACTIVATIONS } from '@/common/constants/toast';
 import { AppDispatch } from '@/common/store';
 import { updateCurrentUser } from '@/features/currentUser/slice';
-import useGetQueryParameters from '@/hooks/useGetQueryParameters';
+import useQueryParameters from '@/hooks/useQueryParameters';
 import activate from '@/services/accountActivations/activateUser';
 import { success, warn } from '@/utils/notifications';
 
 const useAccountActivations = () => {
-  const { params } = useGetQueryParameters();
+  const { params } = useQueryParameters();
 
   const router = useRouter();
   const dispatch: AppDispatch = useDispatch();

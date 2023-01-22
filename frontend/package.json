@@ -10,7 +10,7 @@
     "lint": "next lint",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook",
-    "scaffold": "scaffdog generate"
+    "scaffdog": "scaffdog generate"
   },
   "dependencies": {
     "@emotion/css": "^11.10.0",

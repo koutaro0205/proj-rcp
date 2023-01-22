@@ -2,7 +2,7 @@ import { User } from '@/@types/data';
 import { PASSWORD_RESETS_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import { StatusCode } from '@/common/types';
-import { Params } from '@/hooks/useGetQueryParameters';
+import { Params } from '@/hooks/useQueryParameters';
 import axios from '@/utils/axios';
 
 type PasswordParams = {

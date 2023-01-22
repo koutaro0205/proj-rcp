@@ -15,9 +15,8 @@ import { handleResponseError } from '@/utils/requestError';
 const UsersPage: NextPage = () => {
   const { data, error } = useGetAllUsers();
   if (error) {
-    handleResponseError('エラー');
+    handleResponseError('failed to get users');
   }
-
   const currentUser = useSelector(selectCurrentUser);
   return (
     <Layout>

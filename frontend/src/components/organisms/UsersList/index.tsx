@@ -2,8 +2,10 @@ import React from 'react';
 
 import { User } from '@/@types/data';
 import SubTitle from '@/components/atoms/Title/SubTitile';
+import Pagination from '@/components/molecules/Pagination';
 import UserItem from '@/components/molecules/UserItem';
 import { CurrentUser } from '@/features/currentUser/type';
+import useGetPaginationData from '@/hooks/useGetPaginationData';
 
 import styles from './styles';
 
@@ -18,18 +20,21 @@ const UsersList: React.FC<Props> = ({ users, currentUser }) => {
       <UserItem key={user.id} user={user} currentUser={currentUser} />
     ));
   };
+  const { slicedData, page } = useGetPaginationData(users);
 
   return (
     <div className={styles.container}>
       <SubTitle>登録ユーザー一覧</SubTitle>
-      <ul>{users && renderUsers(users)}</ul>
-
-      {/* FIXME: Pagenationコンポーネントができるまで保留 */}
-      {/* <Pagination
-        postsPerPage={usersPerPage}
-        totalPosts={users.length}
-        paginate={paginate}
-      /> */}
+      <ul>{slicedData && renderUsers(slicedData)}</ul>
+      <div className={styles.paginationWrapper}>
+        {users && users.length !== 0 && (
+          <Pagination
+            totalDataLength={users.length}
+            currentPage={page}
+            perPage={20}
+          />
+        )}
+      </div>
     </div>
   );
 };

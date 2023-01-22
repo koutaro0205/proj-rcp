@@ -24,7 +24,7 @@ export const getStyles = ({
 }: Partial<GetStyleInput>) => {
   return {
     linkText: css({
-      display: 'inline-block',
+      display: 'block',
       textDecoration: isUnderLine ? 'underline' : 'none',
       fontSize: fontSizes[size],
       fontWeight: fontWeight[weight],
