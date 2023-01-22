@@ -7,15 +7,26 @@ import SubTitle from '@/components/atoms/Title/SubTitile';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
 import { CurrentUser } from '@/features/currentUser/type';
+import { UserParams } from '@/services/users/types';
 
 import styles from './styles';
 
 type Props = {
+  userInfo: UserParams;
   currentUser: CurrentUser;
+  formErrors: string[];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
 // FIXME: KOU-87 ユーザー編集機能を実装する
-const EditUserNameSection: React.FC<Props> = ({ currentUser }) => {
+const EditUserNameSection: React.FC<Props> = ({
+  userInfo,
+  currentUser,
+  formErrors,
+  onChange,
+  onSubmit,
+}) => {
   return (
     <div>
       <SubTitle>ユーザー名変更</SubTitle>
@@ -23,15 +34,15 @@ const EditUserNameSection: React.FC<Props> = ({ currentUser }) => {
       <div className={styles.textWrapper}>
         <Text backgroundColor="background">{currentUser.name}</Text>
       </div>
-      <form>
-        <RenderErrors formErrors={[]} />
+      <form onSubmit={onSubmit}>
+        <RenderErrors formErrors={formErrors} />
         <FormItem
           label="名前"
           type="text"
           id="name"
           name="name"
-          onChange={() => {}}
-          value={currentUser.name}
+          onChange={onChange}
+          value={userInfo.name}
         />
         <InputButton text="ユーザー名を変更する" isCenter />
       </form>

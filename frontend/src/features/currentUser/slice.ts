@@ -5,7 +5,7 @@ import { LOGGEDIN_USER_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
 import axios from '@/utils/axios';
 
-import { InitialState, UpdateCurrentUser } from './type';
+import { InitialState, UpdateCurrentUser, UpdateLoginStatus } from './type';
 
 const initialState: InitialState = {
   currentUser: {},
@@ -14,6 +14,7 @@ const initialState: InitialState = {
 
 const ACTION_TYPE = {
   CURRENT_USER: 'currentUser/fetchCurrentUser',
+  UPDATE_LOGIN_STATUS: 'currentUser/updateLoginStatus',
   UPDATE_CURRENT_USER: 'currentUser/updateCurrentUser',
   DELETE_CURRENT_USER: 'currentUser/deleteCurrentUser',
 };
@@ -36,6 +37,10 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
+export const updateLoginStatus = createAction<UpdateLoginStatus>(
+  ACTION_TYPE.UPDATE_LOGIN_STATUS
+);
+
 export const updateCurrentUser = createAction<UpdateCurrentUser>(
   ACTION_TYPE.UPDATE_CURRENT_USER
 );
@@ -53,10 +58,15 @@ export const currentUserSlice = createSlice({
         state.currentUser = payload.data.user;
       }
     });
-    builder.addCase(updateCurrentUser, (state, { payload }) => {
+    builder.addCase(updateLoginStatus, (state, { payload }) => {
       if (payload.logged_in) {
         state.currentUser = payload.user;
         state.loggedIn = payload.logged_in;
+      }
+    });
+    builder.addCase(updateCurrentUser, (state, { payload }) => {
+      if (payload) {
+        state.currentUser = payload.user;
       }
     });
     builder.addCase(deleteCurrentUser, (state) => {

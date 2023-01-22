@@ -18,9 +18,9 @@ const styles = {
       width: 0,
       height: 0,
       // 三角形のスタイル
-      borderLeft: `6px solid transparent`,
-      borderRight: `6px solid transparent`,
-      borderTop: `6px solid black`,
+      borderLeft: `6px solid ${colors.transparent}`,
+      borderRight: `6px solid ${colors.transparent}`,
+      borderTop: `6px solid ${colors.black}`,
     },
   }),
   dropdownMenu: css({
@@ -31,8 +31,9 @@ const styles = {
     padding: 0,
     border: 'none',
     fontSize: fontSizes.small,
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
     marginRight: space.extraSmall,
+    color: colors.black,
   }),
   dropdownList: css({
     position: 'absolute',

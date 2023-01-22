@@ -1,46 +1,11 @@
 import axios from 'axios';
 
-import { User } from '@/@types/data';
 import { USERS_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
-import { StatusCode } from '@/common/types';
 
-export type UserParams = {
-  /**
-   * ユーザー名
-   */
-  name: string;
-  /**
-   * メールアドレス
-   */
-  email: string;
-  /**
-   * パスワード
-   */
-  password: string;
-  /**
-   * パスワード確認
-   */
-  password_confirmation: string;
-  /**
-   * ユーザー画像
-   */
-  image?: {
-    data: string | ArrayBuffer | null;
-    filename: string;
-  };
-};
+import { UserParams, UserCreateOrUpdateResponse } from './types';
 
-type NormalResponse = {
-  status: StatusCode;
-  user: User;
-};
-
-type ErrorResponse = {
-  status: StatusCode;
-};
-
-type ResponseData = NormalResponse & ErrorResponse;
+type ResponseData = UserCreateOrUpdateResponse;
 
 /**
  * 認証API（サインイン）

@@ -13,12 +13,20 @@ import styles from './styles';
 
 type Props = {
   currentUser: CurrentUser;
+  formErrors: string[];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
 // HACK: バックエンド側でユーザー画像を設定する実装が完了し次第設定する
 // FIXME: KOU-87 ユーザー編集機能を実装する
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const EditUserImageSection: React.FC<Props> = ({ currentUser }) => {
+const EditUserImageSection: React.FC<Props> = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  currentUser,
+  formErrors,
+  onChange,
+  onSubmit,
+}) => {
   return (
     <div>
       <SubTitle>プロフィール画像変更</SubTitle>
@@ -27,15 +35,15 @@ const EditUserImageSection: React.FC<Props> = ({ currentUser }) => {
       <div className={styles.imageWrapper}>
         <UserImage size="large" />
       </div>
-      <form>
-        <RenderErrors formErrors={[]} />
+      <form onSubmit={onSubmit}>
+        <RenderErrors formErrors={formErrors} />
         <FormItem
           label="画像を選択"
           type="file"
           id="image"
           name="image"
           accept="image/*,.png,.jpg,.jpeg,.gif"
-          onChange={() => {}}
+          onChange={onChange}
         />
         <InputButton text="プロフィール画像を変更する" isCenter />
       </form>

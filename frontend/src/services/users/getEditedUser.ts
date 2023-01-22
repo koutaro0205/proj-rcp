@@ -1,24 +1,13 @@
-import { User } from '@/@types/data';
 import { USER_EDIT_API } from '@/common/constants/path';
 import { ROOT_URL } from '@/common/constants/url';
-import { StatusCode } from '@/common/types';
 import axios from '@/utils/axios';
 
+import { NormalResponse, InvalidResponse } from './types';
 /**
  * ユーザーAPI（一覧取得）
  * @param context APIコンテキスト
  * @returns ユーザー一覧
  */
-
-type NormalResponse = {
-  status: Extract<StatusCode, 'ok'>;
-  user: User;
-};
-
-// NOTE: カレントユーザー以外のアクセスに対するレスポンス
-type InvalidResponse = {
-  status: Extract<StatusCode, 'forbidden'>; //
-};
 
 type ResponseData = NormalResponse | InvalidResponse;
 

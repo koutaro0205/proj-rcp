@@ -11,7 +11,11 @@ export type InitialState = {
 
 // アクション
 // NOTE: sessions#logged_in_user(controller)
-export type UpdateCurrentUser = {
+export type UpdateLoginStatus = {
   logged_in: boolean;
+  user: User;
+};
+
+export type UpdateCurrentUser = {
   user: User;
 };

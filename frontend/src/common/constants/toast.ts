@@ -1,3 +1,8 @@
+// ユーザー情報更新
+export const UPDATE_USER = {
+  SUCCESS: 'ユーザー情報を更新しました。',
+};
+
 // ユーザー一覧
 export const USERS = {
   ERROR: 'ユーザー一覧の取得に失敗しました。',
@@ -23,8 +28,7 @@ export const PASSWORD_RESETS = {
 
 // サインアップ
 export const SIGNUP = {
-  SUCCESS:
-    'ユーザー登録しました。ご登録のメールアドレスを確認し、アカウントの有効化を完了させてください。',
+  INFO: 'ユーザー登録しました。ご登録のメールアドレスを確認し、アカウントの有効化を完了させてください。',
 };
 
 // ログイン

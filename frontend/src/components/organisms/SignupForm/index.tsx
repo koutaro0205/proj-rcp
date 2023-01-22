@@ -3,18 +3,14 @@ import React from 'react';
 import InputButton from '@/components/atoms/Button/InputButton';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
+import useGetUserParams from '@/hooks/useGetUserParams';
+import signup from '@/services/users/addUser';
 
 import styles from './styles';
-import useSignupForm from './useSignupForm';
 
 const SignupForm: React.FC = () => {
-  const {
-    newUserInfo,
-    formErrors,
-    handleChange,
-    handleFileChange,
-    handleSubmit,
-  } = useSignupForm();
+  const { userInfo, formErrors, handleChange, handleFileChange, handleSubmit } =
+    useGetUserParams({ pattern: 'create', onSave: signup });
 
   return (
     <form className={styles.formContainer} onSubmit={handleSubmit}>
@@ -26,7 +22,7 @@ const SignupForm: React.FC = () => {
         id="name"
         name="name"
         onChange={handleChange}
-        value={newUserInfo.name}
+        value={userInfo.name}
       />
       <FormItem
         label="メールアドレス"
@@ -34,7 +30,7 @@ const SignupForm: React.FC = () => {
         id="email"
         name="email"
         onChange={handleChange}
-        value={newUserInfo.email}
+        value={userInfo.email}
       />
       <FormItem
         label="パスワード"

@@ -1,5 +1,5 @@
 import { User } from '@/@types/data';
-import { UserParams } from '@/services/users/addUser';
+import { UserParams } from '@/services/users/types';
 
 import { validateEmail } from './email';
 import { validatePassword } from './password';

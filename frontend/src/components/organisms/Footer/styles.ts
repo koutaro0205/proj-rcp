@@ -16,6 +16,7 @@ const styles = {
   list: css({
     display: 'flex',
     justifyContent: 'center',
+    marginBottom: space.extraLarge,
   }),
 };
 
