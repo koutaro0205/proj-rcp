@@ -6,24 +6,21 @@ import Text from '@/components/atoms/Text';
 import SubTitle from '@/components/atoms/Title/SubTitile';
 import UserImage from '@/components/atoms/UserImage';
 import FormItem from '@/components/molecules/FormItem';
-import RenderErrors from '@/components/molecules/RenderErrors';
+// import RenderErrors from '@/components/molecules/RenderErrors';
 import { CurrentUser } from '@/features/currentUser/type';
 
 import styles from './styles';
 
 type Props = {
   currentUser: CurrentUser;
-  formErrors: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
 // HACK: バックエンド側でユーザー画像を設定する実装が完了し次第設定する
-// FIXME: KOU-87 ユーザー編集機能を実装する
 const EditUserImageSection: React.FC<Props> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   currentUser,
-  formErrors,
   onChange,
   onSubmit,
 }) => {
@@ -36,7 +33,8 @@ const EditUserImageSection: React.FC<Props> = ({
         <UserImage size="large" />
       </div>
       <form onSubmit={onSubmit}>
-        <RenderErrors formErrors={formErrors} />
+        {/* HACK: 画像のバリデーションが用意でき次第追加する */}
+        {/* <RenderErrors formErrors={formErrors} /> */}
         <FormItem
           label="画像を選択"
           type="file"
@@ -45,7 +43,8 @@ const EditUserImageSection: React.FC<Props> = ({
           accept="image/*,.png,.jpg,.jpeg,.gif"
           onChange={onChange}
         />
-        <InputButton text="プロフィール画像を変更する" isCenter />
+        {/* HACK: 現状画像の変更が行われることはないためdisabled */}
+        <InputButton text="プロフィール画像を変更する" isCenter disabled />
       </form>
     </div>
   );

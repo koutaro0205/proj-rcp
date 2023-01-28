@@ -5,8 +5,10 @@ import Explanation from '@/components/atoms/Explanation';
 import SubTitle from '@/components/atoms/Title/SubTitile';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
+import { UserParams } from '@/services/users/types';
 
 type Props = {
+  userInfo: UserParams;
   formErrors: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -14,6 +16,7 @@ type Props = {
 
 // FIXME: KOU-87 ユーザー編集機能を実装する
 const EditPasswordSection: React.FC<Props> = ({
+  userInfo,
   formErrors,
   onChange,
   onSubmit,
@@ -38,7 +41,13 @@ const EditPasswordSection: React.FC<Props> = ({
           name="password_confirmation"
           onChange={onChange}
         />
-        <InputButton text="パスワードを変更する" isCenter />
+        <InputButton
+          text="パスワードを変更する"
+          isCenter
+          disabled={
+            userInfo.password === '' && userInfo.password_confirmation === ''
+          }
+        />
       </form>
     </div>
   );

@@ -2,27 +2,33 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectCurrentUser } from '@/features/currentUser/selecters';
-import useGetUserParams from '@/hooks/useGetUserParams';
-import updateUser from '@/services/users/updateUser';
 
 import EditEmailSection from './EditEmailSection';
 import EditPasswordSection from './EditPasswordSection';
 import EditUserImageSection from './EditUserImageSection';
 import EditUserNameSection from './EditUserNameSection';
 import LinkTabSection, { Pattern } from './LinkTabSection';
+import { useEditSection } from './useEditSection';
 
 const EditSection: React.FC = () => {
   const currentUser = useSelector(selectCurrentUser);
   const [pattern, setPattern] = useState<Pattern>('userName');
-  const { userInfo, formErrors, handleChange, handleFileChange, handleSubmit } =
-    useGetUserParams({ pattern: 'update', onSave: updateUser });
+  const {
+    userInfo,
+    userNameErrors,
+    emailErrors,
+    passwordErrors,
+    handleChange,
+    handleFileChange,
+    handleSubmit,
+  } = useEditSection();
   const getEditSectionPattern = () => {
     switch (pattern) {
       case 'userName':
         return (
           <EditUserNameSection
             currentUser={currentUser}
-            formErrors={formErrors}
+            formErrors={userNameErrors}
             onChange={handleChange}
             onSubmit={handleSubmit}
             userInfo={userInfo}
@@ -31,16 +37,17 @@ const EditSection: React.FC = () => {
       case 'password':
         return (
           <EditPasswordSection
-            formErrors={formErrors}
+            formErrors={passwordErrors}
             onChange={handleChange}
             onSubmit={handleSubmit}
+            userInfo={userInfo}
           />
         );
       case 'email':
         return (
           <EditEmailSection
             currentUser={currentUser}
-            formErrors={formErrors}
+            formErrors={emailErrors}
             onChange={handleChange}
             onSubmit={handleSubmit}
             userInfo={userInfo}
@@ -50,7 +57,6 @@ const EditSection: React.FC = () => {
         return (
           <EditUserImageSection
             currentUser={currentUser}
-            formErrors={formErrors}
             onChange={handleFileChange}
             onSubmit={handleSubmit}
           />
@@ -59,7 +65,7 @@ const EditSection: React.FC = () => {
         return (
           <EditUserNameSection
             currentUser={currentUser}
-            formErrors={formErrors}
+            formErrors={userNameErrors}
             onChange={handleChange}
             onSubmit={handleSubmit}
             userInfo={userInfo}

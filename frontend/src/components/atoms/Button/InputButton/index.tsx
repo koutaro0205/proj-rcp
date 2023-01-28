@@ -3,13 +3,14 @@ import React from 'react';
 
 import { Color } from '@/theme/colors';
 
-import styles, { getInputStyles } from './styles';
+import styles, { getStyles } from './styles';
 
 type Props = {
   text: string;
   _styles?: string;
   color?: Color;
   isCenter?: boolean;
+  disabled?: boolean;
 };
 
 const InputButton: React.FC<Props> = ({
@@ -17,14 +18,16 @@ const InputButton: React.FC<Props> = ({
   _styles,
   isCenter,
   color = 'PrimaryColor',
+  disabled = false,
 }) => {
-  const style = getInputStyles(color);
+  const style = getStyles(color);
   if (isCenter) {
     return (
       <div className={styles.container}>
         <input
           type="submit"
           value={text}
+          disabled={disabled}
           className={cx(style.input, _styles)}
         />
       </div>

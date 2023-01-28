@@ -43,7 +43,11 @@ const EditEmailSection: React.FC<Props> = ({
           onChange={onChange}
           value={userInfo.email}
         />
-        <InputButton text="メールアドレスを変更する" isCenter />
+        <InputButton
+          text="メールアドレスを変更する"
+          isCenter
+          disabled={currentUser.email === userInfo.email}
+        />
       </form>
     </div>
   );

@@ -40,4 +40,4 @@ export type ErrorResponse = {
   status: Extract<StatusCode, 'unprocessable_entity'>;
 };
 
-export type UserCreateOrUpdateResponse = NormalResponse & ErrorResponse;
+export type UserCreateOrUpdateResponse = NormalResponse | ErrorResponse;

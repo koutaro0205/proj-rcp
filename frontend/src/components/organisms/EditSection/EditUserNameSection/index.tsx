@@ -44,7 +44,11 @@ const EditUserNameSection: React.FC<Props> = ({
           onChange={onChange}
           value={userInfo.name}
         />
-        <InputButton text="ユーザー名を変更する" isCenter />
+        <InputButton
+          text="ユーザー名を変更する"
+          isCenter
+          disabled={currentUser.name === userInfo.name}
+        />
       </form>
     </div>
   );
