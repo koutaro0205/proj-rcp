@@ -1,21 +1,22 @@
 import React from 'react';
 
 import { User } from '@/@types/data';
-import DeleteLink from '@/components/atoms/Button/DeleteButton';
+import DeleteButton from '@/components/atoms/Button/DeleteButton';
 import Divider from '@/components/atoms/Divider';
 import LinkText from '@/components/atoms/LinkText';
 import UserImage from '@/components/atoms/UserImage';
 import { CurrentUser } from '@/features/currentUser/type';
-import { isCurrentUser } from '@/utils/match';
+import { isAdminUser, isCurrentUser } from '@/utils/match';
 
 import styles from './styles';
 
 type Props = {
   user: User;
   currentUser: CurrentUser;
+  onClick: () => void;
 };
 
-const UserItem: React.FC<Props> = ({ user, currentUser }) => {
+const UserItem: React.FC<Props> = ({ user, currentUser, onClick }) => {
   return (
     <li key={user.id} className={styles.container}>
       <UserImage size="large" />
@@ -27,9 +28,11 @@ const UserItem: React.FC<Props> = ({ user, currentUser }) => {
           <div className={styles.dividerWrapper}>
             <Divider pattern="vertical" color="black" width="s" />
           </div>
-          <div className={styles.deleteButtonWrapper}>
-            <DeleteLink onClick={() => {}} label="削除" />
-          </div>
+          {isAdminUser(currentUser) && (
+            <div className={styles.deleteButtonWrapper}>
+              <DeleteButton onClick={onClick} label="削除" />
+            </div>
+          )}
           <div className="user__follow">
             フォロー
             {/* FIXME: moleculesでコンポーネント作成（FollowForm） */}

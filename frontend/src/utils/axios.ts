@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
 
 import { API_REQUEST_ERROR } from '@/common/constants/errorMessage';
+import { API_ENDPOINT } from '@/common/constants/path';
+import { ROOT_URL } from '@/common/constants/url';
 
 import { handleResponseError } from './requestError';
 
@@ -19,8 +21,8 @@ axios.interceptors.response.use(
 );
 
 // HACK: axiosをaxiosInstanceに変更する。
-export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/api/v1',
+export const client: AxiosInstance = axios.create({
+  baseURL: `${ROOT_URL}/${API_ENDPOINT}/`,
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',

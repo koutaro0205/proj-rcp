@@ -1,3 +1,9 @@
+// ユーザー削除
+export const DELETE_USER = {
+  CONFIRM: 'ユーザーを削除しますか。',
+  SUCCESS: 'ユーザーを削除しました。',
+};
+
 // ユーザーアクセス制限
 export const ACCESS_RESTRICTIONS = {
   INFO: 'ログインが必要です。',

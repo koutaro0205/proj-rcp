@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { ITEMS_PER_PAGE } from '@/common/constants/characters';
-
 import { NumberButton } from './NumberButton';
 import styles from './styles';
 import usePagination from './usePagination';
@@ -12,13 +10,13 @@ export type Props = {
   /* 現在のページ数 */
   currentPage: number;
   /* 1ページあたりのデータ件数 */
-  perPage?: number;
+  perPage: number;
 };
 
 const Pagination: React.FC<Props> = ({
   totalDataLength,
   currentPage,
-  perPage = ITEMS_PER_PAGE,
+  perPage,
 }) => {
   const { pageButtonList } = usePagination({
     totalDataLength,
