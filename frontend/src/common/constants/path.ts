@@ -18,6 +18,7 @@ export const USER_EDIT_API = (id: number) => {
 
 // Page
 export const SIGNUP_PATH = '/signup';
+export const LOGIN_PATH = '/login';
 export const PASSWORD_RESETS_PATH = '/password-resets';
 export const QUESTIONS_PATH = '/questions';
 export const POST_RECIPE_PATH = '/recipes/new';

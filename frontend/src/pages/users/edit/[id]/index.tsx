@@ -18,13 +18,13 @@ import getUser from '@/services/users/getUser';
 type UserEditPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const UserEditPage: NextPage<UserEditPageProps> = ({ user }) => {
-  useEditableUser({ user });
+  const { currentUser } = useEditableUser({ user });
   const router = useRouter();
 
-  if (router.isFallback) {
-    return <Loading />;
+  if (currentUser && !router.isFallback) {
+    return <EditSection />;
   }
-  return <EditSection />;
+  return <Loading />;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

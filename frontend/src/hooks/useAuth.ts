@@ -31,24 +31,27 @@ const useAuth = (params?: Params) => {
     await logout();
   }, []);
 
-  const handleLogin = useCallback(async () => {
-    if (params) {
-      const response = await loginInternal(params);
-      if (response.data.logged_in) {
-        router.push(HOME);
-        success(LOGIN.SUCCESS);
-        return response.data;
+  const handleLogin = useCallback(
+    async (redirectTo?: string) => {
+      if (params) {
+        const response = await loginInternal(params);
+        if (response.data.logged_in) {
+          router.push(redirectTo || HOME);
+          success(LOGIN.SUCCESS);
+          return response.data;
+        }
+        if (response.data.status === 'unauthorized') {
+          error(LOGIN.ERROR);
+          return;
+        }
+        if (!response.data.activated) {
+          router.push(HOME);
+          warn(LOGIN.WARN);
+        }
       }
-      if (response.data.status === 'unauthorized') {
-        error(LOGIN.ERROR);
-        return;
-      }
-      if (!response.data.activated) {
-        router.push(HOME);
-        warn(LOGIN.WARN);
-      }
-    }
-  }, [loginInternal, params, router]);
+    },
+    [loginInternal, params, router]
+  );
 
   const handleLogout = useCallback(() => {
     // eslint-disable-next-line no-alert

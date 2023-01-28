@@ -36,9 +36,11 @@ const useQueryParameters = () => {
    */
   const queryParam: {
     page?: string;
+    redirectTo?: string;
   } = query;
 
   const page = parseInt(queryParam?.page || '1', 10);
+  const redirectTo = queryParam?.redirectTo;
   const offset = (page - 1) * DATA_LIST_PAGE_OFFSET;
 
   /**
@@ -59,6 +61,7 @@ const useQueryParameters = () => {
     page,
     offset,
     searchParams,
+    redirectTo,
   };
 };
 
