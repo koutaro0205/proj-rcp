@@ -10,7 +10,7 @@ type PageButton = {
 type Args = {
   totalDataLength: number;
   currentPage: number;
-  perPage?: number;
+  perPage: number;
 };
 
 const usePagination = ({
