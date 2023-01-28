@@ -41,6 +41,3 @@ export const USER_EDIT_USER_NAME_PATH = (id: number) => {
 export const USER_EDIT_USER_IMAGE_PATH = (id: number) => {
   return `${USERS_PATH}/edit/${id}/image`;
 };
-
-// Image
-export const DEFAULT_USER_IMAGE_PATH = '/images/default.jpg';

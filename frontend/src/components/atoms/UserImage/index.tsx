@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
 
-import { DEFAULT_USER_IMAGE_PATH } from '@/common/constants/path';
-
 import { getStyles, UserImageSize, getImageSize } from './styles';
+
+const DEFAULT_USER_IMAGE_PATH = '/images/default.jpg';
 
 type Props = {
   imagePath?: string;
