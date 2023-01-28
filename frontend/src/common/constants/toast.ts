@@ -1,3 +1,8 @@
+// ユーザーアクセス制限
+export const ACCESS_RESTRICTIONS = {
+  INFO: 'ログインが必要です。',
+};
+
 // ユーザー情報更新
 export const UPDATE_USER = {
   SUCCESS: 'ユーザー情報を更新しました。',

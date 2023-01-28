@@ -5,17 +5,19 @@ import { AppDispatch } from '@/common/store';
 import { validateLoginInfo } from '@/common/validations/auth/login';
 import { updateLoginStatus } from '@/features/currentUser/slice';
 import useAuth from '@/hooks/useAuth';
+import useQueryParameters from '@/hooks/useQueryParameters';
 import { LoginParams } from '@/services/auth/login';
 import { isEmptyArray } from '@/utils/match';
 
+const DEFAULTS: LoginParams = {
+  email: '',
+  password: '',
+  remember_me: false,
+};
+
 const useLoginForm = () => {
   const dispatch: AppDispatch = useDispatch();
-
-  const DEFAULTS: LoginParams = {
-    email: '',
-    password: '',
-    remember_me: false,
-  };
+  const { redirectTo } = useQueryParameters();
 
   const [authInfo, setAuthInfo] = useState<LoginParams>(DEFAULTS);
   const [formErrors, setFormErrors] = useState<string[]>([]);
@@ -37,7 +39,7 @@ const useLoginForm = () => {
     if (!isEmptyArray(errors)) {
       setFormErrors(errors);
     } else {
-      const data = await handleLogin();
+      const data = await handleLogin(redirectTo);
       if (data) {
         dispatch(updateLoginStatus(data));
       }
