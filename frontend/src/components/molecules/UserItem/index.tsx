@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { User } from '@/@types/data';
-import DeleteLink from '@/components/atoms/DeleteLink';
+import DeleteLink from '@/components/atoms/Button/DeleteButton';
+import Divider from '@/components/atoms/Divider';
 import LinkText from '@/components/atoms/LinkText';
 import UserImage from '@/components/atoms/UserImage';
 import { CurrentUser } from '@/features/currentUser/type';
@@ -23,9 +24,12 @@ const UserItem: React.FC<Props> = ({ user, currentUser }) => {
       </LinkText>
       {!isCurrentUser(user, currentUser) && (
         <>
-          <DeleteLink onClick={() => {}} _styles={styles.deleteLink}>
-            削除
-          </DeleteLink>
+          <div className={styles.dividerWrapper}>
+            <Divider pattern="vertical" color="black" width="s" />
+          </div>
+          <div className={styles.deleteButtonWrapper}>
+            <DeleteLink onClick={() => {}} label="削除" />
+          </div>
           <div className="user__follow">
             フォロー
             {/* FIXME: moleculesでコンポーネント作成（FollowForm） */}
