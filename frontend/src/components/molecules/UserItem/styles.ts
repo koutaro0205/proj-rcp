@@ -19,10 +19,12 @@ const styles = {
       textDecoration: 'underline',
     },
   }),
-  deleteLink: css({
-    paddingLeft: space.m,
+  deleteButtonWrapper: css({
     marginLeft: space.m,
-    borderLeft: `${colors.black} solid 1px`,
+  }),
+  dividerWrapper: css({
+    marginLeft: space.m,
+    height: '20px',
   }),
 };
 
