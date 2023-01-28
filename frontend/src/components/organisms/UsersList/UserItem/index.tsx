@@ -25,13 +25,15 @@ const UserItem: React.FC<Props> = ({ user, currentUser, onClick }) => {
       </LinkText>
       {!isCurrentUser(user, currentUser) && (
         <>
-          <div className={styles.dividerWrapper}>
-            <Divider pattern="vertical" color="black" width="s" />
-          </div>
           {isAdminUser(currentUser) && (
-            <div className={styles.deleteButtonWrapper}>
-              <DeleteButton onClick={onClick} label="削除" />
-            </div>
+            <>
+              <div className={styles.dividerWrapper}>
+                <Divider pattern="vertical" color="black" width="s" />
+              </div>
+              <div className={styles.deleteButtonWrapper}>
+                <DeleteButton onClick={onClick} label="削除" />
+              </div>
+            </>
           )}
           <div className="user__follow">
             フォロー

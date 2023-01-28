@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
+import { HOME } from '@/common/constants/path';
 import { PASSWORD_RESETS, USERS } from '@/common/constants/toast';
 import { validatePasswordResets } from '@/common/validations/passwordResets';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
@@ -29,7 +30,7 @@ const usePasswordResetForm = () => {
 
     if (isEmptyArray(errors)) {
       sendPasswordResetEmail({ email });
-      router.push('/');
+      router.push(HOME);
       info(PASSWORD_RESETS.TRANSMISSION_COMPLETED);
       return;
     }

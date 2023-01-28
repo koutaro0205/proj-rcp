@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import { HOME } from '@/common/constants/path';
 import HeaderButton from '@/components/atoms/Button/HeaderButton';
 import Logo from '@/components/atoms/Logo';
 import NavItem from '@/components/atoms/NavItem';
@@ -19,7 +20,7 @@ const Header: React.FC = () => {
     <header className={styles.container}>
       <ContentWidth>
         <div className={styles.inner}>
-          <Logo logoText={SITE_TITLE} path="/" />
+          <Logo logoText={SITE_TITLE} path={HOME} />
           <SearchForm />
           <ul className={styles.menuList}>
             <HeaderButton label="レシピを投稿" path="/recipes/new" />
@@ -32,7 +33,7 @@ const Header: React.FC = () => {
       <nav className={styles.nav}>
         <div className={styles.navInner}>
           <ul className={styles.navList}>
-            <NavItem path="/">ホーム</NavItem>
+            <NavItem path={HOME}>ホーム</NavItem>
             <NavItem path="/questions">質問一覧</NavItem>
             {isLoggedIn ? (
               <Dropdown />

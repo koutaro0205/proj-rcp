@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { HOME } from '@/common/constants/path';
 import Copyright from '@/components/atoms/Copyright';
 import NavItem from '@/components/atoms/NavItem';
 import ContentWidth from '@/components/layouts/ContentWidth';
@@ -12,9 +13,10 @@ const Footer: React.FC = () => {
       <ContentWidth>
         <div className={styles.inner}>
           <ul className={styles.list}>
-            <NavItem path="/" spacingSize="s">
+            <NavItem path={HOME} spacingSize="s">
               ホームへ戻る
             </NavItem>
+            {/* FIXME: パスをconstantsに切り出す。 */}
             <NavItem path="/categories" spacingSize="s">
               カテゴリ一覧
             </NavItem>

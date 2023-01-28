@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { HOME } from '@/common/constants/path';
 import { PASSWORD_RESETS } from '@/common/constants/toast';
 import { AppDispatch } from '@/common/store';
 import { validatePassword } from '@/common/validations/password';
@@ -29,18 +30,18 @@ const useEditPassword = () => {
   const isValid = useCallback(
     (data: ResponseData | _ResponseData) => {
       if (data.status === 'unprocessable_entity') {
-        router.push('/');
+        router.push(HOME);
         error(PASSWORD_RESETS.ERROR);
         return;
       }
       if (data.status === 'unauthorized') {
-        router.push('/');
+        router.push(HOME);
         error(PASSWORD_RESETS.INVALID);
         return;
       }
       // NOTE: キー「expired」の存在性をチェックしてからでないと型エラーになるため暫定実装
       if ('expired' in data && data.expired) {
-        router.push('/');
+        router.push(HOME);
         warn(PASSWORD_RESETS.WARN);
         return;
       }
@@ -64,7 +65,7 @@ const useEditPassword = () => {
         const data = await resetPassword(params, newPasswordsParams);
         if (isValid(data)) {
           success(PASSWORD_RESETS.SUCCESS);
-          router.push('/');
+          router.push(HOME);
           dispatch(updateLoginStatus(data));
         }
       }
