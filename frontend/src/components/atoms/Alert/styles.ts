@@ -6,14 +6,13 @@ import space from '@/theme/space';
 export type AlertPatterns = 'danger' | 'warning' | 'success' | 'info';
 
 const defaultStyle = {
-  padding: space.medium,
-  marginBottom: space.mediumLarge,
-  marginTop: space.mediumLarge,
-  border: '1px solid transparent',
-  borderRadius: borderRadius.small,
+  padding: space.m,
+  marginBlock: space.ml,
+  borderRadius: borderRadius.s,
 };
 
 // FIXME: カラーをテーマに切り出す
+// HACK: 共通化の方法を考える。
 const getColor = (patterns: AlertPatterns) => {
   switch (patterns) {
     case 'danger':

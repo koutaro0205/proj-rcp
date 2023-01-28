@@ -23,7 +23,7 @@ export default {
       control: {
         type: 'size',
       },
-      defaultValue: 'medium',
+      defaultValue: 'm',
     },
   },
 } as ComponentMeta<typeof Text>;

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { PASSWORD_RESETS } from '@/common/constants/toast';
 import { AppDispatch } from '@/common/store';
 import { validatePassword } from '@/common/validations/password';
-import { updateCurrentUser } from '@/features/currentUser/slice';
+import { updateLoginStatus } from '@/features/currentUser/slice';
 import useQueryParameters from '@/hooks/useQueryParameters';
 import checkValidity, {
   ResponseData,
@@ -65,7 +65,7 @@ const useEditPassword = () => {
         if (isValid(data)) {
           success(PASSWORD_RESETS.SUCCESS);
           router.push('/');
-          dispatch(updateCurrentUser(data));
+          dispatch(updateLoginStatus(data));
         }
       }
     },

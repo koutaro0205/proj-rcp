@@ -6,13 +6,13 @@ import space from '@/theme/space';
 const styles = {
   container: css({
     border: `1px solid ${colors.grey}`,
-    marginBottom: space.extraSmall,
+    marginBottom: space.xs,
   }),
   innerContainer: css({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: space.mediumLarge,
+    padding: space.ml,
     cursor: 'pointer',
   }),
 };

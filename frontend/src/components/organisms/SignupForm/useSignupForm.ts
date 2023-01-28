@@ -1,89 +1,43 @@
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 
 import { SIGNUP, USERS } from '@/common/constants/toast';
 import { validateUser } from '@/common/validations/signup';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
-import signup, { UserParams } from '@/services/users/addUser';
-import { isEmptyArray } from '@/utils/match';
+import { useInputForm } from '@/hooks/useInputForm';
+import signup from '@/services/users/addUser';
 import { info } from '@/utils/notifications';
 import { handleResponseError } from '@/utils/requestError';
 
-type DefaultValue = {
-  name: string;
-  email: string;
-  password: string;
-  password_confirmation: string;
-  image: {
-    data: string | ArrayBuffer | null;
-    filename: string;
-  };
-};
+export const useSignupForm = () => {
+  const {
+    userInfo,
+    formErrors,
+    handleChange,
+    handleFileChange,
+    checkCanRequest,
+  } = useInputForm();
 
-const useSignupForm = () => {
-  const DEFAULTS: DefaultValue = {
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    image: {
-      data: '',
-      filename: '',
-    },
-  };
-
-  const [newUserInfo, setNewUserInfo] = useState<UserParams>(DEFAULTS);
-  const [formErrors, setFormErrors] = useState<string[]>([]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = e;
-    const { name } = target;
-    const { value } = target;
-
-    setNewUserInfo({ ...newUserInfo, [name]: value });
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-
-    if (files) {
-      const file = files[0];
-      const reader = new FileReader();
-      setNewUserInfo({
-        ...newUserInfo,
-        image: {
-          data: reader.result,
-          filename: file ? file.name : 'unknownfile',
-        },
-      });
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const router = useRouter();
   const { data, error } = useGetAllUsers();
   if (error) handleResponseError(USERS.ERROR);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const errors = validateUser({ user: newUserInfo, users: data.users });
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    if (isEmptyArray(errors)) {
-      await signup(newUserInfo);
-      router.push('/');
-      info(SIGNUP.SUCCESS);
-      return;
-    }
-    setFormErrors(errors);
-  };
+      const errors = validateUser({ user: userInfo, users: data });
+      if (!checkCanRequest(errors)) return;
+
+      await signup(userInfo);
+      info(SIGNUP.INFO);
+    },
+    [checkCanRequest, data, userInfo]
+  );
 
   return {
-    newUserInfo,
+    userInfo,
     formErrors,
     handleChange,
     handleFileChange,
     handleSubmit,
   };
 };
-
-export default useSignupForm;

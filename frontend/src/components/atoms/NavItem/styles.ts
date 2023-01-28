@@ -5,7 +5,7 @@ import space from '@/theme/space';
 export type SpacingSize = 's' | 'm';
 
 export const getStyles = (size: SpacingSize) => {
-  const spacingSize = size === 'm' ? space.large : space.medium;
+  const spacingSize = size === 'm' ? space.l : space.m;
   return {
     container: css({
       display: 'flex',

@@ -7,15 +7,15 @@ import space from '@/theme/space';
 const styles = {
   container: css({
     backgroundColor: colors.PrimaryColor,
-    fontSize: fontSizes.extraSmall,
+    fontSize: fontSizes.xs,
   }),
   inner: css({
-    paddingTop: space.small,
-    paddingBottom: space.small,
+    paddingBlock: space.s,
   }),
   list: css({
     display: 'flex',
     justifyContent: 'center',
+    marginBottom: space.xl,
   }),
 };
 

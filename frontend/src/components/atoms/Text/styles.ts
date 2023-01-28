@@ -14,11 +14,11 @@ type Args = {
 export const getStyles = ({ textAlign, lineHeight, backgroundColor }: Args) => {
   const getBackground = backgroundColor && {
     backgroundColor: colors[backgroundColor],
-    padding: space.small,
+    padding: space.s,
   };
   return {
     text: css({
-      marginTop: space.mediumLarge,
+      marginTop: space.m,
       textAlign,
       lineHeight: lineHeights[lineHeight],
       ...getBackground,

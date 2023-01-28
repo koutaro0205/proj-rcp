@@ -20,7 +20,7 @@ export const getStyles = (size: UserImageSize) => {
     imageWrapper: css({
       width: USER_IMAGE_SIZE,
       height: USER_IMAGE_SIZE,
-      marginRight: space.large,
+      marginRight: space.l,
       borderRadius: borderRadius.circle,
     }),
     image: css({

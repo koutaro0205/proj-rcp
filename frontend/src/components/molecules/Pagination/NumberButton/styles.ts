@@ -8,7 +8,7 @@ export const getStyles = (isSelected: boolean) => {
   const buttonSize = '40px';
   return {
     container: css({
-      marginRight: space.extraSmall,
+      marginRight: space.xs,
       display: 'flex',
       alignItems: 'center',
       overflow: 'hidden',
@@ -17,7 +17,7 @@ export const getStyles = (isSelected: boolean) => {
       width: buttonSize,
       height: buttonSize,
       border: `2px solid ${colors.grey}`,
-      borderRadius: borderRadius.medium,
+      borderRadius: borderRadius.m,
       ...(isSelected && {
         backgroundColor: colors.PrimaryColor,
       }),

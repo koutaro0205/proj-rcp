@@ -8,22 +8,69 @@ import EditPasswordSection from './EditPasswordSection';
 import EditUserImageSection from './EditUserImageSection';
 import EditUserNameSection from './EditUserNameSection';
 import LinkTabSection, { Pattern } from './LinkTabSection';
+import { useEditSection } from './useEditSection';
 
 const EditSection: React.FC = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const [pattern, setPattern] = useState<Pattern>('password');
+  const [pattern, setPattern] = useState<Pattern>('userName');
+  const {
+    userInfo,
+    userNameErrors,
+    emailErrors,
+    passwordErrors,
+    handleChange,
+    handleFileChange,
+    handleSubmit,
+  } = useEditSection();
   const getEditSectionPattern = () => {
     switch (pattern) {
       case 'userName':
-        return <EditUserNameSection currentUser={currentUser} />;
+        return (
+          <EditUserNameSection
+            currentUser={currentUser}
+            formErrors={userNameErrors}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            userInfo={userInfo}
+          />
+        );
       case 'password':
-        return <EditPasswordSection />;
+        return (
+          <EditPasswordSection
+            formErrors={passwordErrors}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            userInfo={userInfo}
+          />
+        );
       case 'email':
-        return <EditEmailSection currentUser={currentUser} />;
+        return (
+          <EditEmailSection
+            currentUser={currentUser}
+            formErrors={emailErrors}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            userInfo={userInfo}
+          />
+        );
       case 'userImage':
-        return <EditUserImageSection currentUser={currentUser} />;
+        return (
+          <EditUserImageSection
+            currentUser={currentUser}
+            onChange={handleFileChange}
+            onSubmit={handleSubmit}
+          />
+        );
       default:
-        return <EditPasswordSection />;
+        return (
+          <EditUserNameSection
+            currentUser={currentUser}
+            formErrors={userNameErrors}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            userInfo={userInfo}
+          />
+        );
     }
   };
   return (

@@ -9,17 +9,16 @@ import space from '@/theme/space';
 const styles = {
   inputField: css({
     width: '60%',
-    paddingRight: space.small,
-    paddingLeft: space.small,
+    paddingInline: space.s,
     height: '100%',
-    marginRight: space.extraSmall,
-    fontSize: fontSizes.small,
-    lineHeight: lineHeights.medium,
+    marginRight: space.xs,
+    fontSize: fontSizes.s,
+    lineHeight: lineHeights.m,
     color: colors.grey,
     backgroundColor: colors.white,
     backgroundImage: 'none',
-    border: '1px solid #ccc',
-    borderRadius: borderRadius.small,
+    border: `1px solid ${colors.alto}`,
+    borderRadius: borderRadius.s,
   }),
 };
 

@@ -6,11 +6,11 @@ import space from '@/theme/space';
 
 const styles = {
   container: css({
-    fontSize: fontSizes.mediumLarge,
-    marginTop: space.mediumLarge,
-    marginBottom: space.large,
+    fontSize: fontSizes.ml,
+    marginTop: space.ml,
+    marginBottom: space.l,
     borderLeft: `solid 6px ${colors.baseColor}`,
-    paddingLeft: space.extraExtraSmall,
+    paddingLeft: space.xxs,
   }),
 };
 

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :set_csrf_token_header
-  before_action :check_xhr_header
+  # before_action :check_xhr_header
 
   include ActionController::Cookies
   include ActionController::RequestForgeryProtection
@@ -13,11 +13,11 @@ class ApplicationController < ActionController::API
 
   private
 
-    def check_xhr_header
-      return if request.xhr?
+    # def check_xhr_header
+    #   return if request.xhr?
 
-      render json: { error: 'forbidden' }, status: :forbidden
-    end
+    #   render json: { error: 'forbidden' }, status: :forbidden
+    # end
 
     def logged_in_now?
       unless logged_in?

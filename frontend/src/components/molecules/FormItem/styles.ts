@@ -6,7 +6,7 @@ const styles = {
   label: css({
     display: 'inline-block',
     width: '100%',
-    marginBottom: space.extraExtraSmall,
+    marginBottom: space.xxs,
     fontWeight: '700',
   }),
 };

@@ -19,7 +19,7 @@ const Text: React.FC<Props> = ({
   children,
   _styles,
   textAlign = 'left',
-  lineHeight = 'medium',
+  lineHeight = 'm',
   backgroundColor,
 }) => {
   const style = getStyles({ textAlign, lineHeight, backgroundColor });

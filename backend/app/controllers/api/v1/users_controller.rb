@@ -22,8 +22,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    puts(@user[:id])
     if @user.update(user_params)
-      render json: { user: @user, status: :ok }
+      render json: { status: :ok, user: @user }
     else
       render json: { status: :unprocessable_entity }
     end

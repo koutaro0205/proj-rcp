@@ -3,11 +3,12 @@ import { css } from '@emotion/css';
 import colors from '@/theme/colors';
 import space from '@/theme/space';
 
+const SEARCH_FORM_WIDTH = '450px';
+
 const styles = {
   container: css({
-    width: '450px',
-    marginTop: space.extraSmall,
-    marginButtom: space.extraSmall,
+    width: SEARCH_FORM_WIDTH,
+    marginBlock: space.xs,
   }),
   content: css({
     height: '34px',
@@ -17,8 +18,7 @@ const styles = {
   }),
   searchSubmit: css({
     width: '30%',
-    paddingTop: space.extraSmall,
-    paddingButtom: space.extraSmall,
+    paddingBlock: space.xs,
     color: colors.black,
     backgroundColor: colors.PrimaryColor,
     borderColor: colors.PrimaryColor,

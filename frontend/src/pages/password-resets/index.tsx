@@ -16,7 +16,7 @@ const PasswordResetPage: NextPage = () => {
         <SectionTitle sectionTitle="パスワード再設定" />
         <InnerWrapper>
           <SubTitle>パスワードをお忘れの方</SubTitle>
-          <Text lineHeight="extraLarge" textAlign="center">
+          <Text lineHeight="xl" textAlign="center">
             パスワードの再設定を行います。
             <br />
             登録した覚えのあるメールアドレスを入力してください。

@@ -6,11 +6,11 @@ import space from '@/theme/space';
 
 const styles = {
   sectionTitle: css({
-    fontSize: fontSize.large,
-    marginTop: space.mediumLarge,
-    marginBottom: space.large,
+    fontSize: fontSize.l,
+    marginTop: space.ml,
+    marginBottom: space.l,
     borderLeft: `solid 6px ${colors.baseColor}`,
-    paddingLeft: space.extraSmall,
+    paddingLeft: space.xs,
     fontWeight: 'bold',
   }),
 };

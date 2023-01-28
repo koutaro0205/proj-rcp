@@ -9,7 +9,7 @@ type Props = {
   lineHeight?: LineHeights;
 };
 
-const Explanation: React.FC<Props> = ({ message, lineHeight = 'medium' }) => {
+const Explanation: React.FC<Props> = ({ message, lineHeight = 'm' }) => {
   const style = getStyles({ lineHeight });
   return <p className={style.message}>{message}</p>;
 };

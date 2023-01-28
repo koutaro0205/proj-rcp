@@ -4,7 +4,7 @@ import space from '@/theme/space';
 
 const styles = {
   container: css({
-    padding: space.medium,
+    padding: space.m,
     widows: '100%',
     '&: hover': {
       transition: '0.3s',

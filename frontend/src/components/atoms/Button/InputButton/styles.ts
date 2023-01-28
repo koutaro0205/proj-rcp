@@ -6,7 +6,7 @@ import fontSizes from '@/theme/fontSize';
 import lineHeights from '@/theme/lineHeights';
 import space from '@/theme/space';
 
-export const getInputStyles = (color: Color) => {
+export const getStyles = (color: Color) => {
   return {
     input: css({
       display: 'inline-block',
@@ -18,16 +18,18 @@ export const getInputStyles = (color: Color) => {
       borderColor: colors[color],
       borderWidth: '3px',
       borderStyle: 'solid',
-      fontSize: fontSizes.small,
-      paddingTop: space.extraExtraSmall,
-      paddingBottom: space.extraExtraSmall,
-      paddingLeft: space.small,
-      paddingRight: space.small,
-      lineHeight: lineHeights.medium,
-      borderRadius: borderRadius.small,
+      fontSize: fontSizes.s,
+      paddingBlock: space.xxs,
+      paddingInline: space.s,
+      lineHeight: lineHeights.m,
+      borderRadius: borderRadius.s,
       cursor: 'pointer',
       color: colors.black,
       backgroundColor: colors[color],
+      ':disabled': {
+        opacity: 0.5,
+        cursor: 'auto',
+      },
     }),
   };
 };

@@ -6,7 +6,7 @@ const styles = {
   checkbox: css({
     display: 'flex',
     alignItems: 'center',
-    marginBottom: space.small,
+    marginBottom: space.s,
   }),
 };
 

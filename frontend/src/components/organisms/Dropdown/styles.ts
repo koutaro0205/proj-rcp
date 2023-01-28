@@ -6,7 +6,7 @@ import space from '@/theme/space';
 
 const styles = {
   container: css({
-    marginLeft: space.large,
+    marginLeft: space.l,
   }),
   dropdown: css({
     position: 'relative',
@@ -18,9 +18,9 @@ const styles = {
       width: 0,
       height: 0,
       // 三角形のスタイル
-      borderLeft: `6px solid transparent`,
-      borderRight: `6px solid transparent`,
-      borderTop: `6px solid black`,
+      borderLeft: `6px solid ${colors.transparent}`,
+      borderRight: `6px solid ${colors.transparent}`,
+      borderTop: `6px solid ${colors.black}`,
     },
   }),
   dropdownMenu: css({
@@ -30,9 +30,10 @@ const styles = {
     cursor: 'pointer',
     padding: 0,
     border: 'none',
-    fontSize: fontSizes.small,
-    backgroundColor: 'transparent',
-    marginRight: space.extraSmall,
+    fontSize: fontSizes.s,
+    backgroundColor: colors.transparent,
+    marginRight: space.xs,
+    color: colors.black,
   }),
   dropdownList: css({
     position: 'absolute',

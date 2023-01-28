@@ -17,14 +17,14 @@ export type GetStyleInput = {
 export const getStyles = ({
   isUnderLine = false,
   hasHoverAction = false,
-  size = 'medium',
+  size = 'm',
   weight = 'normal',
   lineHeight,
   color = 'black',
 }: Partial<GetStyleInput>) => {
   return {
     linkText: css({
-      display: 'block',
+      display: 'inline-block',
       textDecoration: isUnderLine ? 'underline' : 'none',
       fontSize: fontSizes[size],
       fontWeight: fontWeight[weight],

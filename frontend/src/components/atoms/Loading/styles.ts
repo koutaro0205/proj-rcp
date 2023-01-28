@@ -7,12 +7,11 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: space.large,
-    marginBottom: space.large,
+    marginBlock: space.l,
   }),
   image: css({
     display: 'inline-block',
-    marginRight: space.small,
+    marginRight: space.s,
   }),
 };
 

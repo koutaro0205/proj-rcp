@@ -9,11 +9,11 @@ const styles = {
   }),
   userName: css({
     fontWeight: 'bold',
-    fontSize: fontSizes.mediumLarge,
-    marginBottom: space.medium,
+    fontSize: fontSizes.ml,
+    marginBottom: space.m,
   }),
   postsCount: css({
-    fontSize: fontSizes.small,
+    fontSize: fontSizes.s,
   }),
 };
 

@@ -3,23 +3,20 @@ import { css } from '@emotion/css';
 import colors from '@/theme/colors';
 import space from '@/theme/space';
 
-const VERTICAL_SPACE = space.large;
-
 const styles = {
   container: css({
-    marginTop: VERTICAL_SPACE,
-    marginBottom: VERTICAL_SPACE,
+    marginBlock: space.l,
     display: 'flex',
   }),
   followingWrapper: css({
-    paddingRight: space.mediumLarge,
+    paddingRight: space.ml,
     borderRight: `solid 1px ${colors.black}`,
   }),
   followerWrapper: css({
-    paddingLeft: space.mediumLarge,
+    paddingLeft: space.ml,
   }),
   followCount: css({
-    marginBottom: space.extraSmall,
+    marginBottom: space.xs,
     textAlign: 'center',
   }),
 };

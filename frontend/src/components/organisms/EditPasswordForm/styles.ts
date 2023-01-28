@@ -4,8 +4,7 @@ import space from '@/theme/space';
 
 const styles = {
   container: css({
-    marginBottom: space.large,
-    marginTop: space.large,
+    marginBlock: space.l,
   }),
 };
 

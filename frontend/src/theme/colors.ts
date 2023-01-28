@@ -5,7 +5,7 @@ const colors = {
   baseColor: '#C6020C',
   background: '#fff0db',
   transparent: 'transparent',
-  black: '#000000',
+  black: '#333333',
   alto: '#DDDDDD',
   cream: '#F3F3F3',
   white: '#FFFFFF',

@@ -7,11 +7,10 @@ import space from '@/theme/space';
 const defaultStyle = {
   width: '100%',
   color: colors.black,
-  marginBottom: space.mediumLarge,
+  marginBottom: space.ml,
   border: `${colors.PrimaryColor} solid 3px`,
-  borderRadius: borderRadius.small,
-  paddingTop: space.extraExtraSmall,
-  paddingBottom: space.extraExtraSmall,
+  borderRadius: borderRadius.s,
+  paddingBlock: space.xxs,
   cursor: 'pointer',
 };
 
