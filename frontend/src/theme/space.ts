@@ -2,14 +2,14 @@ export type Space = keyof typeof space;
 
 const space = {
   zero: '0px',
-  extraExtraSmall: '4px',
-  extraSmall: '8px',
-  small: '12px',
-  medium: '16px',
-  mediumLarge: '20px',
-  large: '32px',
-  extraLarge: '48px',
-  extraExtraLarge: '64px',
+  xxs: '4px',
+  xs: '8px',
+  s: '12px',
+  m: '16px',
+  ml: '20px',
+  l: '32px',
+  xl: '48px',
+  xxl: '64px',
 };
 
 export default space;

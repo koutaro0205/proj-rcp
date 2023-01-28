@@ -7,7 +7,7 @@ const styles = {
   formContainer: css({
     display: 'block',
     width: '100%',
-    marginBottom: space.large,
+    marginBottom: space.l,
   }),
   submitButtonContainer: css({
     textAlign: 'center',

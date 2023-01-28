@@ -9,9 +9,8 @@ export const getStyles = (innerWidth: string) => {
       width: innerWidth,
       margin: '0 auto',
       backgroundColor: colors.white,
-      padding: space.mediumLarge,
-      marginTop: space.mediumLarge,
-      marginBottom: space.mediumLarge,
+      padding: space.ml,
+      marginBlock: space.ml,
     }),
   };
 };

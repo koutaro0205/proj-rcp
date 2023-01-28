@@ -4,7 +4,7 @@ import space from '@/theme/space';
 
 const styles = {
   tabsList: css({
-    marginBottom: space.extraLarge,
+    marginBottom: space.xl,
   }),
 };
 

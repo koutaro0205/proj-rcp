@@ -4,7 +4,7 @@ import space from '@/theme/space';
 
 const styles = {
   form: css({
-    marginTop: space.large,
+    marginTop: space.l,
   }),
 };
 

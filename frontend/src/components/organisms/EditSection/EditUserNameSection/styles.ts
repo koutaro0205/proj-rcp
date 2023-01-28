@@ -4,7 +4,7 @@ import space from '@/theme/space';
 
 const styles = {
   textWrapper: css({
-    marginBottom: space.large,
+    marginBottom: space.l,
   }),
 };
 

@@ -6,7 +6,7 @@ import space from '@/theme/space';
 const styles = {
   container: css({
     textAlign: 'center',
-    marginTop: space.medium,
+    marginTop: space.m,
     color: colors.black,
   }),
 };

@@ -18,7 +18,7 @@ const UserItem: React.FC<Props> = ({ user, currentUser }) => {
   return (
     <li key={user.id} className={styles.container}>
       <UserImage size="large" />
-      <LinkText path={`/users/${user.id}`} color="black" size="medium">
+      <LinkText path={`/users/${user.id}`} color="black" size="m">
         {user.name}
       </LinkText>
       {!isCurrentUser(user, currentUser) && (

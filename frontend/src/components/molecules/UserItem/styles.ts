@@ -9,20 +9,19 @@ const styles = {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: space.medium,
-    paddingTop: space.medium,
+    paddingBlock: space.m,
     borderBottom: `${colors.black} solid 0.5px`,
   }),
   userName: css({
-    fontSize: fontSizes.medium,
+    fontSize: fontSizes.m,
     color: colors.black,
     '&:hover': {
       textDecoration: 'underline',
     },
   }),
   deleteLink: css({
-    paddingLeft: space.medium,
-    marginLeft: space.medium,
+    paddingLeft: space.m,
+    marginLeft: space.m,
     borderLeft: `${colors.black} solid 1px`,
   }),
 };

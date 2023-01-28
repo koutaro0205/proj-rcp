@@ -14,7 +14,7 @@ const NavItem: React.FC<Props> = ({ children, path, spacingSize = 'm' }) => {
   const styles = getStyles(spacingSize);
   return (
     <li className={styles.container}>
-      <LinkText path={path} color="black" size="small">
+      <LinkText path={path} color="black" size="s">
         {children}
       </LinkText>
     </li>

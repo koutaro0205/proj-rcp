@@ -6,7 +6,7 @@ import space from '@/theme/space';
 
 const styles = {
   container: css({
-    marginLeft: space.large,
+    marginLeft: space.l,
   }),
   dropdown: css({
     position: 'relative',
@@ -30,9 +30,9 @@ const styles = {
     cursor: 'pointer',
     padding: 0,
     border: 'none',
-    fontSize: fontSizes.small,
+    fontSize: fontSizes.s,
     backgroundColor: colors.transparent,
-    marginRight: space.extraSmall,
+    marginRight: space.xs,
     color: colors.black,
   }),
   dropdownList: css({

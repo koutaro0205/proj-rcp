@@ -5,7 +5,6 @@ import Explanation from '@/components/atoms/Explanation';
 import SubTitle from '@/components/atoms/Title/SubTitile';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
-import { UserParams } from '@/services/users/types';
 
 type Props = {
   formErrors: string[];

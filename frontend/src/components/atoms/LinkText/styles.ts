@@ -17,7 +17,7 @@ export type GetStyleInput = {
 export const getStyles = ({
   isUnderLine = false,
   hasHoverAction = false,
-  size = 'medium',
+  size = 'm',
   weight = 'normal',
   lineHeight,
   color = 'black',

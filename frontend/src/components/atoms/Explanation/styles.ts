@@ -9,12 +9,10 @@ type Args = {
 };
 
 export const getStyles = ({ lineHeight }: Args) => {
-  const horizontalSpace = space.extraSmall;
   return {
     message: css({
-      marginTop: horizontalSpace,
-      marginBottom: horizontalSpace,
-      fontSize: fontSizes.small,
+      marginBlock: space.xs,
+      fontSize: fontSizes.s,
       lineHeight: lineHeights[lineHeight],
     }),
   };

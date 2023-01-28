@@ -1,12 +1,12 @@
 export type FontSizes = keyof typeof fontSizes;
 
 const fontSizes = {
-  extraSmall: '12px',
-  small: '14px',
-  medium: '16px',
-  mediumLarge: '20px',
-  large: '24px',
-  extraLarge: '32px',
+  xs: '12px',
+  s: '14px',
+  m: '16px',
+  ml: '20px',
+  l: '24px',
+  xl: '32px',
 };
 
 export default fontSizes;

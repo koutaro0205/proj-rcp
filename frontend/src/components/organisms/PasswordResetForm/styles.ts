@@ -12,8 +12,7 @@ const styles = {
   formContainer: css({
     display: 'block',
     width: '100%',
-    marginBottom: space.large,
-    marginTop: space.large,
+    marginBlock: space.l,
   }),
   submitButton: css({
     color: colors.black,

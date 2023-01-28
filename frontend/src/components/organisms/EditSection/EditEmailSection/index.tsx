@@ -30,7 +30,7 @@ const EditEmailSection: React.FC<Props> = ({
   return (
     <div>
       <SubTitle>メールアドレス変更</SubTitle>
-      <Text lineHeight="large">現在のメールアドレス</Text>
+      <Text lineHeight="l">現在のメールアドレス</Text>
       <Text backgroundColor="background">{currentUser.email}</Text>
       <Explanation message="新しいメールアドレスを入力して、変更を完了させてください。" />
       <form className={styles.form} onSubmit={onSubmit}>

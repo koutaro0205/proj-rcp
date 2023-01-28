@@ -5,17 +5,17 @@ import space from '@/theme/space';
 
 const styles = {
   container: css({
-    marginTop: space.small,
+    marginTop: space.s,
   }),
   errorMessagesContainer: css({
     color: colors.error,
-    marginBottom: space.large,
+    marginBottom: space.l,
     listStyleType: 'disc',
     listStylePosition: 'inside',
   }),
   errorMessage: css({
     '&:nth-child(n+2)': {
-      marginTop: space.extraSmall,
+      marginTop: space.xs,
     },
   }),
 };
