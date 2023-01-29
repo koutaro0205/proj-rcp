@@ -1,9 +1,8 @@
 import { User } from '@/@types/data';
-import { PASSWORD_RESETS_API } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
+import { PASSWORD_RESETS_REQUEST_PATH } from '@/common/constants/path';
 import { StatusCode } from '@/common/types';
 import { Params } from '@/hooks/useQueryParameters';
-import axios from '@/utils/axios';
+import { client } from '@/utils/axios';
 
 type PasswordParams = {
   password: string;
@@ -26,12 +25,10 @@ const resetPassword = async (
   params: Params,
   passwordParams: PasswordParams
 ): Promise<ResponseData> => {
-  const response = await axios({
-    method: 'patch',
-    url: `${ROOT_URL}/${PASSWORD_RESETS_API}/${params.token}?email=${params.email}`,
-    data: passwordParams,
-    withCredentials: true,
-  });
+  const response = await client.patch(
+    `${PASSWORD_RESETS_REQUEST_PATH}/${params.token}?email=${params.email}`,
+    passwordParams
+  );
   return response.data;
 };
 

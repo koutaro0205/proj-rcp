@@ -1,8 +1,7 @@
 import { User } from '@/@types/data';
-import { PASSWORD_RESETS_API } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
+import { PASSWORD_RESETS_REQUEST_PATH } from '@/common/constants/path';
 import { StatusCode } from '@/common/types';
-import axios from '@/utils/axios';
+import { client } from '@/utils/axios';
 
 type Params = {
   email: string | string[] | undefined;
@@ -22,12 +21,7 @@ type ResponseData = NomalResponse | InvalidResponse;
 const sendPasswordResetEmail = async (
   params: Params
 ): Promise<ResponseData> => {
-  return axios({
-    method: 'post',
-    url: `${ROOT_URL}/${PASSWORD_RESETS_API}`,
-    data: params,
-    withCredentials: true,
-  });
+  return client.post(PASSWORD_RESETS_REQUEST_PATH, params);
 };
 
 export default sendPasswordResetEmail;

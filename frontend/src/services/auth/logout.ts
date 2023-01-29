@@ -1,17 +1,8 @@
-import { LOGOUT_API } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
-import axios from '@/utils/axios';
+import { LOGOUT_PATH } from '@/common/constants/path';
+import { client } from '@/utils/axios';
 
 const logout = async () => {
-  return axios({
-    method: 'delete',
-    url: `${ROOT_URL}/${LOGOUT_API}`,
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
-    withCredentials: true,
-  });
+  return client.delete(LOGOUT_PATH);
 };
 
 export default logout;

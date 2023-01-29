@@ -1,8 +1,7 @@
 import { User } from '@/@types/data';
-import { LOGIN_API } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
+import { LOGIN_PATH } from '@/common/constants/path';
 import { StatusCode } from '@/common/types';
-import axios from '@/utils/axios';
+import { client } from '@/utils/axios';
 
 export type LoginParams = {
   /**
@@ -47,16 +46,7 @@ export type ResponseData = {
  * @returns ログインユーザー
  */
 const login = async (params: LoginParams): Promise<ResponseData> => {
-  return axios({
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
-    url: `${ROOT_URL}/${LOGIN_API}`,
-    data: params,
-    withCredentials: true,
-  });
+  return client.post(LOGIN_PATH, params);
 };
 
 export default login;

@@ -1,6 +1,5 @@
-import { USER_EDIT_API } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
-import axios from '@/utils/axios';
+import { USER_EDIT_PATH } from '@/common/constants/path';
+import { client } from '@/utils/axios';
 
 import { NormalResponse, InvalidResponse } from './types';
 /**
@@ -12,15 +11,7 @@ import { NormalResponse, InvalidResponse } from './types';
 type ResponseData = NormalResponse | InvalidResponse;
 
 const getEditedUser = async (userId: number): Promise<ResponseData> => {
-  const response = await axios.get(`${ROOT_URL}/${USER_EDIT_API(userId)}`, {
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
-  });
-  // axios.defaults.headers.common['X-CSRF-Token'] =
-  //   response.headers['X-CSRF-Token'];
+  const response = await client.get(USER_EDIT_PATH(userId));
   return response.data;
 };
 

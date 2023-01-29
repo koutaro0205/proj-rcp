@@ -19,10 +19,13 @@ export const USER_EDIT_API = (id: number) => {
 // Page
 export const SIGNUP_PATH = '/signup';
 export const LOGIN_PATH = '/login';
+export const LOGOUT_PATH = '/logout';
 export const PASSWORD_RESETS_PATH = '/password-resets';
+export const PASSWORD_RESETS_REQUEST_PATH = '/password_resets';
 export const QUESTIONS_PATH = '/questions';
 export const POST_RECIPE_PATH = '/recipes/new';
 export const USERS_PATH = '/users';
+export const ACCOUNT_ACTIVATIONS_PATH = '/account_activations';
 export const USER_DETAIL_PATH = (id: number) => {
   return `${USERS_PATH}/${id}`;
 };

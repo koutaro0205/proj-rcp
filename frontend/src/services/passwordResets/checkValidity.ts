@@ -1,8 +1,7 @@
-import { PASSWORD_RESETS_API } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
+import { PASSWORD_RESETS_REQUEST_PATH } from '@/common/constants/path';
 import { StatusCode } from '@/common/types';
 import { Params } from '@/hooks/useQueryParameters';
-import axios from '@/utils/axios';
+import { client } from '@/utils/axios';
 
 type NormalResponse = {
   status: StatusCode;
@@ -20,11 +19,8 @@ type InvalidResponse = {
 export type ResponseData = NormalResponse & AbnormalResponse & InvalidResponse;
 
 const checkValidity = async (params: Params): Promise<ResponseData> => {
-  const response = await axios.get(
-    `${ROOT_URL}/${PASSWORD_RESETS_API}/${params.token}/edit?email=${params.email}`,
-    {
-      withCredentials: true,
-    }
+  const response = await client.get(
+    `${PASSWORD_RESETS_REQUEST_PATH}/${params.token}/edit?email=${params.email}`
   );
   return response.data;
 };

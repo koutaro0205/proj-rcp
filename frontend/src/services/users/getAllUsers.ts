@@ -1,7 +1,6 @@
 import { User } from '@/@types/data';
-import { USERS_API } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
-import axios from '@/utils/axios';
+import { USERS_PATH } from '@/common/constants/path';
+import { client } from '@/utils/axios';
 
 /**
  * ユーザーAPI（一覧取得）
@@ -11,15 +10,10 @@ import axios from '@/utils/axios';
  */
 
 const getAllUsers = async (): Promise<User[]> => {
-  const response = await axios.get(`${ROOT_URL}/${USERS_API}`, {
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
-  });
-  axios.defaults.headers.common['X-CSRF-Token'] =
-    response.headers['X-CSRF-Token'];
+  const response = await client.get(USERS_PATH);
+  // FIXME: 動作確認を終えたら削除する。
+  // axios.defaults.headers.common['X-CSRF-Token'] =
+  //   response.headers['X-CSRF-Token'];
   return response.data;
 };
 
