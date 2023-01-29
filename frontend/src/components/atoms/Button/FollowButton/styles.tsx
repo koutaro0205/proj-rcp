@@ -1,28 +1,25 @@
 import { css } from '@emotion/css';
 
-import borderRadius from '@/theme/borderRadius';
 import colors from '@/theme/colors';
 import space from '@/theme/space';
 
-const defaultStyle = {
-  width: '100%',
-  color: colors.black,
-  marginBottom: space.ml,
-  border: `${colors.PrimaryColor} solid 3px`,
-  borderRadius: borderRadius.s,
-  paddingBlock: space.xxs,
-  cursor: 'pointer',
+export type ButtonSize = 'normal' | 'full';
+
+type GetStylesInput = {
+  isFollowing: boolean;
+  size: ButtonSize;
 };
 
-const styles = {
-  followButton: css({
-    ...defaultStyle,
-    backgroundColor: colors.PrimaryColor,
-  }),
-  unfollowButton: css({
-    ...defaultStyle,
-    backgroundColor: colors.white,
-  }),
+export const getStyles = ({ isFollowing, size }: GetStylesInput) => {
+  return {
+    button: css({
+      width: size === 'normal' ? '120px' : '100%',
+      color: colors.black,
+      border: `${colors.PrimaryColor} solid 3px`,
+      borderRadius: '17px',
+      paddingBlock: space.xxs,
+      cursor: 'pointer',
+      backgroundColor: isFollowing ? colors.white : colors.PrimaryColor,
+    }),
+  };
 };
-
-export default styles;

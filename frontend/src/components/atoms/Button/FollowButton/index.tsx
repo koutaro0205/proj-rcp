@@ -1,23 +1,22 @@
 import React from 'react';
 
-import styles from './styles';
+import { ButtonSize, getStyles } from './styles';
 
 type Props = {
   onClick: () => void;
   isFollowing: boolean;
+  size?: ButtonSize;
 };
 
-const FollowButton: React.FC<Props> = ({ isFollowing, onClick }) => {
-  if (isFollowing) {
-    return (
-      <button className={styles.unfollowButton} onClick={onClick}>
-        フォロー中
-      </button>
-    );
-  }
+const FollowButton: React.FC<Props> = ({
+  isFollowing,
+  onClick,
+  size = 'full',
+}) => {
+  const styles = getStyles({ isFollowing, size });
   return (
-    <button className={styles.followButton} onClick={onClick}>
-      フォロー
+    <button className={styles.button} onClick={onClick}>
+      {isFollowing ? 'フォロー中' : 'フォロー'}
     </button>
   );
 };
