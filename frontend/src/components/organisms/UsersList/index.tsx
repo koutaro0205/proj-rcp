@@ -17,15 +17,18 @@ type Props = {
 };
 
 const UsersList: React.FC<Props> = ({ users, currentUser }) => {
-  const { handleDeleteUser } = useUsersList();
+  const { handleDeleteUser, handleClickToggleFollow, isFollowing } =
+    useUsersList();
 
   const renderUsers = (userArray: User[]) => {
     return userArray.map((user: User) => (
       <UserItem
         key={user.id}
         user={user}
+        isFollowing={isFollowing}
         currentUser={currentUser}
-        onClick={() => handleDeleteUser(user.id)}
+        onClickDelete={() => handleDeleteUser(user.id)}
+        onClickToggleFollow={handleClickToggleFollow}
       />
     ));
   };

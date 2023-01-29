@@ -3,7 +3,7 @@ import { useState } from 'react';
 const useProfileCard = () => {
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const handleClick = () => {
-    setIsFollowing(!isFollowing);
+    setIsFollowing((prev) => !prev);
 
     // FIXME: フォロー機能のbackend実装を行う
     // // 既にフォローしている場合

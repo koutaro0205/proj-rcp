@@ -1,10 +1,14 @@
 import React from 'react';
 
 import { User } from '@/@types/data';
+import { FOLLOWING_PATH, FOLLOWERS_PATH } from '@/common/constants/path';
 import FollowButton from '@/components/atoms/Button/FollowButton';
+import Divider from '@/components/atoms/Divider';
 import UserImage from '@/components/atoms/UserImage';
 import FlexContainer from '@/components/layouts/FlexContainer';
-import FollowStatus from '@/components/molecules/FollowStatus';
+import { Queue } from '@/components/layouts/Queue';
+import { Stack } from '@/components/layouts/Stack';
+import Status from '@/components/molecules/Status';
 import CurrentUserInfo from '@/components/molecules/UserInfo/CurrentUserInfo';
 import { CurrentUser } from '@/features/currentUser/type';
 import { isCurrentUser } from '@/utils/match';
@@ -26,10 +30,19 @@ const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
         {/* FIXME: Rails APIが用意できたらデータを入れる（postCount） */}
         <CurrentUserInfo userName={user.name} postCount={0} />
       </FlexContainer>
-      <FollowStatus userId={user.id} />
+      <Stack size="l" />
+      <div className={styles.followStatusSection}>
+        <Status path={FOLLOWING_PATH(user.id)} labal="フォロー" />
+        <Queue size="m" />
+        <Divider pattern="vertical" width="s" color="black" />
+        <Queue size="m" />
+        <Status path={FOLLOWERS_PATH(user.id)} labal="フォロワー" />
+      </div>
+      <Stack size="l" />
       {!isCurrentUser(user, currentUser) && (
         <FollowButton isFollowing={isFollowing} onClick={handleClick} />
       )}
+      <Stack size="l" />
     </div>
   );
 };

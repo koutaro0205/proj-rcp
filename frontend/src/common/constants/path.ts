@@ -44,3 +44,9 @@ export const USER_EDIT_USER_NAME_PATH = (id: number) => {
 export const USER_EDIT_USER_IMAGE_PATH = (id: number) => {
   return `${USERS_PATH}/edit/${id}/image`;
 };
+export const FOLLOWING_PATH = (id: number) => {
+  return `${USERS_PATH}/${id}/following`;
+};
+export const FOLLOWERS_PATH = (id: number) => {
+  return `${USERS_PATH}/${id}/followers`;
+};

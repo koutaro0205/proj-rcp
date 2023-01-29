@@ -6,7 +6,6 @@ import space from '@/theme/space';
 
 const styles = {
   container: css({
-    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     paddingBlock: space.m,
@@ -25,6 +24,9 @@ const styles = {
   dividerWrapper: css({
     marginLeft: space.m,
     height: '20px',
+  }),
+  followButtonWrapper: css({
+    marginLeft: 'auto',
   }),
 };
 

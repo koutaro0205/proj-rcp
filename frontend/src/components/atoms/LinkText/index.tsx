@@ -12,7 +12,7 @@ type Props = {
 const LinkText: React.FC<Props> = ({
   children,
   path,
-  isUnderLine,
+  isUnderLine = false,
   size,
   weight,
   lineHeight,

@@ -24,12 +24,15 @@ export const getStyles = ({
 }: Partial<GetStyleInput>) => {
   return {
     linkText: css({
+      textDecoration: 'none',
       display: 'inline-block',
-      textDecoration: isUnderLine ? 'underline' : 'none',
       fontSize: fontSizes[size],
       fontWeight: fontWeight[weight],
       lineHeight,
       color: colors[color],
+      ...(isUnderLine && {
+        borderBottom: `solid 1px ${colors[color]}`,
+      }),
       ...(hasHoverAction && {
         '&:hover': {
           textDecoration: 'underline',
