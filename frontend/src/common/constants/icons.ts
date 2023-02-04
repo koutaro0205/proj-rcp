@@ -3,6 +3,7 @@ export const ICONS = {
   delete: '/icons/delete.svg',
   diet: '/icons/diet.svg',
   favorite: '/icons/favorite.svg',
+  close: '/icons/close.svg',
 };
 
 export type Icons = keyof typeof ICONS;

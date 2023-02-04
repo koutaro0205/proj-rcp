@@ -2,6 +2,7 @@ import { css } from '@emotion/css';
 
 import colors from '@/theme/colors';
 import space from '@/theme/space';
+import zIndex from '@/theme/zIndex';
 
 export const HEADER_MENU_HEIGHT = 92;
 
@@ -23,7 +24,7 @@ export const getStyles = (isSticky: boolean) => {
     }),
     navigation: css({
       backgroundColor: colors.PrimaryColor,
-      zIndex: 10,
+      zIndex: zIndex.normal,
       ...(isSticky && {
         position: 'fixed',
         top: 0,
