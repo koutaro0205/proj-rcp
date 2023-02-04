@@ -38,11 +38,13 @@ const useLoginForm = () => {
 
     if (!isEmptyArray(errors)) {
       setFormErrors(errors);
-    } else {
-      const data = await handleLogin(redirectTo);
-      if (data) {
-        dispatch(updateLoginStatus(data));
-      }
+      return;
+    }
+
+    setFormErrors([]);
+    const data = await handleLogin(redirectTo);
+    if (data) {
+      dispatch(updateLoginStatus(data));
     }
   };
 

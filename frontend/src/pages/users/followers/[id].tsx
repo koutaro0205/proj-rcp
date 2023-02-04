@@ -4,36 +4,46 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
-import { useRouter } from 'next/router';
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import { User } from '@/@types/data';
-import { USER_DETAIL_PATH } from '@/common/constants/path';
+import { FOLLOWERS_PATH } from '@/common/constants/path';
 import Loading from '@/components/atoms/Loading';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ContentWidth from '@/components/layouts/ContentWidth';
-import ProfileCard from '@/components/organisms/ProfileCard';
+import FlexContainer from '@/components/layouts/FlexContainer';
+import CurrentUserProfileCard from '@/components/organisms/ProfileCard/CurrentUserProfileCard';
+import UsersList from '@/components/organisms/UsersList';
 import Layout from '@/components/templates/Layout';
-import { selectCurrentUser } from '@/features/currentUser/selecters';
+import { useAuthGaurd } from '@/hooks/useAuthGaurd';
+import { useFollowing } from '@/hooks/useFollowing';
 import getAllUsers from '@/services/users/getAllUsers';
 import getUser from '@/services/users/getUser';
 
 type UserDetailPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const UserDetailPage: NextPage<UserDetailPageProps> = ({ user }) => {
-  const router = useRouter();
-  const currentUser = useSelector(selectCurrentUser);
+const FollowerListPage: NextPage<UserDetailPageProps> = ({ user }) => {
+  const { currentUser } = useAuthGaurd();
+  const { followerList } = useFollowing({ userId: user.id });
 
-  // FIXME: 暫定
-  if (router.isFallback) {
-    return <Loading />;
-  }
   return (
     <Layout>
       <ContentWidth>
-        <SectionTitle sectionTitle="ユーザー情報" />
-        <ProfileCard user={user} currentUser={currentUser} />
+        {currentUser ? (
+          <>
+            <SectionTitle sectionTitle="フォロワー" />
+            <FlexContainer>
+              <CurrentUserProfileCard currentUser={currentUser} />
+              <UsersList
+                users={followerList}
+                currentUser={currentUser}
+                label="followers"
+              />
+            </FlexContainer>
+          </>
+        ) : (
+          <Loading size="m" />
+        )}
       </ContentWidth>
     </Layout>
   );
@@ -41,7 +51,7 @@ const UserDetailPage: NextPage<UserDetailPageProps> = ({ user }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const users: User[] = await getAllUsers();
-  const paths = users.map((user: User) => USER_DETAIL_PATH(user.id));
+  const paths = users.map((user: User) => FOLLOWERS_PATH(user.id));
 
   return { paths, fallback: false };
 };
@@ -61,4 +71,4 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   };
 };
 
-export default UserDetailPage;
+export default FollowerListPage;

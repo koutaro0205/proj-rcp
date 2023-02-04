@@ -1,13 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
-import { selectCurrentUser } from '@/features/currentUser/selecters';
 import useAuth from '@/hooks/useAuth';
 
 const useDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
-  const currentUser = useSelector(selectCurrentUser);
   const { handleLogout } = useAuth();
 
   const handleClick = () => {
@@ -34,7 +31,6 @@ const useDropdown = () => {
   return {
     isOpen,
     dropdownRef,
-    currentUser,
     handleClick,
     handleLogoutClick,
   };

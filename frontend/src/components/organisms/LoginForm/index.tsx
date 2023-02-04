@@ -4,6 +4,7 @@ import { SIGNUP_PATH, PASSWORD_RESETS_PATH } from '@/common/constants/path';
 import InputButton from '@/components/atoms/Button/InputButton';
 import LinkText from '@/components/atoms/LinkText';
 import Text from '@/components/atoms/Text';
+import { Stack } from '@/components/layouts/Stack';
 import CheckItem from '@/components/molecules/CheckItem';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
@@ -43,14 +44,14 @@ const LoginForm: React.FC = () => {
       </CheckItem>
 
       <InputButton text="ログイン" isCenter _styles={styles.submitButton} />
-
+      <Stack size="l" />
       <Text textAlign="center">
         ユーザー登録されていない方は
         <LinkText path={SIGNUP_PATH} isUnderLine>
           こちら
         </LinkText>
       </Text>
-
+      <Stack size="m" />
       <Text textAlign="center">
         パスワードをお忘れの方は
         <LinkText path={PASSWORD_RESETS_PATH} isUnderLine>

@@ -7,6 +7,10 @@ const styles = {
   container: css({
     border: `1px solid ${colors.grey}`,
     marginBottom: space.xs,
+    ':hover': {
+      transition: '0.5s',
+      backgroundColor: colors.background,
+    },
   }),
   innerContainer: css({
     display: 'flex',

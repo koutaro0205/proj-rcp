@@ -20,6 +20,10 @@ export const getStyles = ({ isFollowing, size }: GetStylesInput) => {
       paddingBlock: space.xxs,
       cursor: 'pointer',
       backgroundColor: isFollowing ? colors.white : colors.PrimaryColor,
+      ':hover': {
+        opacity: 0.7,
+        transition: '0.3s',
+      },
     }),
   };
 };

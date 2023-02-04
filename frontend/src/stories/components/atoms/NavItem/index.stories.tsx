@@ -2,7 +2,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
 import NavItem from '@/components/atoms/NavItem';
-import styles from '@/components/organisms/Header/styles';
 
 export default {
   title: 'components/atoms/NavItem',
@@ -14,7 +13,7 @@ export default {
       },
       defaultValue: 'item',
     },
-    spacingSize: {
+    size: {
       control: {
         type: 'text',
       },
@@ -24,12 +23,11 @@ export default {
 } as ComponentMeta<typeof NavItem>;
 
 const Template: ComponentStory<typeof NavItem> = (args) => (
-  <ul className={styles.navList}>
+  <div>
     <NavItem {...args} />
     <NavItem {...args} />
     <NavItem {...args} />
-  </ul>
+  </div>
 );
 
 export const Nomal = Template.bind({});
-Nomal.args = { children: 'item', path: '/', spacingSize: 'm' };

@@ -16,6 +16,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     marginBottom: space.xl,
+    gap: space.l,
   }),
 };
 
