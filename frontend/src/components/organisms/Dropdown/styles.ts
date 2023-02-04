@@ -6,9 +6,6 @@ import space from '@/theme/space';
 
 const styles = {
   container: css({
-    marginLeft: space.l,
-  }),
-  dropdown: css({
     position: 'relative',
     '&::after': {
       content: '""',

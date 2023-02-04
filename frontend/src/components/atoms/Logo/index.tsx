@@ -12,7 +12,7 @@ type Props = {
 const Logo: React.FC<Props> = ({ logoText, path }) => {
   return (
     <h1 className={styles.container}>
-      <LinkText path={path} color="baseColor" size="xl">
+      <LinkText path={path} color="logo" size="xl">
         {logoText}
       </LinkText>
     </h1>

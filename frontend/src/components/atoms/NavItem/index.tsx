@@ -1,24 +1,24 @@
 import React from 'react';
 
 import LinkText from '@/components/atoms/LinkText';
+import { FontSizes } from '@/theme/fontSize';
 
-import { getStyles, SpacingSize } from './styles';
+import styles from './styles';
 
 type Props = {
   children: string | React.ReactNode;
   path: string;
-  spacingSize?: SpacingSize;
+  size?: FontSizes;
 };
 
-const NavItem: React.FC<Props> = ({ children, path, spacingSize = 'm' }) => {
-  const styles = getStyles(spacingSize);
+const NavigationItem: React.FC<Props> = ({ children, path, size = 's' }) => {
   return (
     <li className={styles.container}>
-      <LinkText path={path} color="black" size="s">
+      <LinkText path={path} color="black" size={size}>
         {children}
       </LinkText>
     </li>
   );
 };
 
-export default NavItem;
+export default NavigationItem;

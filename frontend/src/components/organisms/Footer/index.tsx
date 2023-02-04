@@ -13,11 +13,11 @@ const Footer: React.FC = () => {
       <ContentWidth>
         <div className={styles.inner}>
           <ul className={styles.list}>
-            <NavItem path={HOME} spacingSize="s">
+            <NavItem path={HOME} size="xs">
               ホームへ戻る
             </NavItem>
             {/* FIXME: パスをconstantsに切り出す。 */}
-            <NavItem path="/categories" spacingSize="s">
+            <NavItem path="/categories" size="xs">
               カテゴリ一覧
             </NavItem>
           </ul>

@@ -1,12 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import HeaderButton from '@/components/atoms/Button/HeaderButton';
-import styles from '@/components/organisms/Header/styles';
+import IconButton from '@/components/atoms/Button/IconButton';
 
 export default {
-  title: 'components/atoms/HeaderButton',
-  component: HeaderButton,
+  title: 'components/atoms/IconButton',
+  component: IconButton,
   argTypes: {
     label: {
       control: {
@@ -15,12 +14,10 @@ export default {
       defaultValue: 'ボタン',
     },
   },
-} as ComponentMeta<typeof HeaderButton>;
+} as ComponentMeta<typeof IconButton>;
 
-const Template: ComponentStory<typeof HeaderButton> = (args) => (
-  <ul className={styles.menuList}>
-    <HeaderButton {...args} />
-  </ul>
+const Template: ComponentStory<typeof IconButton> = (args) => (
+  <IconButton {...args} />
 );
 
 export const Nomal = Template.bind({});

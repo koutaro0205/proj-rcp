@@ -1,8 +1,8 @@
 export type Color = keyof typeof colors;
 
 const colors = {
-  PrimaryColor: '#DED36E',
-  baseColor: '#C6020C',
+  PrimaryColor: '#f9b69c',
+  baseColor: '#e25d6e',
   background: '#fff0db',
   transparent: 'transparent',
   black: '#333333',
@@ -12,6 +12,7 @@ const colors = {
   grey: '#555555',
   favorite: 'gold',
   error: 'red',
+  logo: '#db3340',
 } as const;
 
 export default colors;

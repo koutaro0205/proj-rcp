@@ -44,9 +44,20 @@ export const USER_EDIT_USER_NAME_PATH = (id: number) => {
 export const USER_EDIT_USER_IMAGE_PATH = (id: number) => {
   return `${USERS_PATH}/edit/${id}/image`;
 };
-export const FOLLOWING_PATH = (id: number) => {
+export const FOLLOWING_REQUEST_PATH = (id: number) => {
   return `${USERS_PATH}/${id}/following`;
 };
-export const FOLLOWERS_PATH = (id: number) => {
+
+export const FOLLOWING_PATH = (id: number) => {
+  return `${USERS_PATH}/following/${id}`;
+};
+export const FOLLOWERS_REQUEST_PATH = (id: number) => {
   return `${USERS_PATH}/${id}/followers`;
 };
+export const FOLLOWERS_PATH = (id: number) => {
+  return `${USERS_PATH}/followers/${id}`;
+};
+export const FOLLOWING_STATUS_PATH = (id: number) => {
+  return `${USERS_PATH}/${id}/following_status`;
+};
+export const FOLLOW_USER_PATH = '/relationships';

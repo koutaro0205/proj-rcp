@@ -27,7 +27,11 @@ const UsersPage: NextPage = () => {
             <SectionTitle sectionTitle="ユーザー一覧" />
             <FlexContainer>
               <CurrentUserProfileCard currentUser={currentUser} />
-              <UsersList users={data} currentUser={currentUser} />
+              <UsersList
+                users={data}
+                currentUser={currentUser}
+                label="登録ユーザー一覧"
+              />
             </FlexContainer>
           </>
         ) : (

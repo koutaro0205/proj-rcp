@@ -4,10 +4,10 @@ import { CurrentUser } from '@/features/currentUser/type';
 
 export const isCurrentUser = (
   user: User | EmptyObject,
-  currentUser: CurrentUser
-) => user.id === currentUser.id;
+  currentUser?: CurrentUser
+) => user.id === currentUser?.id;
 
-export const isAdminUser = (currentUser: CurrentUser) => currentUser.admin;
+export const isAdminUser = (currentUser?: CurrentUser) => currentUser?.admin;
 
 // NOTE: 何の配列が渡るかわからないのでunknownを使用
 export const isEmptyArray = (array: unknown[]) => array.length === 0;

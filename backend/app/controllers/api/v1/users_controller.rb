@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: %i[show update destroy]
+  before_action :set_user, only: %i[show update destroy following followers following_status]
   before_action :correct_user, only: %i[update]
   def index
     @users = User.where(activated: true)
@@ -32,6 +32,27 @@ class Api::V1::UsersController < ApplicationController
 
   def destroy
     @user.destroy
+  end
+
+  def following
+    pattern = "following"
+    # フォローしているユーザー一覧
+    following_list = @user.following
+    following_count = @user.following.count
+    render json: { pattern: pattern, following_count: following_count, following_list: following_list }
+  end
+
+  def followers
+    pattern = "followers"
+    # フォロワー一覧
+    followers_list = @user.followers
+    followers_count = @user.followers.count
+    render json: { pattern: pattern, followers_count: followers_count, followers_list: followers_list }
+  end
+
+  def following_status
+    status = current_user.following?(@user)
+    render json: { is_following: status }
   end
 
   private

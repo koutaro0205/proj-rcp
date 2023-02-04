@@ -22,7 +22,13 @@ type Props = {
 };
 
 const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
-  const { isFollowing, handleClick } = useProfileCard();
+  const {
+    isFollowing,
+    handleClick,
+    followerCount,
+    followingCount,
+    isLoggedIn,
+  } = useProfileCard({ user });
   return (
     <div className={styles.container}>
       <FlexContainer>
@@ -32,14 +38,24 @@ const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
       </FlexContainer>
       <Stack size="l" />
       <div className={styles.followStatusSection}>
-        <Status path={FOLLOWING_PATH(user.id)} labal="フォロー" />
+        <Status
+          path={FOLLOWING_PATH(user.id)}
+          labal="フォロー"
+          count={followingCount}
+          hasLink={isLoggedIn}
+        />
         <Queue size="m" />
         <Divider pattern="vertical" width="s" color="black" />
         <Queue size="m" />
-        <Status path={FOLLOWERS_PATH(user.id)} labal="フォロワー" />
+        <Status
+          path={FOLLOWERS_PATH(user.id)}
+          labal="フォロワー"
+          count={followerCount}
+          hasLink={isLoggedIn}
+        />
       </div>
       <Stack size="l" />
-      {!isCurrentUser(user, currentUser) && (
+      {currentUser && !isCurrentUser(user, currentUser) && (
         <FollowButton isFollowing={isFollowing} onClick={handleClick} />
       )}
       <Stack size="l" />

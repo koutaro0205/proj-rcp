@@ -1,4 +1,3 @@
-import { cx } from '@emotion/css';
 import React from 'react';
 
 import {
@@ -7,15 +6,19 @@ import {
   USER_DETAIL_PATH,
 } from '@/common/constants/path';
 import DropdownItem from '@/components/atoms/DropdownItem';
+import { CurrentUser } from '@/features/currentUser/type';
 
 import styles from './styles';
 import useDropdown from './useDropdown';
 
-const Dropdown: React.FC = () => {
-  const { isOpen, dropdownRef, currentUser, handleClick, handleLogoutClick } =
-    useDropdown();
+type Props = {
+  currentUser: CurrentUser;
+};
+
+const Dropdown: React.FC<Props> = ({ currentUser }) => {
+  const { isOpen, dropdownRef, handleClick, handleLogoutClick } = useDropdown();
   return (
-    <li className={cx(styles.container, styles.dropdown)} ref={dropdownRef}>
+    <li className={styles.container} ref={dropdownRef}>
       <button
         className={styles.dropdownMenu}
         onClick={handleClick}

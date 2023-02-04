@@ -2,30 +2,22 @@ import React from 'react';
 
 import { User } from '@/@types/data';
 import DeleteButton from '@/components/atoms/Button/DeleteButton';
-import FollowButton from '@/components/atoms/Button/FollowButton';
 import Divider from '@/components/atoms/Divider';
 import LinkText from '@/components/atoms/LinkText';
 import UserImage from '@/components/atoms/UserImage';
 import { CurrentUser } from '@/features/currentUser/type';
 import { isAdminUser, isCurrentUser } from '@/utils/match';
 
+import FollowUserButton from './FollowUserButton';
 import styles from './styles';
 
 type Props = {
   user: User;
   currentUser: CurrentUser;
-  isFollowing: boolean;
   onClickDelete: () => void;
-  onClickToggleFollow: () => void;
 };
 
-const UserItem: React.FC<Props> = ({
-  user,
-  currentUser,
-  isFollowing,
-  onClickDelete,
-  onClickToggleFollow,
-}) => {
+const UserItem: React.FC<Props> = ({ user, currentUser, onClickDelete }) => {
   return (
     <li key={user.id} className={styles.container}>
       <UserImage size="large" />
@@ -45,13 +37,7 @@ const UserItem: React.FC<Props> = ({
             </>
           )}
           <div className={styles.followButtonWrapper}>
-            {/* FIXME: moleculesでコンポーネント作成（FollowForm） */}
-            {/* <FollowForm user={user} userId={user.id} /> */}
-            <FollowButton
-              onClick={onClickToggleFollow}
-              isFollowing={isFollowing}
-              size="normal"
-            />
+            <FollowUserButton user={user} />
           </div>
         </>
       )}
