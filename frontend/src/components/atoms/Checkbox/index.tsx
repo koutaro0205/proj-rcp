@@ -1,14 +1,37 @@
 import React from 'react';
 
+import Icon from '@/components/atoms/Icon';
+import Text from '@/components/atoms/Text';
+
+import styles from './styles';
+
 type Props = {
-  name: string;
-  type: string;
-  id: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
+  size?: 's' | 'm';
+  onClick: () => void;
+  isChecked: boolean;
 };
 
-const Checkbox: React.FC<Props> = ({ name, type, id, onChange }) => {
-  return <input type={type} name={name} id={id} onChange={onChange} />;
+const CHECKBOX_SIZE = {
+  s: 12,
+  m: 18,
+};
+
+const Checkbox: React.FC<Props> = ({
+  label,
+  size = 'm',
+  onClick,
+  isChecked = false,
+}) => {
+  return (
+    <div className={styles.container} role="presentation" onClick={onClick}>
+      <Icon
+        size={CHECKBOX_SIZE[size]}
+        name={isChecked ? 'checked' : 'unchecked'}
+      />
+      {label && <Text size="xs">{label}</Text>}
+    </div>
+  );
 };
 
 export default Checkbox;

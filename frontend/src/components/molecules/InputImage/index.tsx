@@ -60,8 +60,8 @@ const InputImage: React.FC<Props> = ({
         ) : (
           <Image
             src={
-              currentUser.image_url
-                ? currentUser.image_url
+              currentUser?.image_url
+                ? currentUser?.image_url
                 : '/images/default.jpg'
             }
             width={PREVIEW_IMAGE_SIZE}

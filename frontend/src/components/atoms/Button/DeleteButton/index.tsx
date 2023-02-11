@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import React from 'react';
 
-import { ICONS } from '@/common/constants/icons';
+import Icon from '@/components/atoms/Icon';
 import { Color } from '@/theme/colors';
 
 import { getStyles } from './styles';
@@ -26,11 +25,7 @@ const DeleteButton: React.FC<Props> = ({
     <button className={styles.container} onClick={onClick}>
       {label}
       <span className={styles.imageWrapper}>
-        <Image
-          src={ICONS.delete}
-          width={DEFAULT_ICON_SIZE}
-          height={DEFAULT_ICON_SIZE}
-        />
+        <Icon size={DEFAULT_ICON_SIZE} name="delete" />
       </span>
     </button>
   );

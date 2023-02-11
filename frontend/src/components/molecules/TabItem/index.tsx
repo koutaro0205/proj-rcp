@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import React from 'react';
 
-import { ICONS } from '@/common/constants/icons';
+import Icon from '@/components/atoms/Icon';
 
 import styles from './styles';
 
@@ -17,11 +16,7 @@ const TabItem: React.FC<Props> = ({ label, onClick }) => {
     <div className={styles.container} role="presentation" onClick={onClick}>
       <div className={styles.innerContainer}>
         <span>{label}</span>
-        <Image
-          src={ICONS.rightArrow}
-          width={DEFAULT_ICON_SIZE}
-          height={DEFAULT_ICON_SIZE}
-        />
+        <Icon name="rightArrow" size={DEFAULT_ICON_SIZE} />
       </div>
     </div>
   );

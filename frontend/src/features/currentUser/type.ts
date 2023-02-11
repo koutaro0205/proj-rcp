@@ -1,7 +1,6 @@
 import { User } from '@/@types/data';
-import { EmptyObject } from '@/common/types';
 
-export type CurrentUser = User | EmptyObject;
+export type CurrentUser = User;
 
 // 初期ステート
 export type InitialState = {
