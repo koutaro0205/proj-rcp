@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import React from 'react';
 import { Transition } from 'react-transition-group';
 
-import { ICONS } from '@/common/constants/icons';
+import Icon from '@/components/atoms/Icon';
 
 import styles, { transitionStyles, transitionBackgroundStyles } from './styles';
 
@@ -29,12 +28,7 @@ const Modal: React.FC<Props> = ({ isOpenModal, closeModal, children }) => {
             style={{ ...transitionStyles[state] }}
           >
             <div className={styles.imageWrapper}>
-              <Image
-                src={ICONS.close}
-                width={CLOSE_ICON_SIZE}
-                height={CLOSE_ICON_SIZE}
-                onClick={closeModal}
-              />
+              <Icon size={CLOSE_ICON_SIZE} name="close" onClick={closeModal} />
             </div>
             <div className={styles.modalContent}>{children}</div>
           </div>

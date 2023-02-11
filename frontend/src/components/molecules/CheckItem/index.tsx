@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Checkbox from '@/components/atoms/Checkbox';
-
 import styles from './styles';
 
 export type Props = {
@@ -15,7 +13,7 @@ export type Props = {
 const CheckItem: React.FC<Props> = ({ children, id, type, name, onChange }) => {
   return (
     <label htmlFor={id} className={styles.checkbox}>
-      <Checkbox type={type} id={id} name={name} onChange={onChange} />
+      <input type={type} id={id} name={name} onChange={onChange} />
       {children}
     </label>
   );

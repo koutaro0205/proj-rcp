@@ -1,6 +1,8 @@
 import React from 'react';
 
-import InputField from '@/components/atoms/TextField/InputField';
+import Checkbox from '@/components/atoms/Checkbox';
+import { Stack } from '@/components/layouts/Stack';
+import { useInputType } from '@/hooks/useInputType';
 
 import styles from './styles';
 
@@ -23,18 +25,39 @@ const FormItem: React.FC<Props> = ({
   onChange,
   value = undefined,
 }) => {
+  const { handleClick, isTypeOfPassword } = useInputType();
+  const getType = (t: string) => {
+    if (t === 'password') {
+      return isTypeOfPassword ? 'password' : 'text';
+    }
+    return type;
+  };
+
   return (
-    <label className={styles.label} htmlFor={id}>
-      {label}
-      <InputField
-        type={type}
+    <div className={styles.container}>
+      <div className={styles.labelContainer}>
+        <label htmlFor={id}>{label}</label>
+        {type === 'password' && (
+          // typeがpasswordの時はチェックがついていない(false)
+          <Checkbox
+            size="m"
+            label="パスワードを表示"
+            onClick={handleClick}
+            isChecked={!isTypeOfPassword}
+          />
+        )}
+      </div>
+      <input
+        className={styles.inputField}
+        type={getType(type)}
         id={id}
         name={name}
         accept={accept}
         onChange={onChange}
         value={value}
       />
-    </label>
+      <Stack size="ml" />
+    </div>
   );
 };
 

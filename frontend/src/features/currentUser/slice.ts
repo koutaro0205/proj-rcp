@@ -8,7 +8,22 @@ import axios from '@/utils/axios';
 import { InitialState, UpdateCurrentUser, UpdateLoginStatus } from './type';
 
 const initialState: InitialState = {
-  currentUser: {},
+  currentUser: {
+    id: NaN,
+    name: '',
+    email: '',
+    password_digest: '',
+    created_at: '',
+    updated_at: '',
+    remember_digest: null,
+    reset_digest: null,
+    reset_sent_at: null,
+    activation_digest: null,
+    activated: null,
+    activated_at: null,
+    admin: false,
+    image_url: null,
+  },
   loggedIn: false,
 };
 
@@ -70,7 +85,7 @@ export const currentUserSlice = createSlice({
       }
     });
     builder.addCase(deleteCurrentUser, (state) => {
-      state.currentUser = {};
+      state.currentUser = { ...initialState.currentUser };
       state.loggedIn = false;
     });
   },
