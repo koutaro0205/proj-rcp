@@ -6,8 +6,18 @@ import fontSizes from '@/theme/fontSize';
 import lineHeights from '@/theme/lineHeights';
 import space from '@/theme/space';
 
-export const getStyles = (color: Color) => {
+type GetStylesInput = {
+  color: Color;
+  isCenter: boolean;
+};
+
+export const getStyles = ({ color, isCenter }: GetStylesInput) => {
   return {
+    container: css({
+      ...(isCenter && {
+        textAlign: 'center',
+      }),
+    }),
     input: css({
       display: 'inline-block',
       marginBottom: space.zero,
@@ -33,11 +43,3 @@ export const getStyles = (color: Color) => {
     }),
   };
 };
-
-const styles = {
-  container: css({
-    textAlign: 'center',
-  }),
-};
-
-export default styles;

@@ -18,6 +18,11 @@ const EditSection: React.FC = () => {
     userNameErrors,
     emailErrors,
     passwordErrors,
+    inputRef,
+    imageUrl,
+    file,
+    handleResetFile,
+    handleClick,
     handleChange,
     handleFileChange,
     handleSubmit,
@@ -57,8 +62,14 @@ const EditSection: React.FC = () => {
         return (
           <EditUserImageSection
             currentUser={currentUser}
+            userInfo={userInfo}
             onChange={handleFileChange}
             onSubmit={handleSubmit}
+            imageUrl={imageUrl}
+            file={file}
+            inputRef={inputRef}
+            onClickResetFile={handleResetFile}
+            onClickUploadFile={handleClick}
           />
         );
       default:

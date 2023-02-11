@@ -44,7 +44,8 @@ const EditEmailSection: React.FC<Props> = ({
           value={userInfo.email}
         />
         <InputButton
-          text="メールアドレスを変更する"
+          value="メールアドレスを変更する"
+          type="submit"
           isCenter
           disabled={currentUser.email === userInfo.email}
         />

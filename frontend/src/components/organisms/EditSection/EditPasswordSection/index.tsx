@@ -42,7 +42,8 @@ const EditPasswordSection: React.FC<Props> = ({
           onChange={onChange}
         />
         <InputButton
-          text="パスワードを変更する"
+          value="パスワードを変更する"
+          type="submit"
           isCenter
           disabled={
             userInfo.password === '' && userInfo.password_confirmation === ''

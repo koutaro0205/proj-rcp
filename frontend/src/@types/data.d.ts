@@ -13,4 +13,5 @@ export type User = {
   activated: boolean | null;
   activated_at: string | null;
   admin: boolean;
+  image_url?: string | null;
 };

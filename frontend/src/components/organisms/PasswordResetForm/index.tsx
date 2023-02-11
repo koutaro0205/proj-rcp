@@ -21,7 +21,12 @@ const PasswordResetForm: React.FC = () => {
         onChange={handleChange}
       />
 
-      <InputButton text="メールを送信" isCenter _styles={styles.submitButton} />
+      <InputButton
+        type="submit"
+        value="メールを送信"
+        isCenter
+        _styles={styles.submitButton}
+      />
     </form>
   );
 };

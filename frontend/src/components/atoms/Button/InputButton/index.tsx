@@ -1,41 +1,49 @@
 import { cx } from '@emotion/css';
 import React from 'react';
 
+import { InputType } from '@/common/constants/inputs';
 import { Color } from '@/theme/colors';
 
-import styles, { getStyles } from './styles';
+import { getStyles } from './styles';
 
 type Props = {
-  text: string;
+  type: Extract<InputType, 'submit' | 'button'>;
+  value: string;
   _styles?: string;
   color?: Color;
   isCenter?: boolean;
   disabled?: boolean;
+  pattern?: 'inline' | 'block';
+  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 };
 
 const InputButton: React.FC<Props> = ({
-  text,
+  type,
+  value,
   _styles,
-  isCenter,
+  isCenter = false,
   color = 'PrimaryColor',
   disabled = false,
+  pattern = 'block',
+  onClick,
 }) => {
-  const style = getStyles(color);
-  if (isCenter) {
+  const styles = getStyles({ color, isCenter });
+
+  const getInput = () => {
     return (
-      <div className={styles.container}>
-        <input
-          type="submit"
-          value={text}
-          disabled={disabled}
-          className={cx(style.input, _styles)}
-        />
-      </div>
+      <input
+        type={type}
+        value={value}
+        disabled={disabled}
+        onClick={onClick}
+        className={cx(styles.input, _styles)}
+      />
     );
-  }
-  return (
-    <input type="submit" value={text} className={cx(style.input, _styles)} />
-  );
+  };
+
+  if (pattern === 'inline') return getInput();
+
+  return <div className={styles.container}>{getInput()}</div>;
 };
 
 export default InputButton;

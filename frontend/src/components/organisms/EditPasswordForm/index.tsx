@@ -28,7 +28,7 @@ const EditPasswordForm: React.FC = () => {
         onChange={handleChange}
       />
 
-      <InputButton text="再設定する" isCenter />
+      <InputButton type="submit" value="再設定する" isCenter />
     </form>
   );
 };
