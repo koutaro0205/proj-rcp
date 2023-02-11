@@ -2,8 +2,8 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy following followers following_status]
   before_action :correct_user, only: %i[update]
   def index
-    @users = User.where(activated: true)
-    render json: @users
+    @users = User.where(activated: true).with_attached_image
+    render json: @users, methods: [:image_url]
   end
 
   def show

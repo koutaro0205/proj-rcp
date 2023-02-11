@@ -20,7 +20,7 @@ type Props = {
 const UserItem: React.FC<Props> = ({ user, currentUser, onClickDelete }) => {
   return (
     <li key={user.id} className={styles.container}>
-      <UserImage size="large" />
+      <UserImage size="large" imagePath={user.image_url || undefined} />
       <LinkText path={`/users/${user.id}`} color="black" size="m">
         {user.name}
       </LinkText>
