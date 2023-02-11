@@ -1,6 +1,7 @@
 export type FontSizes = keyof typeof fontSizes;
 
 const fontSizes = {
+  xxs: '10px',
   xs: '12px',
   s: '14px',
   m: '16px',
