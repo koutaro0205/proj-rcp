@@ -7,11 +7,15 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    render json: @user
+    render json: @user, methods: [:image_url]
   end
 
   def create
     @user = User.new(user_params)
+
+    if params[:image]
+      attach_image(@user)
+    end
 
     if @user.save
       @user.send_activation_email
@@ -22,7 +26,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    puts(@user[:id])
+    if params[:image]
+      attach_image(@user)
+    end
+
     if @user.update(user_params)
       render json: { status: :ok, user: @user }
     else

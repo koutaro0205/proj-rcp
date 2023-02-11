@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { UPDATE_USER } from '@/common/constants/toast';
@@ -15,8 +15,17 @@ import { isEmptyArray } from '@/utils/match';
 import { error, success } from '@/utils/notifications';
 
 export const useEditSection = () => {
-  const { currentUser, userInfo, handleChange, handleFileChange } =
-    useInputForm();
+  const {
+    userInfo,
+    currentUser,
+    inputRef,
+    imageUrl,
+    file,
+    handleResetFile,
+    handleClick,
+    handleChange,
+    handleFileChange,
+  } = useInputForm();
 
   const [userNameErrors, setUserNameErrors] = useState<string[]>([]);
   const [emailErrors, setEmailErrors] = useState<string[]>([]);
@@ -24,12 +33,17 @@ export const useEditSection = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
-  const userNameErrorMessages = validateUserName(userInfo.name);
-  const emailErrorMessages = validateEmail(userInfo.email);
-  const passwordErrorMessages = validatePassword(
-    userInfo.password,
-    userInfo.password_confirmation
-  );
+  const userNameErrorMessages = useMemo(() => {
+    return validateUserName(userInfo.name);
+  }, [userInfo.name]);
+
+  const emailErrorMessages = useMemo(() => {
+    return validateEmail(userInfo.email);
+  }, [userInfo.email]);
+
+  const passwordErrorMessages = useMemo(() => {
+    return validatePassword(userInfo.password, userInfo.password_confirmation);
+  }, [userInfo.password, userInfo.password_confirmation]);
 
   const checkCanRequest = useCallback((): boolean => {
     if (!isEmptyArray(userNameErrorMessages)) {
@@ -74,6 +88,11 @@ export const useEditSection = () => {
     userNameErrors,
     emailErrors,
     passwordErrors,
+    inputRef,
+    imageUrl,
+    file,
+    handleResetFile,
+    handleClick,
     handleChange,
     handleFileChange,
     handleSubmit,

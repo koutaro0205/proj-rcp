@@ -10,12 +10,12 @@ const styles = {
     fontSize: fontSizes.xs,
   }),
   inner: css({
-    paddingBlock: space.s,
+    paddingBlock: space.m,
   }),
   list: css({
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: space.xl,
+    marginBottom: space.xxl,
     gap: space.l,
   }),
 };

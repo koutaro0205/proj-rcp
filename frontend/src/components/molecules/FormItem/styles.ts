@@ -1,5 +1,6 @@
 import { css } from '@emotion/css';
 
+import fontWeight from '@/theme/fontWeight';
 import space from '@/theme/space';
 
 const styles = {
@@ -7,7 +8,7 @@ const styles = {
     display: 'inline-block',
     width: '100%',
     marginBottom: space.xxs,
-    fontWeight: '700',
+    fontWeight: fontWeight.bold,
   }),
 };
 

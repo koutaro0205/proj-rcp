@@ -24,14 +24,14 @@ class Api::V1::SessionsController < ApplicationController
 
   def logged_in_user
     if current_user
-      render json: { logged_in: logged_in?, user: current_user }
+      render json: { logged_in: logged_in?, user: generate_related_json(current_user) }
     else
       render json: { logged_in: logged_in?, message: 'ユーザーが存在しません' }
     end
   end
 
-  # private
-  #   def associate(obj)
-  #     JSON.parse(obj.to_json(methods: [:image_url], include: [:questions, { recipes: { methods: [:image_url] } }] ) )
-  #   end
+  private
+    def generate_related_json(object)
+      JSON.parse(object.to_json(methods: [:image_url]))
+    end
 end

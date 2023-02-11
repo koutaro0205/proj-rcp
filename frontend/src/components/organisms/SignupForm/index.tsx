@@ -1,15 +1,27 @@
 import React from 'react';
 
 import InputButton from '@/components/atoms/Button/InputButton';
+import { Stack } from '@/components/layouts/Stack';
 import FormItem from '@/components/molecules/FormItem';
+import InputImage from '@/components/molecules/InputImage';
 import RenderErrors from '@/components/molecules/RenderErrors';
 
 import styles from './styles';
 import { useSignupForm } from './useSignupForm';
 
 const SignupForm: React.FC = () => {
-  const { userInfo, formErrors, handleChange, handleFileChange, handleSubmit } =
-    useSignupForm();
+  const {
+    userInfo,
+    formErrors,
+    inputRef,
+    imageUrl,
+    file,
+    handleChange,
+    handleFileChange,
+    handleResetFile,
+    handleClick,
+    handleSubmit,
+  } = useSignupForm();
 
   return (
     <form className={styles.formContainer} onSubmit={handleSubmit}>
@@ -45,16 +57,22 @@ const SignupForm: React.FC = () => {
         name="password_confirmation"
         onChange={handleChange}
       />
-      <FormItem
-        label="画像を選択"
-        type="file"
-        id="image"
-        name="image"
-        accept="image/*,.png,.jpg,.jpeg,.gif"
+      <InputImage
+        inputRef={inputRef}
+        uploadButtonLabel="画像をアップロード"
+        imageUrl={imageUrl}
+        file={file}
         onChange={handleFileChange}
+        onClickResetFile={handleResetFile}
+        onClickUploadFile={handleClick}
       />
-
-      <InputButton text="ユーザー登録" _styles={styles.submitButton} isCenter />
+      <Stack size="xxl" />
+      <InputButton
+        value="ユーザー登録"
+        type="submit"
+        _styles={styles.submitButton}
+        isCenter
+      />
     </form>
   );
 };

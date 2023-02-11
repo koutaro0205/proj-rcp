@@ -12,9 +12,14 @@ export const useSignupForm = () => {
   const {
     userInfo,
     formErrors,
+    inputRef,
+    imageUrl,
+    file,
     handleChange,
-    handleFileChange,
     checkCanRequest,
+    handleFileChange,
+    handleResetFile,
+    handleClick,
   } = useInputForm();
 
   const { data, error } = useGetAllUsers();
@@ -36,8 +41,13 @@ export const useSignupForm = () => {
   return {
     userInfo,
     formErrors,
+    inputRef,
+    imageUrl,
+    file,
     handleChange,
     handleFileChange,
+    handleResetFile,
+    handleClick,
     handleSubmit,
   };
 };

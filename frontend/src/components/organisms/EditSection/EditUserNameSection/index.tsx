@@ -45,7 +45,8 @@ const EditUserNameSection: React.FC<Props> = ({
           value={userInfo.name}
         />
         <InputButton
-          text="ユーザー名を変更する"
+          value="ユーザー名を変更する"
+          type="submit"
           isCenter
           disabled={currentUser.name === userInfo.name}
         />

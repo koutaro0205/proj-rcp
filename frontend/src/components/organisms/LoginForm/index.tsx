@@ -43,7 +43,12 @@ const LoginForm: React.FC = () => {
         <Text _styles={styles.checkItemText}>次回から自動的にログインする</Text>
       </CheckItem>
 
-      <InputButton text="ログイン" isCenter _styles={styles.submitButton} />
+      <InputButton
+        type="submit"
+        value="ログイン"
+        isCenter
+        _styles={styles.submitButton}
+      />
       <Stack size="l" />
       <Text textAlign="center">
         ユーザー登録されていない方は

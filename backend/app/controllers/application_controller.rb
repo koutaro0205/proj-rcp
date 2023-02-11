@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::API
   before_action :set_csrf_token_header
-  # before_action :check_xhr_header
 
   include ActionController::Cookies
   include ActionController::RequestForgeryProtection
@@ -13,15 +12,15 @@ class ApplicationController < ActionController::API
 
   private
 
-    # def check_xhr_header
-    #   return if request.xhr?
+    def attach_image(parameters)
+      blob = ActiveStorage::Blob.create_and_upload!(
+        io: StringIO.new(decode(params[:image][:data]) + "\n"),
+        filename: params[:image][:filename]
+        )
+        parameters.image.attach(blob)
+    end
 
-    #   render json: { error: 'forbidden' }, status: :forbidden
-    # end
-
-    def logged_in_now?
-      unless logged_in?
-        render json: { status: :forbidden, logged_in: false, message: 'ユーザーが存在しません' }
-      end
+    def decode(str)
+      Base64.decode64(str.split(',').last)
     end
 end

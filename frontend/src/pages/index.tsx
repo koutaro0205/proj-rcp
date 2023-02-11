@@ -11,35 +11,22 @@ import {
 } from '@/features/currentUser/selecters';
 
 const HomePage: NextPage = () => {
+  // ログインユーザーデバッグ
   const currentUser = useSelector(selectCurrentUser);
   const loggedInStatus = useSelector(selectIsLoggedIn);
   const [isOpen, setIsOpen] = React.useState(false);
-  // 表示テストも兼ねて、暫定実装（スタイルはあてていない）
   return (
     <Layout>
-      <Stack size="xxl" />
-      <button onClick={() => setIsOpen(true)}>モーダルを開く</button>
-      <Modal isOpenModal={isOpen} closeModal={() => setIsOpen(false)}>
-        <h1>ログイン状況: {loggedInStatus ? 'ログイン中' : '未ログイン'}</h1>
-        <Stack size="xxl" />
-        <p>ログインユーザー：{currentUser?.name}</p>
-      </Modal>
-      <Stack size="xxl" />
-      <Stack size="xxl" isDebugHighlight />
-      <Stack size="xxl" />
-      <Stack size="xxl" isDebugHighlight />
-      <Stack size="xxl" />
-      <Stack size="xxl" isDebugHighlight />
-      <Stack size="xxl" />
-      <Stack size="xxl" isDebugHighlight />
-      <Stack size="xxl" />
-      <Stack size="xxl" isDebugHighlight />
-      <Stack size="xxl" />
-      <Stack size="xxl" isDebugHighlight />
-      <Stack size="xxl" />
-      <Stack size="xxl" isDebugHighlight />
-      <Stack size="xxl" />
-      <Stack size="xxl" isDebugHighlight />
+      {/* スクロール幅を確保（スクロール時の動作確認用） */}
+      <div style={{ paddingBottom: 1200 }}>
+        {/* モーダルデバッグ */}
+        <button onClick={() => setIsOpen(true)}>モーダルを開く</button>
+        <Modal isOpenModal={isOpen} closeModal={() => setIsOpen(false)}>
+          <h1>ログイン状況: {loggedInStatus ? 'ログイン中' : '未ログイン'}</h1>
+          <Stack size="xxl" />
+          <p>ログインユーザー：{currentUser?.name}</p>
+        </Modal>
+      </div>
     </Layout>
   );
 };

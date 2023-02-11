@@ -22,5 +22,5 @@ const Template: ComponentStory<typeof InputButton> = (args) => (
 
 export const Nomal = Template.bind({});
 Nomal.args = {
-  text: '検索',
+  value: '検索',
 };

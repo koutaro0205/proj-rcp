@@ -12,7 +12,12 @@ export const SearchForm: React.FC = () => {
       <form className={styles.searchForm}>
         <div className={styles.content}>
           <SearchField name="keyword" placeholder="キーワードを入力" />
-          <InputButton text="検索" _styles={styles.searchSubmit} />
+          <InputButton
+            type="submit"
+            value="検索"
+            _styles={styles.searchSubmit}
+            pattern="inline"
+          />
         </div>
         <Explanation message="検索したいキーワードを入力してください。" />
       </form>

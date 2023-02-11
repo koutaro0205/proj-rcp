@@ -5,6 +5,8 @@ import { selectCurrentUser } from '@/features/currentUser/selecters';
 import { UserParams } from '@/services/users/types';
 import { isEmptyArray } from '@/utils/match';
 
+import { useUploadFiles } from './useUploadFiles';
+
 const DEFAULTS: UserParams = {
   name: '',
   email: '',
@@ -19,6 +21,16 @@ const DEFAULTS: UserParams = {
 export const useInputForm = () => {
   const currentUser = useSelector(selectCurrentUser);
 
+  const {
+    inputRef,
+    imageInfo,
+    imageUrl,
+    file,
+    setFile,
+    handleFileChange,
+    handleClick,
+  } = useUploadFiles();
+
   const initialUserState = useMemo(() => {
     return { ...DEFAULTS, ...currentUser };
   }, [currentUser]);
@@ -30,6 +42,22 @@ export const useInputForm = () => {
     setUserInfo(initialUserState);
   }, [initialUserState]);
 
+  useEffect(() => {
+    setUserInfo({
+      ...userInfo,
+      image: { ...imageInfo },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageInfo]);
+
+  const handleResetFile = useCallback(() => {
+    setFile(null);
+    setUserInfo({
+      ...userInfo,
+      image: DEFAULTS.image,
+    });
+  }, [setFile, userInfo]);
+
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { target } = e;
@@ -37,26 +65,6 @@ export const useInputForm = () => {
       const { value } = target;
 
       setUserInfo({ ...userInfo, [name]: value });
-    },
-    [userInfo]
-  );
-
-  const handleFileChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { files } = e.target;
-
-      if (files) {
-        const file = files[0];
-        const reader = new FileReader();
-        setUserInfo({
-          ...userInfo,
-          image: {
-            data: reader.result,
-            filename: file ? file.name : 'unknownfile',
-          },
-        });
-        reader.readAsDataURL(file);
-      }
     },
     [userInfo]
   );
@@ -73,8 +81,13 @@ export const useInputForm = () => {
     userInfo,
     formErrors,
     currentUser,
+    inputRef,
+    imageUrl,
+    file,
     handleChange,
-    handleFileChange,
     checkCanRequest,
+    handleFileChange,
+    handleResetFile,
+    handleClick,
   };
 };
