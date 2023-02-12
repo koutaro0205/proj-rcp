@@ -10,7 +10,9 @@ import { UserParams } from '@/services/users/types';
 type Props = {
   userInfo: UserParams;
   formErrors: string[];
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 

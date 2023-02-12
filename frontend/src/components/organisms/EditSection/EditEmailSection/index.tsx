@@ -15,7 +15,9 @@ type Props = {
   userInfo: UserParams;
   currentUser: CurrentUser;
   formErrors: string[];
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 

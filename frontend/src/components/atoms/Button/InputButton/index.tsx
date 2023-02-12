@@ -1,7 +1,7 @@
 import { cx } from '@emotion/css';
 import React from 'react';
 
-import { InputType } from '@/common/constants/inputs';
+import { InputType } from '@/common/types/inputs';
 import { Color } from '@/theme/colors';
 
 import { getStyles } from './styles';

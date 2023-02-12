@@ -8,4 +8,16 @@ export type FileType =
   | 'application/pdf';
 
 // NOTE: 必要に応じて増やす。
-export type InputType = 'submit' | 'file' | 'email' | 'image' | 'button';
+export type InputType =
+  | 'submit'
+  | 'file'
+  | 'email'
+  | 'image'
+  | 'button'
+  | 'text'
+  | 'password'
+  | 'hidden'
+  | 'checkbox'
+  | 'search'
+  | 'time'
+  | 'number';

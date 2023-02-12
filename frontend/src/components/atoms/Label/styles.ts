@@ -3,7 +3,12 @@ import { css } from '@emotion/css';
 import colors from '@/theme/colors';
 import fontSizes, { FontSizes } from '@/theme/fontSize';
 
-export type LabelPattern = 'new' | 'required';
+export const LABEL_TEXT = {
+  required: '必須',
+  new: 'NEW',
+};
+
+export type LabelPattern = keyof typeof LABEL_TEXT;
 
 type GetStylesInput = {
   pattern: LabelPattern;

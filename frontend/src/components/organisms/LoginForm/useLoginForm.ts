@@ -22,8 +22,12 @@ const useLoginForm = () => {
   const [authInfo, setAuthInfo] = useState<LoginParams>(DEFAULTS);
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = e;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    // FIXME: 型を修正する。
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { target }: any = e;
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 

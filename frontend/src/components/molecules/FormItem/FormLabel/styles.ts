@@ -1,12 +1,14 @@
 import { css } from '@emotion/css';
 
-import space from '@/theme/space';
+import fontSizes from '@/theme/fontSize';
+import fontWeight from '@/theme/fontWeight';
 
 const styles = {
   container: css({
     display: 'flex',
     alignItems: 'center',
-    columnGap: space.xs,
+    fontWeight: fontWeight.bold,
+    fontSize: fontSizes.s,
   }),
 };
 

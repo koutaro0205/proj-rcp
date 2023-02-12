@@ -19,7 +19,9 @@ const usePasswordResetForm = () => {
 
   if (error) handleResponseError(USERS.ERROR);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value } = e.target;
     setEmail(value);
   };
