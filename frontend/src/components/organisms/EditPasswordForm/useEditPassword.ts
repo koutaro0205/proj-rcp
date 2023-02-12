@@ -85,7 +85,9 @@ const useEditPassword = () => {
   const [newPasswords, setNewPasswords] = useState<DefaultValue>(DEFAULTS);
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { target } = e;
     const { name } = target;
     const { value } = target;

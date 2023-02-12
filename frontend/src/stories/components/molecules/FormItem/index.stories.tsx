@@ -13,21 +13,29 @@ export default {
       },
       defaultValue: 'ストーリー',
     },
+    isRequired: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
+    fieldType: {
+      control: {
+        type: 'radio',
+      },
+      defaultValue: 'textField',
+    },
+    fieldWidth: {
+      control: {
+        type: 'radio',
+      },
+      defaultValue: 'fluid',
+    },
   },
 } as ComponentMeta<typeof FormItem>;
 
 const Template: ComponentStory<typeof FormItem> = (args: Props) => (
-  <div style={{ width: '50%' }}>
-    <FormItem {...args} />
-    <FormItem {...args} />
-    <FormItem {...args} />
-  </div>
+  <FormItem {...args} />
 );
 
 export const Nomal = Template.bind({});
-Nomal.args = {
-  label: 'label',
-  id: 'id',
-  type: 'type',
-  name: 'name',
-};

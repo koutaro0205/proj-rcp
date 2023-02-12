@@ -35,7 +35,7 @@ const Text: React.FC<Props> = ({
     size,
     weight,
   });
-  return <p className={cx(style.text, _styles)}>{children}</p>;
+  return <span className={cx(style.text, _styles)}>{children}</span>;
 };
 
 export default Text;

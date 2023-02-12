@@ -28,6 +28,7 @@ export const getStyles = ({
   };
   return {
     text: css({
+      display: 'inline-blick',
       textAlign,
       lineHeight: lineHeights[lineHeight],
       ...getBackground,

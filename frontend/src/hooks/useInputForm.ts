@@ -59,7 +59,7 @@ export const useInputForm = () => {
   }, [setFile, userInfo]);
 
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { target } = e;
       const { name } = target;
       const { value } = target;
