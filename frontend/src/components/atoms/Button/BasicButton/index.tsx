@@ -11,7 +11,8 @@ type Props = {
   color?: Color;
   backgroundColor?: Color;
   isCircle?: boolean;
-  fontSize?: FontSizes;
+  isTransparent?: boolean;
+  fontSize?: Extract<FontSizes, 'xxs' | 'xs' | 's' | 'm'>;
 };
 
 const BasicButton: React.FC<Props> = ({
@@ -20,16 +21,23 @@ const BasicButton: React.FC<Props> = ({
   color = 'black',
   backgroundColor = 'alto',
   isCircle = false,
+  isTransparent = false,
   fontSize = 'm',
   ...buttonProps
 }) => {
-  const styles = getStyles({ color, backgroundColor, isCircle, fontSize });
+  const styles = getStyles({
+    color,
+    backgroundColor,
+    isCircle,
+    fontSize,
+    isTransparent,
+  });
   return (
     <button
       className={styles.container}
       onClick={onClick}
-      {...buttonProps}
       type="button"
+      {...buttonProps}
     >
       {label}
     </button>
