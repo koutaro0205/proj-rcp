@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InputButton from '@/components/atoms/Button/InputButton';
+import { Stack } from '@/components/layouts/Stack';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
 
@@ -20,6 +21,7 @@ const PasswordResetForm: React.FC = () => {
         name="email"
         onChange={handleChange}
       />
+      <Stack size="ml" />
 
       <InputButton
         type="submit"

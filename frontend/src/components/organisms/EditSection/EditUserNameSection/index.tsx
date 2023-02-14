@@ -4,6 +4,7 @@ import InputButton from '@/components/atoms/Button/InputButton';
 import Explanation from '@/components/atoms/Explanation';
 import Text from '@/components/atoms/Text';
 import SubTitle from '@/components/atoms/Title/SubTitile';
+import { Stack } from '@/components/layouts/Stack';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
 import { CurrentUser } from '@/features/currentUser/type';
@@ -46,6 +47,7 @@ const EditUserNameSection: React.FC<Props> = ({
           onChange={onChange}
           value={userInfo.name}
         />
+        <Stack size="ml" />
         <InputButton
           value="ユーザー名を変更する"
           type="submit"

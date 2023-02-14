@@ -35,6 +35,7 @@ const SignupForm: React.FC = () => {
         onChange={handleChange}
         value={userInfo.name}
       />
+      <Stack size="ml" />
       <FormItem
         label="メールアドレス"
         type="text"
@@ -43,6 +44,7 @@ const SignupForm: React.FC = () => {
         onChange={handleChange}
         value={userInfo.email}
       />
+      <Stack size="ml" />
       <FormItem
         label="パスワード"
         type="password"
@@ -50,6 +52,7 @@ const SignupForm: React.FC = () => {
         name="password"
         onChange={handleChange}
       />
+      <Stack size="ml" />
       <FormItem
         label="パスワード確認"
         type="password"
@@ -57,6 +60,7 @@ const SignupForm: React.FC = () => {
         name="password_confirmation"
         onChange={handleChange}
       />
+      <Stack size="ml" />
       <InputImage
         inputRef={inputRef}
         uploadButtonLabel="画像をアップロード"

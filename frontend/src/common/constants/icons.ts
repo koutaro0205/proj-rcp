@@ -7,6 +7,8 @@ export const ICONS = {
   checked: '/icons/checked.svg',
   unchecked: '/icons/unchecked.svg',
   camera: '/icons/camera.svg',
+  trash: '/icons/trash.svg',
+  plus: '/icons/plus.svg',
 };
 
 export type Icons = keyof typeof ICONS;

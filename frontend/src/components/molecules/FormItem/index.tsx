@@ -97,7 +97,6 @@ const FormItem: React.FC<Props> = ({
         </>
       )}
       {getInputField()}
-      <Stack size="ml" />
     </div>
   );
 };

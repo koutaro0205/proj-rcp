@@ -26,6 +26,7 @@ const LoginForm: React.FC = () => {
         name="email"
         onChange={handleChange}
       />
+      <Stack size="ml" />
       <FormItem
         label="パスワード"
         type="password"
@@ -33,6 +34,7 @@ const LoginForm: React.FC = () => {
         name="password"
         onChange={handleChange}
       />
+      <Stack size="ml" />
 
       <CheckItem
         type="checkbox"

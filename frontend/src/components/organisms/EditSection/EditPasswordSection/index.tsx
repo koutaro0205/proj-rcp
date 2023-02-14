@@ -3,6 +3,7 @@ import React from 'react';
 import InputButton from '@/components/atoms/Button/InputButton';
 import Explanation from '@/components/atoms/Explanation';
 import SubTitle from '@/components/atoms/Title/SubTitile';
+import { Stack } from '@/components/layouts/Stack';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
 import { UserParams } from '@/services/users/types';
@@ -36,6 +37,7 @@ const EditPasswordSection: React.FC<Props> = ({
           name="password"
           onChange={onChange}
         />
+        <Stack size="ml" />
         <FormItem
           label="パスワード確認"
           type="password"
@@ -43,6 +45,7 @@ const EditPasswordSection: React.FC<Props> = ({
           name="password_confirmation"
           onChange={onChange}
         />
+        <Stack size="ml" />
         <InputButton
           value="パスワードを変更する"
           type="submit"
