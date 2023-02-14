@@ -24,14 +24,18 @@ const Header: React.FC = () => {
           <Logo logoText={SITE_TITLE} path={HOME} />
           <SearchForm />
           <ul className={styles.menuList}>
-            <IconButton label="レシピを投稿" icon="diet" path="/recipes/new" />
+            <IconButton
+              label="レシピを投稿"
+              iconName="diet"
+              path="/recipes/new"
+            />
             <Queue size="m" />
             {isLoggedIn && (
               <IconButton
                 label="お気に入り"
                 color="favorite"
                 path="/recipes/new"
-                icon="favorite"
+                iconName="favorite"
               />
             )}
           </ul>

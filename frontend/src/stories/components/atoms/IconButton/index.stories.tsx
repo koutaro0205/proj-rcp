@@ -13,6 +13,12 @@ export default {
       },
       defaultValue: 'ボタン',
     },
+    iconName: {
+      control: {
+        type: 'select',
+      },
+      defaultValue: 'diet',
+    },
   },
 } as ComponentMeta<typeof IconButton>;
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InputButton from '@/components/atoms/Button/InputButton';
+import { Stack } from '@/components/layouts/Stack';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
 
@@ -20,6 +21,7 @@ const EditPasswordForm: React.FC = () => {
         name="password"
         onChange={handleChange}
       />
+      <Stack size="ml" />
       <FormItem
         label="パスワード確認"
         type="password"
@@ -27,6 +29,7 @@ const EditPasswordForm: React.FC = () => {
         name="password_confirmation"
         onChange={handleChange}
       />
+      <Stack size="ml" />
 
       <InputButton type="submit" value="再設定する" isCenter />
     </form>
