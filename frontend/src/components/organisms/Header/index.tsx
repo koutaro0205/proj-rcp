@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HOME } from '@/common/constants/path';
+import { HOME, POST_RECIPE_PATH } from '@/common/constants/path';
 import IconButton from '@/components/atoms/Button/IconButton';
 import Logo from '@/components/atoms/Logo';
 import NavItem from '@/components/atoms/NavItem';
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
             <IconButton
               label="レシピを投稿"
               iconName="diet"
-              path="/recipes/new"
+              path={POST_RECIPE_PATH}
             />
             <Queue size="m" />
             {isLoggedIn && (

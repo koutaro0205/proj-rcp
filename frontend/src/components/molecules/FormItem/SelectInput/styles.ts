@@ -1,5 +1,7 @@
 import { css } from '@emotion/css';
 
+import { NORMAL_BORDER_STYLE } from '@/common/constants/typography';
+import borderRadius from '@/theme/borderRadius';
 import colors from '@/theme/colors';
 import fontSizes from '@/theme/fontSize';
 import space from '@/theme/space';
@@ -32,6 +34,9 @@ const styles = {
     WebkitAppearance: 'none',
     appearance: 'none',
     MozAppearance: 'none',
+    border: NORMAL_BORDER_STYLE,
+    borderRadius: borderRadius.s,
+    boxSizing: 'border-box',
   }),
 };
 

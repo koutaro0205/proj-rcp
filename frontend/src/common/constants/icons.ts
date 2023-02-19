@@ -1,5 +1,6 @@
 export const ICONS = {
   rightArrow: '/icons/rightArrow.svg',
+  downArrow: '/icons/downArrow.svg',
   delete: '/icons/delete.svg',
   diet: '/icons/diet.svg',
   favorite: '/icons/favorite.svg',

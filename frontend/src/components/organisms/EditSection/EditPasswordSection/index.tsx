@@ -28,6 +28,7 @@ const EditPasswordSection: React.FC<Props> = ({
     <div>
       <SubTitle>パスワード変更</SubTitle>
       <Explanation message="6文字以上の半角英数字で、パスワードの変更が可能です。" />
+      <Stack size="ml" />
       <form onSubmit={onSubmit}>
         <RenderErrors formErrors={formErrors} />
         <FormItem
@@ -37,7 +38,7 @@ const EditPasswordSection: React.FC<Props> = ({
           name="password"
           onChange={onChange}
         />
-        <Stack size="ml" />
+        <Stack size="l" />
         <FormItem
           label="パスワード確認"
           type="password"
@@ -45,7 +46,7 @@ const EditPasswordSection: React.FC<Props> = ({
           name="password_confirmation"
           onChange={onChange}
         />
-        <Stack size="ml" />
+        <Stack size="l" />
         <InputButton
           value="パスワードを変更する"
           type="submit"

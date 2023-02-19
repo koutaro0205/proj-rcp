@@ -10,8 +10,6 @@ import RenderErrors from '@/components/molecules/RenderErrors';
 import { CurrentUser } from '@/features/currentUser/type';
 import { UserParams } from '@/services/users/types';
 
-import styles from './styles';
-
 type Props = {
   userInfo: UserParams;
   currentUser: CurrentUser;
@@ -34,9 +32,9 @@ const EditUserNameSection: React.FC<Props> = ({
     <div>
       <SubTitle>ユーザー名変更</SubTitle>
       <Explanation message="アプリ内で表示されるあなたのユーザー名です。自由に変更できます。" />
-      <div className={styles.textWrapper}>
-        <Text backgroundColor="background">{currentUser.name}</Text>
-      </div>
+      <Stack size="s" />
+      <Text backgroundColor="background">{currentUser.name}</Text>
+      <Stack size="l" />
       <form onSubmit={onSubmit}>
         <RenderErrors formErrors={formErrors} />
         <FormItem

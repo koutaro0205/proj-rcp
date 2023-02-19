@@ -7,36 +7,65 @@ import { Stack } from '@/components/layouts/Stack';
 import FormLabel from '@/components/molecules/FormItem/FormLabel';
 import { useInputType } from '@/hooks/useInputType';
 
+import SelectInput from './SelectInput';
 import { getStyles, FieldWidth } from './styles';
 
-export type Props = {
+type Option = {
+  id: number;
+  name: string;
+};
+type BaseProps = {
+  fieldWidth?: FieldWidth;
+  isRequired?: boolean;
   label?: string;
+};
+
+type TextProps = {
+  fieldType?: 'textarea' | 'textField';
   id: string;
   type: InputType;
   name: string;
-  accept?: string;
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   value?: string;
-  isRequired?: boolean;
   placeholder?: string;
-  fieldType?: 'textarea' | 'textField';
-  fieldWidth?: FieldWidth;
-};
+  // Selectorの場合のProps
+  options?: never;
+  onOptionChange?: never;
+  selectedOption?: never;
+} & BaseProps;
+
+type SelectorProps = {
+  fieldType: 'selector';
+  options: Option[];
+  onOptionChange: () => void;
+  selectedOption: number;
+  // textField, textareaの場合のProps
+  id?: never;
+  type?: never;
+  name?: never;
+  onChange?: never;
+  value?: never;
+  placeholder?: never;
+} & BaseProps;
+
+export type Props = TextProps | SelectorProps;
 
 const FormItem: React.FC<Props> = ({
   label,
   id,
   type,
   name,
-  accept,
   onChange,
-  value = undefined,
+  value,
   isRequired = false,
-  placeholder = '',
-  fieldType = 'textField',
+  placeholder,
+  fieldType,
   fieldWidth = 'fluid',
+  options,
+  onOptionChange,
+  selectedOption,
 }) => {
   const styles = getStyles(fieldWidth);
   const { handleClick, isTypeOfPassword } = useInputType();
@@ -47,23 +76,32 @@ const FormItem: React.FC<Props> = ({
     return type;
   };
   const getInputField = () => {
-    if (fieldType === 'textField') {
+    if (fieldType === 'textarea') {
       return (
-        <input
-          className={styles.inputField}
-          type={getType(type)}
+        <textarea
+          className={cx(styles.inputField, styles.textarea)}
           id={id}
           name={name}
-          accept={accept}
           onChange={onChange}
           value={value}
           placeholder={placeholder}
         />
       );
     }
+
+    if (fieldType === 'selector') {
+      return (
+        <SelectInput
+          options={options}
+          onOptionChange={onOptionChange}
+          selectedOption={selectedOption}
+        />
+      );
+    }
     return (
-      <textarea
-        className={cx(styles.inputField, styles.textarea)}
+      <input
+        className={styles.inputField}
+        type={getType(type)}
         id={id}
         name={name}
         onChange={onChange}
@@ -93,7 +131,7 @@ const FormItem: React.FC<Props> = ({
               />
             )}
           </div>
-          <Stack size="xxs" />
+          <Stack size="xs" />
         </>
       )}
       {getInputField()}

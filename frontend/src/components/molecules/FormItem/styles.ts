@@ -1,5 +1,6 @@
 import { css } from '@emotion/css';
 
+import { NORMAL_BORDER_STYLE } from '@/common/constants/typography';
 import borderRadius from '@/theme/borderRadius';
 import colors from '@/theme/colors';
 import lineHeights from '@/theme/lineHeights';
@@ -17,7 +18,7 @@ export const getStyles = (fieldWidth: FieldWidth) => {
   return {
     container: css({
       display: 'inline-block',
-      width: '100%',
+      width: fieldWidth === 's' ? 'auto' : '100%',
     }),
     labelContainer: css({
       display: 'flex',
@@ -25,7 +26,7 @@ export const getStyles = (fieldWidth: FieldWidth) => {
       alignItems: 'center',
     }),
     inputField: css({
-      display: 'block',
+      display: fieldWidth === 's' ? 'inline-block' : 'block',
       transition:
         'border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s',
       width: FORM_WIDTH[fieldWidth],
@@ -34,7 +35,7 @@ export const getStyles = (fieldWidth: FieldWidth) => {
       color: colors.grey,
       backgroundColor: colors.white,
       backgroundImage: 'none',
-      border: `1px solid ${colors.alto}`,
+      border: NORMAL_BORDER_STYLE,
       borderRadius: borderRadius.s,
       boxSizing: 'border-box',
     }),

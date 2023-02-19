@@ -1,5 +1,5 @@
 export const INNER_WIDTH = {
-  m: '600px',
+  m: '730px',
   l: '900px',
 };
 export type InnerSize = keyof typeof INNER_WIDTH;

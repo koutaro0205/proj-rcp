@@ -7,7 +7,7 @@ import styles from './styles';
 
 type Props = {
   children: string;
-  htmlFor: string;
+  htmlFor?: string;
   isRequired?: boolean;
 };
 
