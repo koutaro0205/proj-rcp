@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import SelectInput from '@/components/atoms/SelectInput';
+import SelectInput from '@/components/molecules/FormItem/SelectInput';
 
 const data = [
   { id: 1, name: '野菜' },

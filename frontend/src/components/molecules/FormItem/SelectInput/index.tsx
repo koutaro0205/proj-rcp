@@ -2,20 +2,20 @@ import React from 'react';
 
 import styles from './styles';
 
-type Data = {
+type Option = {
   id: number;
   name: string;
 };
 type Props = {
-  array: Data[];
+  options: Option[];
   onOptionChange: () => void;
-  selectedOption: string;
+  selectedOption: number;
 };
 
 const INITIAL_OPTION_LABEL = '選択されていません';
 
 const SelectInput: React.FC<Props> = ({
-  array,
+  options,
   onOptionChange,
   selectedOption,
 }) => {
@@ -27,9 +27,9 @@ const SelectInput: React.FC<Props> = ({
         value={selectedOption}
       >
         <option value={0}>{INITIAL_OPTION_LABEL}</option>
-        {array.map((arr, index) => (
-          <option key={arr.id} value={index}>
-            {arr.name}
+        {options.map((option, index) => (
+          <option key={option.id} value={index}>
+            {option.name}
           </option>
         ))}
       </select>

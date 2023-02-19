@@ -34,7 +34,9 @@ const EditEmailSection: React.FC<Props> = ({
     <div>
       <SubTitle>メールアドレス変更</SubTitle>
       <Text lineHeight="l">現在のメールアドレス</Text>
+      <Stack size="xs" />
       <Text backgroundColor="background">{currentUser.email}</Text>
+      <Stack size="l" />
       <Explanation message="新しいメールアドレスを入力して、変更を完了させてください。" />
       <form className={styles.form} onSubmit={onSubmit}>
         <RenderErrors formErrors={formErrors} />
@@ -46,7 +48,7 @@ const EditEmailSection: React.FC<Props> = ({
           onChange={onChange}
           value={userInfo.email}
         />
-        <Stack size="ml" />
+        <Stack size="l" />
         <InputButton
           value="メールアドレスを変更する"
           type="submit"

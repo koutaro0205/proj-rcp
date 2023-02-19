@@ -25,6 +25,7 @@ export const getStyles = ({
   const getBackground = backgroundColor && {
     backgroundColor: colors[backgroundColor],
     padding: space.s,
+    display: 'block',
   };
   return {
     text: css({
