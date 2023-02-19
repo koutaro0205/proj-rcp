@@ -19,8 +19,6 @@ const UsersPage: NextPage = () => {
     handleResponseError('failed to get users');
   }
 
-  console.log(data[1]);
-
   return (
     <Layout>
       <ContentWidth>
