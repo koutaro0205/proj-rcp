@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  has_one_attached :main_image
+  has_one_attached :image
   has_many :recipe_ingredients, dependent: :destroy
   has_many :recipe_steps, dependent: :destroy
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
