@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectCurrentUser } from '@/features/currentUser/selecters';
+import { selectCurrentUser } from '@/features/currentUser/selectors';
 
 import EditEmailSection from './EditEmailSection';
 import EditPasswordSection from './EditPasswordSection';

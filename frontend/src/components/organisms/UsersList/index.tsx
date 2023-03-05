@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { User } from '@/@types/data';
 import { ITEMS_PER_PAGE } from '@/common/constants/characters';
+import { User } from '@/common/types/data';
 import Text from '@/components/atoms/Text';
 import SubTitle from '@/components/atoms/Title/SubTitile';
 import Pagination from '@/components/molecules/Pagination';

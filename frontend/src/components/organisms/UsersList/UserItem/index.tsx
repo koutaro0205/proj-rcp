@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { User } from '@/@types/data';
+import { User } from '@/common/types/data';
 import DeleteButton from '@/components/atoms/Button/DeleteButton';
 import Divider from '@/components/atoms/Divider';
 import LinkText from '@/components/atoms/LinkText';

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { User } from '@/@types/data';
 import { FOLLOWING_PATH, FOLLOWERS_PATH } from '@/common/constants/path';
+import { User } from '@/common/types/data';
 import FollowButton from '@/components/atoms/Button/FollowButton';
 import Divider from '@/components/atoms/Divider';
 import UserImage from '@/components/atoms/UserImage';

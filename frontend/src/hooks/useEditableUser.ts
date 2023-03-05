@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react';
 
-import { User } from '@/@types/data';
 import { HOME } from '@/common/constants/path';
 import { CORRECT_USER } from '@/common/constants/toast';
 import { EmptyObject } from '@/common/types';
+import { User } from '@/common/types/data';
 import { isCurrentUser } from '@/utils/match';
 import { warn } from '@/utils/notifications';
 

@@ -4,18 +4,25 @@ import Icon from '@/components/atoms/Icon';
 import SortableIcon from '@/components/atoms/SortableIcon';
 import { Queue } from '@/components/layouts/Queue';
 import FormItem from '@/components/molecules/FormItem';
+import { Ingredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 import { getStyles } from './styles';
 
 type Props = {
   inputId: string;
   inputName: string;
+  inputValue: Ingredient;
   orderIndex: number;
   dragIndex: number | null;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  onChangeName: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
   ) => void;
-  onClickRemoveIngredient: () => void;
+  onChangeQuantity: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => void;
+  onClickRemoveIngredient: (orderIndex: number) => void;
   onDragStart: (orderIndex: number) => void;
   onDragEnter: (orderIndex: number) => void;
   onDragEnd: () => void;
@@ -24,15 +31,19 @@ type Props = {
 const IngredientFormItem: React.FC<Props> = ({
   inputId,
   inputName,
+  inputValue,
   orderIndex,
   dragIndex,
   onClickRemoveIngredient,
-  onChange,
+  onChangeName,
+  onChangeQuantity,
   onDragStart,
   onDragEnter,
   onDragEnd,
 }) => {
   const styles = getStyles(dragIndex === orderIndex);
+  const ingredientNameId = `${inputId}-ingredient_name-${orderIndex}`;
+  const ingredientQuauntityId = `${inputName}-quantity-${orderIndex}`;
   return (
     <div
       className={styles.container}
@@ -48,26 +59,32 @@ const IngredientFormItem: React.FC<Props> = ({
       <Queue size="m" />
       <div className={styles.content}>
         <FormItem
-          id={inputId}
-          name={inputName}
+          id={ingredientNameId}
+          name={ingredientNameId}
           type="text"
-          onChange={onChange}
+          onChange={onChangeName}
           fieldType="textField"
           placeholder="例) 玉ねぎ"
+          value={inputValue?.ingredient_name}
         />
         <Queue size="m" />
         <FormItem
-          id={inputId}
-          name={inputName}
+          id={ingredientQuauntityId}
+          name={ingredientQuauntityId}
           type="text"
-          onChange={onChange}
+          onChange={onChangeQuantity}
           fieldType="textField"
           placeholder="例) 半切れ"
+          value={inputValue?.quantity}
         />
       </div>
       <Queue size="m" />
       <div className={styles.iconContainer}>
-        <Icon name="trash" size={16} onClick={onClickRemoveIngredient} />
+        <Icon
+          name="TRASH"
+          size="xs"
+          onClick={() => onClickRemoveIngredient(orderIndex)}
+        />
       </div>
     </div>
   );

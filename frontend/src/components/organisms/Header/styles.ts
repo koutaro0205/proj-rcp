@@ -25,6 +25,7 @@ export const getStyles = (isSticky: boolean) => {
     navigation: css({
       backgroundColor: colors.PrimaryColor,
       zIndex: zIndex.normal,
+      boxShadow: '0px 8px 5px -5px rgba(0,0,0,0.5)',
       ...(isSticky && {
         position: 'fixed',
         top: 0,

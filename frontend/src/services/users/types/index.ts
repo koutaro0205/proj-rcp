@@ -1,5 +1,5 @@
-import { User } from '@/@types/data';
 import { StatusCode } from '@/common/types';
+import { User } from '@/common/types/data';
 
 export type UserParams = {
   /**

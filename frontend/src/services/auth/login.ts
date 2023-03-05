@@ -1,6 +1,6 @@
-import { User } from '@/@types/data';
 import { LOGIN_PATH } from '@/common/constants/path';
 import { StatusCode } from '@/common/types';
+import { User } from '@/common/types/data';
 import { client } from '@/utils/axios';
 
 export type LoginParams = {

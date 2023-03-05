@@ -11,8 +11,6 @@ type Props = {
   closeModal: () => void;
 };
 
-const CLOSE_ICON_SIZE = 20;
-
 // FIXME: スクロールできないようにする処理を実装する
 const Modal: React.FC<Props> = ({ isOpenModal, closeModal, children }) => {
   return (
@@ -28,7 +26,7 @@ const Modal: React.FC<Props> = ({ isOpenModal, closeModal, children }) => {
             style={{ ...transitionStyles[state] }}
           >
             <div className={styles.imageWrapper}>
-              <Icon size={CLOSE_ICON_SIZE} name="close" onClick={closeModal} />
+              <Icon size="s" name="CLOSE" onClick={closeModal} />
             </div>
             <div className={styles.modalContent}>{children}</div>
           </div>

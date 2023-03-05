@@ -4,8 +4,9 @@ import Icon from '@/components/atoms/Icon';
 import SortableIcon from '@/components/atoms/SortableIcon';
 import Text from '@/components/atoms/Text';
 import { Queue } from '@/components/layouts/Queue';
-import AttachedImage from '@/components/molecules/AttachedImage';
+import AttachedStepImage from '@/components/molecules/AttachedImage/AttachedStepImage';
 import FormItem from '@/components/molecules/FormItem';
+import { RecipeStep } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 import { getStyles } from './styles';
 
@@ -14,10 +15,16 @@ type Props = {
   inputName: string;
   orderIndex: number;
   dragIndex: number | null;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  imageUrl: string;
+  inputValue: RecipeStep;
+  file: File | null;
+  onChangeStepInput: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number,
+    field: keyof RecipeStep
   ) => void;
-  onClickRemoveStep: () => void;
+  onClickRemoveStep: (orderIndex: number) => void;
+  onClickResetImage: (index: number) => void;
   onDragStart: (orderIndex: number) => void;
   onDragEnter: (orderIndex: number) => void;
   onDragEnd: () => void;
@@ -28,8 +35,12 @@ const RecipeStepItem: React.FC<Props> = ({
   inputName,
   orderIndex,
   dragIndex,
+  imageUrl,
+  file,
+  inputValue,
   onClickRemoveStep,
-  onChange,
+  onClickResetImage,
+  onChangeStepInput,
   onDragStart,
   onDragEnter,
   onDragEnd,
@@ -57,18 +68,32 @@ const RecipeStepItem: React.FC<Props> = ({
           id={inputId}
           name={inputName}
           type="text"
-          onChange={onChange}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChangeStepInput(e, orderIndex, 'description')
+          }
           fieldType="textarea"
           placeholder="例) 野菜を洗った後、一口大にカットしてフライパンで炒める。"
+          value={inputValue?.description}
         />
         <Queue size="m" />
         <div className={styles.attachedImageWrapper}>
-          <AttachedImage size="subSize" />
+          <AttachedStepImage
+            index={orderIndex}
+            size="subSize"
+            onChangeStepInput={onChangeStepInput}
+            onClickResetImage={onClickResetImage}
+            imageUrl={imageUrl}
+            file={file}
+          />
         </div>
       </div>
       <Queue size="m" />
       <div className={styles.iconContainer}>
-        <Icon name="trash" size={16} onClick={onClickRemoveStep} />
+        <Icon
+          name="TRASH"
+          size="xs"
+          onClick={() => onClickRemoveStep(orderIndex)}
+        />
       </div>
     </div>
   );

@@ -6,8 +6,8 @@ import {
 } from 'next';
 import React from 'react';
 
-import { User } from '@/@types/data';
 import { FOLLOWING_PATH } from '@/common/constants/path';
+import { User } from '@/common/types/data';
 import Loading from '@/components/atoms/Loading';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ContentWidth from '@/components/layouts/ContentWidth';

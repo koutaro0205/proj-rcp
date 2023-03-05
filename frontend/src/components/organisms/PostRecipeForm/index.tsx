@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  COOKING_COST_OPTIONS,
+  COOKING_TIME_OPTIONS,
+} from '@/common/constants/options';
 import InputButton from '@/components/atoms/Button/InputButton';
 import Divider from '@/components/atoms/Divider';
 import Inset from '@/components/layouts/Inset';
@@ -9,25 +13,60 @@ import AttachedImage from '@/components/molecules/AttachedImage';
 import FormItem from '@/components/molecules/FormItem';
 import IngredientFormList from '@/components/molecules/IngredientFormList';
 import RecipeStepList from '@/components/molecules/RecipeStepList';
+import RenderErrors from '@/components/molecules/RenderErrors';
 
 import styles from './styles';
+import { usePostRecipeForm } from './usePostRecipeForm';
 
 const PostRecipeForm: React.FC = () => {
+  const {
+    handleSubmit,
+    handleIngredientNameChange,
+    handleQuantityChange,
+    handleInputChange,
+    handleStepInputChange,
+    handleFileChange,
+    handleChangeCost,
+    handleChangeCookingTime,
+    handleClickAddIngredient,
+    handleClickAddStep,
+    handleClickRemoveIngredient,
+    handleClickRemoveStep,
+    setStepFiles,
+    handleResetMainImage,
+    handleResetStepImage,
+    selectedCostIndex,
+    selectedCookingTimeIndex,
+    recipeParams,
+    previewImageUrl,
+    mainImage,
+    stepFiles,
+    formErrors,
+  } = usePostRecipeForm();
   return (
-    <form className={styles.container}>
+    <form className={styles.container} onSubmit={handleSubmit}>
+      <RenderErrors formErrors={formErrors} />
+
       <FormItem
         label="レシピタイトル"
         type="text"
         id="title"
         name="title"
-        onChange={() => {}}
+        onChange={handleInputChange}
         isRequired
-        // value={recipeInfo.name}
+        value={recipeParams.title}
       />
       <Stack size="l" />
       <div className={styles.recipeInformationSection}>
         <div className={styles.attachedImageWrapper}>
-          <AttachedImage size="mainSize" />
+          <AttachedImage
+            onChangeFileInput={handleFileChange}
+            onClickResetImage={handleResetMainImage}
+            size="mainSize"
+            imageUrl={previewImageUrl}
+            file={mainImage}
+            inputId="mainImage"
+          />
         </div>
         <Queue size="l" />
         <div className={styles.selectorsWrapper}>
@@ -35,25 +74,19 @@ const PostRecipeForm: React.FC = () => {
             isRequired
             label="調理時間"
             fieldType="selector"
-            options={[
-              { id: 1, name: '野菜' },
-              { id: 2, name: '肉' },
-              { id: 3, name: '乳製品' },
-            ]}
-            onOptionChange={() => {}}
-            selectedOption={0}
+            options={COOKING_TIME_OPTIONS}
+            onChangeOption={handleChangeCookingTime}
+            selectedOptionIndex={selectedCookingTimeIndex}
+            name="cooking_time"
           />
           <Stack size="ml" />
           <FormItem
             label="費用"
             fieldType="selector"
-            options={[
-              { id: 1, name: '100円' },
-              { id: 2, name: '500円' },
-              { id: 3, name: '1000円' },
-            ]}
-            onOptionChange={() => {}}
-            selectedOption={0}
+            name="cost"
+            options={COOKING_COST_OPTIONS}
+            onChangeOption={handleChangeCost}
+            selectedOptionIndex={selectedCostIndex}
           />
         </div>
       </div>
@@ -65,8 +98,8 @@ const PostRecipeForm: React.FC = () => {
         type="text"
         id="description"
         name="description"
-        onChange={() => {}}
-        // value={recipeInfo.name}
+        onChange={handleInputChange}
+        value={recipeParams.description}
       />
       <Inset vertical="xl">
         <Divider pattern="horizontal" />
@@ -77,51 +110,47 @@ const PostRecipeForm: React.FC = () => {
           fieldWidth="s"
           label="材料"
           type="number"
-          id="ingredient"
-          name="ingredient"
-          onChange={() => {}}
-          // value={recipeInfo.name}
+          id="serving_size"
+          name="serving_size"
+          onChange={handleInputChange}
+          value={`${recipeParams.serving_size}`}
         />
         <Queue size="s" />
         <span className={styles.unitText}>人分</span>
       </div>
       <Stack size="l" />
       <IngredientFormList
-        inputId=""
-        inputName=""
-        ingredieints={[
-          { id: '材料1', ingredient: '作り方1', quantity: '分量' },
-          { id: '材料2', ingredient: '作り方1', quantity: '分量' },
-          { id: '材料3', ingredient: '作り方1', quantity: '分量' },
-        ]}
-        onClickAddIngredient={() => {}}
-        onClickRemoveIngredient={() => {}}
-        onChange={() => {}}
+        inputId="recipe_ingredients_attributes"
+        inputName="recipe_ingredients_attributes"
+        ingredieints={recipeParams.recipe_ingredients_attributes}
+        onClickAddIngredient={handleClickAddIngredient}
+        onClickRemoveIngredient={handleClickRemoveIngredient}
+        onChangeName={handleIngredientNameChange}
+        onChangeQuantity={handleQuantityChange}
       />
       <Inset vertical="xl">
         <Divider pattern="horizontal" />
       </Inset>
       <RecipeStepList
-        inputId=""
-        inputName=""
-        recipeSteps={[
-          { id: 'step1', body: '作り方1' },
-          { id: 'step2', body: '作り方1' },
-          { id: 'step3', body: '作り方1' },
-        ]}
-        onClickAddStep={() => {}}
-        onClickRemoveStep={() => {}}
-        onChange={() => {}}
+        inputId="recipe_steps_attributes"
+        inputName="recipe_steps_attributes"
+        recipeSteps={recipeParams.recipe_steps_attributes}
+        onClickAddStep={handleClickAddStep}
+        onClickRemoveStep={handleClickRemoveStep}
+        onClickResetImage={handleResetStepImage}
+        onStepInputChange={handleStepInputChange}
+        sortStepFiles={setStepFiles}
+        stepFiles={stepFiles}
       />
       <Stack size="l" />
       <FormItem
         fieldType="textarea"
         label="うまくできるコツ"
         type="text"
-        id="tips"
-        name="tips"
-        onChange={() => {}}
-        // value={recipeInfo.name}
+        id="tip"
+        name="tip"
+        onChange={handleInputChange}
+        value={recipeParams.tip}
       />
       <Inset vertical="xl">
         <Divider pattern="horizontal" />

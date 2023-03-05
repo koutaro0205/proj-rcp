@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import DeleteButton from '@/components/atoms/Button/DeleteButton';
 import InputButton from '@/components/atoms/Button/InputButton';
 import Loading from '@/components/atoms/Loading';
-import { selectCurrentUser } from '@/features/currentUser/selecters';
+import { selectCurrentUser } from '@/features/currentUser/selectors';
 
 import styles from './styles';
 

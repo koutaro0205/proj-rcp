@@ -1,5 +1,5 @@
-import { User } from '@/@types/data';
 import { FOLLOWING_REQUEST_PATH } from '@/common/constants/path';
+import { User } from '@/common/types/data';
 import { client } from '@/utils/axios';
 
 type ResponseData = {

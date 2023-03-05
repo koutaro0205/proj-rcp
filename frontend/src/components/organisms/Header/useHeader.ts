@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import {
   selectCurrentUser,
   selectIsLoggedIn,
-} from '@/features/currentUser/selecters';
+} from '@/features/currentUser/selectors';
 
 import { HEADER_MENU_HEIGHT } from './styles';
 

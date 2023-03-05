@@ -2,28 +2,33 @@ import React from 'react';
 
 import IconButton from '@/components/atoms/Button/IconButton';
 import { Stack } from '@/components/layouts/Stack';
+import { Ingredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 import IngredientFormItem from './IngredientFormItem';
 import styles from './styles';
-import { useIngredientList, IngredientItem } from './useIngredientFormList';
+import { useIngredientList } from './useIngredientFormList';
 
 type Props = {
   inputId: string;
   inputName: string;
-  // 材料のデータ（配列で管理）
-  ingredieints: IngredientItem[];
-  // setIngredieints: Dispatch<SetStateAction<RecipeStep[]>>;
+  ingredieints: Ingredient[];
   onClickAddIngredient: () => void;
-  onClickRemoveIngredient: () => void;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  onClickRemoveIngredient: (index: number) => void;
+  onChangeQuantity: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => void;
+  onChangeName: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
   ) => void;
 };
 
 const IngredientFormList: React.FC<Props> = ({
   inputId,
   inputName,
-  onChange,
+  onChangeName,
+  onChangeQuantity,
   onClickAddIngredient,
   onClickRemoveIngredient,
   ingredieints,
@@ -31,6 +36,7 @@ const IngredientFormList: React.FC<Props> = ({
   const {
     ingredientsList,
     dragIndex,
+    recipeParams,
     handleDragEnd,
     handleDragEnter,
     handleDragStart,
@@ -38,12 +44,19 @@ const IngredientFormList: React.FC<Props> = ({
   return (
     <div className={styles.container}>
       <div className={styles.stepsContainer}>
-        {ingredientsList.map((ingredient, index) => (
+        {ingredientsList.map((_, index) => (
           <IngredientFormItem
-            key={ingredient.id}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
             inputId={inputId}
             inputName={inputName}
-            onChange={onChange}
+            inputValue={recipeParams.recipe_ingredients_attributes[index]}
+            onChangeName={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onChangeName(e, index)
+            }
+            onChangeQuantity={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onChangeQuantity(e, index)
+            }
             onClickRemoveIngredient={onClickRemoveIngredient}
             orderIndex={index}
             dragIndex={dragIndex}
@@ -57,7 +70,7 @@ const IngredientFormList: React.FC<Props> = ({
       <div className={styles.buttonWrapper}>
         <IconButton
           label="材料を追加"
-          iconName="plus"
+          iconName="PLUS"
           onClick={onClickAddIngredient}
         />
       </div>

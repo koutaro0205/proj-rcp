@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { User } from '@/@types/data';
+import { User } from '@/common/types/data';
 import FollowButton from '@/components/atoms/Button/FollowButton';
 
 import { useFollowUserButton } from './useFollowUserButton';

@@ -1,5 +1,5 @@
-import { User } from '@/@types/data';
 import { REGEX } from '@/common/constants/regex';
+import { User } from '@/common/types/data';
 
 type Args = {
   email: string;

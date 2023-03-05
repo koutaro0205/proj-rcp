@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import BasicButton from '@/components/atoms/Button/BasicButton';
 import Icon from '@/components/atoms/Icon';
@@ -7,33 +7,30 @@ import Loading from '@/components/atoms/Loading';
 import Inset from '@/components/layouts/Inset';
 
 import { getStyles, ATTACHED_IMAGE_SIZE, AttachedImageSize } from './styles';
-import { useAttachedImage } from './useAttachedImage';
 
 type Props = {
   size?: AttachedImageSize;
+  inputId: string;
+  onChangeFileInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClickResetImage: () => void;
+  imageUrl: string;
+  file: File | null;
 };
 
 // FIXME: コンポーネントを修正する。
-const AttachedImage: React.FC<Props> = ({ size = 'freeSize' }) => {
-  const {
-    inputRef,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    imageInfo, // FIXME: 画像を格納するStoreを作成する。
-    imageUrl,
-    isLoading,
-    file,
-    handleFileChange,
-    handleResetFile,
-    handleClick,
-  } = useAttachedImage();
+const AttachedImage: React.FC<Props> = ({
+  size = 'freeSize',
+  onChangeFileInput,
+  onClickResetImage,
+  imageUrl,
+  inputId,
+  file,
+}) => {
   const styles = getStyles(size);
 
-  // Storeに格納する。
-  // メインイメージはメインに格納
-  // ex1.) dispatch(attachMainImage(imageInfo))
-
-  // それ以外は配列に格納
-  // ex2.) dispatch(attachSubImages([imageInfo1, imageIngo2, ...]))
+  const isLoading = useMemo(() => {
+    return file && !imageUrl;
+  }, [file, imageUrl]);
 
   return (
     <div className={styles.container}>
@@ -57,7 +54,7 @@ const AttachedImage: React.FC<Props> = ({ size = 'freeSize' }) => {
                   color="white"
                   backgroundColor="black"
                   fontSize="s"
-                  onClick={handleResetFile}
+                  onClick={onClickResetImage}
                 />
               </div>
             </div>
@@ -65,24 +62,20 @@ const AttachedImage: React.FC<Props> = ({ size = 'freeSize' }) => {
         </div>
       ) : (
         <Inset all="xs">
-          <div
-            role="presentation"
-            className={styles.inputContainer}
-            onClick={handleClick}
-          >
+          <label htmlFor={inputId} className={styles.inputContainer}>
             {/* ダミーインプット */}
             <input
-              ref={inputRef}
+              id={inputId}
               hidden
               type="file"
               accept="image/*"
-              onChange={handleFileChange}
+              onChange={onChangeFileInput}
             />
             <div className={styles.inputContent}>
-              <Icon name="camera" size={32} />
+              <Icon name="CAMERA" size="m" />
               <div>写真を載せる</div>
             </div>
-          </div>
+          </label>
         </Inset>
       )}
     </div>

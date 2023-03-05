@@ -1,34 +1,26 @@
 import React from 'react';
 
-import Icon from '@/components/atoms/Icon';
+import Icon, { IconSize } from '@/components/atoms/Icon';
 import Text from '@/components/atoms/Text';
 
 import styles from './styles';
 
 type Props = {
   label?: string;
-  size?: 's' | 'm';
+  size?: Extract<IconSize, 'xs' | 's'>;
   onClick: () => void;
   isChecked: boolean;
 };
 
-const CHECKBOX_SIZE = {
-  s: 12,
-  m: 18,
-};
-
 const Checkbox: React.FC<Props> = ({
   label,
-  size = 'm',
+  size = 's',
   onClick,
   isChecked = false,
 }) => {
   return (
     <div className={styles.container} role="presentation" onClick={onClick}>
-      <Icon
-        size={CHECKBOX_SIZE[size]}
-        name={isChecked ? 'checked' : 'unchecked'}
-      />
+      <Icon size={size} name={isChecked ? 'CHECKED' : 'UNCHECKED'} />
       {label && <Text size="xs">{label}</Text>}
     </div>
   );

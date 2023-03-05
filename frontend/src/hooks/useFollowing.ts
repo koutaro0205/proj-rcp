@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useReducer } from 'react';
 
-import { User } from '@/@types/data';
+import { User } from '@/common/types/data';
 import { getFollowersList } from '@/services/relationships/getFollowersList';
 import { getFollowingList } from '@/services/relationships/getFollowingList';
 

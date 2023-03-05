@@ -1,4 +1,4 @@
-import { User } from '@/@types/data';
+import { User } from '@/common/types/data';
 import { UserParams } from '@/services/users/types';
 
 import { validateEmail } from './email';

@@ -37,8 +37,8 @@ class Api::V1::RecipesController < ApplicationController
       :description,
       :tip,
       :serving_size,
-      recipe_ingredients_attributes: [:id, :ingredient_name, :quantity, :_destroy],
-      recipe_steps_attributes: [:id, :description, :images, :_destroy]
+      recipe_ingredients_attributes: [:ingredient_name, :quantity, :_destroy],
+      recipe_steps_attributes: [:description, :images, :_destroy]
     )
   end
 
