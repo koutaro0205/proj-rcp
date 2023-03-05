@@ -1,4 +1,4 @@
-import { User } from '@/@types/data';
+import { User } from '@/common/types/data';
 
 export type CurrentUser = User;
 

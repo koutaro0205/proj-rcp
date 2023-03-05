@@ -7,8 +7,8 @@ import {
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { User } from '@/@types/data';
 import { USER_EDIT_PATH } from '@/common/constants/path';
+import { User } from '@/common/types/data';
 import Loading from '@/components/atoms/Loading';
 import EditSection from '@/components/organisms/EditSection';
 import useEditableUser from '@/hooks/useEditableUser';

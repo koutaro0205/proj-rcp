@@ -1,5 +1,5 @@
-import { User } from '@/@types/data';
 import { USER_DETAIL_PATH } from '@/common/constants/path';
+import { User } from '@/common/types/data';
 import { client } from '@/utils/axios';
 
 /**

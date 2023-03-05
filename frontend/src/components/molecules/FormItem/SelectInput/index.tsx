@@ -7,28 +7,33 @@ type Option = {
   name: string;
 };
 type Props = {
-  options: Option[];
-  onOptionChange: () => void;
-  selectedOption: number;
+  options: readonly Option[];
+  initialOptionLabal?: string;
+  onChangeOption: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectedOptionIndex: number;
+  name: string;
 };
 
 const INITIAL_OPTION_LABEL = '選択されていません';
 
 const SelectInput: React.FC<Props> = ({
   options,
-  onOptionChange,
-  selectedOption,
+  initialOptionLabal = INITIAL_OPTION_LABEL,
+  onChangeOption,
+  selectedOptionIndex,
+  name,
 }) => {
   return (
     <div className={styles.container}>
       <select
         className={styles.selector}
-        onChange={onOptionChange}
-        value={selectedOption}
+        onChange={onChangeOption}
+        value={selectedOptionIndex}
+        name={name}
       >
-        <option value={0}>{INITIAL_OPTION_LABEL}</option>
+        <option value={0}>{initialOptionLabal}</option>
         {options.map((option, index) => (
-          <option key={option.id} value={index}>
+          <option key={option.id} value={index + 1}>
             {option.name}
           </option>
         ))}

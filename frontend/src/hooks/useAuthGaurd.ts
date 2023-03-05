@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { LOGIN_PATH } from '@/common/constants/path';
 import { ACCESS_RESTRICTIONS } from '@/common/constants/toast';
-import { selectCurrentUser } from '@/features/currentUser/selecters';
+import { selectCurrentUser } from '@/features/currentUser/selectors';
 import { info } from '@/utils/notifications';
 
 export const useAuthGaurd = () => {

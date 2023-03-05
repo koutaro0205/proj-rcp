@@ -9,14 +9,12 @@ type Props = {
   onClick?: () => void;
 };
 
-const DEFAULT_ICON_SIZE = '16px';
-
 const TabItem: React.FC<Props> = ({ label, onClick }) => {
   return (
     <div className={styles.container} role="presentation" onClick={onClick}>
       <div className={styles.innerContainer}>
         <span>{label}</span>
-        <Icon name="rightArrow" size={DEFAULT_ICON_SIZE} />
+        <Icon name="RIGHT_ARROW" size="xs" />
       </div>
     </div>
   );

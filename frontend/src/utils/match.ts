@@ -1,5 +1,5 @@
-import { User } from '@/@types/data';
 import { EmptyObject } from '@/common/types';
+import { User } from '@/common/types/data';
 import { CurrentUser } from '@/features/currentUser/type';
 
 export const isCurrentUser = (

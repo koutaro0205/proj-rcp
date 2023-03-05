@@ -1,15 +1,13 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { ICONS, Icons } from '@/common/constants/icons';
+import { Icons } from '@/common/constants/icons';
+import Icon from '@/components/atoms/Icon';
 import Text from '@/components/atoms/Text';
 import { Queue } from '@/components/layouts/Queue';
 import { Color } from '@/theme/colors';
 
 import { getStyles } from './styles';
-
-const DEFAULT_ICON_SIZE = 16;
 
 type BaseProps = {
   label: string;
@@ -40,13 +38,7 @@ const IconButton: React.FC<Props> = ({
   const getButtonContent = () => {
     return (
       <span className={styles.content}>
-        <Image
-          src={ICONS[iconName]}
-          alt="アイコン"
-          width={DEFAULT_ICON_SIZE}
-          height={DEFAULT_ICON_SIZE}
-          className={styles.image}
-        />
+        <Icon name={iconName} size="xs" />
         <Queue size="xxs" />
         <Text size="s">{label}</Text>
       </span>
@@ -61,7 +53,7 @@ const IconButton: React.FC<Props> = ({
     );
   }
   return (
-    <button onClick={onClick} className={styles.container}>
+    <button onClick={onClick} className={styles.container} type="button">
       {getButtonContent()}
     </button>
   );

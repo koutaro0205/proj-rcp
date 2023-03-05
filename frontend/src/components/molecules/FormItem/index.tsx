@@ -5,10 +5,10 @@ import { InputType } from '@/common/types/inputs';
 import Checkbox from '@/components/atoms/Checkbox';
 import { Stack } from '@/components/layouts/Stack';
 import FormLabel from '@/components/molecules/FormItem/FormLabel';
-import { useInputType } from '@/hooks/useInputType';
 
 import SelectInput from './SelectInput';
 import { getStyles, FieldWidth } from './styles';
+import { useFormItem } from './useFormItem';
 
 type Option = {
   id: number;
@@ -18,33 +18,32 @@ type BaseProps = {
   fieldWidth?: FieldWidth;
   isRequired?: boolean;
   label?: string;
+  name: string;
 };
 
 type TextProps = {
   fieldType?: 'textarea' | 'textField';
   id: string;
   type: InputType;
-  name: string;
-  onChange: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  // FIXME: 型を修正する。
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange: (...args: any) => void;
   value?: string;
   placeholder?: string;
   // Selectorの場合のProps
   options?: never;
-  onOptionChange?: never;
-  selectedOption?: never;
+  onChangeOption?: never;
+  selectedOptionIndex?: never;
 } & BaseProps;
 
 type SelectorProps = {
   fieldType: 'selector';
-  options: Option[];
-  onOptionChange: () => void;
-  selectedOption: number;
+  options: readonly Option[];
+  onChangeOption: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectedOptionIndex: number;
   // textField, textareaの場合のProps
   id?: never;
   type?: never;
-  name?: never;
   onChange?: never;
   value?: never;
   placeholder?: never;
@@ -64,21 +63,25 @@ const FormItem: React.FC<Props> = ({
   fieldType,
   fieldWidth = 'fluid',
   options,
-  onOptionChange,
-  selectedOption,
+  onChangeOption,
+  selectedOptionIndex,
 }) => {
+  const {
+    getType,
+    handleClick,
+    isTypeOfPassword,
+    textInputRef,
+    textAreaRef,
+    handleOnChange,
+  } = useFormItem({
+    onChange,
+  });
   const styles = getStyles(fieldWidth);
-  const { handleClick, isTypeOfPassword } = useInputType();
-  const getType = (t: InputType) => {
-    if (t === 'password') {
-      return isTypeOfPassword ? 'password' : 'text';
-    }
-    return type;
-  };
   const getInputField = () => {
     if (fieldType === 'textarea') {
       return (
         <textarea
+          ref={textAreaRef}
           className={cx(styles.inputField, styles.textarea)}
           id={id}
           name={name}
@@ -93,18 +96,20 @@ const FormItem: React.FC<Props> = ({
       return (
         <SelectInput
           options={options}
-          onOptionChange={onOptionChange}
-          selectedOption={selectedOption}
+          onChangeOption={onChangeOption}
+          selectedOptionIndex={selectedOptionIndex}
+          name={name}
         />
       );
     }
     return (
       <input
+        ref={textInputRef}
         className={styles.inputField}
         type={getType(type)}
         id={id}
         name={name}
-        onChange={onChange}
+        onChange={(e) => handleOnChange(e)}
         value={value}
         placeholder={placeholder}
       />
@@ -124,7 +129,7 @@ const FormItem: React.FC<Props> = ({
             {type === 'password' && (
               // typeがpasswordの時はチェックがついていない(false)
               <Checkbox
-                size="m"
+                size="xs"
                 label="パスワードを表示"
                 onClick={handleClick}
                 isChecked={!isTypeOfPassword}

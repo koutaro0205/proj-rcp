@@ -26,7 +26,7 @@ const Header: React.FC = () => {
           <ul className={styles.menuList}>
             <IconButton
               label="レシピを投稿"
-              iconName="diet"
+              iconName="DIET"
               path={POST_RECIPE_PATH}
             />
             <Queue size="m" />
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
                 label="お気に入り"
                 color="favorite"
                 path="/recipes/new"
-                iconName="favorite"
+                iconName="FAVORITE"
               />
             )}
           </ul>

@@ -3,37 +3,51 @@ import React from 'react';
 import IconButton from '@/components/atoms/Button/IconButton';
 import { Stack } from '@/components/layouts/Stack';
 import FormLabel from '@/components/molecules/FormItem/FormLabel';
+import {
+  FileObject,
+  RecipeStep,
+} from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 import RecipeStepItem from './RecipeStepItem';
 import styles from './styles';
-import { RecipeStep, useRecipeStepList } from './useRecipeStepList';
-
-// FIXME: 上位のコンポーネントに定義し直す。
+import { useRecipeStepList } from './useRecipeStepList';
 
 type Props = {
   inputId: string;
   inputName: string;
-  // 作り方のデータ（配列で管理）
   recipeSteps: RecipeStep[];
-  // setRecipeSteps: Dispatch<SetStateAction<RecipeStep[]>>;
+  stepFiles: FileObject[][];
+  sortStepFiles: React.Dispatch<React.SetStateAction<FileObject[][]>>;
   onClickAddStep: () => void;
-  onClickRemoveStep: () => void;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  onClickRemoveStep: (index: number) => void;
+  onClickResetImage: (index: number) => void;
+  onStepInputChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number,
+    field: keyof RecipeStep
   ) => void;
 };
 
-// FIXME: 「=textarea」を修正する。
 const RecipeStepList: React.FC<Props> = ({
   inputId,
   inputName,
-  onChange,
+  stepFiles,
+  sortStepFiles,
+  onStepInputChange,
   onClickAddStep,
   onClickRemoveStep,
+  onClickResetImage,
   recipeSteps,
 }) => {
-  const { steps, dragIndex, handleDragEnd, handleDragEnter, handleDragStart } =
-    useRecipeStepList(recipeSteps);
+  const {
+    steps,
+    dragIndex,
+    recipeParams,
+    handleDragEnd,
+    handleDragEnter,
+    handleDragStart,
+  } = useRecipeStepList({ recipeSteps, sortStepFiles });
+
   return (
     <div className={styles.container}>
       <FormLabel htmlFor={inputId} isRequired>
@@ -41,18 +55,25 @@ const RecipeStepList: React.FC<Props> = ({
       </FormLabel>
       <Stack size="s" />
       <div className={styles.stepsContainer}>
-        {steps.map((recipeStep, index) => (
+        {steps.map((_, index) => (
           <RecipeStepItem
-            key={recipeStep.id}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
             inputId={inputId}
             inputName={inputName}
-            onChange={onChange}
+            onChangeStepInput={onStepInputChange}
             onClickRemoveStep={onClickRemoveStep}
+            onClickResetImage={onClickResetImage}
             orderIndex={index}
             dragIndex={dragIndex}
+            inputValue={recipeParams.recipe_steps_attributes[index]}
             onDragStart={handleDragStart}
             onDragEnter={handleDragEnter}
             onDragEnd={handleDragEnd}
+            imageUrl={
+              stepFiles[index]?.length ? stepFiles[index][0].dataUrl : ''
+            }
+            file={stepFiles[index]?.length ? stepFiles[index][0].file : null}
           />
         ))}
       </div>
@@ -60,7 +81,7 @@ const RecipeStepList: React.FC<Props> = ({
       <div className={styles.buttonWrapper}>
         <IconButton
           label="作り方を追加"
-          iconName="plus"
+          iconName="PLUS"
           onClick={onClickAddStep}
         />
       </div>

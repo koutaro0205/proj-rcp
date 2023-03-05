@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { User } from '@/@types/data';
-import { selectIsLoggedIn } from '@/features/currentUser/selecters';
+import { User } from '@/common/types/data';
+import { selectIsLoggedIn } from '@/features/currentUser/selectors';
 import { follow } from '@/services/relationships/follow';
 import { getFollowingStatus } from '@/services/relationships/getFollowingStatus';
 import { unFollow } from '@/services/relationships/unFollow';

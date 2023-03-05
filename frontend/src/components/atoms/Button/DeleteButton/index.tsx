@@ -12,8 +12,6 @@ type Props = {
   backgroundColor?: Color;
 };
 
-const DEFAULT_ICON_SIZE = '20px';
-
 const DeleteButton: React.FC<Props> = ({
   label,
   onClick,
@@ -25,7 +23,7 @@ const DeleteButton: React.FC<Props> = ({
     <button className={styles.container} onClick={onClick}>
       {label}
       <span className={styles.imageWrapper}>
-        <Icon size={DEFAULT_ICON_SIZE} name="delete" />
+        <Icon size="m" name="DELETE" />
       </span>
     </button>
   );

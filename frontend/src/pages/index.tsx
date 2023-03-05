@@ -8,7 +8,7 @@ import Layout from '@/components/templates/Layout';
 import {
   selectCurrentUser,
   selectIsLoggedIn,
-} from '@/features/currentUser/selecters';
+} from '@/features/currentUser/selectors';
 
 const HomePage: NextPage = () => {
   // ログインユーザーデバッグ

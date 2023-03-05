@@ -1,6 +1,6 @@
-import { User } from '@/@types/data';
 import { ACCOUNT_ACTIVATIONS_PATH } from '@/common/constants/path';
 import { StatusCode } from '@/common/types';
+import { User } from '@/common/types/data';
 import { client } from '@/utils/axios';
 
 type Params = {

@@ -38,6 +38,9 @@ export const getStyles = (fieldWidth: FieldWidth) => {
       border: NORMAL_BORDER_STYLE,
       borderRadius: borderRadius.s,
       boxSizing: 'border-box',
+      '::placeholder': {
+        opacity: 0.3,
+      },
     }),
     textarea: css({
       minHeight: 130,

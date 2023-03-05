@@ -9,7 +9,7 @@ import {
   validateUserName,
 } from '@/common/validations/updateUser';
 import { fetchCurrentUser } from '@/features/currentUser/slice';
-import { useInputForm } from '@/hooks/useInputForm';
+import { useUserInputForm } from '@/hooks/useUserInputForm';
 import updateUser from '@/services/users/updateUser';
 import { isEmptyArray } from '@/utils/match';
 import { error, success } from '@/utils/notifications';
@@ -25,7 +25,7 @@ export const useEditSection = () => {
     handleClick,
     handleChange,
     handleFileChange,
-  } = useInputForm();
+  } = useUserInputForm();
 
   const [userNameErrors, setUserNameErrors] = useState<string[]>([]);
   const [emailErrors, setEmailErrors] = useState<string[]>([]);
