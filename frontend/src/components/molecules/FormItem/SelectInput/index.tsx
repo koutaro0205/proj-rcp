@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles';
 
-type Option = {
+export type Option = {
   id: number;
   name: string;
 };

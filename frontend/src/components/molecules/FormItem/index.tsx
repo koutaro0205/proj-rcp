@@ -6,14 +6,12 @@ import Checkbox from '@/components/atoms/Checkbox';
 import { Stack } from '@/components/layouts/Stack';
 import FormLabel from '@/components/molecules/FormItem/FormLabel';
 
-import SelectInput from './SelectInput';
+import SelectInput, { Option } from './SelectInput';
 import { getStyles, FieldWidth } from './styles';
 import { useFormItem } from './useFormItem';
 
-type Option = {
-  id: number;
-  name: string;
-};
+const DEFAULT_VALUE_LENGTH = 25;
+
 type BaseProps = {
   fieldWidth?: FieldWidth;
   isRequired?: boolean;
@@ -22,14 +20,16 @@ type BaseProps = {
 };
 
 type TextProps = {
-  fieldType?: 'textarea' | 'textField';
-  id: string;
-  type: InputType;
   // FIXME: 型を修正する。
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (...args: any) => void;
+  fieldType?: 'textarea' | 'textField';
+  id: string;
+  type: InputType;
   value?: string;
   placeholder?: string;
+  maxValueLength?: number;
+  isDisplayRemainingCount?: boolean;
   // Selectorの場合のProps
   options?: never;
   onChangeOption?: never;
@@ -47,26 +47,34 @@ type SelectorProps = {
   onChange?: never;
   value?: never;
   placeholder?: never;
+  maxValueLength?: never;
+  isDisplayRemainingCount?: never;
 } & BaseProps;
 
 export type Props = TextProps | SelectorProps;
 
 const FormItem: React.FC<Props> = ({
+  // BaseProps
   label,
+  fieldWidth = 'fluid',
+  name,
+  isRequired = false,
+  fieldType,
+  maxValueLength = DEFAULT_VALUE_LENGTH,
+  // TextProps
   id,
   type,
-  name,
   onChange,
   value,
-  isRequired = false,
   placeholder,
-  fieldType,
-  fieldWidth = 'fluid',
+  isDisplayRemainingCount = false,
+  // SelectorProps
   options,
   onChangeOption,
   selectedOptionIndex,
 }) => {
   const {
+    remainingCount,
     getType,
     handleClick,
     isTypeOfPassword,
@@ -75,20 +83,40 @@ const FormItem: React.FC<Props> = ({
     handleOnChange,
   } = useFormItem({
     onChange,
+    maxValueLength,
   });
-  const styles = getStyles(fieldWidth);
+  const isOverLimit = remainingCount <= 0;
+  const styles = getStyles(fieldWidth, isOverLimit);
+
+  const getRmainingCountText = () => {
+    return (
+      <>
+        <Stack size="xxs" />
+        {isDisplayRemainingCount && (
+          <span className={styles.remainingCountText}>
+            残り{remainingCount}文字
+            {isOverLimit && ` (${maxValueLength}文字以内で入力してください。)`}
+          </span>
+        )}
+      </>
+    );
+  };
+
   const getInputField = () => {
     if (fieldType === 'textarea') {
       return (
-        <textarea
-          ref={textAreaRef}
-          className={cx(styles.inputField, styles.textarea)}
-          id={id}
-          name={name}
-          onChange={onChange}
-          value={value}
-          placeholder={placeholder}
-        />
+        <>
+          <textarea
+            ref={textAreaRef}
+            className={cx(styles.inputField, styles.textarea)}
+            id={id}
+            name={name}
+            onChange={(e) => handleOnChange(e)}
+            value={value}
+            placeholder={placeholder}
+          />
+          {getRmainingCountText()}
+        </>
       );
     }
 
@@ -103,16 +131,19 @@ const FormItem: React.FC<Props> = ({
       );
     }
     return (
-      <input
-        ref={textInputRef}
-        className={styles.inputField}
-        type={getType(type)}
-        id={id}
-        name={name}
-        onChange={(e) => handleOnChange(e)}
-        value={value}
-        placeholder={placeholder}
-      />
+      <>
+        <input
+          ref={textInputRef}
+          className={styles.inputField}
+          type={getType(type)}
+          id={id}
+          name={name}
+          onChange={(e) => handleOnChange(e)}
+          value={value}
+          placeholder={placeholder}
+        />
+        {getRmainingCountText()}
+      </>
     );
   };
 

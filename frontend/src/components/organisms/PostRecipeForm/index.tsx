@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { POSTED_RECIPE_INFO } from '@/common/constants/characters';
 import {
   COOKING_COST_OPTIONS,
   COOKING_TIME_OPTIONS,
@@ -52,9 +53,12 @@ const PostRecipeForm: React.FC = () => {
         type="text"
         id="title"
         name="title"
+        placeholder="【絶品】こだわりナポリタン"
         onChange={handleInputChange}
         isRequired
         value={recipeParams.title}
+        isDisplayRemainingCount
+        maxValueLength={POSTED_RECIPE_INFO.title}
       />
       <Stack size="l" />
       <div className={styles.recipeInformationSection}>
@@ -100,6 +104,8 @@ const PostRecipeForm: React.FC = () => {
         name="description"
         onChange={handleInputChange}
         value={recipeParams.description}
+        isDisplayRemainingCount
+        maxValueLength={POSTED_RECIPE_INFO.description}
       />
       <Inset vertical="xl">
         <Divider pattern="horizontal" />
@@ -151,6 +157,8 @@ const PostRecipeForm: React.FC = () => {
         name="tip"
         onChange={handleInputChange}
         value={recipeParams.tip}
+        isDisplayRemainingCount
+        maxValueLength={POSTED_RECIPE_INFO.tip}
       />
       <Inset vertical="xl">
         <Divider pattern="horizontal" />

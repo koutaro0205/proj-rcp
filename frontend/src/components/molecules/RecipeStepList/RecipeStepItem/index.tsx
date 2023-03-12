@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { POSTED_RECIPE_INFO } from '@/common/constants/characters';
 import Icon from '@/components/atoms/Icon';
 import SortableIcon from '@/components/atoms/SortableIcon';
 import Text from '@/components/atoms/Text';
@@ -74,6 +75,8 @@ const RecipeStepItem: React.FC<Props> = ({
           fieldType="textarea"
           placeholder="例) 野菜を洗った後、一口大にカットしてフライパンで炒める。"
           value={inputValue?.description}
+          maxValueLength={POSTED_RECIPE_INFO.step.description}
+          isDisplayRemainingCount
         />
         <Queue size="m" />
         <div className={styles.attachedImageWrapper}>

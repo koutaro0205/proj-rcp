@@ -7,15 +7,15 @@ type Args = {
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  maxValueLength: number;
 };
 
-export const useFormItem = ({ onChange }: Args) => {
+export const useFormItem = ({ onChange, maxValueLength }: Args) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const textInputRef = useRef<HTMLInputElement>(null);
 
-  // FIXME: 文字数制限処理は上で行う。
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [valueLength, setValueLength] = useState<number>(0);
+  const [remainingCount, setRemainingCount] = useState<number>(maxValueLength);
+
   const handleOnChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -23,8 +23,14 @@ export const useFormItem = ({ onChange }: Args) => {
     const inputValue =
       textInputRef.current?.value || textAreaRef.current?.value;
     if (inputValue && !Number.isNaN(inputValue)) {
-      setValueLength(inputValue.length);
+      const value =
+        maxValueLength - inputValue.length > 0
+          ? maxValueLength - inputValue.length
+          : 0;
+      setRemainingCount(value);
+      return;
     }
+    setRemainingCount(maxValueLength);
   };
 
   const { handleClick, isTypeOfPassword } = useInputType();
@@ -40,6 +46,7 @@ export const useFormItem = ({ onChange }: Args) => {
   );
 
   return {
+    remainingCount,
     handleClick,
     isTypeOfPassword,
     getType,

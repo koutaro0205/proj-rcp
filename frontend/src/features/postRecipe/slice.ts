@@ -126,8 +126,7 @@ export const postRecipeSlice = createSlice({
       // 既存のフォーマットへの入力の場合
       if (typeof payload.index === 'number') {
         state.recipe_ingredients_attributes[payload.index].ingredient_name =
-          payload.ingredient_name ||
-          state.recipe_ingredients_attributes[payload.index].ingredient_name;
+          payload.ingredient_name || '';
         state.recipe_ingredients_attributes[payload.index].quantity =
           payload.quantity ||
           state.recipe_ingredients_attributes[payload.index].quantity;
@@ -150,12 +149,8 @@ export const postRecipeSlice = createSlice({
     builder.addCase(registerSteps, (state, { payload }) => {
       // 既存のフォーマットへの入力の場合
       if (typeof payload.index === 'number') {
-        // if (!state.recipe_steps_attributes) {
-        //   state.recipe_steps_attributes = [];
-        // }
         state.recipe_steps_attributes[payload.index].description =
-          payload.description ||
-          state.recipe_steps_attributes[payload.index].description;
+          payload.description || '';
         state.recipe_steps_attributes[payload.index].image =
           payload.image || state.recipe_steps_attributes[payload.index].image;
       }

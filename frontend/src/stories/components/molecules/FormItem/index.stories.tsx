@@ -38,4 +38,13 @@ const Template: ComponentStory<typeof FormItem> = (args: Props) => (
   <FormItem {...args} />
 );
 
-export const Nomal = Template.bind({});
+export const TextField = Template.bind({});
+
+export const Selector = Template.bind({});
+Selector.args = {
+  fieldType: 'selector',
+  options: [],
+  onChangeOption: () => {},
+  selectedOptionIndex: 0,
+  name: 'name',
+};
