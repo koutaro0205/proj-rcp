@@ -1,4 +1,4 @@
-export const COOKING_TIME_OPTIONS = [
+export const COOK_TIME_OPTIONS = [
   { id: 1, name: '10分' },
   { id: 2, name: '15分' },
   { id: 3, name: '20分' },
@@ -6,7 +6,7 @@ export const COOKING_TIME_OPTIONS = [
   { id: 5, name: '40分以上' },
 ] as const;
 
-export const COOKING_COST_OPTIONS = [
+export const COOK_COST_OPTIONS = [
   { id: 1, name: '100円' },
   { id: 2, name: '300円' },
   { id: 3, name: '500円' },

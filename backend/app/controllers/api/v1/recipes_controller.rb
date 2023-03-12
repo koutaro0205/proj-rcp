@@ -1,17 +1,24 @@
 class Api::V1::RecipesController < ApplicationController
+  before_action :set_recipe, only: %i[show]
+
   def index
     @recipes = Recipe.all
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    render json: @recipe.as_json(
+      include: {
+        recipe_ingredients: {},
+        recipe_steps: {
+          include: {
+            step_image_attachment: {
+              include: { blob: { methods: :service_url } }
+            }
+          }
+        }
+      }
+    ).merge(image_url: url_for(@recipe.image))
   end
-
-  # def new
-  #   @recipe = Recipe.new
-  #   3.times { @recipe.materials.build }
-  #   3.times { @recipe.instructions.build }
-  # end
 
   def create
     @recipe = Recipe.new(recipe_params)
@@ -20,7 +27,7 @@ class Api::V1::RecipesController < ApplicationController
     attach_recipe_steps_images(@recipe)
 
     if @recipe.save
-      render json: { recipe: @recipe }
+      render json: { status: :created, recipe: @recipe }
     else
       render json: { status: :unprocessable_entity }
     end
@@ -28,52 +35,49 @@ class Api::V1::RecipesController < ApplicationController
 
   private
 
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
   def recipe_params
-    params.require(:recipe).permit(
+    params.permit(
       :title,
       :image,
-      :cooking_time,
+      :cook_time,
       :cost,
       :description,
       :tip,
       :serving_size,
       recipe_ingredients_attributes: [:ingredient_name, :quantity, :_destroy],
-      recipe_steps_attributes: [:description, :images, :_destroy]
+      recipe_steps_attributes: [:description, :_destroy, { step_image: [] }],
     )
   end
 
   def attach_recipe_image(recipe)
+    image_data = params[:image][:data]
+    decoded_image_data = Base64.decode64(image_data)
+    io = StringIO.new(decoded_image_data)
+    filename = params[:image][:filename]
+
     blob = ActiveStorage::Blob.create_and_upload!(
-      io: StringIO.new(decode(params[:image][:data]) + "\n"),
-      filename: params[:image][:filename]
+      io: io,
+      filename: filename
     )
+
     recipe.image.attach(blob)
   end
 
   def attach_recipe_steps_images(recipe)
-    # recipe_steps_attributes内のimageに対して処理を行う
     recipe.recipe_steps.each do |recipe_step|
-      # 既にActiveStorageに紐づいている場合は処理をスキップ
-      next unless recipe_step.image.attached?
+      next unless recipe_step.step_image.present?
 
-      uploaded_file = ActionDispatch::Http::UploadedFile.new({
-        tempfile: StringIO.new(Base64.decode64(recipe_step.image[:data])),
-        filename: recipe_step.image[:filename]
-      })
-      blob = ActiveStorage::Blob.create_after_upload!(io: uploaded_file.open, filename: uploaded_file.original_filename, content_type: uploaded_file.content_type)
-      recipe_step.image.attach(blob)
+      recipe_step.step_image.each do |image|
+        blob = ActiveStorage::Blob.create_and_upload!(
+          io: StringIO.new(Base64.decode64(image[:data])),
+          filename: image[:filename],
+        )
+        recipe_step.step_image_attachment.attach(blob)
+      end
     end
   end
-
-  # def attach_recipe_steps_images
-  #   params[:recipe_steps_attributes].each do |_, recipe_step_attributes|
-  #     recipe_step_attributes[:images].each do |image_params|
-  #       blob = ActiveStorage::Blob.create_and_upload!(
-  #         io: StringIO.new(decode(image_params[:data]) + "\n"),
-  #         filename: image_params[:filename]
-  #       )
-  #       recipe_step.images.attach(blob)
-  #     end
-  #   end
-  # end
 end

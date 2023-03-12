@@ -11,7 +11,7 @@ export type ImageInfo = {
 export type PostRecipeParams = {
   title: string;
   image?: ImageInfo;
-  cooking_time: string;
+  cook_time: string;
   cost: string;
   description: string;
   tip: string;

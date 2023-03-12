@@ -24,7 +24,7 @@ export const INITIAL_IMAGE_INFO: ImageInfo = {
 
 const DEFAULT_RECIPE_STEP = {
   description: '',
-  image: INITIAL_IMAGE_INFO,
+  step_image: INITIAL_IMAGE_INFO,
 };
 
 const DEFAULT_RECIPE_INGREDIENT = {
@@ -35,7 +35,7 @@ const DEFAULT_RECIPE_INGREDIENT = {
 const initialState: PostRecipeParams = {
   title: '',
   image: INITIAL_IMAGE_INFO,
-  cooking_time: '',
+  cook_time: '',
   cost: '',
   description: '',
   tip: '',
@@ -116,7 +116,7 @@ export const postRecipeSlice = createSlice({
     builder.addCase(registerRecipeInfo, (state, { payload }) => {
       state.title = payload.title;
       state.image = payload.image;
-      state.cooking_time = payload.cooking_time;
+      state.cook_time = payload.cook_time;
       state.cost = payload.cost;
       state.description = payload.description;
       state.tip = payload.tip;
@@ -125,11 +125,21 @@ export const postRecipeSlice = createSlice({
     builder.addCase(registerIngredients, (state, { payload }) => {
       // 既存のフォーマットへの入力の場合
       if (typeof payload.index === 'number') {
-        state.recipe_ingredients_attributes[payload.index].ingredient_name =
-          payload.ingredient_name || '';
-        state.recipe_ingredients_attributes[payload.index].quantity =
-          payload.quantity ||
-          state.recipe_ingredients_attributes[payload.index].quantity;
+        if (payload.ingredient_name) {
+          state.recipe_ingredients_attributes[payload.index].ingredient_name =
+            payload.ingredient_name;
+        }
+        if (payload.quantity) {
+          state.recipe_ingredients_attributes[payload.index].quantity =
+            payload.quantity;
+        }
+        if (payload.ingredient_name === '') {
+          state.recipe_ingredients_attributes[payload.index].ingredient_name =
+            '';
+        }
+        if (payload.quantity === '') {
+          state.recipe_ingredients_attributes[payload.index].quantity = '';
+        }
       }
     });
     builder.addCase(registerAdditionalIngredient, (state) => {
@@ -149,10 +159,16 @@ export const postRecipeSlice = createSlice({
     builder.addCase(registerSteps, (state, { payload }) => {
       // 既存のフォーマットへの入力の場合
       if (typeof payload.index === 'number') {
-        state.recipe_steps_attributes[payload.index].description =
-          payload.description || '';
-        state.recipe_steps_attributes[payload.index].image =
-          payload.image || state.recipe_steps_attributes[payload.index].image;
+        if (payload.description === '') {
+          state.recipe_steps_attributes[payload.index].description = '';
+        }
+        if (payload.description) {
+          state.recipe_steps_attributes[payload.index].description =
+            payload.description;
+        }
+        state.recipe_steps_attributes[payload.index].step_image =
+          payload.image ||
+          state.recipe_steps_attributes[payload.index].step_image;
       }
     });
     builder.addCase(registerAdditionalStep, (state) => {
@@ -173,7 +189,8 @@ export const postRecipeSlice = createSlice({
       state.image = INITIAL_IMAGE_INFO;
     });
     builder.addCase(resetStepImage, (state, { payload }) => {
-      state.recipe_steps_attributes[payload.index].image = INITIAL_IMAGE_INFO;
+      state.recipe_steps_attributes[payload.index].step_image =
+        INITIAL_IMAGE_INFO;
     });
   },
 });
