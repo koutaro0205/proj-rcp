@@ -2,8 +2,8 @@ import React from 'react';
 
 import { POSTED_RECIPE_INFO } from '@/common/constants/characters';
 import {
-  COOKING_COST_OPTIONS,
-  COOKING_TIME_OPTIONS,
+  COOK_COST_OPTIONS,
+  COOK_TIME_OPTIONS,
 } from '@/common/constants/options';
 import InputButton from '@/components/atoms/Button/InputButton';
 import Divider from '@/components/atoms/Divider';
@@ -78,17 +78,17 @@ const PostRecipeForm: React.FC = () => {
             isRequired
             label="調理時間"
             fieldType="selector"
-            options={COOKING_TIME_OPTIONS}
+            options={COOK_TIME_OPTIONS}
             onChangeOption={handleChangeCookingTime}
             selectedOptionIndex={selectedCookingTimeIndex}
-            name="cooking_time"
+            name="cook_time"
           />
           <Stack size="ml" />
           <FormItem
             label="費用"
             fieldType="selector"
             name="cost"
-            options={COOKING_COST_OPTIONS}
+            options={COOK_COST_OPTIONS}
             onChangeOption={handleChangeCost}
             selectedOptionIndex={selectedCostIndex}
           />

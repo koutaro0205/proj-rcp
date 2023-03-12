@@ -8,4 +8,10 @@ class Recipe < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :serving_size, presence: true
+
+  include Rails.application.routes.url_helpers
+
+  def image_url
+    image.attached? ? url_for(image) : nil
+  end
 end

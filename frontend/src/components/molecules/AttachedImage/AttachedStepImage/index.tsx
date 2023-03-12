@@ -82,7 +82,7 @@ const AttachedStepImage: React.FC<Props> = ({
               type="file"
               accept="image/*"
               multiple
-              onChange={(e) => onChangeStepInput(e, index, 'image')}
+              onChange={(e) => onChangeStepInput(e, index, 'step_image')}
             />
             <div className={styles.inputContent}>
               <Icon name="CAMERA" size="s" />

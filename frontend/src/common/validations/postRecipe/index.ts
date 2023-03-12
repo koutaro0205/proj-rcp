@@ -29,7 +29,7 @@ export const validateRecipeParams = ({ recipeParams }: Args) => {
   };
 
   const hasTitle = !!recipeParams.title;
-  const hasCookingTime = !!recipeParams.cooking_time;
+  const hasCookingTime = !!recipeParams.cook_time;
   const hasDescription = !!recipeParams.description;
   const hasServingSize = !!recipeParams.serving_size;
   const hasIngredients = !!recipeParams.recipe_ingredients_attributes.length;

@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  COOKING_COST_OPTIONS,
-  COOKING_TIME_OPTIONS,
+  COOK_COST_OPTIONS,
+  COOK_TIME_OPTIONS,
 } from '@/common/constants/options';
 import { AppDispatch } from '@/common/store';
 import { validateRecipeParams } from '@/common/validations/postRecipe';
@@ -20,6 +20,7 @@ import {
   resetStepImage,
 } from '@/features/postRecipe/slice';
 import { useReadFile } from '@/hooks/useReadFile';
+import postRecipe from '@/services/recipes/postRecipe';
 import { isEmptyArray } from '@/utils/match';
 import { safeParseInt } from '@/utils/parse';
 
@@ -30,7 +31,7 @@ export type Ingredient = {
 
 export type RecipeStep = {
   description: string;
-  image?: {
+  step_image?: {
     data: string | ArrayBuffer | null;
     filename: string;
   };
@@ -65,7 +66,7 @@ export const usePostRecipeForm = () => {
       setSelectedCostIndex(selectedIndex);
 
       const cost =
-        selectedIndex > 0 ? COOKING_COST_OPTIONS[selectedIndex - 1].name : '';
+        selectedIndex > 0 ? COOK_COST_OPTIONS[selectedIndex - 1].name : '';
 
       dispatch(
         registerRecipeInfo({
@@ -83,12 +84,12 @@ export const usePostRecipeForm = () => {
       setSelectedCookingTimeIndex(selectedIndex);
 
       const cookingTime =
-        selectedIndex > 0 ? COOKING_TIME_OPTIONS[selectedIndex - 1].name : '';
+        selectedIndex > 0 ? COOK_TIME_OPTIONS[selectedIndex - 1].name : '';
 
       dispatch(
         registerRecipeInfo({
           ...recipeParams,
-          cooking_time: cookingTime,
+          cook_time: cookingTime,
         })
       );
     },
@@ -154,7 +155,7 @@ export const usePostRecipeForm = () => {
     ) => {
       setStepIndex(index);
       const fileList = e.target.files;
-      if (fileList && field === 'image') {
+      if (fileList && field === 'step_image') {
         Array.from(fileList).forEach((file) => {
           const url = URL.createObjectURL(file);
           const filename = file.name;
@@ -177,7 +178,7 @@ export const usePostRecipeForm = () => {
       dispatch(
         registerSteps({
           index,
-          description: field === 'description' ? e.target.value : '',
+          description: field === 'description' ? e.target.value : undefined,
         })
       );
     },
@@ -283,13 +284,15 @@ export const usePostRecipeForm = () => {
 
       const errors = validateRecipeParams({ recipeParams });
       if (!checkCanRequest(errors)) {
+        // NOTE: エラーメッセージをページ上部に出力するためスクロールトップさせる。
         window.scroll({ top: 0 });
         return;
       }
 
-      // FIXME: KOU-144 フロントエンドとのデータ疎通の実装を行う。
+      // FIXME: KOU-146 Stepの画像を投稿できるように修正する。
+      const data = await postRecipe(recipeParams);
       // eslint-disable-next-line no-console
-      console.log('submitted!!');
+      console.log(data);
     },
     [checkCanRequest, recipeParams]
   );
