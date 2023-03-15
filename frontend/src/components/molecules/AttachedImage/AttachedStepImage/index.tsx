@@ -11,7 +11,7 @@ import {
   ATTACHED_IMAGE_SIZE,
   AttachedImageSize,
 } from '@/components/molecules/AttachedImage/styles';
-import { RecipeStep } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
+import { PostRecipeStep } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 type Props = {
   size?: AttachedImageSize;
@@ -19,7 +19,7 @@ type Props = {
   onChangeStepInput: (
     event: React.ChangeEvent<HTMLInputElement>,
     index: number,
-    field: keyof RecipeStep
+    field: keyof PostRecipeStep
   ) => void;
   onClickResetImage: (index: number) => void;
   imageUrl: string;

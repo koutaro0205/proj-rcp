@@ -5,14 +5,14 @@ import Icon from '@/components/atoms/Icon';
 import SortableIcon from '@/components/atoms/SortableIcon';
 import { Queue } from '@/components/layouts/Queue';
 import FormItem from '@/components/molecules/FormItem';
-import { Ingredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
+import { PostIngredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 import { getStyles } from './styles';
 
 type Props = {
   inputId: string;
   inputName: string;
-  inputValue: Ingredient;
+  inputValue: PostIngredient;
   orderIndex: number;
   dragIndex: number | null;
   onChangeName: (

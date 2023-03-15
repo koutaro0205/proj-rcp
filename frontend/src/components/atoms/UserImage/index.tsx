@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
 
-import { getStyles, UserImageSize, getImageSize } from './styles';
+import { IMAGES } from '@/common/constants/images';
 
-const DEFAULT_USER_IMAGE_PATH = '/images/default.jpg';
+import { getStyles, UserImageSize, getImageSize } from './styles';
 
 type Props = {
   imagePath?: string;
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const UserImage: React.FC<Props> = ({
-  imagePath = DEFAULT_USER_IMAGE_PATH,
+  imagePath = IMAGES.defaultUser,
   size,
 }) => {
   const style = getStyles(size);

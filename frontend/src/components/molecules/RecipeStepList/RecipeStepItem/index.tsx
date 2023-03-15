@@ -7,7 +7,7 @@ import Text from '@/components/atoms/Text';
 import { Queue } from '@/components/layouts/Queue';
 import AttachedStepImage from '@/components/molecules/AttachedImage/AttachedStepImage';
 import FormItem from '@/components/molecules/FormItem';
-import { RecipeStep } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
+import { PostRecipeStep } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 import { getStyles } from './styles';
 
@@ -17,12 +17,12 @@ type Props = {
   orderIndex: number;
   dragIndex: number | null;
   imageUrl: string;
-  inputValue: RecipeStep;
+  inputValue: PostRecipeStep;
   file: File | null;
   onChangeStepInput: (
     event: React.ChangeEvent<HTMLInputElement>,
     index: number,
-    field: keyof RecipeStep
+    field: keyof PostRecipeStep
   ) => void;
   onClickRemoveStep: (orderIndex: number) => void;
   onClickResetImage: (index: number) => void;

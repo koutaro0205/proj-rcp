@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { AppDispatch } from '@/common/store';
-import { Ingredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
+import { PostIngredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 import { selectRgisteredRecipeInfo } from '@/features/postRecipe/selectors';
 import { registerSortedIngredients } from '@/features/postRecipe/slice';
 
@@ -13,9 +13,9 @@ export type IngredientItem = {
   quantity: string;
 };
 
-export const useIngredientList = (ingredients: Ingredient[]) => {
+export const useIngredientList = (ingredients: PostIngredient[]) => {
   const [ingredientsList, setIngredientsList] =
-    useState<Ingredient[]>(ingredients);
+    useState<PostIngredient[]>(ingredients);
 
   const recipeParams = useSelector(selectRgisteredRecipeInfo);
   const dispatch: AppDispatch = useDispatch();

@@ -13,6 +13,8 @@ const colors = {
   favorite: 'gold',
   error: 'red',
   logo: '#db3340',
+  like: '#DE6F5D',
+  lightGray: '#f2f2f',
 } as const;
 
 export default colors;

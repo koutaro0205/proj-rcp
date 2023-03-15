@@ -23,12 +23,14 @@ import React from 'react';
 
 import styles from './styles';
 
-type Props = {};
+type Props = {
+  children: string;
+};
 
-const {{ inputs.name }}: React.FC<Props> = ({}) => {
+const {{ inputs.name }}: React.FC<Props> = ({ children }) => {
   return (
     <div className={styles.container}>
-
+      {children}
     </div>
   );
 };
@@ -43,7 +45,7 @@ export default {{ inputs.name }};
 import { css } from '@emotion/css';
 
 const styles = {
-  container: {},
+  container: css({}),
 };
 
 export default styles;

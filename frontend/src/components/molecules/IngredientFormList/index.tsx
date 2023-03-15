@@ -2,7 +2,7 @@ import React from 'react';
 
 import IconButton from '@/components/atoms/Button/IconButton';
 import { Stack } from '@/components/layouts/Stack';
-import { Ingredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
+import { PostIngredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 import IngredientFormItem from './IngredientFormItem';
 import styles from './styles';
@@ -11,7 +11,7 @@ import { useIngredientList } from './useIngredientFormList';
 type Props = {
   inputId: string;
   inputName: string;
-  ingredieints: Ingredient[];
+  ingredieints: PostIngredient[];
   onClickAddIngredient: () => void;
   onClickRemoveIngredient: (index: number) => void;
   onChangeQuantity: (

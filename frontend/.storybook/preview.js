@@ -1,4 +1,9 @@
 import * as nextImage from 'next/image';
+import * as nextRouter from 'next/router';
+import { Global, css } from '@emotion/react';
+import emotionReset from 'emotion-reset';
+
+nextRouter.useRouter = () => {};
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -14,3 +19,16 @@ Object.defineProperty(nextImage, 'default', {
   configurable: true,
   value: (props) => <img {...props} />,
 });
+
+export const decorators = [
+  (Story) => (
+    <>
+      <Global
+        styles={css`
+          ${emotionReset}
+        `}
+      />
+      <Story />
+    </>
+  ),
+];

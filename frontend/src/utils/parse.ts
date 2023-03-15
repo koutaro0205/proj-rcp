@@ -5,3 +5,7 @@ export const safeParseInt = (defaultNumber: number, input: string | number) => {
   }
   return num;
 };
+
+export const trimString = (str: string) => {
+  return str.trim();
+};
