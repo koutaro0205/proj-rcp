@@ -1,6 +1,6 @@
 import {
-  Ingredient,
-  RecipeStep,
+  PostIngredient,
+  PostRecipeStep,
 } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 export type ImageInfo = {
@@ -16,8 +16,8 @@ export type PostRecipeParams = {
   description: string;
   tip: string;
   serving_size: number;
-  recipe_ingredients_attributes: Ingredient[];
-  recipe_steps_attributes: RecipeStep[];
+  recipe_ingredients_attributes: PostIngredient[];
+  recipe_steps_attributes: PostRecipeStep[];
 };
 
 export type RegisterIngredients = {
@@ -37,9 +37,9 @@ export type RemoveItem = {
 };
 
 export type RegisterSortedIngredients = {
-  ingredients: Ingredient[];
+  ingredients: PostIngredient[];
 };
 
 export type RegisterSortedSteps = {
-  recipeSteps: RecipeStep[];
+  recipeSteps: PostRecipeStep[];
 };

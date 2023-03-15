@@ -1,4 +1,3 @@
-// requireでmodule読み込みを行っているため、打ち消し
 // eslint-disable-next-line
 const { resolve } = require('path');
 

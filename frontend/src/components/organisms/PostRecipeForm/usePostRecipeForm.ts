@@ -24,12 +24,12 @@ import postRecipe from '@/services/recipes/postRecipe';
 import { isEmptyArray } from '@/utils/match';
 import { safeParseInt } from '@/utils/parse';
 
-export type Ingredient = {
+export type PostIngredient = {
   ingredient_name: string;
   quantity: string;
 };
 
-export type RecipeStep = {
+export type PostRecipeStep = {
   description: string;
   step_image?: {
     data: string | ArrayBuffer | null;
@@ -151,7 +151,7 @@ export const usePostRecipeForm = () => {
     (
       e: React.ChangeEvent<HTMLInputElement>,
       index: number,
-      field: keyof RecipeStep
+      field: keyof PostRecipeStep
     ) => {
       setStepIndex(index);
       const fileList = e.target.files;

@@ -5,7 +5,7 @@ import { Stack } from '@/components/layouts/Stack';
 import FormLabel from '@/components/molecules/FormItem/FormLabel';
 import {
   FileObject,
-  RecipeStep,
+  PostRecipeStep,
 } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 import RecipeStepItem from './RecipeStepItem';
@@ -15,7 +15,7 @@ import { useRecipeStepList } from './useRecipeStepList';
 type Props = {
   inputId: string;
   inputName: string;
-  recipeSteps: RecipeStep[];
+  recipeSteps: PostRecipeStep[];
   stepFiles: FileObject[][];
   sortStepFiles: React.Dispatch<React.SetStateAction<FileObject[][]>>;
   onClickAddStep: () => void;
@@ -24,7 +24,7 @@ type Props = {
   onStepInputChange: (
     event: React.ChangeEvent<HTMLInputElement>,
     index: number,
-    field: keyof RecipeStep
+    field: keyof PostRecipeStep
   ) => void;
 };
 

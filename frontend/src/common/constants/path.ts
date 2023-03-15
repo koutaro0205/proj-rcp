@@ -53,3 +53,6 @@ export const FOLLOWING_STATUS_PATH = (id: number) => {
   return `${USERS_PATH}/${id}/following_status`;
 };
 export const FOLLOW_USER_PATH = '/relationships';
+export const RECIPE_DETAIL_PATH = (id: number) => {
+  return `${RECIPES_PATH}/${id}`;
+};

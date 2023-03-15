@@ -5,6 +5,7 @@ import space from '@/theme/space';
 import zIndex from '@/theme/zIndex';
 
 export const HEADER_MENU_HEIGHT = 92;
+const HEADER_NAVIGATION_HEIGHT = 50;
 
 export const getStyles = (isSticky: boolean) => {
   return {
@@ -16,6 +17,9 @@ export const getStyles = (isSticky: boolean) => {
       justifyContent: 'space-between',
       height: HEADER_MENU_HEIGHT,
       alignItems: 'center',
+      ...(isSticky && {
+        height: HEADER_MENU_HEIGHT + HEADER_NAVIGATION_HEIGHT,
+      }),
     }),
     menuList: css({
       display: 'flex',
@@ -23,17 +27,20 @@ export const getStyles = (isSticky: boolean) => {
       paddingLeft: '0px',
     }),
     navigation: css({
+      position: 'relative',
       backgroundColor: colors.PrimaryColor,
       zIndex: zIndex.normal,
       boxShadow: '0px 8px 5px -5px rgba(0,0,0,0.5)',
+      transition: '0.3s',
       ...(isSticky && {
+        transition: '0.3s',
         position: 'fixed',
         top: 0,
         width: '100%',
       }),
     }),
     navigationList: css({
-      height: '50px',
+      height: HEADER_NAVIGATION_HEIGHT,
       display: 'flex',
       gap: space.l,
       alignItems: 'center',

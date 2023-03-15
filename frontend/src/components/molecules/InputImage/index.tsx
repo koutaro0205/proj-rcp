@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
+import { IMAGES } from '@/common/constants/images';
 import DeleteButton from '@/components/atoms/Button/DeleteButton';
 import InputButton from '@/components/atoms/Button/InputButton';
 import Loading from '@/components/atoms/Loading';
@@ -59,11 +60,7 @@ const InputImage: React.FC<Props> = ({
           </>
         ) : (
           <Image
-            src={
-              currentUser?.image_url
-                ? currentUser?.image_url
-                : '/images/default.jpg'
-            }
+            src={currentUser?.image_url || IMAGES.defaultUser}
             width={PREVIEW_IMAGE_SIZE}
             height={PREVIEW_IMAGE_SIZE}
             className={styles.image}

@@ -19,10 +19,23 @@ export default {
       },
       defaultValue: 'xxs',
     },
+    isRoundCorner: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Label>;
 
 const Template: ComponentStory<typeof Label> = (args) => <Label {...args} />;
+
+export const DefaultLabel = Template.bind({});
+DefaultLabel.args = {
+  pattern: 'default',
+  lablelText: 'ラベルテキスト',
+  size: 'm',
+};
 
 export const RequiredLabel = Template.bind({});
 RequiredLabel.args = {

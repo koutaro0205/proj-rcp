@@ -4,7 +4,7 @@ import { client } from '@/utils/axios';
 
 /**
  * @param params パラメータ
- * @returns ログインユーザー
+ * @returns
  */
 const postRecipe = async (params: PostRecipeParams): Promise<unknown> => {
   return client.post(RECIPES_PATH, params);

@@ -5,6 +5,7 @@ import DELETE from '@public/icons/delete.svg';
 import DIET from '@public/icons/diet.svg';
 import DOWN_ARROW from '@public/icons/downArrow.svg';
 import FAVORITE from '@public/icons/favorite.svg';
+import LIKE from '@public/icons/like.svg';
 import PLUS from '@public/icons/plus.svg';
 import RIGHT_ARROW from '@public/icons/rightArrow.svg';
 import TRASH from '@public/icons/trash.svg';
@@ -22,6 +23,7 @@ export const ICONS = {
   RIGHT_ARROW,
   TRASH,
   UNCHECKED,
+  LIKE,
 } as const;
 
 export type Icons = keyof typeof ICONS;

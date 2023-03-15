@@ -4,18 +4,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch } from '@/common/store';
 import {
   FileObject,
-  RecipeStep,
+  PostRecipeStep,
 } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 import { selectRgisteredRecipeInfo } from '@/features/postRecipe/selectors';
 import { registerSortedSteps } from '@/features/postRecipe/slice';
 
 type Args = {
-  recipeSteps: RecipeStep[];
+  recipeSteps: PostRecipeStep[];
   sortStepFiles: React.Dispatch<React.SetStateAction<FileObject[][]>>;
 };
 
 export const useRecipeStepList = ({ recipeSteps, sortStepFiles }: Args) => {
-  const [steps, setSteps] = useState<RecipeStep[]>(recipeSteps);
+  const [steps, setSteps] = useState<PostRecipeStep[]>(recipeSteps);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
 
   const recipeParams = useSelector(selectRgisteredRecipeInfo);
