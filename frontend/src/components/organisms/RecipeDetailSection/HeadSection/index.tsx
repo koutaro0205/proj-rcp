@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { IMAGES } from '@/common/constants/images';
+import { Recipe } from '@/common/types/data';
 import LikeCountButton from '@/components/atoms/LikeCountButton';
 import Title from '@/components/atoms/Title';
 import Inset from '@/components/layouts/Inset';
@@ -11,12 +12,12 @@ import RecipeInfoItem from './RecipeInfoItem';
 import styles from './styles';
 
 export type Props = {
-  recipeTitle: string;
-  imageUrl?: string;
+  recipeTitle: Recipe['title'];
+  imageUrl?: Recipe['image_url'];
   categories?: string[];
-  cookTime?: string;
-  cost?: string;
-  postDate: string;
+  cookTime?: Recipe['cook_time'];
+  cost?: Recipe['cost'];
+  postDate: Recipe['updated_at'];
   isLiked: boolean;
   onClickLikeButton: () => void;
   likeCount: number;
@@ -40,9 +41,11 @@ const HeadSection: React.FC<Props> = ({
   return (
     <div className={styles.container}>
       <Inset all="l" direction="column">
-        <Title size="l" color="black">
-          {recipeTitle}
-        </Title>
+        <Inset horizontal="xl">
+          <Title size="l" color="black">
+            {recipeTitle}
+          </Title>
+        </Inset>
         <Stack size="l" />
         <div className={styles.imageSection}>
           <div className={styles.imageWrapper}>

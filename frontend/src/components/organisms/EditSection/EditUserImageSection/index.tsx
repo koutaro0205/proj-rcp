@@ -60,7 +60,7 @@ const EditUserImageSection: React.FC<Props> = ({
           type="submit"
           value="プロフィール画像を変更する"
           isCenter
-          disabled={!(!!userInfo.image?.data && !!userInfo.image.filename)}
+          disabled={!(!!userInfo.image?.io && !!userInfo.image.filename)}
         />
       </form>
     </div>

@@ -6,6 +6,7 @@ import {
   COOK_TIME_OPTIONS,
 } from '@/common/constants/options';
 import { AppDispatch } from '@/common/store';
+import { ImageInfo } from '@/common/types';
 import { validateRecipeParams } from '@/common/validations/postRecipe';
 import { selectRgisteredRecipeInfo } from '@/features/postRecipe/selectors';
 import {
@@ -31,10 +32,7 @@ export type PostIngredient = {
 
 export type PostRecipeStep = {
   description: string;
-  step_image?: {
-    data: string | ArrayBuffer | null;
-    filename: string;
-  };
+  step_image?: ImageInfo;
 };
 
 type AttachedType = File | null;
@@ -197,7 +195,7 @@ export const usePostRecipeForm = () => {
       dispatch(
         registerSteps({
           index: stepIndex,
-          image: { filename: stepFileName, data: stepDataUrl },
+          image: { filename: stepFileName, io: stepDataUrl },
         })
       );
     }

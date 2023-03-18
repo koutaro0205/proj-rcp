@@ -1,6 +1,7 @@
 // NOTE: ディレクトリ構成検討中
 import { createAction, createSlice } from '@reduxjs/toolkit';
 
+import { ImageInfo } from '@/common/types';
 import { safeParseInt } from '@/utils/parse';
 
 import {
@@ -12,13 +13,8 @@ import {
   RegisterSortedSteps,
 } from './type';
 
-type ImageInfo = {
-  data: string | ArrayBuffer | null;
-  filename: string;
-};
-
 export const INITIAL_IMAGE_INFO: ImageInfo = {
-  data: null,
+  io: null,
   filename: '',
 };
 

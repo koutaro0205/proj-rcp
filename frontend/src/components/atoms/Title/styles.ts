@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css, CSSInterpolation } from '@emotion/css';
 
 import colors, { Color } from '@/theme/colors';
 import fontSizes, { FontSizes } from '@/theme/fontSize';
@@ -19,15 +19,19 @@ export type TitleColor = Extract<
 type GetStyleInput = {
   color: TitleColor;
   size: TitleSize | TitleSize[];
+  isCenter: boolean;
 };
 
-export const getStyle = ({ color, size }: GetStyleInput) => {
+export const getStyle = ({ color, size, isCenter }: GetStyleInput) => {
   const isMqSize = Array.isArray(size);
 
-  const commonStyles = {
+  const commonStyles: CSSInterpolation = {
     color: colors[color],
     lineHeight: lineHeights.m,
     fontWeight: fontWeight.bold,
+    ...(isCenter && {
+      textAlign: 'center',
+    }),
   };
 
   if (isMqSize) {

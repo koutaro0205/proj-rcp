@@ -11,11 +11,7 @@ class Api::V1::RecipesController < ApplicationController
       include: {
         recipe_ingredients: {},
         recipe_steps: {
-          include: {
-            step_image_attachment: {
-              include: { blob: { methods: :service_url } }
-            }
-          }
+          include: :step_image_attachment
         }
       }
     ).merge(image_url: url_for(@recipe.image))
@@ -50,12 +46,12 @@ class Api::V1::RecipesController < ApplicationController
       :tip,
       :serving_size,
       recipe_ingredients_attributes: [:ingredient_name, :quantity, :_destroy],
-      recipe_steps_attributes: [:description, :_destroy, { step_image: [] }],
+      recipe_steps_attributes: [:description, :_destroy, { step_image: [:io, :filename] }],
     )
   end
 
   def attach_recipe_image(recipe)
-    image_data = params[:image][:data]
+    image_data = params[:image][:io]
     decoded_image_data = Base64.decode64(image_data)
     io = StringIO.new(decoded_image_data)
     filename = params[:image][:filename]
@@ -68,17 +64,32 @@ class Api::V1::RecipesController < ApplicationController
     recipe.image.attach(blob)
   end
 
+  # def attach_recipe_steps_images(recipe)
+  #   recipe.recipe_steps.each do |recipe_step|
+  #     next unless recipe_step.step_image.present?
+
+  #     recipe_step.step_image.each do |image|
+  #       blob = ActiveStorage::Blob.create_and_upload!(
+  #         io: StringIO.new(Base64.decode64(image[:io])),
+  #         filename: image[:filename],
+  #       )
+  #       recipe_step.step_image_attachment.attach(blob)
+  #     end
+  #   end
+  # end
   def attach_recipe_steps_images(recipe)
     recipe.recipe_steps.each do |recipe_step|
       next unless recipe_step.step_image.present?
 
-      recipe_step.step_image.each do |image|
-        blob = ActiveStorage::Blob.create_and_upload!(
-          io: StringIO.new(Base64.decode64(image[:data])),
-          filename: image[:filename],
-        )
-        recipe_step.step_image_attachment.attach(blob)
-      end
+      image = recipe_step.step_image
+      io = StringIO.new(Base64.decode64(image[:io]))
+
+      filename = image[:filename]
+      blob = ActiveStorage::Blob.create_and_upload!(
+        io: io,
+        filename: filename
+      )
+      recipe_step.step_image_attachment.attach(blob)
     end
   end
 end

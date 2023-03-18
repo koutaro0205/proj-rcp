@@ -13,7 +13,7 @@ const DEFAULTS: UserParams = {
   password: '',
   password_confirmation: '',
   image: {
-    data: '',
+    io: '',
     filename: '',
   },
 };

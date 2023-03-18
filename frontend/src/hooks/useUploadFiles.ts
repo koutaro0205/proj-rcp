@@ -1,14 +1,8 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 
-export type ImageInfo = {
-  data: string | ArrayBuffer | null;
-  filename: string;
-};
+import { ImageInfo } from '@/common/types';
+import { INITIAL_IMAGE_INFO } from '@/features/postRecipe/slice';
 
-const INITIAL_IMAGE_INFO: ImageInfo = {
-  data: null,
-  filename: '',
-};
 export const useUploadFiles = () => {
   const [imageInfo, setImageInfo] = useState<ImageInfo>(INITIAL_IMAGE_INFO);
   const [imageUrl, setImageUrl] = useState<string>('');
@@ -40,7 +34,7 @@ export const useUploadFiles = () => {
       if (res && typeof res === 'string') {
         setImageUrl(res);
         setImageInfo({
-          data: reader && reader.result,
+          io: reader && reader.result,
           filename: file ? file.name : '',
         });
       }

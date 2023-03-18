@@ -1,18 +1,14 @@
 import React from 'react';
 
+import { Recipe } from '@/common/types/data';
 import Title from '@/components/atoms/Title';
 import { Stack } from '@/components/layouts/Stack';
 
 import styles from './styles';
 
-type Ingredient = {
-  id: number;
-  ingredient_name: string;
-  quantity: string;
-};
 export type Props = {
-  servingSize: number;
-  recipeIngredients: Ingredient[];
+  servingSize: Recipe['serving_size'];
+  recipeIngredients: Recipe['recipe_ingredients'];
 };
 
 const IngredientDetailSection: React.FC<Props> = ({

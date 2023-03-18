@@ -1,4 +1,4 @@
-import { StatusCode } from '@/common/types';
+import { StatusCode, ImageInfo } from '@/common/types';
 import { User } from '@/common/types/data';
 
 export type UserParams = {
@@ -21,10 +21,7 @@ export type UserParams = {
   /**
    * ユーザー画像
    */
-  image?: {
-    data: string | ArrayBuffer | null;
-    filename: string;
-  };
+  image?: ImageInfo;
 };
 
 export type NormalResponse = {

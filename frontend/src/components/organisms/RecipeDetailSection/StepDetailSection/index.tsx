@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { IMAGES } from '@/common/constants/images';
+import { Recipe } from '@/common/types/data';
 import Label from '@/components/atoms/Label';
 import Title from '@/components/atoms/Title';
 import { Stack } from '@/components/layouts/Stack';
@@ -9,14 +10,8 @@ import { trimString } from '@/utils/parse';
 
 import styles from './styles';
 
-type RecipeStep = {
-  id: number;
-  stepImage: string;
-  description: string;
-};
-
 export type Props = {
-  recipeSteps: RecipeStep[];
+  recipeSteps: Recipe['recipe_steps'];
 };
 
 const StepDetailSection: React.FC<Props> = ({ recipeSteps }) => {
@@ -42,7 +37,7 @@ const StepDetailSection: React.FC<Props> = ({ recipeSteps }) => {
             </p>
             <div className={styles.imageWrapper}>
               <Image
-                src={step?.stepImage || IMAGES.noImageSquare}
+                src={step?.image_url || IMAGES.noImageSquare}
                 width={140}
                 height={140}
               />

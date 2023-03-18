@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 
-type ImageParams = {
-  data: string | ArrayBuffer | null;
-  filename: string;
-};
+import { ImageInfo } from '@/common/types';
 
 type Args = {
   file: File | null;
@@ -11,7 +8,7 @@ type Args = {
 
 export const useReadFile = ({ file }: Args) => {
   const [previewImageUrl, setPreviewImageUrl] = useState<string>('');
-  const [imageParams, setImageParams] = useState<ImageParams>();
+  const [imageParams, setImageParams] = useState<ImageInfo>();
 
   useEffect(() => {
     if (!file) {
@@ -24,7 +21,7 @@ export const useReadFile = ({ file }: Args) => {
       if (res && typeof res === 'string') {
         setPreviewImageUrl(res);
         setImageParams({
-          data: reader && reader.result,
+          io: reader && reader.result,
           filename: file ? file.name : '',
         });
       }

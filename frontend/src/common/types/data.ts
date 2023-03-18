@@ -1,4 +1,4 @@
-// usersテーブル
+// ユーザー情報
 export type User = {
   id: number;
   name: string;
@@ -14,4 +14,39 @@ export type User = {
   activated_at: string | null;
   admin: boolean;
   image_url?: string | null;
+};
+
+// 材料
+export type RecipeIngredient = {
+  id: number;
+  ingredient_name: string;
+  quantity: string;
+  created_at: string;
+  updated_at: string;
+  recipe_id?: number;
+};
+
+// 作り方
+export type RecipeStep = {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  description: string;
+  image_url?: string;
+};
+
+// レシピ詳細
+export type Recipe = {
+  id: number;
+  title: string;
+  image_url?: string;
+  cook_time: string;
+  cost: string | null;
+  tip: string | null;
+  created_at: string;
+  updated_at: string;
+  description: string;
+  serving_size: number;
+  recipe_ingredients: RecipeIngredient[];
+  recipe_steps: RecipeStep[];
 };

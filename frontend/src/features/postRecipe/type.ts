@@ -1,12 +1,8 @@
+import { ImageInfo } from '@/common/types';
 import {
   PostIngredient,
   PostRecipeStep,
 } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
-
-export type ImageInfo = {
-  data: string | ArrayBuffer | null;
-  filename: string;
-};
 
 export type PostRecipeParams = {
   title: string;

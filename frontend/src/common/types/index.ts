@@ -6,3 +6,8 @@ export type StatusCode =
   | 'created'
   | 'unauthorized'
   | 'forbidden';
+
+export type ImageInfo = {
+  io: string | ArrayBuffer | null;
+  filename: string;
+};
