@@ -18,6 +18,7 @@ export type Props = {
   cookTime?: Recipe['cook_time'];
   cost?: Recipe['cost'];
   postDate: Recipe['updated_at'];
+  description: Recipe['description'];
   isLiked: boolean;
   onClickLikeButton: () => void;
   likeCount: number;
@@ -25,8 +26,6 @@ export type Props = {
 
 const MAIN_IMAGE_SIZE = 500;
 
-// FIXME: organismsの子コンポーネントとして配置し直す。
-// （コンポーネントにしてはドメインの知識を持ちすぎている。）
 const HeadSection: React.FC<Props> = ({
   recipeTitle,
   imageUrl,
@@ -34,6 +33,7 @@ const HeadSection: React.FC<Props> = ({
   cookTime,
   cost,
   postDate,
+  description,
   isLiked = false,
   onClickLikeButton,
   likeCount,
@@ -76,6 +76,8 @@ const HeadSection: React.FC<Props> = ({
           {cookTime && <RecipeInfoItem label="調理時間" itemValue={cookTime} />}
           {cost && <RecipeInfoItem label="コスト" itemValue={cost} />}
         </div>
+        <Stack size="l" />
+        <p className={styles.description}>{description}</p>
       </Inset>
     </div>
   );

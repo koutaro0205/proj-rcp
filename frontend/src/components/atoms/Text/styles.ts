@@ -25,11 +25,10 @@ export const getStyles = ({
   const getBackground = backgroundColor && {
     backgroundColor: colors[backgroundColor],
     padding: space.s,
-    display: 'block',
   };
   return {
     text: css({
-      display: 'inline-blick',
+      display: backgroundColor || textAlign ? 'block' : 'inline-block',
       textAlign,
       lineHeight: lineHeights[lineHeight],
       ...getBackground,

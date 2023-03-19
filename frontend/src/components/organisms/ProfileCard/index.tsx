@@ -32,7 +32,7 @@ const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
   return (
     <div className={styles.container}>
       <FlexContainer>
-        <UserImage size="large" />
+        <UserImage size="large" imagePath={user.image_url} />
         {/* FIXME: Rails APIが用意できたらデータを入れる（postCount） */}
         <CurrentUserInfo userName={user.name} postCount={0} />
       </FlexContainer>

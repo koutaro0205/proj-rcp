@@ -62,6 +62,13 @@ export default {
       },
       defaultValue: 100,
     },
+    description: {
+      control: {
+        type: 'text',
+      },
+      defaultValue:
+        'ここにレシピの概要が入ります。ここにレシピの概要が入ります。ここにレシピの概要が入ります。ここにレシピの概要が入ります。ここにレシピの概要が入ります。ここにレシピの概要が入ります。',
+    },
   },
 } as ComponentMeta<typeof HeadSection>;
 

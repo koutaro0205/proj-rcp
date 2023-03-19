@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import React from 'react';
+
+import Link from '@/components/atoms/Link';
 
 import { getStyles } from './styles';
 
@@ -19,9 +20,8 @@ export const NumberButton: React.FC<Props> = ({
     <div className={styles.container}>
       {isDisplay ? (
         <div className={styles.content}>
-          <Link href={`?page=${pageNumber}`}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a className={styles.link}>{pageNumber}</a>
+          <Link href={`?page=${pageNumber}`} className={styles.link}>
+            {pageNumber}
           </Link>
         </div>
       ) : (

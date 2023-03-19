@@ -2,12 +2,14 @@ class Recipe < ApplicationRecord
   has_one_attached :image
   has_many :recipe_ingredients, dependent: :destroy
   has_many :recipe_steps, dependent: :destroy
+  belongs_to :user
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
   accepts_nested_attributes_for :recipe_steps, allow_destroy: true
 
   validates :title, presence: true
   validates :description, presence: true
   validates :serving_size, presence: true
+  validates :user_id, presence: true
 
   include Rails.application.routes.url_helpers
 

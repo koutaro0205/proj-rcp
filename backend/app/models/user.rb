@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   # Relational Tables
   ## Relationships
+  has_many :recipes, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy

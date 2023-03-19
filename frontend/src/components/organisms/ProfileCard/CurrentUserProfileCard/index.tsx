@@ -17,10 +17,7 @@ const CurrentUserProfileCard: React.FC<Props> = ({ currentUser }) => {
     <div className={styles.container}>
       <SubTitle>現在のユーザー</SubTitle>
       <FlexContainer>
-        <UserImage
-          size="large"
-          imagePath={currentUser.image_url || undefined}
-        />
+        <UserImage size="large" imagePath={currentUser.image_url} />
         {/* FIXME: Rails APIが用意できたらデータを入れる（postCount） */}
         <CurrentUserInfo userName={currentUser.name} postCount={0} />
       </FlexContainer>

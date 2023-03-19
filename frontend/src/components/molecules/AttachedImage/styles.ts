@@ -50,5 +50,10 @@ export const getStyles = (size: AttachedImageSize) => {
       fontSize: fontSizes.s,
       color: colors.alto,
     }),
+    input: css({
+      height: '100%',
+      padding: 5,
+      boxSizing: 'border-box',
+    }),
   };
 };

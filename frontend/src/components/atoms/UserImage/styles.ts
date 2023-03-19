@@ -1,26 +1,22 @@
 import { css } from '@emotion/css';
 
 import borderRadius from '@/theme/borderRadius';
-import space from '@/theme/space';
 
 export type UserImageSize = 'small' | 'medium' | 'large';
 
-const userImageSize = {
-  small: '10px',
+export const USER_IMAGE_SIZE = {
+  small: '32px',
   medium: '50px',
   large: '80px',
 };
 
-export const getImageSize = (size: UserImageSize) => userImageSize[size];
-
 export const getStyles = (size: UserImageSize) => {
-  const USER_IMAGE_SIZE = getImageSize(size);
+  const imageSize = USER_IMAGE_SIZE[size];
 
   return {
     imageWrapper: css({
-      width: USER_IMAGE_SIZE,
-      height: USER_IMAGE_SIZE,
-      marginRight: space.l,
+      width: imageSize,
+      height: imageSize,
       borderRadius: borderRadius.circle,
     }),
     image: css({

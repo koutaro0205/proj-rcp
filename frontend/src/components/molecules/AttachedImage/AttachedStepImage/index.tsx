@@ -4,7 +4,6 @@ import React, { useMemo } from 'react';
 import BasicButton from '@/components/atoms/Button/BasicButton';
 import Icon from '@/components/atoms/Icon';
 import Loading from '@/components/atoms/Loading';
-import Inset from '@/components/layouts/Inset';
 import { Stack } from '@/components/layouts/Stack';
 import {
   getStyles,
@@ -73,13 +72,14 @@ const AttachedStepImage: React.FC<Props> = ({
           )}
         </div>
       ) : (
-        <Inset all="xs">
+        <div className={styles.input}>
           <label htmlFor={inputId} className={styles.inputContainer}>
             {/* ダミーインプット */}
             <input
               id={inputId}
               hidden
               type="file"
+              name={`recipe[recipe_steps_attributes][${index}][step_image]`}
               accept="image/*"
               multiple
               onChange={(e) => onChangeStepInput(e, index, 'step_image')}
@@ -90,7 +90,7 @@ const AttachedStepImage: React.FC<Props> = ({
               <div>写真を投稿</div>
             </div>
           </label>
-        </Inset>
+        </div>
       )}
     </div>
   );

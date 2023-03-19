@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
 
   def attach_image(parameters)
     blob = ActiveStorage::Blob.create_and_upload!(
-      io: StringIO.new(decode(params[:image][:data]) + "\n"),
+      io: StringIO.new(decode(params[:image][:io]) + "\n"),
       filename: params[:image][:filename]
     )
     parameters.image.attach(blob)
