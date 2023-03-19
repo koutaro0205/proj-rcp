@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import React from 'react';
+
+import Link from '@/components/atoms/Link';
 
 import { GetStyleInput, getStyles } from './styles';
 
@@ -28,9 +29,8 @@ const LinkText: React.FC<Props> = ({
     hasHoverAction,
   });
   return (
-    <Link href={path}>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a className={styles.linkText}>{children}</a>
+    <Link href={path} className={styles.linkText}>
+      {children}
     </Link>
   );
 };

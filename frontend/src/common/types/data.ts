@@ -35,8 +35,8 @@ export type RecipeStep = {
   image_url?: string;
 };
 
-// レシピ詳細
-export type Recipe = {
+// レシピデータ
+export type RecipeData = {
   id: number;
   title: string;
   image_url?: string;
@@ -47,6 +47,15 @@ export type Recipe = {
   updated_at: string;
   description: string;
   serving_size: number;
+};
+
+// レシピ詳細
+export type Recipe = {
   recipe_ingredients: RecipeIngredient[];
   recipe_steps: RecipeStep[];
-};
+} & RecipeData;
+
+// レシピカード
+export type RecipeCard = {
+  user: User;
+} & RecipeData;

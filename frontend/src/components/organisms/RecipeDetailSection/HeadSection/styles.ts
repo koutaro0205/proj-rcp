@@ -1,5 +1,9 @@
 import { css } from '@emotion/css';
 
+import { NORMAL_BORDER_STYLE } from '@/common/constants/typography';
+import borderRadius from '@/theme/borderRadius';
+import fontSizes from '@/theme/fontSize';
+import lineHeights from '@/theme/lineHeights';
 import space from '@/theme/space';
 
 const styles = {
@@ -30,6 +34,13 @@ const styles = {
   recipeInfoSection: css({
     display: 'flex',
     gap: space.xl,
+  }),
+  description: css({
+    padding: space.m,
+    border: NORMAL_BORDER_STYLE,
+    borderRadius: borderRadius.s,
+    lineHeight: lineHeights.l,
+    fontSize: fontSizes.m,
   }),
 };
 

@@ -3,25 +3,22 @@ import React from 'react';
 
 import { IMAGES } from '@/common/constants/images';
 
-import { getStyles, UserImageSize, getImageSize } from './styles';
+import { getStyles, UserImageSize, USER_IMAGE_SIZE } from './styles';
 
 type Props = {
-  imagePath?: string;
+  imagePath?: string | null;
   size: UserImageSize;
 };
 
-const UserImage: React.FC<Props> = ({
-  imagePath = IMAGES.defaultUser,
-  size,
-}) => {
+const UserImage: React.FC<Props> = ({ imagePath, size }) => {
   const style = getStyles(size);
   return (
     <div className={style.imageWrapper}>
       <Image
-        src={imagePath}
+        src={imagePath || IMAGES.defaultUser}
         className={style.image}
-        width={getImageSize(size)}
-        height={getImageSize(size)}
+        width={USER_IMAGE_SIZE[size]}
+        height={USER_IMAGE_SIZE[size]}
       />
     </div>
   );

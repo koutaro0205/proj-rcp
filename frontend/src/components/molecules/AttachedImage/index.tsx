@@ -4,7 +4,6 @@ import React, { useMemo } from 'react';
 import BasicButton from '@/components/atoms/Button/BasicButton';
 import Icon from '@/components/atoms/Icon';
 import Loading from '@/components/atoms/Loading';
-import Inset from '@/components/layouts/Inset';
 
 import { getStyles, ATTACHED_IMAGE_SIZE, AttachedImageSize } from './styles';
 
@@ -61,7 +60,7 @@ const AttachedImage: React.FC<Props> = ({
           )}
         </div>
       ) : (
-        <Inset all="xs">
+        <div className={styles.input}>
           <label htmlFor={inputId} className={styles.inputContainer}>
             {/* ダミーインプット */}
             <input
@@ -76,7 +75,7 @@ const AttachedImage: React.FC<Props> = ({
               <div>写真を載せる</div>
             </div>
           </label>
-        </Inset>
+        </div>
       )}
     </div>
   );

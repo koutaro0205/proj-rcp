@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCallback, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { LOGIN_PATH } from '@/common/constants/path';
@@ -11,23 +11,22 @@ export const useAuthGaurd = () => {
   const router = useRouter();
   const currentUser = useSelector(selectCurrentUser);
 
-  const authGaurd = useCallback(() => {
-    if (!currentUser) {
-      const currentPath = router.asPath;
+  if (!currentUser) {
+    const currentPath = router.asPath;
 
-      router.push({
-        pathname: LOGIN_PATH,
-        query: {
-          redirectTo: currentPath,
-        },
-      });
+    router.push({
+      pathname: LOGIN_PATH,
+      query: {
+        redirectTo: currentPath,
+      },
+    });
+  }
+
+  useLayoutEffect(() => {
+    if (!currentUser) {
       info(ACCESS_RESTRICTIONS.INFO);
     }
   }, [currentUser, router]);
-
-  useLayoutEffect(() => {
-    authGaurd();
-  }, [router, currentUser, authGaurd]);
 
   return {
     currentUser,

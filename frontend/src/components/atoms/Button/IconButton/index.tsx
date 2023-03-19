@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import React from 'react';
 
 import { Icons } from '@/common/constants/icons';
 import Icon from '@/components/atoms/Icon';
+import Link from '@/components/atoms/Link';
 import Text from '@/components/atoms/Text';
 import { Queue } from '@/components/layouts/Queue';
 import { Color } from '@/theme/colors';
@@ -46,9 +46,8 @@ const IconButton: React.FC<Props> = ({
   };
   if (path) {
     return (
-      <Link href={path}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a className={styles.linkContainer}>{getButtonContent()}</a>
+      <Link href={path} className={styles.linkContainer}>
+        {getButtonContent()}
       </Link>
     );
   }

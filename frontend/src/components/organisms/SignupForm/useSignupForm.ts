@@ -33,6 +33,7 @@ export const useSignupForm = () => {
       if (!checkCanRequest(errors)) return;
 
       await signup(userInfo);
+      // FIXME: 新規アカウント登録成功後の処理を追加する。
       info(SIGNUP.INFO);
     },
     [checkCanRequest, data, userInfo]

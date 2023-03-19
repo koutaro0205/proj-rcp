@@ -12,9 +12,10 @@ import styles from './styles';
 
 export type Props = {
   recipeSteps: Recipe['recipe_steps'];
+  tip: Recipe['tip'];
 };
 
-const StepDetailSection: React.FC<Props> = ({ recipeSteps }) => {
+const StepDetailSection: React.FC<Props> = ({ recipeSteps, tip }) => {
   return (
     <div className={styles.container}>
       <Title size="ml" color="black">
@@ -45,6 +46,12 @@ const StepDetailSection: React.FC<Props> = ({ recipeSteps }) => {
           </li>
         ))}
       </ul>
+      <Stack size="l" />
+      <Title size="m" color="black">
+        うまくできるコツ
+      </Title>
+      <Stack size="s" />
+      {tip && <p className={styles.tip}>{tip}</p>}
     </div>
   );
 };

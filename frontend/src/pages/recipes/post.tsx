@@ -9,15 +9,18 @@ import Layout from '@/components/templates/Layout';
 import { useAuthGaurd } from '@/hooks/useAuthGaurd';
 
 const PostRecipePage: NextPage = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { currentUser } = useAuthGaurd();
   return (
     <Layout>
       <ContentWidth>
-        <SectionTitle sectionTitle="レシピ投稿" />
-        <InnerWrapper>
-          <PostRecipeForm />
-        </InnerWrapper>
+        {currentUser ? (
+          <>
+            <SectionTitle sectionTitle="レシピ投稿" />
+            <InnerWrapper>
+              <PostRecipeForm />
+            </InnerWrapper>
+          </>
+        ) : null}
       </ContentWidth>
     </Layout>
   );

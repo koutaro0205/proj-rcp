@@ -25,7 +25,6 @@ export const getStyle = ({
         flexDirection: direction,
         padding: spacing[all],
         backgroundColor: isDebugHighlight ? colors.error : colors.transparent,
-        height: '100%',
         width: '100%',
         boxSizing: 'border-box',
       }),

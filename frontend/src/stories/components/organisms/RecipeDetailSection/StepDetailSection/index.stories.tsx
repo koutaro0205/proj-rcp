@@ -25,6 +25,12 @@ export default {
       },
       defaultValue: RECIPE_STEPS,
     },
+    tip: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: DESCRIPTION,
+    },
   },
 } as ComponentMeta<typeof StepDetailSection>;
 

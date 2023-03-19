@@ -20,15 +20,25 @@ type GetStyleInput = {
   color: TitleColor;
   size: TitleSize | TitleSize[];
   isCenter: boolean;
+  maxLines: number;
 };
 
-export const getStyle = ({ color, size, isCenter }: GetStyleInput) => {
+export const getStyle = ({
+  color,
+  size,
+  isCenter,
+  maxLines,
+}: GetStyleInput) => {
   const isMqSize = Array.isArray(size);
 
   const commonStyles: CSSInterpolation = {
     color: colors[color],
     lineHeight: lineHeights.m,
     fontWeight: fontWeight.bold,
+    display: '-webkit-box',
+    WebkitLineClamp: maxLines,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
     ...(isCenter && {
       textAlign: 'center',
     }),

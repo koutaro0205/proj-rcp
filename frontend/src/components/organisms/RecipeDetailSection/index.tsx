@@ -26,6 +26,7 @@ const RecipeDetailSection: React.FC<Props> = ({
   cookTime,
   cost,
   postDate,
+  description,
   // isLiked,
   // onClickLikeButton,
   // likeCount,
@@ -34,6 +35,7 @@ const RecipeDetailSection: React.FC<Props> = ({
   recipeIngredients,
   /* StepDetailSection */
   recipeSteps,
+  tip,
 }) => {
   return (
     <div className={styles.container}>
@@ -41,10 +43,12 @@ const RecipeDetailSection: React.FC<Props> = ({
         imageUrl={imageUrl}
         recipeTitle={recipeTitle}
         postDate={postDate}
+        description={description}
         categories={categories}
         cookTime={cookTime}
         cost={cost}
-        // FIXME: currentUserがそのレシピをお気に入りしているか
+        // FIXME: お気に入り機能実装後、修正する。
+        // (currentUserがそのレシピをお気に入りしているか)
         isLiked={false}
         onClickLikeButton={() => {}}
         likeCount={0}
@@ -55,7 +59,7 @@ const RecipeDetailSection: React.FC<Props> = ({
         recipeIngredients={recipeIngredients}
       />
       <Stack size="xl" />
-      <StepDetailSection recipeSteps={recipeSteps} />
+      <StepDetailSection recipeSteps={recipeSteps} tip={tip} />
       <Stack size="xl" />
     </div>
   );
