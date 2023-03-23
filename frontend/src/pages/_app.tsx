@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import store from '@/common/store';
 import BackgroundProvider from '@/components/templates/BackgroundWrapper';
 import CurrentUserProvider from '@/components/templates/CurrentUserProvider';
+import GlobalLoadingProvider from '@/components/templates/GlobalLoadingProvider';
 
 export const SITE_TITLE = 'ZuboRecipes';
 
@@ -38,16 +39,18 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta name="twitter:site" content="@truck2hand" /> */}
       </Head>
       <Provider store={store}>
-        <CurrentUserProvider>
-          <BackgroundProvider>
-            <Global
-              styles={css`
-                ${emotionReset}
-              `}
-            />
-            <Component {...pageProps} />
-          </BackgroundProvider>
-        </CurrentUserProvider>
+        <GlobalLoadingProvider>
+          <CurrentUserProvider>
+            <BackgroundProvider>
+              <Global
+                styles={css`
+                  ${emotionReset}
+                `}
+              />
+              <Component {...pageProps} />
+            </BackgroundProvider>
+          </CurrentUserProvider>
+        </GlobalLoadingProvider>
       </Provider>
       <ToastContainer />
     </>

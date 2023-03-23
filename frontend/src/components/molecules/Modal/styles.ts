@@ -54,7 +54,7 @@ const styles = {
   }),
   modalBackground: css({
     backgroundColor: colors.black,
-    zIndex: 50,
+    zIndex: zIndex.strong - 1,
     position: 'fixed',
     transition: `opacity ${DURATION}ms ease-in-out`,
     width: '100%',

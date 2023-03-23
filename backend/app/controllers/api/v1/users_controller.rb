@@ -13,9 +13,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if params[:image]
-      attach_image(@user)
-    end
+    attach_image(@user) if params[:image]
 
     if @user.save
       @user.send_activation_email
@@ -26,9 +24,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    if params[:image]
-      attach_image(@user)
-    end
+    attach_image(@user) if params[:image]
 
     if @user.update(user_params)
       render json: { status: :ok, user: @user }
@@ -46,7 +42,7 @@ class Api::V1::UsersController < ApplicationController
     # フォローしているユーザー一覧
     following_list = @user.following
     following_count = @user.following.count
-    render json: { pattern: pattern, following_count: following_count, following_list: following_list }
+    render json: { pattern:, following_count:, following_list: }
   end
 
   def followers
@@ -54,7 +50,7 @@ class Api::V1::UsersController < ApplicationController
     # フォロワー一覧
     followers_list = @user.followers
     followers_count = @user.followers.count
-    render json: { pattern: pattern, followers_count: followers_count, followers_list: followers_list }
+    render json: { pattern:, followers_count:, followers_list: }
   end
 
   def following_status
@@ -63,24 +59,25 @@ class Api::V1::UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    def correct_user
-      @checked_user = User.find_by(id: params[:id])
-      unless current_user?(@checked_user)
-        render json: { status: :forbidden }
-      end
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.permit(
-        :name,
-        :email,
-        :password,
-        :password_confirmation,
-        :image,
-      )
-    end
+  def correct_user
+    @checked_user = User.find_by(id: params[:id])
+    return if current_user?(@checked_user)
+
+    render json: { status: :forbidden }
+  end
+
+  def user_params
+    params.permit(
+      :name,
+      :email,
+      :password,
+      :password_confirmation,
+      :image
+    )
+  end
 end

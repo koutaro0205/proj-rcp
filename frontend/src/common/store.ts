@@ -5,12 +5,14 @@ import {
 } from 'react-redux';
 
 import currentUserSlice from '@/features/currentUser/slice';
+import globalLoadingSlice from '@/features/globalLoading/slice';
 import postRecipeSlice from '@/features/postRecipe/slice';
 
 const store = configureStore({
   reducer: {
     currentUser: currentUserSlice,
     postRecipe: postRecipeSlice,
+    globalLoading: globalLoadingSlice,
   },
 });
 

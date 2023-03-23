@@ -35,13 +35,14 @@ const PostRecipeForm: React.FC = () => {
     handleClickRemoveStep,
     setStepFiles,
     handleResetMainImage,
-    handleResetStepImage,
+    // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+    // handleResetStepImage,
+    // stepFiles,
     selectedCostIndex,
     selectedCookingTimeIndex,
     recipeParams,
     previewImageUrl,
     mainImage,
-    stepFiles,
     formErrors,
   } = usePostRecipeForm();
   return (
@@ -143,10 +144,11 @@ const PostRecipeForm: React.FC = () => {
         recipeSteps={recipeParams.recipe_steps_attributes}
         onClickAddStep={handleClickAddStep}
         onClickRemoveStep={handleClickRemoveStep}
-        onClickResetImage={handleResetStepImage}
         onStepInputChange={handleStepInputChange}
         sortStepFiles={setStepFiles}
-        stepFiles={stepFiles}
+        // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+        // onClickResetImage={handleResetStepImage}
+        // stepFiles={stepFiles}
       />
       <Stack size="l" />
       <FormItem

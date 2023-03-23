@@ -2,6 +2,8 @@ import Image from 'next/image';
 import React from 'react';
 
 import { IMAGES } from '@/common/constants/images';
+import { Queue } from '@/components/layouts/Queue';
+import colors, { Color } from '@/theme/colors';
 
 import styles from './styles';
 
@@ -14,11 +16,13 @@ const LOADING_IMAGE_SIZE = {
 type Props = {
   children?: string;
   size?: keyof typeof LOADING_IMAGE_SIZE;
+  color?: Extract<Color, 'black' | 'white'>;
 };
 
 const Loading: React.FC<Props> = ({
   children = DEFAULT_LOADING_TEXT,
   size = 's',
+  color = 'black',
 }) => {
   return (
     <div className={styles.container}>
@@ -28,7 +32,8 @@ const Loading: React.FC<Props> = ({
         width={LOADING_IMAGE_SIZE[size]}
         height={LOADING_IMAGE_SIZE[size]}
       />
-      {children}
+      <Queue size="m" />
+      <span style={{ color: colors[color] }}>{children}</span>
     </div>
   );
 };
