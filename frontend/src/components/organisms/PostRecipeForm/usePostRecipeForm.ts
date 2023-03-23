@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -5,9 +6,11 @@ import {
   COOK_COST_OPTIONS,
   COOK_TIME_OPTIONS,
 } from '@/common/constants/options';
+import { HOME } from '@/common/constants/path';
 import { AppDispatch } from '@/common/store';
-import { ImageInfo } from '@/common/types';
+// import { ImageInfo } from '@/common/types';
 import { validateRecipeParams } from '@/common/validations/postRecipe';
+import { setIsLoading } from '@/features/globalLoading/slice';
 import { selectRgisteredRecipeInfo } from '@/features/postRecipe/selectors';
 import {
   registerSteps,
@@ -23,7 +26,9 @@ import {
 import { useReadFile } from '@/hooks/useReadFile';
 import postRecipe from '@/services/recipes/postRecipe';
 import { isEmptyArray } from '@/utils/match';
+import { success } from '@/utils/notifications';
 import { safeParseInt } from '@/utils/parse';
+import { handleResponseError } from '@/utils/requestError';
 
 export type PostIngredient = {
   ingredient_name: string;
@@ -32,7 +37,8 @@ export type PostIngredient = {
 
 export type PostRecipeStep = {
   description: string;
-  step_image?: ImageInfo;
+  // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+  // step_image?: ImageInfo;
 };
 
 type AttachedType = File | null;
@@ -45,6 +51,7 @@ export type FileObject = {
 };
 
 export const usePostRecipeForm = () => {
+  const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
   const recipeParams = useSelector(selectRgisteredRecipeInfo);
 
@@ -127,7 +134,7 @@ export const usePostRecipeForm = () => {
 
   const [stepIndex, setStepIndex] = useState<number>(0);
 
-  // recipeParams.recipe_steps_attributes.lengthが変化したらstepFilesを更新する
+  // NOTE: recipeParams.recipe_steps_attributes.lengthが変化したらstepFilesを更新する
   useEffect(() => {
     setStepFiles((prevState) => {
       const newFiles = [...prevState];
@@ -152,26 +159,27 @@ export const usePostRecipeForm = () => {
       field: keyof PostRecipeStep
     ) => {
       setStepIndex(index);
-      const fileList = e.target.files;
-      if (fileList && field === 'step_image') {
-        Array.from(fileList).forEach((file) => {
-          const url = URL.createObjectURL(file);
-          const filename = file.name;
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            const dataUrl = reader.result as string;
-            setStepFiles((prevState) => {
-              const newFiles = [...prevState];
-              newFiles[index] = [
-                ...newFiles[index],
-                { file, url, filename, dataUrl },
-              ];
-              return newFiles;
-            });
-          };
-        });
-      }
+      // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+      // const fileList = e.target.files;
+      // if (fileList && field === 'step_image') {
+      //   Array.from(fileList).forEach((file) => {
+      //     const url = URL.createObjectURL(file);
+      //     const filename = file.name;
+      //     const reader = new FileReader();
+      //     reader.readAsDataURL(file);
+      //     reader.onload = () => {
+      //       const dataUrl = reader.result as string;
+      //       setStepFiles((prevState) => {
+      //         const newFiles = [...prevState];
+      //         newFiles[index] = [
+      //           ...newFiles[index],
+      //           { file, url, filename, dataUrl },
+      //         ];
+      //         return newFiles;
+      //       });
+      //     };
+      //   });
+      // }
 
       dispatch(
         registerSteps({
@@ -287,12 +295,20 @@ export const usePostRecipeForm = () => {
         return;
       }
 
-      // FIXME: KOU-146 Stepの画像を投稿できるように修正する。
-      const data = await postRecipe(recipeParams);
-      // eslint-disable-next-line no-console
-      console.log(data);
+      dispatch(setIsLoading(true));
+      try {
+        const data = await postRecipe(recipeParams);
+        if (data.status === 'created') {
+          success('レシピを投稿しました!!');
+          router.push(HOME);
+        }
+      } catch {
+        handleResponseError('レシピ投稿失敗');
+      } finally {
+        dispatch(setIsLoading(false));
+      }
     },
-    [checkCanRequest, recipeParams]
+    [checkCanRequest, dispatch, recipeParams, router]
   );
 
   return {

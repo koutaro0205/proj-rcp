@@ -5,7 +5,7 @@ import Icon from '@/components/atoms/Icon';
 import SortableIcon from '@/components/atoms/SortableIcon';
 import Text from '@/components/atoms/Text';
 import { Queue } from '@/components/layouts/Queue';
-import AttachedStepImage from '@/components/molecules/AttachedImage/AttachedStepImage';
+// import AttachedStepImage from '@/components/molecules/AttachedImage/AttachedStepImage';
 import FormItem from '@/components/molecules/FormItem';
 import { PostRecipeStep } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
@@ -16,16 +16,16 @@ type Props = {
   inputName: string;
   orderIndex: number;
   dragIndex: number | null;
-  imageUrl: string;
   inputValue: PostRecipeStep;
-  file: File | null;
   onChangeStepInput: (
     event: React.ChangeEvent<HTMLInputElement>,
     index: number,
     field: keyof PostRecipeStep
   ) => void;
+  // file: File | null;
+  // imageUrl: string;
+  // onClickResetImage: (index: number) => void;
   onClickRemoveStep: (orderIndex: number) => void;
-  onClickResetImage: (index: number) => void;
   onDragStart: (orderIndex: number) => void;
   onDragEnter: (orderIndex: number) => void;
   onDragEnd: () => void;
@@ -36,11 +36,11 @@ const RecipeStepItem: React.FC<Props> = ({
   inputName,
   orderIndex,
   dragIndex,
-  imageUrl,
-  file,
+  // imageUrl,
+  // file,
+  // onClickResetImage,
   inputValue,
   onClickRemoveStep,
-  onClickResetImage,
   onChangeStepInput,
   onDragStart,
   onDragEnter,
@@ -78,7 +78,8 @@ const RecipeStepItem: React.FC<Props> = ({
           maxValueLength={POSTED_RECIPE_INFO.step.description}
           isDisplayRemainingCount
         />
-        <Queue size="m" />
+        {/* HACK: KOU-146 Stepの画像を投稿できるように修正する。 */}
+        {/* <Queue size="m" />
         <div className={styles.attachedImageWrapper}>
           <AttachedStepImage
             index={orderIndex}
@@ -88,7 +89,7 @@ const RecipeStepItem: React.FC<Props> = ({
             imageUrl={imageUrl}
             file={file}
           />
-        </div>
+        </div> */}
       </div>
       <Queue size="m" />
       <div className={styles.iconContainer}>

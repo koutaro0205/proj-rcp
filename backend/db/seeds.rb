@@ -5,13 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-# User.create!(
-#   email: 'admin@example.com',
-#   name: 'adminUser',
-#   password: 'password',
-#   password_confirmation: 'password',
-#   activated: true,
-# )
 
 # 99.times do |n|
 #   User.create!(
@@ -23,11 +16,17 @@
 #   )
 # end
 
-User.create!(
-  email: 'admin2@example.com',
-  name: 'adminUser2',
-  password: 'password',
-  password_confirmation: 'password',
-  activated: true,
-  admin: true,
-)
+# User.create!(
+#   email: 'admin@example.com',
+#   name: 'adminUser',
+#   password: 'password',
+#   password_confirmation: 'password',
+#   activated: true,
+#   admin: true,
+# )
+
+categories = ['ご飯もの', '麺類', 'パン・ピザ', '卵料理', '野菜・サラダ', 'スープ・汁物', '鍋', 'ドリンク類', '粉物', 'スイーツ', 'お酒のおつまみ', 'その他']
+
+categories.each do |category|
+  Category.create!(name: category)
+end

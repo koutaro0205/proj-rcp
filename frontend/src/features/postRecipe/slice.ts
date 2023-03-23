@@ -20,7 +20,8 @@ export const INITIAL_IMAGE_INFO: ImageInfo = {
 
 const DEFAULT_RECIPE_STEP = {
   description: '',
-  step_image: INITIAL_IMAGE_INFO,
+  // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+  // step_image: INITIAL_IMAGE_INFO,
 };
 
 const DEFAULT_RECIPE_INGREDIENT = {
@@ -162,9 +163,10 @@ export const postRecipeSlice = createSlice({
           state.recipe_steps_attributes[payload.index].description =
             payload.description;
         }
-        state.recipe_steps_attributes[payload.index].step_image =
-          payload.image ||
-          state.recipe_steps_attributes[payload.index].step_image;
+        // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+        // state.recipe_steps_attributes[payload.index].step_image =
+        //   payload.image ||
+        //   state.recipe_steps_attributes[payload.index].step_image;
       }
     });
     builder.addCase(registerAdditionalStep, (state) => {
@@ -184,10 +186,11 @@ export const postRecipeSlice = createSlice({
     builder.addCase(resetMainImage, (state) => {
       state.image = INITIAL_IMAGE_INFO;
     });
-    builder.addCase(resetStepImage, (state, { payload }) => {
-      state.recipe_steps_attributes[payload.index].step_image =
-        INITIAL_IMAGE_INFO;
-    });
+    // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+    // builder.addCase(resetStepImage, (state, { payload }) => {
+    //   state.recipe_steps_attributes[payload.index].step_image =
+    //     INITIAL_IMAGE_INFO;
+    // });
   },
 });
 

@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients, dependent: :destroy
   has_many :recipe_steps, dependent: :destroy
   belongs_to :user
+  belongs_to :category
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
   accepts_nested_attributes_for :recipe_steps, allow_destroy: true
 

@@ -10,26 +10,27 @@ import {
   ATTACHED_IMAGE_SIZE,
   AttachedImageSize,
 } from '@/components/molecules/AttachedImage/styles';
-import { PostRecipeStep } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
+// import { PostRecipeStep } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
 
 type Props = {
   size?: AttachedImageSize;
   index: number;
-  onChangeStepInput: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number,
-    field: keyof PostRecipeStep
-  ) => void;
+  // onChangeStepInput: (
+  //   event: React.ChangeEvent<HTMLInputElement>,
+  //   index: number,
+  //   field: keyof PostRecipeStep
+  // ) => void;
   onClickResetImage: (index: number) => void;
   imageUrl: string;
   file: File | null;
 };
 
 // FIXME: コンポーネントを修正する。
+// HACK: KOU-146 Stepの画像を投稿できるように修正する。
 const AttachedStepImage: React.FC<Props> = ({
   size = 'freeSize',
   index,
-  onChangeStepInput,
+  // onChangeStepInput,
   onClickResetImage,
   imageUrl,
   file,
@@ -79,10 +80,9 @@ const AttachedStepImage: React.FC<Props> = ({
               id={inputId}
               hidden
               type="file"
-              name={`recipe[recipe_steps_attributes][${index}][step_image]`}
               accept="image/*"
-              multiple
-              onChange={(e) => onChangeStepInput(e, index, 'step_image')}
+              // multiple
+              // onChange={(e) => onChangeStepInput(e, index, 'step_image')}
             />
             <div className={styles.inputContent}>
               <Icon name="CAMERA" size="s" />

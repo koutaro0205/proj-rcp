@@ -16,11 +16,11 @@ type Props = {
   inputId: string;
   inputName: string;
   recipeSteps: PostRecipeStep[];
-  stepFiles: FileObject[][];
+  // stepFiles: FileObject[][];
+  // onClickResetImage: (index: number) => void;
   sortStepFiles: React.Dispatch<React.SetStateAction<FileObject[][]>>;
   onClickAddStep: () => void;
   onClickRemoveStep: (index: number) => void;
-  onClickResetImage: (index: number) => void;
   onStepInputChange: (
     event: React.ChangeEvent<HTMLInputElement>,
     index: number,
@@ -31,12 +31,12 @@ type Props = {
 const RecipeStepList: React.FC<Props> = ({
   inputId,
   inputName,
-  stepFiles,
   sortStepFiles,
   onStepInputChange,
   onClickAddStep,
   onClickRemoveStep,
-  onClickResetImage,
+  // stepFiles,
+  // onClickResetImage,
   recipeSteps,
 }) => {
   const {
@@ -63,17 +63,18 @@ const RecipeStepList: React.FC<Props> = ({
             inputName={inputName}
             onChangeStepInput={onStepInputChange}
             onClickRemoveStep={onClickRemoveStep}
-            onClickResetImage={onClickResetImage}
             orderIndex={index}
             dragIndex={dragIndex}
             inputValue={recipeParams.recipe_steps_attributes[index]}
             onDragStart={handleDragStart}
             onDragEnter={handleDragEnter}
             onDragEnd={handleDragEnd}
-            imageUrl={
-              stepFiles[index]?.length ? stepFiles[index][0].dataUrl : ''
-            }
-            file={stepFiles[index]?.length ? stepFiles[index][0].file : null}
+            // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+            // onClickResetImage={onClickResetImage}
+            // imageUrl={
+            //   stepFiles[index]?.length ? stepFiles[index][0].dataUrl : ''
+            // }
+            // file={stepFiles[index]?.length ? stepFiles[index][0].file : null}
           />
         ))}
       </div>
