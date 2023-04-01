@@ -8,12 +8,14 @@ import FlexContainer from '@/components/layouts/FlexContainer';
 import CurrentUserProfileCard from '@/components/organisms/ProfileCard/CurrentUserProfileCard';
 import UsersList from '@/components/organisms/UsersList';
 import Layout from '@/components/templates/Layout';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { useAuthGaurd } from '@/hooks/useAuthGaurd';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
 import { handleResponseError } from '@/utils/requestError';
 
 const UsersPage: NextPage = () => {
-  const { currentUser } = useAuthGaurd();
+  useAuthGaurd();
+  const { isLoggedIn, currentUser } = useCurrentUser();
   const { data, error } = useGetAllUsers();
   if (error) {
     handleResponseError('failed to get users');
@@ -22,7 +24,7 @@ const UsersPage: NextPage = () => {
   return (
     <Layout>
       <ContentWidth>
-        {currentUser && data ? (
+        {currentUser && isLoggedIn && data ? (
           <>
             <SectionTitle sectionTitle="ユーザー一覧" />
             <FlexContainer>

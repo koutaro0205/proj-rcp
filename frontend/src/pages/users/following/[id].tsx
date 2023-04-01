@@ -15,6 +15,7 @@ import FlexContainer from '@/components/layouts/FlexContainer';
 import CurrentUserProfileCard from '@/components/organisms/ProfileCard/CurrentUserProfileCard';
 import UsersList from '@/components/organisms/UsersList';
 import Layout from '@/components/templates/Layout';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { useAuthGaurd } from '@/hooks/useAuthGaurd';
 import { useFollowing } from '@/hooks/useFollowing';
 import getAllUsers from '@/services/users/getAllUsers';
@@ -23,13 +24,14 @@ import getUser from '@/services/users/getUser';
 type UserDetailPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const FollowerListPage: NextPage<UserDetailPageProps> = ({ user }) => {
-  const { currentUser } = useAuthGaurd();
+  useAuthGaurd();
+  const { isLoggedIn, currentUser } = useCurrentUser();
   const { followingList } = useFollowing({ userId: user.id });
 
   return (
     <Layout>
       <ContentWidth>
-        {currentUser ? (
+        {currentUser && isLoggedIn ? (
           <>
             <SectionTitle sectionTitle="フォロー中のユーザー" />
             <FlexContainer>

@@ -1,12 +1,10 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { HOME } from '@/common/constants/path';
 import { PASSWORD_RESETS } from '@/common/constants/toast';
-import { AppDispatch } from '@/common/store';
 import { validatePassword } from '@/common/validations/password';
-import { updateLoginStatus } from '@/features/currentUser/slice';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import useQueryParameters from '@/hooks/useQueryParameters';
 import checkValidity, {
   ResponseData,
@@ -24,8 +22,8 @@ type DefaultValue = {
 
 const useEditPassword = () => {
   const router = useRouter();
-  const dispatch: AppDispatch = useDispatch();
   const { params } = useQueryParameters();
+  const { updateLoginStatus } = useCurrentUser();
 
   const isValid = useCallback(
     (data: ResponseData | _ResponseData) => {
@@ -66,11 +64,11 @@ const useEditPassword = () => {
         if (isValid(data)) {
           success(PASSWORD_RESETS.SUCCESS);
           router.push(HOME);
-          dispatch(updateLoginStatus(data));
+          updateLoginStatus(data);
         }
       }
     },
-    [dispatch, isValid, params, router]
+    [isValid, params, router, updateLoginStatus]
   );
 
   useEffect(() => {

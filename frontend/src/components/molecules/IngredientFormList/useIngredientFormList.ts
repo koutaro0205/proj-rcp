@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { AppDispatch } from '@/common/store';
 import { PostIngredient } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
-import { selectRgisteredRecipeInfo } from '@/features/postRecipe/selectors';
-import { registerSortedIngredients } from '@/features/postRecipe/slice';
+import { usePostRecipe } from '@/features/postRecipe/usePostRecipe';
 
 // FIXME: すぐ消す
 export type IngredientItem = {
@@ -17,8 +14,7 @@ export const useIngredientList = (ingredients: PostIngredient[]) => {
   const [ingredientsList, setIngredientsList] =
     useState<PostIngredient[]>(ingredients);
 
-  const recipeParams = useSelector(selectRgisteredRecipeInfo);
-  const dispatch: AppDispatch = useDispatch();
+  const { recipeParams, registerSortedIngredients } = usePostRecipe();
 
   // NOTE: ingredientsが更新された時にingredientsListの初期値も更新する。
   useEffect(() => {
@@ -47,7 +43,7 @@ export const useIngredientList = (ingredients: PostIngredient[]) => {
   );
 
   const handleDragEnd = () => {
-    dispatch(registerSortedIngredients({ ingredients: ingredientsList }));
+    registerSortedIngredients({ ingredients: ingredientsList });
     setDragIndex(null);
   };
 

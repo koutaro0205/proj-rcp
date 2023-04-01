@@ -1,28 +1,15 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 import {
   COOK_COST_OPTIONS,
   COOK_TIME_OPTIONS,
 } from '@/common/constants/options';
 import { HOME } from '@/common/constants/path';
-import { AppDispatch } from '@/common/store';
 // import { ImageInfo } from '@/common/types';
 import { validateRecipeParams } from '@/common/validations/postRecipe';
-import { setIsLoading } from '@/features/globalLoading/slice';
-import { selectRgisteredRecipeInfo } from '@/features/postRecipe/selectors';
-import {
-  registerSteps,
-  registerRecipeInfo,
-  registerIngredients,
-  registerAdditionalIngredient,
-  registerAdditionalStep,
-  registerRemovedIngredient,
-  registerRemovedStep,
-  resetMainImage,
-  resetStepImage,
-} from '@/features/postRecipe/slice';
+import { useGlobalLoading } from '@/features/globalLoading/useGlobalLoading';
+import { usePostRecipe } from '@/features/postRecipe/usePostRecipe';
 import { useReadFile } from '@/hooks/useReadFile';
 import postRecipe from '@/services/recipes/postRecipe';
 import { isEmptyArray } from '@/utils/match';
@@ -52,8 +39,18 @@ export type FileObject = {
 
 export const usePostRecipeForm = () => {
   const router = useRouter();
-  const dispatch: AppDispatch = useDispatch();
-  const recipeParams = useSelector(selectRgisteredRecipeInfo);
+  const { setIsLoading } = useGlobalLoading();
+  const {
+    recipeParams,
+    registerRecipeInfo,
+    registerIngredients,
+    registerAdditionalIngredient,
+    registerRemovedIngredient,
+    registerSteps,
+    registerAdditionalStep,
+    registerRemovedStep,
+    resetMainImage,
+  } = usePostRecipe();
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [selectedCostIndex, setSelectedCostIndex] = useState<number>(0);
@@ -73,14 +70,12 @@ export const usePostRecipeForm = () => {
       const cost =
         selectedIndex > 0 ? COOK_COST_OPTIONS[selectedIndex - 1].name : '';
 
-      dispatch(
-        registerRecipeInfo({
-          ...recipeParams,
-          cost,
-        })
-      );
+      registerRecipeInfo({
+        ...recipeParams,
+        cost,
+      });
     },
-    [dispatch, recipeParams]
+    [recipeParams, registerRecipeInfo]
   );
 
   const handleChangeCookingTime = useCallback(
@@ -91,19 +86,17 @@ export const usePostRecipeForm = () => {
       const cookingTime =
         selectedIndex > 0 ? COOK_TIME_OPTIONS[selectedIndex - 1].name : '';
 
-      dispatch(
-        registerRecipeInfo({
-          ...recipeParams,
-          cook_time: cookingTime,
-        })
-      );
+      registerRecipeInfo({
+        ...recipeParams,
+        cook_time: cookingTime,
+      });
     },
-    [dispatch, recipeParams]
+    [recipeParams, registerRecipeInfo]
   );
 
   useEffect(() => {
-    dispatch(registerRecipeInfo({ ...recipeParams, image: imageParams }));
-  }, [dispatch, imageParams, recipeParams]);
+    registerRecipeInfo({ ...recipeParams, image: imageParams });
+  }, [imageParams, recipeParams, registerRecipeInfo]);
 
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,9 +113,9 @@ export const usePostRecipeForm = () => {
       const { name } = target;
       const { value } = target;
 
-      dispatch(registerRecipeInfo({ ...recipeParams, [name]: value }));
+      registerRecipeInfo({ ...recipeParams, [name]: value });
     },
-    [dispatch, recipeParams]
+    [recipeParams, registerRecipeInfo]
   );
 
   const [stepFiles, setStepFiles] = useState<FileObject[][]>(
@@ -181,14 +174,12 @@ export const usePostRecipeForm = () => {
       //   });
       // }
 
-      dispatch(
-        registerSteps({
-          index,
-          description: field === 'description' ? e.target.value : undefined,
-        })
-      );
+      registerSteps({
+        index,
+        description: field === 'description' ? e.target.value : undefined,
+      });
     },
-    [dispatch]
+    [registerSteps]
   );
 
   useEffect(() => {
@@ -200,14 +191,12 @@ export const usePostRecipeForm = () => {
         ? stepFiles[stepIndex][0].dataUrl
         : null;
 
-      dispatch(
-        registerSteps({
-          index: stepIndex,
-          image: { filename: stepFileName, io: stepDataUrl },
-        })
-      );
+      registerSteps({
+        index: stepIndex,
+        image: { filename: stepFileName, io: stepDataUrl },
+      });
     }
-  }, [dispatch, stepFiles, stepIndex]);
+  }, [registerSteps, stepFiles, stepIndex]);
 
   const handleClickRemoveStep = (index: number) => {
     // stepFilesから該当する要素を削除
@@ -217,7 +206,7 @@ export const usePostRecipeForm = () => {
       return newFiles;
     });
 
-    dispatch(registerRemovedStep({ index }));
+    registerRemovedStep({ index });
   };
 
   const handleIngredientNameChange = useCallback(
@@ -225,14 +214,12 @@ export const usePostRecipeForm = () => {
       const { target } = e;
       const { value } = target;
 
-      dispatch(
-        registerIngredients({
-          index,
-          ingredient_name: value,
-        })
-      );
+      registerIngredients({
+        index,
+        ingredient_name: value,
+      });
     },
-    [dispatch]
+    [registerIngredients]
   );
 
   const handleQuantityChange = useCallback(
@@ -240,41 +227,40 @@ export const usePostRecipeForm = () => {
       const { target } = e;
       const { value } = target;
 
-      dispatch(
-        registerIngredients({
-          index,
-          quantity: value,
-        })
-      );
+      registerIngredients({
+        index,
+        quantity: value,
+      });
     },
-    [dispatch]
+    [registerIngredients]
   );
 
   const handleClickAddIngredient = () => {
-    dispatch(registerAdditionalIngredient());
+    registerAdditionalIngredient();
   };
 
   const handleClickRemoveIngredient = (index: number) => {
-    dispatch(registerRemovedIngredient({ index }));
+    registerRemovedIngredient({ index });
   };
 
   const handleClickAddStep = () => {
-    dispatch(registerAdditionalStep());
+    registerAdditionalStep();
   };
 
   const handleResetMainImage = () => {
     setMainImage(null);
-    dispatch(resetMainImage());
+    resetMainImage();
   };
 
-  const handleResetStepImage = (index: number) => {
-    setStepFiles((prevState) => {
-      const newFiles = [...prevState];
-      newFiles[index] = [];
-      return newFiles;
-    });
-    dispatch(resetStepImage({ index }));
-  };
+  // HACK: KOU-146 Stepの画像を投稿できるように修正する。
+  // const handleResetStepImage = (index: number) => {
+  //   setStepFiles((prevState) => {
+  //     const newFiles = [...prevState];
+  //     newFiles[index] = [];
+  //     return newFiles;
+  //   });
+  //   resetStepImage({ index });
+  // };
 
   const checkCanRequest = useCallback((errors: string[]): boolean => {
     if (!isEmptyArray(errors)) {
@@ -295,7 +281,7 @@ export const usePostRecipeForm = () => {
         return;
       }
 
-      dispatch(setIsLoading(true));
+      setIsLoading(true);
       try {
         const data = await postRecipe(recipeParams);
         if (data.status === 'created') {
@@ -305,10 +291,10 @@ export const usePostRecipeForm = () => {
       } catch {
         handleResponseError('レシピ投稿失敗');
       } finally {
-        dispatch(setIsLoading(false));
+        setIsLoading(false);
       }
     },
-    [checkCanRequest, dispatch, recipeParams, router]
+    [checkCanRequest, recipeParams, router, setIsLoading]
   );
 
   return {
@@ -326,7 +312,7 @@ export const usePostRecipeForm = () => {
     handleClickRemoveStep,
     setStepFiles,
     handleResetMainImage,
-    handleResetStepImage,
+    // handleResetStepImage,
     selectedCostIndex,
     selectedCookingTimeIndex,
     recipeParams,

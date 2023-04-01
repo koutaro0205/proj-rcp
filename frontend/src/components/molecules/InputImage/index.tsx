@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
 
 import { IMAGES } from '@/common/constants/images';
 import DeleteButton from '@/components/atoms/Button/DeleteButton';
 import InputButton from '@/components/atoms/Button/InputButton';
 import Loading from '@/components/atoms/Loading';
-import { selectCurrentUser } from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 
 import styles from './styles';
 
@@ -37,7 +36,7 @@ const InputImage: React.FC<Props> = ({
     return file && !imageUrl;
   }, [file, imageUrl]);
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useCurrentUser();
 
   return (
     <div className={styles.container}>

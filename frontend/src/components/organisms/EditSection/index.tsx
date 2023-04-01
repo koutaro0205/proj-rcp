@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 
-import { selectCurrentUser } from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 
 import EditEmailSection from './EditEmailSection';
 import EditPasswordSection from './EditPasswordSection';
@@ -11,7 +10,7 @@ import LinkTabSection, { Pattern } from './LinkTabSection';
 import { useEditSection } from './useEditSection';
 
 const EditSection: React.FC = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useCurrentUser();
   const [pattern, setPattern] = useState<Pattern>('userName');
   const {
     userInfo,

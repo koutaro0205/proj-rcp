@@ -1,35 +1,29 @@
 import { useRouter } from 'next/router';
 import { useLayoutEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 import { LOGIN_PATH } from '@/common/constants/path';
 import { ACCESS_RESTRICTIONS } from '@/common/constants/toast';
-import { selectCurrentUser } from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
+import { LOCAL_STORAGE_LOGGED_IN_STATUS } from '@/utils/localStorage';
 import { info } from '@/utils/notifications';
 
-export const useAuthGaurd = () => {
+export const useAuthGaurd = (): void => {
   const router = useRouter();
-  const currentUser = useSelector(selectCurrentUser);
-
-  if (!currentUser) {
-    const currentPath = router.asPath;
-
-    router.push({
-      pathname: LOGIN_PATH,
-      query: {
-        redirectTo: currentPath,
-      },
-    });
-  }
+  const { isReady, asPath } = router;
+  const { currentUser } = useCurrentUser();
 
   useLayoutEffect(() => {
-    if (!currentUser) {
+    if (isReady && !LOCAL_STORAGE_LOGGED_IN_STATUS) {
+      const currentPath = asPath;
+
+      router.push({
+        pathname: LOGIN_PATH,
+        query: {
+          redirectTo: currentPath,
+        },
+      });
+
       info(ACCESS_RESTRICTIONS.INFO);
     }
-  }, [currentUser, router]);
-
-  return {
-    currentUser,
-    router,
-  };
+  }, [asPath, currentUser, isReady, router]);
 };

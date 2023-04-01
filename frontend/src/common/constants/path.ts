@@ -17,6 +17,7 @@ export const USER_EDIT_API = (id: number) => {
 };
 
 // Page
+export const LOGGEDIN_USER_REQUEST_PATH = '/logged_in';
 export const SIGNUP_PATH = '/signup';
 export const LOGIN_PATH = '/login';
 export const LOGOUT_PATH = '/logout';

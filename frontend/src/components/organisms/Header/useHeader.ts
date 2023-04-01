@@ -1,16 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
-import {
-  selectCurrentUser,
-  selectIsLoggedIn,
-} from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 
 import { HEADER_MENU_HEIGHT } from './styles';
 
 export const useHeader = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, isLoggedIn } = useCurrentUser();
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
