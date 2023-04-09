@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
+import { MultiValue, SingleValue } from 'react-select';
 
 import {
   COOK_COST_OPTIONS,
@@ -30,6 +31,11 @@ export type PostRecipeStep = {
 
 type AttachedType = File | null;
 
+export type CategoryOption = {
+  value: string;
+  label: string;
+};
+
 export type FileObject = {
   file: AttachedType;
   url: string;
@@ -43,6 +49,7 @@ export const usePostRecipeForm = () => {
   const {
     recipeParams,
     registerRecipeInfo,
+    resetRegisteredRecipeInfo,
     registerIngredients,
     registerAdditionalIngredient,
     registerRemovedIngredient,
@@ -61,6 +68,21 @@ export const usePostRecipeForm = () => {
   const { imageParams, previewImageUrl } = useReadFile({
     file: mainImage,
   });
+
+  const [selectedCategory, setSelectedCategory] = useState<
+    SingleValue<CategoryOption> | MultiValue<CategoryOption> | null
+  >(null);
+
+  const handleChangeCategory = useCallback(
+    (newValue: SingleValue<CategoryOption> | MultiValue<CategoryOption>) => {
+      setSelectedCategory(newValue);
+
+      const categoryOption = newValue as CategoryOption | null;
+      const value = Number(categoryOption?.value);
+      registerRecipeInfo({ ...recipeParams, category_id: value });
+    },
+    [recipeParams, registerRecipeInfo]
+  );
 
   const handleChangeCost = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -275,8 +297,8 @@ export const usePostRecipeForm = () => {
       e.preventDefault();
 
       const errors = validateRecipeParams({ recipeParams });
+      // NOTE: エラーメッセージをページ上部に出力するためスクロールトップさせる。
       if (!checkCanRequest(errors)) {
-        // NOTE: エラーメッセージをページ上部に出力するためスクロールトップさせる。
         window.scroll({ top: 0 });
         return;
       }
@@ -291,10 +313,17 @@ export const usePostRecipeForm = () => {
       } catch {
         handleResponseError('レシピ投稿失敗');
       } finally {
+        resetRegisteredRecipeInfo();
         setIsLoading(false);
       }
     },
-    [checkCanRequest, recipeParams, router, setIsLoading]
+    [
+      checkCanRequest,
+      recipeParams,
+      resetRegisteredRecipeInfo,
+      router,
+      setIsLoading,
+    ]
   );
 
   return {
@@ -312,6 +341,7 @@ export const usePostRecipeForm = () => {
     handleClickRemoveStep,
     setStepFiles,
     handleResetMainImage,
+    handleChangeCategory,
     // handleResetStepImage,
     selectedCostIndex,
     selectedCookingTimeIndex,
@@ -320,5 +350,6 @@ export const usePostRecipeForm = () => {
     mainImage,
     stepFiles,
     formErrors,
+    selectedCategory,
   };
 };

@@ -16,6 +16,19 @@ export type User = {
   image_url?: string | null;
 };
 
+// ユーザー詳細（プロフィール）
+export type UserProfile = {
+  recipes: RecipeData[];
+} & User;
+
+// カテゴリ
+export type Category = {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+};
+
 // 材料
 export type RecipeIngredient = {
   id: number;
@@ -47,12 +60,14 @@ export type RecipeData = {
   updated_at: string;
   description: string;
   serving_size: number;
+  category_id: number;
 };
 
 // レシピ詳細
 export type Recipe = {
   recipe_ingredients: RecipeIngredient[];
   recipe_steps: RecipeStep[];
+  category: Category;
 } & RecipeData;
 
 // レシピカード

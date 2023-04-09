@@ -12,7 +12,7 @@ import Loading from '@/components/atoms/Loading';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ContentWidth from '@/components/layouts/ContentWidth';
 import FlexContainer from '@/components/layouts/FlexContainer';
-import CurrentUserProfileCard from '@/components/organisms/ProfileCard/CurrentUserProfileCard';
+import CurrentUserProfileSection from '@/components/organisms/ProfileSection/CurrentUserProfileSection';
 import UsersList from '@/components/organisms/UsersList';
 import Layout from '@/components/templates/Layout';
 import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
@@ -35,7 +35,7 @@ const FollowerListPage: NextPage<UserDetailPageProps> = ({ user }) => {
           <>
             <SectionTitle sectionTitle="フォロワー" />
             <FlexContainer>
-              <CurrentUserProfileCard currentUser={currentUser} />
+              <CurrentUserProfileSection currentUser={currentUser} />
               <UsersList
                 users={followerList}
                 currentUser={currentUser}

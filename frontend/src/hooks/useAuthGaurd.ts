@@ -1,19 +1,18 @@
 import { useRouter } from 'next/router';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 
 import { LOGIN_PATH } from '@/common/constants/path';
 import { ACCESS_RESTRICTIONS } from '@/common/constants/toast';
 import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
-import { LOCAL_STORAGE_LOGGED_IN_STATUS } from '@/utils/localStorage';
 import { info } from '@/utils/notifications';
 
 export const useAuthGaurd = (): void => {
   const router = useRouter();
+  const { isLoggedIn } = useCurrentUser();
   const { isReady, asPath } = router;
-  const { currentUser } = useCurrentUser();
 
-  useLayoutEffect(() => {
-    if (isReady && !LOCAL_STORAGE_LOGGED_IN_STATUS) {
+  useEffect(() => {
+    if (isReady && !isLoggedIn) {
       const currentPath = asPath;
 
       router.push({
@@ -25,5 +24,5 @@ export const useAuthGaurd = (): void => {
 
       info(ACCESS_RESTRICTIONS.INFO);
     }
-  }, [asPath, currentUser, isReady, router]);
+  }, [asPath, isLoggedIn, isReady, router]);
 };

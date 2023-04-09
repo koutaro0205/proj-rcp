@@ -15,6 +15,7 @@ import {
   registerRemovedStep as _registerRemovedStep,
   registerSortedSteps as _registerSortedSteps,
   resetMainImage as _resetMainImage,
+  resetRegisteredRecipeInfo as _resetRegisteredRecipeInfo,
 } from './slice';
 import {
   PostRecipeParams,
@@ -36,6 +37,10 @@ export const usePostRecipe = () => {
     },
     [dispatch]
   );
+
+  const resetRegisteredRecipeInfo = useCallback(() => {
+    dispatch(_resetRegisteredRecipeInfo());
+  }, [dispatch]);
 
   const registerIngredients = useCallback(
     (ingredient: RegisterIngredients) => {
@@ -94,6 +99,7 @@ export const usePostRecipe = () => {
   return {
     recipeParams,
     registerRecipeInfo,
+    resetRegisteredRecipeInfo,
     registerIngredients,
     registerAdditionalIngredient,
     registerRemovedIngredient,

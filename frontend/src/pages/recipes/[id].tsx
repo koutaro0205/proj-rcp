@@ -22,8 +22,6 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const RecipeDetailPage: NextPage<Props> = ({ recipe }) => {
   const router = useRouter();
-  // debug: ステップのイメージを確認
-  console.log('RecipeSteps', recipe.recipe_steps);
 
   if (router.isFallback) {
     return <Loading />;
@@ -43,6 +41,7 @@ const RecipeDetailPage: NextPage<Props> = ({ recipe }) => {
           recipeIngredients={recipe.recipe_ingredients}
           recipeSteps={recipe.recipe_steps}
           tip={recipe.tip || ''}
+          category={recipe.category}
         />
       </ContentWidth>
     </Layout>

@@ -23,7 +23,8 @@ export const getStyles = (
   flexShrink?: string,
   justifySelf?: CSSPropertyJustifySelf,
   alignSelf?: CSSPropertyAlignSelf,
-  order?: string
+  order?: string,
+  gap?: number | string
 ) => {
   const styles = {
     container: css({
@@ -40,6 +41,7 @@ export const getStyles = (
       flexShrink,
       alignSelf,
       order,
+      gap,
     }),
   };
 

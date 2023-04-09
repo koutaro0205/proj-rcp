@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FOLLOWING_PATH, FOLLOWERS_PATH } from '@/common/constants/path';
-import { User } from '@/common/types/data';
+import { UserProfile } from '@/common/types/data';
 import FollowButton from '@/components/atoms/Button/FollowButton';
 import Divider from '@/components/atoms/Divider';
 import UserImage from '@/components/atoms/UserImage';
@@ -9,19 +9,20 @@ import FlexContainer from '@/components/layouts/FlexContainer';
 import { Queue } from '@/components/layouts/Queue';
 import { Stack } from '@/components/layouts/Stack';
 import Status from '@/components/molecules/Status';
-import CurrentUserInfo from '@/components/molecules/UserInfo/CurrentUserInfo';
+import CurrentUserInfo from '@/components/organisms/ProfileSection/CurrentUserInfo';
 import { CurrentUser } from '@/features/currentUser/type';
+import space from '@/theme/space';
 import { isCurrentUser } from '@/utils/match';
 
 import styles from './styles';
-import useProfileCard from './useProfileCard';
+import useProfileCard from './useProfileSection';
 
 type Props = {
-  user: User;
+  user: UserProfile;
   currentUser: CurrentUser;
 };
 
-const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
+const ProfileSection: React.FC<Props> = ({ user, currentUser }) => {
   const {
     isFollowing,
     handleClick,
@@ -31,10 +32,12 @@ const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
   } = useProfileCard({ user });
   return (
     <div className={styles.container}>
-      <FlexContainer>
+      <FlexContainer gap={space.m}>
         <UserImage size="large" imagePath={user.image_url} />
-        {/* FIXME: Rails APIが用意できたらデータを入れる（postCount） */}
-        <CurrentUserInfo userName={user.name} postCount={0} />
+        <CurrentUserInfo
+          userName={user.name}
+          postCount={user.recipes.length || 0}
+        />
       </FlexContainer>
       <Stack size="l" />
       <div className={styles.followStatusSection}>
@@ -63,4 +66,4 @@ const ProfileCard: React.FC<Props> = ({ user, currentUser }) => {
   );
 };
 
-export default ProfileCard;
+export default ProfileSection;

@@ -8,11 +8,11 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import { USER_DETAIL_PATH } from '@/common/constants/path';
-import { User } from '@/common/types/data';
+import { User, UserProfile } from '@/common/types/data';
 import Loading from '@/components/atoms/Loading';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ContentWidth from '@/components/layouts/ContentWidth';
-import ProfileCard from '@/components/organisms/ProfileCard';
+import ProfileSection from '@/components/organisms/ProfileSection';
 import Layout from '@/components/templates/Layout';
 import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import getAllUsers from '@/services/users/getAllUsers';
@@ -32,7 +32,7 @@ const UserDetailPage: NextPage<UserDetailPageProps> = ({ user }) => {
     <Layout>
       <ContentWidth>
         <SectionTitle sectionTitle="ユーザー情報" />
-        <ProfileCard user={user} currentUser={currentUser} />
+        <ProfileSection user={user} currentUser={currentUser} />
       </ContentWidth>
     </Layout>
   );
@@ -50,7 +50,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
     throw new Error('params is undefined');
   }
   const userId = Number(params.id);
-  const user = await getUser(userId);
+  const user: UserProfile = await getUser(userId);
 
   return {
     props: {

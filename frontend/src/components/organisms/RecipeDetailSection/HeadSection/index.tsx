@@ -2,8 +2,10 @@ import Image from 'next/image';
 import React from 'react';
 
 import { IMAGES } from '@/common/constants/images';
+import { RECIPES_PATH, CATEGORIES_PATH } from '@/common/constants/path';
 import { Recipe } from '@/common/types/data';
 import LikeCountButton from '@/components/atoms/LikeCountButton';
+import LinkText from '@/components/atoms/LinkText';
 import Title from '@/components/atoms/Title';
 import Inset from '@/components/layouts/Inset';
 import { Stack } from '@/components/layouts/Stack';
@@ -14,11 +16,11 @@ import styles from './styles';
 export type Props = {
   recipeTitle: Recipe['title'];
   imageUrl?: Recipe['image_url'];
-  categories?: string[];
   cookTime?: Recipe['cook_time'];
   cost?: Recipe['cost'];
   postDate: Recipe['updated_at'];
   description: Recipe['description'];
+  category: Recipe['category'];
   isLiked: boolean;
   onClickLikeButton: () => void;
   likeCount: number;
@@ -29,11 +31,11 @@ const MAIN_IMAGE_SIZE = 500;
 const HeadSection: React.FC<Props> = ({
   recipeTitle,
   imageUrl,
-  categories = [],
   cookTime,
   cost,
   postDate,
   description,
+  category,
   isLiked = false,
   onClickLikeButton,
   likeCount,
@@ -55,13 +57,15 @@ const HeadSection: React.FC<Props> = ({
               height={MAIN_IMAGE_SIZE}
             />
           </div>
-          {categories?.length ? (
-            <ul className={styles.categoriesList}>
-              {categories.map((category) => (
-                <li key={category}>{`#${category}`}</li>
-              ))}
-            </ul>
-          ) : null}
+          {category.name && (
+            <div className={styles.categoryWrapper}>
+              <LinkText
+                path={`${RECIPES_PATH}${CATEGORIES_PATH}/${category.id}`}
+                weight="bold"
+                hasHoverAction
+              >{`#${category.name}`}</LinkText>
+            </div>
+          )}
           <div className={styles.likeCountButtonWrapper}>
             <LikeCountButton
               isLiked={isLiked}

@@ -3,7 +3,7 @@ import React from 'react';
 import SubTitle from '@/components/atoms/Title/SubTitile';
 import UserImage from '@/components/atoms/UserImage';
 import FlexContainer from '@/components/layouts/FlexContainer';
-import CurrentUserInfo from '@/components/molecules/UserInfo/CurrentUserInfo';
+import CurrentUserInfo from '@/components/organisms/ProfileSection/CurrentUserInfo';
 import { CurrentUser } from '@/features/currentUser/type';
 
 import styles from './styles';
