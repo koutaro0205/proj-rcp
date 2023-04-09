@@ -1,13 +1,15 @@
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { HOME } from '@/common/constants/path';
 import { LOGIN, LOGOUT } from '@/common/constants/toast';
-import { AppDispatch } from '@/common/store';
-import { deleteCurrentUser } from '@/features/currentUser/slice';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import login, { LoginParams } from '@/services/auth/login';
 import logout from '@/services/auth/logout';
+import {
+  setLoggedInStatusToLs,
+  removeLoggedInStatusToLs,
+} from '@/utils/localStorage';
 import { error, success, warn } from '@/utils/notifications';
 
 /**
@@ -20,7 +22,7 @@ type Params = LoginParams;
 
 const useAuth = (params?: Params) => {
   const router = useRouter();
-  const dispatch: AppDispatch = useDispatch();
+  const { deleteCurrentUser } = useCurrentUser();
 
   const loginInternal = useCallback(async (loginParams: LoginParams) => {
     const response = await login(loginParams);
@@ -36,6 +38,8 @@ const useAuth = (params?: Params) => {
       if (params) {
         const response = await loginInternal(params);
         if (response.data.logged_in) {
+          // NOTE: ログイン状態をローカルストレージで保持
+          setLoggedInStatusToLs();
           router.push(redirectTo || HOME);
           success(LOGIN.SUCCESS);
           return response.data;
@@ -57,12 +61,13 @@ const useAuth = (params?: Params) => {
     // eslint-disable-next-line no-alert
     const sure = window.confirm(LOGOUT.CONFIRM);
     if (sure) {
+      removeLoggedInStatusToLs();
       logoutInternal();
-      dispatch(deleteCurrentUser());
+      deleteCurrentUser();
       router.push(HOME);
       success(LOGOUT.SUCCESS);
     }
-  }, [dispatch, logoutInternal, router]);
+  }, [deleteCurrentUser, logoutInternal, router]);
 
   return {
     handleLogin,

@@ -37,6 +37,7 @@ const initialState: PostRecipeParams = {
   description: '',
   tip: '',
   serving_size: 0,
+  category_id: null,
   recipe_ingredients_attributes: [
     DEFAULT_RECIPE_INGREDIENT,
     DEFAULT_RECIPE_INGREDIENT,
@@ -61,10 +62,15 @@ const ACTION_TYPE = {
   REGISTER_SORTED_STEPS: 'postRecipe/registerSortedSteps',
   RESET_MAIN_IMAGE: 'postRecipe/resetMainImage',
   RESET_STEP_IMAGE: 'postRecipe/resetStepImage',
+  RESET_REGISTERED_RECIPE_INFO: 'postRecipe/resetRegisteredRecipeInfo',
 };
 
 export const registerRecipeInfo = createAction<PostRecipeParams>(
   ACTION_TYPE.REGISTER_RECIPE_INFO
+);
+
+export const resetRegisteredRecipeInfo = createAction(
+  ACTION_TYPE.RESET_REGISTERED_RECIPE_INFO
 );
 
 export const registerIngredients = createAction<RegisterIngredients>(
@@ -118,6 +124,27 @@ export const postRecipeSlice = createSlice({
       state.description = payload.description;
       state.tip = payload.tip;
       state.serving_size = safeParseInt(0, payload.serving_size);
+      state.category_id = payload.category_id;
+    });
+    builder.addCase(resetRegisteredRecipeInfo, (state) => {
+      state.title = '';
+      state.image = INITIAL_IMAGE_INFO;
+      state.cook_time = '';
+      state.cost = '';
+      state.description = '';
+      state.tip = '';
+      state.serving_size = 0;
+      state.category_id = null;
+      state.recipe_ingredients_attributes = [
+        DEFAULT_RECIPE_INGREDIENT,
+        DEFAULT_RECIPE_INGREDIENT,
+        DEFAULT_RECIPE_INGREDIENT,
+      ];
+      state.recipe_steps_attributes = [
+        DEFAULT_RECIPE_STEP,
+        DEFAULT_RECIPE_STEP,
+        DEFAULT_RECIPE_STEP,
+      ];
     });
     builder.addCase(registerIngredients, (state, { payload }) => {
       // 既存のフォーマットへの入力の場合

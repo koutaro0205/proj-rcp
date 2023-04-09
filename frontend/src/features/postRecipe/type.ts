@@ -12,6 +12,7 @@ export type PostRecipeParams = {
   description: string;
   tip: string;
   serving_size: number;
+  category_id: number | null;
   recipe_ingredients_attributes: PostIngredient[];
   recipe_steps_attributes: PostRecipeStep[];
 };

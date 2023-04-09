@@ -32,6 +32,7 @@ export const validateRecipeParams = ({ recipeParams }: Args) => {
   const hasCookingTime = !!recipeParams.cook_time;
   const hasDescription = !!recipeParams.description;
   const hasServingSize = !!recipeParams.serving_size;
+  const hasCategoryId = !!recipeParams.category_id;
   const hasIngredients = !!recipeParams.recipe_ingredients_attributes.length;
   const hasSteps = !!recipeParams.recipe_steps_attributes.length;
   const hasStepDescription = checkStepDescription();
@@ -59,6 +60,10 @@ export const validateRecipeParams = ({ recipeParams }: Args) => {
 
   if (!hasSteps) {
     addErrorMessages('1つ以上作り方の説明を入力してください。');
+  }
+
+  if (!hasCategoryId) {
+    addErrorMessages('レシピのカテゴリを選択してください。');
   }
 
   if (!hasStepDescription) {

@@ -1,8 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import Loading from '@/components/atoms/Loading';
-import { selectIsGlobalLoading } from '@/features/globalLoading/selectors';
+import { useGlobalLoading } from '@/features/globalLoading/useGlobalLoading';
 
 import styles from './styles';
 
@@ -11,7 +10,7 @@ type Props = {
 };
 
 const GlobalLoadingProvider: React.FC<Props> = ({ children }) => {
-  const isLoading = useSelector(selectIsGlobalLoading);
+  const { isLoading } = useGlobalLoading();
   return (
     <>
       {isLoading && (

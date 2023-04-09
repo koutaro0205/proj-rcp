@@ -1,29 +1,42 @@
+import { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
 
-import { HOME } from '@/common/constants/path';
-import { CORRECT_USER } from '@/common/constants/toast';
-import { EmptyObject } from '@/common/types';
+import { HOME, LOGIN_PATH } from '@/common/constants/path';
+import { ACCESS_RESTRICTIONS, CORRECT_USER } from '@/common/constants/toast';
 import { User } from '@/common/types/data';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
+import { LOCAL_STORAGE_LOGGED_IN_STATUS } from '@/utils/localStorage';
 import { isCurrentUser } from '@/utils/match';
-import { warn } from '@/utils/notifications';
-
-import { useAuthGaurd } from './useAuthGaurd';
+import { info, warn } from '@/utils/notifications';
 
 /**
  * 編集権限のないユーザーのアクセスがあった場合、ホームへレンダリング
  * @user アクセス先のユーザー
  */
 
-type Props = {
-  user: User | EmptyObject;
+type Args = {
+  user: User;
 };
 
-const useEditableUser = ({ user }: Props) => {
-  // ログインしていない場合
-  const { currentUser, router } = useAuthGaurd();
+const useEditableUser = ({ user }: Args) => {
+  const { currentUser } = useCurrentUser();
+  const router = useRouter();
+  const { isReady, asPath } = router;
 
-  // ログインしていた場合
+  const authGaurd = useCallback(() => {
+    // ログインしていない場合
+    const currentPath = asPath;
+
+    router.push({
+      pathname: LOGIN_PATH,
+      query: {
+        redirectTo: currentPath,
+      },
+    });
+  }, [asPath, router]);
+
   const getEditableUser = useCallback(() => {
+    // ログインしていた場合
     if (
       currentUser &&
       currentUser.id &&
@@ -36,8 +49,13 @@ const useEditableUser = ({ user }: Props) => {
   }, [currentUser, router, user]);
 
   useEffect(() => {
-    getEditableUser();
-  }, [getEditableUser]);
+    if (isReady && !LOCAL_STORAGE_LOGGED_IN_STATUS) {
+      info(ACCESS_RESTRICTIONS.INFO);
+      authGaurd();
+    } else {
+      getEditableUser();
+    }
+  }, [authGaurd, getEditableUser, isReady]);
 
   return {
     currentUser,

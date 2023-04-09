@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 import { POSTED_RECIPE_INFO } from '@/common/constants/characters';
 import {
   COOK_COST_OPTIONS,
   COOK_TIME_OPTIONS,
 } from '@/common/constants/options';
+import { Category } from '@/common/types/data';
 import InputButton from '@/components/atoms/Button/InputButton';
 import Divider from '@/components/atoms/Divider';
 import Inset from '@/components/layouts/Inset';
@@ -12,14 +15,26 @@ import { Queue } from '@/components/layouts/Queue';
 import { Stack } from '@/components/layouts/Stack';
 import AttachedImage from '@/components/molecules/AttachedImage';
 import FormItem from '@/components/molecules/FormItem';
+import FormLabel from '@/components/molecules/FormItem/FormLabel';
 import IngredientFormList from '@/components/molecules/IngredientFormList';
 import RecipeStepList from '@/components/molecules/RecipeStepList';
 import RenderErrors from '@/components/molecules/RenderErrors';
 
 import styles from './styles';
-import { usePostRecipeForm } from './usePostRecipeForm';
+import { usePostRecipeForm, CategoryOption } from './usePostRecipeForm';
 
-const PostRecipeForm: React.FC = () => {
+type Props = {
+  categories: Category[];
+};
+
+const PostRecipeForm: React.FC<Props> = ({ categories }) => {
+  // NOTE: local Hooksに渡す方が手間なので、catetoriesだけはコンポーネントに直接定義
+  const categoryList: CategoryOption[] = useMemo(() => {
+    return categories.map((category) => {
+      return { value: `${category.id}`, label: category.name };
+    });
+  }, [categories]);
+
   const {
     handleSubmit,
     handleIngredientNameChange,
@@ -35,6 +50,7 @@ const PostRecipeForm: React.FC = () => {
     handleClickRemoveStep,
     setStepFiles,
     handleResetMainImage,
+    handleChangeCategory,
     // HACK: KOU-146 Stepの画像を投稿できるように修正する。
     // handleResetStepImage,
     // stepFiles,
@@ -44,7 +60,10 @@ const PostRecipeForm: React.FC = () => {
     previewImageUrl,
     mainImage,
     formErrors,
+    selectedCategory,
   } = usePostRecipeForm();
+
+  const animatedComponents = makeAnimated();
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
       <RenderErrors formErrors={formErrors} />
@@ -161,6 +180,20 @@ const PostRecipeForm: React.FC = () => {
         value={recipeParams.tip}
         isDisplayRemainingCount
         maxValueLength={POSTED_RECIPE_INFO.tip}
+      />
+      <Stack size="l" />
+      <FormLabel htmlFor="category_id" isRequired>
+        カテゴリ
+      </FormLabel>
+      <Stack size="xs" />
+      <Select
+        name="category_id"
+        id="category_id"
+        defaultValue={selectedCategory}
+        options={categoryList}
+        placeholder="カテゴリを選択"
+        components={animatedComponents}
+        onChange={handleChangeCategory}
       />
       <Inset vertical="xl">
         <Divider pattern="horizontal" />

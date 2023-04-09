@@ -23,6 +23,7 @@ for (let i = 1; i <= 12; i++) {
     tip: TIP,
     description: DESCRIPTION,
     serving_size: 1,
+    category_id: 1,
   };
   RECIPES.push(recipe);
 }

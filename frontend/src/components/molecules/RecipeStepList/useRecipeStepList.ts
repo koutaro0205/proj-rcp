@@ -1,13 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { AppDispatch } from '@/common/store';
 import {
   FileObject,
   PostRecipeStep,
 } from '@/components/organisms/PostRecipeForm/usePostRecipeForm';
-import { selectRgisteredRecipeInfo } from '@/features/postRecipe/selectors';
-import { registerSortedSteps } from '@/features/postRecipe/slice';
+import { usePostRecipe } from '@/features/postRecipe/usePostRecipe';
 
 type Args = {
   recipeSteps: PostRecipeStep[];
@@ -15,11 +12,10 @@ type Args = {
 };
 
 export const useRecipeStepList = ({ recipeSteps, sortStepFiles }: Args) => {
+  const { recipeParams, registerSortedSteps } = usePostRecipe();
+
   const [steps, setSteps] = useState<PostRecipeStep[]>(recipeSteps);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
-
-  const recipeParams = useSelector(selectRgisteredRecipeInfo);
-  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     setSteps(recipeSteps);
@@ -52,7 +48,7 @@ export const useRecipeStepList = ({ recipeSteps, sortStepFiles }: Args) => {
   );
 
   const handleDragEnd = () => {
-    dispatch(registerSortedSteps({ recipeSteps: steps }));
+    registerSortedSteps({ recipeSteps: steps });
     setDragIndex(null);
   };
 

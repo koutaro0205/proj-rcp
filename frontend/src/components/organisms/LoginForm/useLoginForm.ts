@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { AppDispatch } from '@/common/store';
 import { validateLoginInfo } from '@/common/validations/auth/login';
-import { updateLoginStatus } from '@/features/currentUser/slice';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import useAuth from '@/hooks/useAuth';
 import useQueryParameters from '@/hooks/useQueryParameters';
 import { LoginParams } from '@/services/auth/login';
@@ -16,10 +14,12 @@ const DEFAULTS: LoginParams = {
 };
 
 const useLoginForm = () => {
-  const dispatch: AppDispatch = useDispatch();
   const { redirectTo } = useQueryParameters();
+  const { updateLoginStatus } = useCurrentUser();
 
   const [authInfo, setAuthInfo] = useState<LoginParams>(DEFAULTS);
+  const { handleLogin } = useAuth(authInfo);
+
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
   const handleChange = (
@@ -34,8 +34,6 @@ const useLoginForm = () => {
     setAuthInfo({ ...authInfo, [name]: value });
   };
 
-  const { handleLogin } = useAuth(authInfo);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errors = validateLoginInfo(authInfo);
@@ -48,7 +46,7 @@ const useLoginForm = () => {
     setFormErrors([]);
     const data = await handleLogin(redirectTo);
     if (data) {
-      dispatch(updateLoginStatus(data));
+      updateLoginStatus(data);
     }
   };
 

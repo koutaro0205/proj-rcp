@@ -4,9 +4,12 @@ class Api::V1::RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
     render json: @recipes.to_json(
-      include: {
-        user: { methods: [:image_url] }
-      },
+      include: [
+        {
+          user: { methods: [:image_url] }
+        },
+        :category
+      ],
       methods: [:image_url]
     )
   end
@@ -16,6 +19,7 @@ class Api::V1::RecipesController < ApplicationController
       include: %i[
         recipe_ingredients
         recipe_steps
+        category
       ],
       methods: [:image_url]
     )
@@ -48,6 +52,7 @@ class Api::V1::RecipesController < ApplicationController
       :description,
       :tip,
       :serving_size,
+      :category_id,
       recipe_ingredients_attributes: %i[
         ingredient_name
         quantity

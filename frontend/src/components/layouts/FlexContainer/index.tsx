@@ -26,6 +26,7 @@ export type FlexStyle = {
   justifySelf?: CSSPropertyJustifySelf;
   alignSelf?: CSSPropertyAlignSelf;
   order?: string;
+  gap?: number | string;
 };
 
 type Children = {
@@ -48,6 +49,7 @@ const FlexContainer: React.FC<Props> = ({
   flexShrink,
   alignSelf,
   order,
+  gap,
 }) => {
   const styles = getStyles(
     alignItems,
@@ -61,7 +63,8 @@ const FlexContainer: React.FC<Props> = ({
     justifySelf,
     flexShrink,
     alignSelf,
-    order
+    order,
+    gap
   );
   return <div className={styles.container}>{children}</div>;
 };

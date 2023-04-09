@@ -17,6 +17,7 @@ export const USER_EDIT_API = (id: number) => {
 };
 
 // Page
+export const LOGGEDIN_USER_REQUEST_PATH = '/logged_in';
 export const SIGNUP_PATH = '/signup';
 export const LOGIN_PATH = '/login';
 export const LOGOUT_PATH = '/logout';
@@ -25,6 +26,7 @@ export const PASSWORD_RESETS_REQUEST_PATH = '/password_resets';
 export const QUESTIONS_PATH = '/questions';
 export const POST_RECIPE_PATH = '/recipes/post';
 export const RECIPES_PATH = '/recipes';
+export const CATEGORIES_PATH = '/categories';
 export const USERS_PATH = '/users';
 export const ACCOUNT_ACTIVATIONS_PATH = '/account_activations';
 export const USER_DETAIL_PATH = (id: number) => {

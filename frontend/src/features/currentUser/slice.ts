@@ -1,9 +1,7 @@
 // NOTE: ディレクトリ構成検討中
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { LOGGEDIN_USER_API } from '@/common/constants/path';
-import { ROOT_URL } from '@/common/constants/url';
-import axios from '@/utils/axios';
+import getCurrentUser from '@/services/users/getCurrentUser';
 
 import { InitialState, UpdateCurrentUser, UpdateLoginStatus } from './type';
 
@@ -37,18 +35,9 @@ const ACTION_TYPE = {
 export const fetchCurrentUser = createAsyncThunk(
   ACTION_TYPE.CURRENT_USER,
   async () => {
-    // FIXME: servises/に切り出す
-    const response = await axios.get(`${ROOT_URL}/${LOGGEDIN_USER_API}`, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-    });
-    axios.defaults.headers.common['X-CSRF-Token'] =
-      response.headers['X-CSRF-Token'];
+    const data = await getCurrentUser();
 
-    return { data: response.data };
+    return { user: data.user, loggedIn: data.logged_in };
   }
 );
 
@@ -68,9 +57,9 @@ export const currentUserSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
-      if (payload.data) {
-        state.loggedIn = payload.data.logged_in && true;
-        state.currentUser = payload.data.user;
+      if (payload.user && payload.loggedIn) {
+        state.loggedIn = true;
+        state.currentUser = payload.user;
       }
     });
     builder.addCase(updateLoginStatus, (state, { payload }) => {

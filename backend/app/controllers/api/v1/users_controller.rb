@@ -7,7 +7,14 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    render json: @user, methods: [:image_url]
+    render json: @user.as_json(
+      include: [
+        {
+          recipes: { methods: [:image_url] }
+        }
+      ],
+      methods: [:image_url]
+    )
   end
 
   def create

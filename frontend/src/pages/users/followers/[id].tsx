@@ -12,9 +12,10 @@ import Loading from '@/components/atoms/Loading';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ContentWidth from '@/components/layouts/ContentWidth';
 import FlexContainer from '@/components/layouts/FlexContainer';
-import CurrentUserProfileCard from '@/components/organisms/ProfileCard/CurrentUserProfileCard';
+import CurrentUserProfileSection from '@/components/organisms/ProfileSection/CurrentUserProfileSection';
 import UsersList from '@/components/organisms/UsersList';
 import Layout from '@/components/templates/Layout';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { useAuthGaurd } from '@/hooks/useAuthGaurd';
 import { useFollowing } from '@/hooks/useFollowing';
 import getAllUsers from '@/services/users/getAllUsers';
@@ -23,17 +24,18 @@ import getUser from '@/services/users/getUser';
 type UserDetailPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const FollowerListPage: NextPage<UserDetailPageProps> = ({ user }) => {
-  const { currentUser } = useAuthGaurd();
+  useAuthGaurd();
+  const { isLoggedIn, currentUser } = useCurrentUser();
   const { followerList } = useFollowing({ userId: user.id });
 
   return (
     <Layout>
       <ContentWidth>
-        {currentUser ? (
+        {currentUser && isLoggedIn ? (
           <>
             <SectionTitle sectionTitle="フォロワー" />
             <FlexContainer>
-              <CurrentUserProfileCard currentUser={currentUser} />
+              <CurrentUserProfileSection currentUser={currentUser} />
               <UsersList
                 users={followerList}
                 currentUser={currentUser}

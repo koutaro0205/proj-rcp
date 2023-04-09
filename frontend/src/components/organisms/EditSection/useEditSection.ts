@@ -1,14 +1,12 @@
 import React, { useCallback, useState, useMemo } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { UPDATE_USER } from '@/common/constants/toast';
-import { AppDispatch } from '@/common/store';
 import {
   validateEmail,
   validatePassword,
   validateUserName,
 } from '@/common/validations/updateUser';
-import { fetchCurrentUser } from '@/features/currentUser/slice';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { useUserInputForm } from '@/hooks/useUserInputForm';
 import updateUser from '@/services/users/updateUser';
 import { isEmptyArray } from '@/utils/match';
@@ -27,11 +25,11 @@ export const useEditSection = () => {
     handleFileChange,
   } = useUserInputForm();
 
+  const { fetchCurrentUser } = useCurrentUser();
+
   const [userNameErrors, setUserNameErrors] = useState<string[]>([]);
   const [emailErrors, setEmailErrors] = useState<string[]>([]);
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
-
-  const dispatch: AppDispatch = useDispatch();
 
   const userNameErrorMessages = useMemo(() => {
     return validateUserName(userInfo.name);
@@ -75,12 +73,12 @@ export const useEditSection = () => {
       if (responseData.status === 'ok') {
         success(UPDATE_USER.SUCCESS);
         // NOTE: 更新後、データをリフェッチしてUIに反映
-        dispatch(fetchCurrentUser());
+        fetchCurrentUser();
         return;
       }
       error(UPDATE_USER.ERROR);
     },
-    [checkCanRequest, currentUser.id, dispatch, userInfo]
+    [checkCanRequest, currentUser.id, fetchCurrentUser, userInfo]
   );
 
   return {

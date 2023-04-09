@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { User } from '@/common/types/data';
-import { selectIsLoggedIn } from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { useFollowing } from '@/hooks/useFollowing';
 import { follow } from '@/services/relationships/follow';
 import { getFollowingStatus } from '@/services/relationships/getFollowingStatus';
@@ -14,7 +13,7 @@ type Args = {
 
 const useProfileCard = ({ user }: Args) => {
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useCurrentUser();
   const {
     followerCount,
     followingCount,

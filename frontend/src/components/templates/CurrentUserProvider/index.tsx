@@ -1,18 +1,34 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { AppDispatch } from '@/common/store';
-import { fetchCurrentUser } from '@/features/currentUser/slice';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 
 type Props = {
   children: React.ReactNode;
 };
 
 const CurrentUserProvider: React.FC<Props> = ({ children }) => {
-  const dispatch: AppDispatch = useDispatch();
+  const { fetchCurrentUser } = useCurrentUser();
+  // NOTE: ページがリロードされた場合のみ、リフェッチする。
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      sessionStorage.setItem('reloading', 'true');
+      e.preventDefault();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      sessionStorage.removeItem('reloading');
+    };
+  }, []);
+
+  useEffect(() => {
+    const reloading = sessionStorage.getItem('reloading');
+    if (reloading) {
+      fetchCurrentUser();
+    }
+  }, [fetchCurrentUser]);
   return <div>{children}</div>;
 };
 

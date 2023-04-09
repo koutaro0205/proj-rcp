@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import React from 'react';
 
-import { IMAGES } from '@/common/constants/images';
 import { Recipe } from '@/common/types/data';
 import Label from '@/components/atoms/Label';
 import Title from '@/components/atoms/Title';
@@ -36,13 +34,14 @@ const StepDetailSection: React.FC<Props> = ({ recipeSteps, tip }) => {
             <p className={styles.description}>
               {trimString(step?.description)}
             </p>
-            <div className={styles.imageWrapper}>
+            {/* HACK: KOU-146 Stepの画像を投稿できるように修正する。 */}
+            {/* <div className={styles.imageWrapper}>
               <Image
                 src={step?.image_url || IMAGES.noImageSquare}
                 width={140}
                 height={140}
               />
-            </div>
+            </div> */}
           </li>
         ))}
       </ul>

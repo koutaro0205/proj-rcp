@@ -1,7 +1,6 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
 
-import { selectCurrentUser } from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { UserParams } from '@/services/users/types';
 import { isEmptyArray } from '@/utils/match';
 
@@ -19,7 +18,7 @@ const DEFAULTS: UserParams = {
 };
 
 export const useUserInputForm = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useCurrentUser();
 
   const {
     inputRef,

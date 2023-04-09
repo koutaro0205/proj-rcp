@@ -1,35 +1,28 @@
 import { useRouter } from 'next/router';
-import { useLayoutEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import { LOGIN_PATH } from '@/common/constants/path';
 import { ACCESS_RESTRICTIONS } from '@/common/constants/toast';
-import { selectCurrentUser } from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { info } from '@/utils/notifications';
 
-export const useAuthGaurd = () => {
+export const useAuthGaurd = (): void => {
   const router = useRouter();
-  const currentUser = useSelector(selectCurrentUser);
+  const { isLoggedIn } = useCurrentUser();
+  const { isReady, asPath } = router;
 
-  if (!currentUser) {
-    const currentPath = router.asPath;
+  useEffect(() => {
+    if (isReady && !isLoggedIn) {
+      const currentPath = asPath;
 
-    router.push({
-      pathname: LOGIN_PATH,
-      query: {
-        redirectTo: currentPath,
-      },
-    });
-  }
+      router.push({
+        pathname: LOGIN_PATH,
+        query: {
+          redirectTo: currentPath,
+        },
+      });
 
-  useLayoutEffect(() => {
-    if (!currentUser) {
       info(ACCESS_RESTRICTIONS.INFO);
     }
-  }, [currentUser, router]);
-
-  return {
-    currentUser,
-    router,
-  };
+  }, [asPath, isLoggedIn, isReady, router]);
 };

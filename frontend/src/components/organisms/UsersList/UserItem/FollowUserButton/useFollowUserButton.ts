@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { User } from '@/common/types/data';
-import { selectIsLoggedIn } from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { follow } from '@/services/relationships/follow';
 import { getFollowingStatus } from '@/services/relationships/getFollowingStatus';
 import { unFollow } from '@/services/relationships/unFollow';
 
 export const useFollowUserButton = ({ user }: { user: User }) => {
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useCurrentUser();
 
   const fetchIsFollowing = useCallback(async () => {
     const data = await getFollowingStatus(user.id);

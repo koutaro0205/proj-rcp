@@ -2,6 +2,7 @@ import { css } from '@emotion/css';
 
 import { NORMAL_BORDER_STYLE } from '@/common/constants/typography';
 import borderRadius from '@/theme/borderRadius';
+import colors from '@/theme/colors';
 import fontSizes from '@/theme/fontSize';
 import lineHeights from '@/theme/lineHeights';
 import space from '@/theme/space';
@@ -19,12 +20,14 @@ const styles = {
     // NOTE: 画像下部に若干の余白できるのを調整
     fontSize: 0,
   }),
-  categoriesList: css({
+  categoryWrapper: css({
     position: 'absolute',
     top: 10,
     left: 10,
-    display: 'flex',
-    gap: space.s,
+    backgroundColor: colors.white,
+    paddingBlock: space.xs,
+    paddingInline: space.s,
+    borderRadius: borderRadius.s,
   }),
   likeCountButtonWrapper: css({
     position: 'absolute',

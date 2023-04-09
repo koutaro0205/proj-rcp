@@ -6,16 +6,15 @@ import {
 } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import { USER_DETAIL_PATH } from '@/common/constants/path';
-import { User } from '@/common/types/data';
+import { User, UserProfile } from '@/common/types/data';
 import Loading from '@/components/atoms/Loading';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ContentWidth from '@/components/layouts/ContentWidth';
-import ProfileCard from '@/components/organisms/ProfileCard';
+import ProfileSection from '@/components/organisms/ProfileSection';
 import Layout from '@/components/templates/Layout';
-import { selectCurrentUser } from '@/features/currentUser/selectors';
+import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import getAllUsers from '@/services/users/getAllUsers';
 import getUser from '@/services/users/getUser';
 
@@ -23,7 +22,7 @@ type UserDetailPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const UserDetailPage: NextPage<UserDetailPageProps> = ({ user }) => {
   const router = useRouter();
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useCurrentUser();
 
   // FIXME: 暫定
   if (router.isFallback) {
@@ -33,7 +32,7 @@ const UserDetailPage: NextPage<UserDetailPageProps> = ({ user }) => {
     <Layout>
       <ContentWidth>
         <SectionTitle sectionTitle="ユーザー情報" />
-        <ProfileCard user={user} currentUser={currentUser} />
+        <ProfileSection user={user} currentUser={currentUser} />
       </ContentWidth>
     </Layout>
   );
@@ -51,7 +50,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
     throw new Error('params is undefined');
   }
   const userId = Number(params.id);
-  const user = await getUser(userId);
+  const user: UserProfile = await getUser(userId);
 
   return {
     props: {

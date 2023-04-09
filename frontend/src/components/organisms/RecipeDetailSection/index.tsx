@@ -22,11 +22,11 @@ const RecipeDetailSection: React.FC<Props> = ({
   /* HeadSection */
   recipeTitle,
   imageUrl,
-  categories,
   cookTime,
   cost,
   postDate,
   description,
+  category,
   // isLiked,
   // onClickLikeButton,
   // likeCount,
@@ -44,9 +44,9 @@ const RecipeDetailSection: React.FC<Props> = ({
         recipeTitle={recipeTitle}
         postDate={postDate}
         description={description}
-        categories={categories}
         cookTime={cookTime}
         cost={cost}
+        category={category}
         // FIXME: お気に入り機能実装後、修正する。
         // (currentUserがそのレシピをお気に入りしているか)
         isLiked={false}

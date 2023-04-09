@@ -11,9 +11,10 @@ Rails.application.routes.draw do
         end
       end
       resources :account_activations, only: [:edit]
-      resources :password_resets, only: [:new, :create, :edit, :update]
-      resources :relationships, only: [:create, :destroy]
+      resources :password_resets, only: %i[new create edit update]
+      resources :relationships, only: %i[create destroy]
       resources :recipes
+      resources :categories
     end
   end
 end
