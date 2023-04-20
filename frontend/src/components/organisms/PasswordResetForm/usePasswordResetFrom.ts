@@ -2,22 +2,18 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import { HOME } from '@/common/constants/path';
-import { PASSWORD_RESETS, USERS } from '@/common/constants/toast';
+import { PASSWORD_RESETS } from '@/common/constants/toast';
 import { validatePasswordResets } from '@/common/validations/passwordResets';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
 import sendPasswordResetEmail from '@/services/passwordResets/sendPasswordResetEmail';
 import { isEmptyArray } from '@/utils/match';
 import { info } from '@/utils/notifications';
-import { handleResponseError } from '@/utils/requestError';
 
 const usePasswordResetForm = () => {
   const [email, setEmail] = useState<string>('');
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const router = useRouter();
-  const { data, error } = useGetAllUsers();
-  const users = data && data;
-
-  if (error) handleResponseError(USERS.ERROR);
+  const { users } = useGetAllUsers();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

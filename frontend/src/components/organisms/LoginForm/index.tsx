@@ -5,10 +5,10 @@ import InputButton from '@/components/atoms/Button/InputButton';
 import LinkText from '@/components/atoms/LinkText';
 import Text from '@/components/atoms/Text';
 import { Stack } from '@/components/layouts/Stack';
-import CheckItem from '@/components/molecules/CheckItem';
 import FormItem from '@/components/molecules/FormItem';
 import RenderErrors from '@/components/molecules/RenderErrors';
 
+import CheckItem from './CheckItem';
 import styles from './styles';
 import useLoginForm from './useLoginForm';
 

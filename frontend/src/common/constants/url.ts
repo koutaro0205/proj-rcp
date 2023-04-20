@@ -1,3 +1,4 @@
+// FIXME: .envファイルで管理する。
 // 開発環境ルートURL
 export const ROOT_URL = 'http://localhost:3000';
 

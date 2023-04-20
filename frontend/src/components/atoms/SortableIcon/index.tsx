@@ -2,6 +2,8 @@ import React from 'react';
 
 import styles from './styles';
 
+// NOTE: CSSを使って独自実装した並び順変更アイコン
+
 const SortableIcon: React.FC = () => {
   return (
     <div className={styles.container}>

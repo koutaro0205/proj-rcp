@@ -8,8 +8,8 @@ import UserImage from '@/components/atoms/UserImage';
 import FlexContainer from '@/components/layouts/FlexContainer';
 import { Queue } from '@/components/layouts/Queue';
 import { Stack } from '@/components/layouts/Stack';
-import Status from '@/components/molecules/Status';
 import CurrentUserInfo from '@/components/organisms/ProfileSection/CurrentUserInfo';
+import FollowStatus from '@/components/organisms/ProfileSection/FollowStatus';
 import { CurrentUser } from '@/features/currentUser/type';
 import space from '@/theme/space';
 import { isCurrentUser } from '@/utils/match';
@@ -41,7 +41,7 @@ const ProfileSection: React.FC<Props> = ({ user, currentUser }) => {
       </FlexContainer>
       <Stack size="l" />
       <div className={styles.followStatusSection}>
-        <Status
+        <FollowStatus
           path={FOLLOWING_PATH(user.id)}
           labal="フォロー"
           count={followingCount}
@@ -50,7 +50,7 @@ const ProfileSection: React.FC<Props> = ({ user, currentUser }) => {
         <Queue size="m" />
         <Divider pattern="vertical" width="s" color="black" />
         <Queue size="m" />
-        <Status
+        <FollowStatus
           path={FOLLOWERS_PATH(user.id)}
           labal="フォロワー"
           count={followerCount}

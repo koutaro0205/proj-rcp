@@ -14,7 +14,7 @@ type Props = {
   hasLink?: boolean;
 };
 
-const Status: React.FC<Props> = ({
+const FollowStatus: React.FC<Props> = ({
   count = 0,
   path,
   labal,
@@ -43,4 +43,4 @@ const Status: React.FC<Props> = ({
   );
 };
 
-export default Status;
+export default FollowStatus;

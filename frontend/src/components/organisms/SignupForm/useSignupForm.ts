@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react';
 
-import { SIGNUP, USERS } from '@/common/constants/toast';
+import { SIGNUP } from '@/common/constants/toast';
 import { validateUser } from '@/common/validations/signup';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
 import { useUserInputForm } from '@/hooks/useUserInputForm';
 import signup from '@/services/users/addUser';
 import { info } from '@/utils/notifications';
-import { handleResponseError } from '@/utils/requestError';
 
 export const useSignupForm = () => {
   const {
@@ -22,21 +21,20 @@ export const useSignupForm = () => {
     handleClick,
   } = useUserInputForm();
 
-  const { data, error } = useGetAllUsers();
-  if (error) handleResponseError(USERS.ERROR);
+  const { users } = useGetAllUsers();
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      const errors = validateUser({ user: userInfo, users: data });
+      const errors = validateUser({ user: userInfo, users });
       if (!checkCanRequest(errors)) return;
 
       await signup(userInfo);
       // FIXME: 新規アカウント登録成功後の処理を追加する。
       info(SIGNUP.INFO);
     },
-    [checkCanRequest, data, userInfo]
+    [checkCanRequest, userInfo, users]
   );
 
   return {

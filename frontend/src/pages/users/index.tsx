@@ -11,26 +11,22 @@ import Layout from '@/components/templates/Layout';
 import { useCurrentUser } from '@/features/currentUser/useCurrentUser';
 import { useAuthGaurd } from '@/hooks/useAuthGaurd';
 import useGetAllUsers from '@/hooks/useGetAllUsers';
-import { handleResponseError } from '@/utils/requestError';
 
 const UsersPage: NextPage = () => {
   useAuthGaurd();
   const { isLoggedIn, currentUser } = useCurrentUser();
-  const { data, error } = useGetAllUsers();
-  if (error) {
-    handleResponseError('failed to get users');
-  }
+  const { users } = useGetAllUsers();
 
   return (
     <Layout>
       <ContentWidth>
-        {currentUser && isLoggedIn && data ? (
+        {currentUser && isLoggedIn ? (
           <>
             <SectionTitle sectionTitle="ユーザー一覧" />
             <FlexContainer>
               <CurrentUserProfileSection currentUser={currentUser} />
               <UsersList
-                users={data}
+                users={users}
                 currentUser={currentUser}
                 label="登録ユーザー一覧"
               />

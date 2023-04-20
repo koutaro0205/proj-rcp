@@ -6,6 +6,7 @@ import { Color } from '@/theme/colors';
 
 import { getStyles } from './styles';
 
+// FIXME: サイズを追加する。
 type Props = {
   isLiked: boolean;
   onClick: () => void;
