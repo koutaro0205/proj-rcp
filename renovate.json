@@ -6,7 +6,8 @@
     {
       "groupName": "all minor and patch dependencies",
       "updateTypes": ["patch", "minor"],
-      "excludePackageNames": ["typescript", "react"]
+      "excludePackageNames": ["typescript", "react"],
+      "paths": ["frontend/**"]
     },
     {
       "matchUpdateTypes": ["pin"],

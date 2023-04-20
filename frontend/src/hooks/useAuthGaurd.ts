@@ -12,7 +12,7 @@ export const useAuthGaurd = (): void => {
   const { isReady, asPath } = router;
 
   useEffect(() => {
-    if (isReady && !isLoggedIn) {
+    if (isReady && isLoggedIn === false) {
       const currentPath = asPath;
 
       router.push({

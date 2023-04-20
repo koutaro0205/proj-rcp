@@ -6,6 +6,9 @@ class Recipe < ApplicationRecord
   belongs_to :category
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
   accepts_nested_attributes_for :recipe_steps, allow_destroy: true
+  has_many :favorites, dependent: :destroy
+  # レシピをお気に入り登録したユーザー一覧
+  has_many :users_favorite, through: :favorites, source: :user
 
   validates :title, presence: true
   validates :description, presence: true

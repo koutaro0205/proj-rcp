@@ -21,16 +21,17 @@ export const getStyles = ({ isLiked, backgroundColor }: GetStyleInput) => {
       borderRadius: BUTTON_HEIGHT / 2,
       border: 'none',
       backgroundColor: isLiked ? colors.like : colors[backgroundColor],
+      color: isLiked ? colors.white : colors.black,
       transition: '.3s',
       cursor: 'pointer',
       // isLiked=trueだった場合は色を固定するので:hoverなし
-      ...(!isLiked && {
-        ':hover': {
-          backgroundColor: colors.like,
-          color: colors.white,
-          transition: '.3s',
-        },
-      }),
+      // ...(!isLiked && {
+      //   ':hover': {
+      //     backgroundColor: colors.like,
+      //     color: colors.white,
+      //     transition: '.3s',
+      //   },
+      // }),
     }),
     likeCountContainer: css({
       display: 'flex',

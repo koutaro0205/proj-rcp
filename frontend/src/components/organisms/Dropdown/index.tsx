@@ -8,7 +8,7 @@ import {
 import DropdownItem from '@/components/atoms/DropdownItem';
 import { CurrentUser } from '@/features/currentUser/type';
 
-import styles from './styles';
+import { getStyles } from './styles';
 import useDropdown from './useDropdown';
 
 type Props = {
@@ -17,6 +17,7 @@ type Props = {
 
 const Dropdown: React.FC<Props> = ({ currentUser }) => {
   const { isOpen, dropdownRef, handleClick, handleLogoutClick } = useDropdown();
+  const styles = getStyles(isOpen);
   return (
     <li className={styles.container} ref={dropdownRef}>
       <button
@@ -28,24 +29,22 @@ const Dropdown: React.FC<Props> = ({ currentUser }) => {
         {currentUser?.name}
       </button>
 
-      {isOpen && (
-        <ul className={styles.dropdownList}>
-          <DropdownItem
-            path={USER_DETAIL_PATH(currentUser.id)}
-            label="登録情報"
-          />
-          <DropdownItem
-            path={USER_EDIT_PATH(currentUser.id)}
-            label="ユーザー編集"
-          />
-          <DropdownItem path={USERS_PATH} label="ユーザー一覧" />
-          <DropdownItem
-            label="ログアウト"
-            onClick={handleLogoutClick}
-            _styles={styles.logout}
-          />
-        </ul>
-      )}
+      <ul className={styles.dropdownList}>
+        <DropdownItem
+          path={USER_DETAIL_PATH(currentUser.id)}
+          label="登録情報"
+        />
+        <DropdownItem
+          path={USER_EDIT_PATH(currentUser.id)}
+          label="ユーザー編集"
+        />
+        <DropdownItem path={USERS_PATH} label="ユーザー一覧" />
+        <DropdownItem
+          label="ログアウト"
+          onClick={handleLogoutClick}
+          _styles={styles.logout}
+        />
+      </ul>
     </li>
   );
 };

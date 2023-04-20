@@ -21,6 +21,9 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_recipes, through: :favorites, source: :recipe
+
   # Validations
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -127,12 +130,13 @@ class User < ApplicationRecord
   end
 
   private
-    def downcase_email
-      self.email = email.downcase
-    end
 
-    def create_activation_digest
-      self.activation_token  = User.new_token
-      self.activation_digest = User.digest(activation_token)
-    end
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  def create_activation_digest
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 end
