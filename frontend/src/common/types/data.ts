@@ -73,4 +73,5 @@ export type Recipe = {
 // レシピカード
 export type RecipeCard = {
   user: User;
+  category: Category;
 } & RecipeData;

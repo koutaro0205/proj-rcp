@@ -60,9 +60,29 @@ class Api::V1::UsersController < ApplicationController
     render json: { pattern:, followers_count:, followers_list: }
   end
 
+  # カレントユーザーが相手のユーザーをフォローしているか
   def following_status
     status = current_user.following?(@user)
     render json: { is_following: status }
+  end
+
+  # レシピをお気に入り登録しているか
+  def favorite_status
+    @recipe = Recipe.find(params[:id])
+    render json: { is_favorite: current_user.favorite?(@recipe), favorite_count: @recipe.favorites.count }
+  end
+
+  # カレントユーザーのお気に入りレシピ一覧
+  def favorite_recipes
+    render json: current_user.favorite_recipes.as_json(
+      include: [
+        {
+          user: { methods: [:image_url] }
+        },
+        :category
+      ],
+      methods: [:image_url]
+    )
   end
 
   private

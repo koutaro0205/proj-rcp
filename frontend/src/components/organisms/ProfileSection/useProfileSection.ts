@@ -29,18 +29,21 @@ const useProfileCard = ({ user }: Args) => {
   }, [user.id]);
 
   useEffect(() => {
+    // NOTE: ログインしていない場合は、フォロー状態を取得しない。
     if (isLoggedIn) {
       fetchIsFollowing();
     }
   }, [fetchIsFollowing, isLoggedIn, user.id]);
 
   const handleClick = () => {
+    // 既にフォロー状態の時
     if (isFollowing) {
       unFollow(user.id);
       setIsFollowing(false);
       decreaseFollowerCount();
       return;
     }
+    // 未フォロー状態の時
     follow(user);
     setIsFollowing(true);
     increaseFollowerCount();

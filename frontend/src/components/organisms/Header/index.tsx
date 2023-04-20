@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { HOME, POST_RECIPE_PATH } from '@/common/constants/path';
+import {
+  FAVORITE_RECIPES_PATH,
+  HOME,
+  POST_RECIPE_PATH,
+} from '@/common/constants/path';
 import IconButton from '@/components/atoms/Button/IconButton';
 import Logo from '@/components/atoms/Logo';
 import NavItem from '@/components/atoms/NavItem';
@@ -34,7 +38,7 @@ const Header: React.FC = () => {
               <IconButton
                 label="お気に入り"
                 color="favorite"
-                path="/recipes/new"
+                path={FAVORITE_RECIPES_PATH}
                 iconName="FAVORITE"
               />
             )}

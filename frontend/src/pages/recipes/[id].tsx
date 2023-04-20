@@ -16,7 +16,6 @@ import RecipeDetailSection from '@/components/organisms/RecipeDetailSection';
 import Layout from '@/components/templates/Layout';
 import getAllRecipes from '@/services/recipes/getAllRecipes';
 import getRecipe from '@/services/recipes/getRecipe';
-import { formatDate } from '@/utils/date';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -30,19 +29,7 @@ const RecipeDetailPage: NextPage<Props> = ({ recipe }) => {
     <Layout>
       <ContentWidth>
         <SectionTitle sectionTitle="レシピ詳細" />
-        <RecipeDetailSection
-          recipeTitle={recipe.title}
-          imageUrl={recipe.image_url}
-          cookTime={recipe.cook_time}
-          cost={recipe.cost}
-          postDate={formatDate(recipe.updated_at)}
-          description={recipe.description}
-          servingSize={recipe.serving_size}
-          recipeIngredients={recipe.recipe_ingredients}
-          recipeSteps={recipe.recipe_steps}
-          tip={recipe.tip || ''}
-          category={recipe.category}
-        />
+        <RecipeDetailSection recipe={recipe} />
       </ContentWidth>
     </Layout>
   );
@@ -50,6 +37,7 @@ const RecipeDetailPage: NextPage<Props> = ({ recipe }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const recipes = await getAllRecipes();
+  // FIXME: RecipeCard→RecipeItemに変更
   const paths = recipes.map((recipe: RecipeCard) =>
     RECIPE_DETAIL_PATH(recipe.id)
   );

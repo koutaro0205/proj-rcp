@@ -19,6 +19,7 @@ const styles = {
   imageWrapper: css({
     // NOTE: 画像下部に若干の余白できるのを調整
     fontSize: 0,
+    cursor: 'pointer',
   }),
   categoryWrapper: css({
     position: 'absolute',
